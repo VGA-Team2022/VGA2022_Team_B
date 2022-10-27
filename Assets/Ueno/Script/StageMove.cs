@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class StageMove : MonoBehaviour
 {
+    [Header("アタッチするもの")]
     [SerializeField] private GameObject[] _wall;
-    [SerializeField] private Vector3 _startPos;
-    [SerializeField] private Vector3 _endPos;
-    [SerializeField] private float _moveSpeed = 5f;
+    [SerializeField] private Transform _startPos;
+    [SerializeField] private Transform _endPos;
+
+    [Header("Pram")]
+    [Tooltip("移動速度"),SerializeField] private float _moveSpeed = 5f;
+    public float MoveSpeed  
+        { get { return _moveSpeed; } set { _moveSpeed = value; } }
     // Start is called before the first frame update
     void Start()
     {
@@ -19,26 +24,15 @@ public class StageMove : MonoBehaviour
         for (int i = 0; i < _wall.Length; i++)
         {
             
-            _wall[i].transform.position -= new Vector3(Time.deltaTime * _moveSpeed,0);
+            _wall[i].transform.position -= new Vector3(Time.deltaTime * MoveSpeed,0);
 
             
-            if (_wall[i].transform.position.x <= _endPos.x)
+            if (_wall[i].transform.position.x <= _endPos.position.x)
             {
-                _wall[i].transform.position = _startPos;
+                _wall[i].transform.position = _startPos.position;
             }
         }
     }
 
-    private void SetPos()
-    {
-        for (int i = 0; i < _wall.Length; i++)
-        {
-            if (_wall[i].transform.position == _endPos)
-            {
-                _wall[i].SetActive(false);
-                _wall[i].transform.position = _startPos;
-                _wall[i].SetActive(true);
-            }
-        }
-    }
+
 }
