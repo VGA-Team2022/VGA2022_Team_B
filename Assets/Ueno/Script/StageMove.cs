@@ -15,22 +15,27 @@ public class StageMove : MonoBehaviour
         { get { return _moveSpeed; } set { _moveSpeed = value; } }
 
     private float _keepSpeed;
+    private bool isPhonDebug;
     // Start is called before the first frame update
     void Start()
     {
         _keepSpeed = MoveSpeed;
         MoveSpeed = 0;
+
     }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (!isPhonDebug)
         {
-            MoveSpeed = _keepSpeed;
-        }
-        else 
-        {
-            MoveSpeed = 0;
+            if (Input.GetKey(KeyCode.Space))
+            {
+                MoveSpeed = _keepSpeed;
+            }
+            else
+            {
+                MoveSpeed = 0;
+            }
         }
 
         for (int i = 0; i < _wall.Length; i++)
@@ -47,5 +52,13 @@ public class StageMove : MonoBehaviour
 
     }
 
+    public void OnTapAdvance()
+    {
+        MoveSpeed = _keepSpeed;
+    }
+    public void ExitTapAdvance()
+    {
+        MoveSpeed = 0;
+    }
 
 }
