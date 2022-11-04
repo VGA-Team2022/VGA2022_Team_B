@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
 	float _flickValueY;
 	[SerializeField, Tooltip("フリックの感度")] float _flickValue;
 
+	SpriteRenderer _sp;
+
 	//プレイヤーの現在地をプロパティ化
 	public int NowPos
     {
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
 		_nowPos = 1;
 		gameObject.transform.position = _raneNum[_nowPos].position;
 		_rb = GetComponent<Rigidbody>();
+		_sp = GetComponent<SpriteRenderer>();
 	}
 
 	void Update()
@@ -150,6 +153,21 @@ public class Player : MonoBehaviour
 			acceleration.z = 0;
 			Physics2D.gravity = acceleration;
 			Debug.Log(acceleration.x);
+			if(acceleration.x > 40)
+            {
+				_sp.color = Color.red;
+            }
+
+			if(acceleration.x == 0)
+            {
+				_sp.color = Color.white;
+            }
+
+			if(acceleration.x < -40)
+            {
+				_sp.color = Color.green;
+            }
+
 		}
 	}
 
