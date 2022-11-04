@@ -13,25 +13,38 @@ public class StageMove : MonoBehaviour
     [Tooltip("ˆÚ“®‘¬“x"),SerializeField] private float _moveSpeed = 5f;
     public float MoveSpeed  
         { get { return _moveSpeed; } set { _moveSpeed = value; } }
+
+    private float _keepSpeed;
     // Start is called before the first frame update
     void Start()
     {
-
+        _keepSpeed = MoveSpeed;
+        MoveSpeed = 0;
     }
 
     void Update()
     {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            MoveSpeed = _keepSpeed;
+        }
+        else 
+        {
+            MoveSpeed = 0;
+        }
+
         for (int i = 0; i < _wall.Length; i++)
         {
-            
-            _wall[i].transform.position -= new Vector3(Time.deltaTime * MoveSpeed,0);
 
-            
+            _wall[i].transform.position -= new Vector3(Time.deltaTime * MoveSpeed, 0);
+
+
             if (_wall[i].transform.position.x <= _endPos.position.x)
             {
                 _wall[i].transform.position = _startPos.position;
             }
         }
+
     }
 
 

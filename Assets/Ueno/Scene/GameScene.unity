@@ -4214,7 +4214,7 @@ MonoBehaviour:
   - {fileID: 364648241}
   _startPos: {fileID: 1600878068}
   _endPos: {fileID: 1268602774}
-  _moveSpeed: 2
+  _moveSpeed: 10
 --- !u!4 &997581390
 Transform:
   m_ObjectHideFlags: 0
