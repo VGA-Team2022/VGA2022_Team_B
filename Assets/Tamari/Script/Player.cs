@@ -12,6 +12,13 @@ public class Player : MonoBehaviour
 	[SerializeField, Tooltip("レーンの位置")] Transform[] _raneNum;
 	[Tooltip("プレイヤーの現在地")] private int _nowPos;
 
+    //フリック関連の情報
+	private Vector3 _touchStartPos;
+	private Vector3 _touchEndPos;
+	//float _flickValueX;
+	float _flickValueY;
+	[SerializeField, Tooltip("フリックの感度")] float _flickValue;
+
 	//プレイヤーの現在地をプロパティ化
 	public int NowPos
     {
@@ -31,10 +38,18 @@ public class Player : MonoBehaviour
 	void Update()
 	{
 		Move();
-		Up();
-		Down();
+		if (Input.GetMouseButtonDown(0))
+		{
+			_touchStartPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
+		}
+		if (Input.GetMouseButtonUp(0))
+		{
+			_touchEndPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
+			FlickDirection();
+			GetDirection();
+		}
 
-		//GetGyro();
+		GetGyro();
 	}
 
 	/// <summary>
@@ -42,45 +57,84 @@ public class Player : MonoBehaviour
 	/// </summary>
 	private void Move()
 	{ 
-		//自動で右に進む?
-		//_rb.velocity = new Vector2(_playerSpeed, _rb.velocity.y);
 		//レーンを更新
 		gameObject.transform.position = _raneNum[_nowPos].position;
 	}
 
 	/// <summary>
+	/// フリックの量を計算
+	/// </summary>
+	void FlickDirection()
+	{
+		//flickValue_x = _touchEndPos.x - _touchStartPos.x;
+		_flickValueY = _touchEndPos.y - _touchStartPos.y;
+		Debug.Log("y スワイプ量は" + _flickValueY);
+	}
+
+	/// <summary>
+	/// フリック量に応じて上に行くか下に行くか
+	/// </summary>
+	void GetDirection()
+	{
+		if (_flickValueY > _flickValue)
+		{
+			Up();
+		}
+		if (_flickValueY < -_flickValue)
+        {
+			Down();
+        }
+	}
+	/// <summary>
 	/// 上のレーンに移動
 	/// </summary>
 	private void Up()
     {
-		if (Input.GetKeyDown(KeyCode.W))
-		{
-			if(_nowPos >= _raneNum.Length - 1)
-            {
-				return;
-            }
-			else if(_nowPos < _raneNum.Length)
-            {
-				_nowPos++;
-            }
-		}
+        //if (Input.GetKeyDown(KeyCode.W))
+        //{
+        //	if(_nowPos >= _raneNum.Length - 1)
+        //          {
+        //		return;
+        //          }
+        //	else if(_nowPos < _raneNum.Length)
+        //          {
+        //		_nowPos++;
+        //          }
+        //}
+        if (_nowPos >= _raneNum.Length - 1)
+        {
+            return;
+        }
+        else if (_nowPos < _raneNum.Length)
+        {
+            _nowPos++;
+        }
     }
 	/// <summary>
 	/// 下のレーンに移動
 	/// </summary>
     private void Down()
     {
-        if(Input.GetKeyDown(KeyCode.S))
+		//if(Input.GetKeyDown(KeyCode.S))
+  //      {
+		//	if (_nowPos == 0)
+		//	{
+		//		return;
+		//	}
+		//	else if (_nowPos > 0)
+		//	{
+		//		_nowPos--;
+		//	}
+		//}
+        if (_nowPos == 0)
         {
-			if (_nowPos == 0)
-			{
-				return;
-			}
-			else if (_nowPos > 0)
-			{
-				_nowPos--;
-			}
-		}
+            return;
+        }
+        else if (_nowPos > 0)
+        {
+            _nowPos--;
+        }
+
     }
     /// <summary>
     /// とりあえずのジャイロ操作
@@ -95,6 +149,7 @@ public class Player : MonoBehaviour
 			acceleration.y *= 0;
 			acceleration.z = 0;
 			Physics2D.gravity = acceleration;
+			Debug.Log(acceleration.x);
 		}
 	}
 
