@@ -6,6 +6,8 @@ public class Sweets : MonoBehaviour
 {
     [SerializeField] Transform _nextPos;
 
+
+
     public Transform NextPos
     {
         get

@@ -10,38 +10,9 @@ public class Obon : MonoBehaviour
     [Tooltip("プレイヤーがプレイ中に持っているお菓子の配列")]
     private List<GameObject> _okasis = new List<GameObject>();
 
+    [Tooltip("プレイヤーがゲーム開始時に持っているお菓子の配列"), SerializeField]
+    private int[] _int;
 
-    //public List<GameObject>  Okasis
-    //{
-    //    get
-    //    {
-    //        if (_okasis.Count > 0)
-    //        {
-    //            //_okasis[_okasis.Count - 2].GetComponent<Sweets>().PutOnSweets(_okasis[_okasis.Count - 1]);
-    //            Debug.Log(1);
-    //        }
-    //        else
-    //        {
-    //            //Okasis[0].transform.position = this.transform.position;
-    //            Debug.Log(2);
-    //        }
-    //        return _okasis;
-    //    }
-    //    set
-    //    {
-
-    //        _okasis = value;
-    //        if(_okasis.Count > 0)
-    //        {
-    //            _okasis[_okasis.Count - 2].GetComponent<Sweets>().PutOnSweets(_okasis[_okasis.Count - 1]);
-    //        }
-    //        else
-    //        {
-    //            _okasis[0].transform.position = this.transform.position;
-    //        }
-            
-    //    }
-    //}
 
     private void Awake()
     {

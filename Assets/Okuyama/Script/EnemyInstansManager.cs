@@ -26,16 +26,18 @@ public class EnemyInstansManager : MonoBehaviour
         if(index == 0) 
         {
             Instantiate(_enemys[index], _enemyspoint[0].transform.position, Quaternion.identity); 
-            Dog(); 
         }
         else {Instantiate(_enemys[index], _enemyspoint[point].transform.position, Quaternion.identity); }
     }
-    
+
     /// <summary>
     /// 後ろからくる犬の時
     /// </summary>
-    void Dog()
+    public void Dog(GameObject dogs)
     {
+        Player players = new Player();　//Playerスクリプトからインスタンスを精製 Playerの現在のNowPosを使用
         Debug.Log("犬");
+        Instantiate(dogs, _enemyspoint[players.NowPos].transform.position, Quaternion.identity);
     }
+
 }
