@@ -38,7 +38,6 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
-		Move();
         if (Input.GetMouseButtonDown(0))
         {
             _touchStartPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
@@ -53,18 +52,6 @@ public class Player : MonoBehaviour
         GetGyro();
 
 		StickMove();
-
-		
-	}
-
-	/// <summary>
-	/// プレイヤーの移動
-	/// </summary>
-	private void Move()
-	{
-		//gameObject.transform.position = _raneNum[_nowPos].position;
-		gameObject.transform.position = new Vector3(gameObject.transform.position.x, _raneNum[_nowPos].position.y, gameObject.transform.position.z);
-		//Debug.Log(_nowPos);
 	}
 
 	/// <summary>
@@ -82,12 +69,17 @@ public class Player : MonoBehaviour
 		// 左スティック入力取得
 		var leftStickValue = current.leftStick.ReadValue();
 
+		//左には動かない
 		if (leftStickValue.x < 0)
         {
 			return;
         }
-		transform.Translate(leftStickValue.x * _playerSpeed * Time.deltaTime, 0, 0);
-	}
+        else if (leftStickValue.x > 0f)
+        {
+
+            transform.Translate(leftStickValue.x * _playerSpeed * Time.deltaTime, 0, 0);
+        }
+    }
 
 	/// <summary>
 	/// フリックの量を計算
@@ -124,8 +116,11 @@ public class Player : MonoBehaviour
         }
         else if (_nowPos < _raneNum.Length)
         {
-            _nowPos++;
-        }
+			_nowPos++;
+
+			gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _raneNum[_nowPos].position.z);
+			Debug.Log("上に移動");
+		}
     }
 	/// <summary>
 	/// 下のレーンに移動
@@ -139,8 +134,10 @@ public class Player : MonoBehaviour
         }
         else if (_nowPos > 0)
         {
-            _nowPos--;
-        }
+			_nowPos--;
+			gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _raneNum[_nowPos].position.z);
+			Debug.Log("下に移動");
+		}
 
     }
     /// <summary>
