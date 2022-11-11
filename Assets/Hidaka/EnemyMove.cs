@@ -25,7 +25,9 @@ public class EnemyMove : MonoBehaviour
     private StageMove _stageMoves;
 
     [Tooltip("犬の種類"), SerializeField] private Dogs _dogs = Dogs.Run;
+
     private EnemyInstansManager _enemyInstansManager;
+
 
     /// <summary>エネミーの軸移動方向</summary>
     private int x = 0;
