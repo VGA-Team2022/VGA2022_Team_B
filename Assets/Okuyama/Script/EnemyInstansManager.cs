@@ -35,7 +35,7 @@ public class EnemyInstansManager : MonoBehaviour
     /// </summary>
     public void Dog(GameObject dogs)
     {
-        Player players = new Player();
+        Player players = new Player();　//Playerスクリプトからインスタンスを精製 Playerの現在のNowPosを使用
         Debug.Log("犬");
         Instantiate(dogs, _enemyspoint[players.NowPos].transform.position, Quaternion.identity);
     }
