@@ -13,6 +13,21 @@ public class Obon : MonoBehaviour
     [Tooltip("プレイヤーがゲーム開始時に持っているお菓子の配列"), SerializeField]
     private int[] _int;
 
+    private float _zure;
+
+    float h;
+
+    public float Zure
+    {
+        get
+        {
+            return _zure;
+        }
+        set
+        {
+            _zure = value;
+        }
+    }
 
     private void Awake()
     {
@@ -30,7 +45,13 @@ public class Obon : MonoBehaviour
             }
         }
     }
-    
+
+    private void FixedUpdate()
+    {
+        h = Input.GetAxisRaw("Horizontal");
+        Zure += h * 0.005f;
+    }
+
     public void SweetsAdd(GameObject[] gameObjects)
     {
         for (int i = 0; i < gameObjects.Length; i++)

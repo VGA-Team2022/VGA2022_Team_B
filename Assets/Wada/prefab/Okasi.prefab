@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2333746914238586428}
-  - component: {fileID: 1150352455}
   - component: {fileID: 1613040812981414332}
+  - component: {fileID: 311051486}
   m_Layer: 0
   m_Name: Okasi
   m_TagString: Untagged
@@ -35,19 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1150352455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2333746914238586431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0e31358fcebad5418ee28db9a43fbb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _nextPos: {fileID: 2333746915068949407}
 --- !u!50 &1613040812981414332
 Rigidbody2D:
   serializedVersion: 4
@@ -69,6 +56,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
+--- !u!114 &311051486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2333746914238586431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e31358fcebad5418ee28db9a43fbb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nextPos: {fileID: 2333746915068949407}
+  _prevObj: {fileID: 0}
+  _deadWidth: 1
 --- !u!1 &2333746915068949406
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +176,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5509434, g: 1, b: 0.9908192, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
