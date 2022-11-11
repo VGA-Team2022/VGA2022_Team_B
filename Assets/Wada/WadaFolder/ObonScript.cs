@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ObonScript : MonoBehaviour
 {
-    [SerializeField] Transform _obonPos;
+    [SerializeField]
+    Transform _obonPos;
     void Start()
     {
         
