@@ -15,7 +15,9 @@ public class Obon : MonoBehaviour
 
     private float _zure;
 
+    
     float h;
+    float n;
 
     public float Zure
     {
@@ -49,7 +51,13 @@ public class Obon : MonoBehaviour
     private void FixedUpdate()
     {
         h = Input.GetAxisRaw("Horizontal");
-        Zure += h * 0.005f;
+
+        Zure += ((n += h * 0.00001f) * 100f);
+
+        if (h == 0)
+        {
+            n = 0;
+        }
     }
 
     public void SweetsAdd(GameObject[] gameObjects)
