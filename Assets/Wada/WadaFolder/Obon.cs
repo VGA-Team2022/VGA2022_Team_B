@@ -17,7 +17,7 @@ public class Obon : MonoBehaviour
 
     
     float h;
-    float n;
+    float n = 1;
 
     public float Zure
     {
@@ -52,11 +52,14 @@ public class Obon : MonoBehaviour
     {
         h = Input.GetAxisRaw("Horizontal");
 
-        Zure += ((n += h * 0.00001f) * 100f);
+        //Zure += ((n += h * 0.00001f) * 100f);
+
+        Zure += (h * 0.00001f) * n;
+        n += Mathf.Abs(Zure * 1000);
 
         if (h == 0)
         {
-            n = 0;
+            n = 1;
         }
     }
 
