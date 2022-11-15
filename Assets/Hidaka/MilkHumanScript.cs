@@ -33,7 +33,7 @@ public class MilkHumanScript : MonoBehaviour
     {
         if (color.a > 1.6f) //1.5秒かけてフェードアウト
         {
-            color.a += Time.deltaTime * 1.5f;
+            color.a -= Time.deltaTime * 1.5f;
         }
         _milk.gameObject.SetActive(false);
         yield return null;
