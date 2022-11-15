@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class StageMove : MonoBehaviour
 {
     [Header("アタッチするもの")]
@@ -14,9 +16,11 @@ public class StageMove : MonoBehaviour
     public float MoveSpeed  
         { get { return _moveSpeed; } set { _moveSpeed = value; } }
 
+    /// <summary>停止する時にSpeedの値を取っておく</summary>
     private float _keepSpeed;
-    private bool isPhonDebug;
-    // Start is called before the first frame update
+    /// <summary>スマホデバッグ用のフラグ</summary>
+    [SerializeField] private bool isPhonDebug;
+
     void Start()
     {
         _keepSpeed = MoveSpeed;
