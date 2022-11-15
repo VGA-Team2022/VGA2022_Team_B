@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
 
 	SpriteRenderer _sp;
 
+	bool _up;
+	bool _down;
+
 	//プレイヤーの現在地をプロパティ化
 	public int NowPos
     {
@@ -45,11 +48,11 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             _touchEndPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
-            FlickDirection();
-            GetDirection();
+            //FlickDirection();
+            //GetDirection();
         }
 
-        GetGyro();
+        //GetGyro();
 
 		StickMove();
 	}
@@ -78,6 +81,22 @@ public class Player : MonoBehaviour
         {
 
             transform.Translate(leftStickValue.x * _playerSpeed * Time.deltaTime, 0, 0);
+        }
+
+		if(leftStickValue.y > 0.8f && !_up)
+        {
+			Up();
+			_up = true;
+        }
+		else if(leftStickValue.y < -0.8f && !_down)
+        {
+			Down();
+			_down = true;
+        }
+		else if(leftStickValue.y == 0)
+        {
+			_up = false;
+			_down = false;
         }
     }
 
