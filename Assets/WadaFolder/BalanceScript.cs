@@ -19,6 +19,7 @@ public class BalanceScript : MonoBehaviour
         {
             this.GetComponent<SpringJoint2D>().enabled = false;
             this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+
             foreach ( Rigidbody2D rb2D in _uperObjs)
             {
                 rb2D.constraints = RigidbodyConstraints2D.None;
