@@ -9,6 +9,7 @@ public class StageMove : MonoBehaviour
     [Header("アタッチするもの")]
     [SerializeField] private GameObject[] _wall;
     [SerializeField] private Transform _startPos;
+    [SerializeField] private Transform _centerPos;
     [SerializeField] private Transform _endPos;
 
     [Header("Pram")]
@@ -25,7 +26,7 @@ public class StageMove : MonoBehaviour
     {
         _keepSpeed = MoveSpeed;
         MoveSpeed = 0;
-
+        _wall[0].transform.position = _centerPos.position;
     }
 
     void Update()
