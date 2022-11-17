@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class StageMove : MonoBehaviour
 {
     [Header("アタッチするもの")]
     [SerializeField] private GameObject[] _wall;
     [SerializeField] private Transform _startPos;
+    [SerializeField] private Transform _centerPos;
     [SerializeField] private Transform _endPos;
 
     [Header("Pram")]
@@ -14,14 +17,16 @@ public class StageMove : MonoBehaviour
     public float MoveSpeed  
         { get { return _moveSpeed; } set { _moveSpeed = value; } }
 
+    /// <summary>停止する時にSpeedの値を取っておく</summary>
     private float _keepSpeed;
-    private bool isPhonDebug;
-    // Start is called before the first frame update
+    /// <summary>スマホデバッグ用のフラグ</summary>
+    [SerializeField] private bool isPhonDebug;
+
     void Start()
     {
         _keepSpeed = MoveSpeed;
         MoveSpeed = 0;
-
+        _wall[0].transform.position = _centerPos.position;
     }
 
     void Update()

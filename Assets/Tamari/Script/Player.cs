@@ -1,10 +1,11 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using System.Collections;
 
 public class Player : MonoBehaviour
 {
-	//[SerializeField, Tooltip("プレイヤーの移動速度")] float _playerSpeed = 2;
-	[SerializeField, Tooltip("ジャイロの速度")] float _playerGyroSpeed;
+	[SerializeField, Tooltip("プレイヤーの移動速度")] float _playerSpeed = 2;
+	//[SerializeField, Tooltip("ジャイロの速度")] float _playerGyroSpeed;
 	[SerializeField, Tooltip("ジャイロを受け付ける間隔")] float _gyroTime;
 
 	[Space(10)]
@@ -15,11 +16,13 @@ public class Player : MonoBehaviour
     //フリック関連の情報
 	private Vector3 _touchStartPos;
 	private Vector3 _touchEndPos;
-	//float _flickValueX;
 	float _flickValueY;
 	[SerializeField, Tooltip("フリックの感度")] float _flickValue;
 
 	SpriteRenderer _sp;
+
+	bool _up;
+	bool _down;
 
 	//プレイヤーの現在地をプロパティ化
 	public int NowPos
@@ -27,42 +30,75 @@ public class Player : MonoBehaviour
 		get { return _nowPos; }
     }
 
-	Rigidbody _rb;
 	float time;
 
 	void Start()
 	{
 		_nowPos = 1;
 		gameObject.transform.position = _raneNum[_nowPos].position;
-		_rb = GetComponent<Rigidbody>();
 		_sp = GetComponent<SpriteRenderer>();
 	}
 
 	void Update()
 	{
-		Move();
-		if (Input.GetMouseButtonDown(0))
-		{
-			_touchStartPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
-		}
-		if (Input.GetMouseButtonUp(0))
-		{
-			_touchEndPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
-			FlickDirection();
-			GetDirection();
-		}
+        if (Input.GetMouseButtonDown(0))
+        {
+            _touchStartPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            _touchEndPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
+            //FlickDirection();
+            //GetDirection();
+        }
 
-		GetGyro();
+        //GetGyro();
+
+		StickMove();
 	}
 
 	/// <summary>
-	/// プレイヤーの移動
+	/// スティックによるプレイヤーの移動
 	/// </summary>
-	private void Move()
-	{ 
-		//レーンを更新
-		gameObject.transform.position = _raneNum[_nowPos].position;
-	}
+	private void StickMove()
+    {
+		// 現在のゲームパッド情報
+		var current = Gamepad.current;
+
+		// ゲームパッド接続チェック
+		if (current == null)
+			return;
+
+		// 左スティック入力取得
+		var leftStickValue = current.leftStick.ReadValue();
+
+		//左には動かない
+		if (leftStickValue.x < 0)
+        {
+			return;
+        }
+        else if (leftStickValue.x > 0f)
+        {
+
+            transform.Translate(leftStickValue.x * _playerSpeed * Time.deltaTime, 0, 0);
+        }
+
+		if(leftStickValue.y > 0.8f && !_up)
+        {
+			Up();
+			_up = true;
+        }
+		else if(leftStickValue.y < -0.8f && !_down)
+        {
+			Down();
+			_down = true;
+        }
+		else if(leftStickValue.y == 0)
+        {
+			_up = false;
+			_down = false;
+        }
+    }
 
 	/// <summary>
 	/// フリックの量を計算
@@ -71,7 +107,6 @@ public class Player : MonoBehaviour
 	{
 		//flickValue_x = _touchEndPos.x - _touchStartPos.x;
 		_flickValueY = _touchEndPos.y - _touchStartPos.y;
-		Debug.Log("y スワイプ量は" + _flickValueY);
 	}
 
 	/// <summary>
@@ -93,50 +128,35 @@ public class Player : MonoBehaviour
 	/// </summary>
 	private void Up()
     {
-        //if (Input.GetKeyDown(KeyCode.W))
-        //{
-        //	if(_nowPos >= _raneNum.Length - 1)
-        //          {
-        //		return;
-        //          }
-        //	else if(_nowPos < _raneNum.Length)
-        //          {
-        //		_nowPos++;
-        //          }
-        //}
         if (_nowPos >= _raneNum.Length - 1)
         {
-            return;
+			Debug.Log("これ以上下にいけません");
+			return;
         }
         else if (_nowPos < _raneNum.Length)
         {
-            _nowPos++;
-        }
+			_nowPos++;
+
+			gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _raneNum[_nowPos].position.z);
+			Debug.Log("上に移動");
+		}
     }
 	/// <summary>
 	/// 下のレーンに移動
 	/// </summary>
     private void Down()
     {
-		//if(Input.GetKeyDown(KeyCode.S))
-  //      {
-		//	if (_nowPos == 0)
-		//	{
-		//		return;
-		//	}
-		//	else if (_nowPos > 0)
-		//	{
-		//		_nowPos--;
-		//	}
-		//}
         if (_nowPos == 0)
         {
+			Debug.Log("これ以上下にいけません");
             return;
         }
         else if (_nowPos > 0)
         {
-            _nowPos--;
-        }
+			_nowPos--;
+			gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _raneNum[_nowPos].position.z);
+			Debug.Log("下に移動");
+		}
 
     }
     /// <summary>
