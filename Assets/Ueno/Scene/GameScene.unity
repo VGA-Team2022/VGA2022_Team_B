@@ -460,7 +460,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 394978988}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -498,6 +498,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1600878068}
+  - {fileID: 1130628383}
   - {fileID: 1268602774}
   m_Father: {fileID: 1798117663}
   m_RootOrder: 3
@@ -697,6 +698,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940425713}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1130628382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1130628383}
+  m_Layer: 0
+  m_Name: CenterPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1130628383
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130628382}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 9, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 753689617}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1141756803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -710,11 +742,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2773999160523408332, guid: 4b1067efdfa5ed84498e1918d87f4bbe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.9
+      value: -5.8
       objectReference: {fileID: 0}
     - target: {fileID: 2773999160523408332, guid: 4b1067efdfa5ed84498e1918d87f4bbe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2773999160523408332, guid: 4b1067efdfa5ed84498e1918d87f4bbe, type: 3}
       propertyPath: m_LocalPosition.z
@@ -749,9 +781,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2773999160523408333, guid: 4b1067efdfa5ed84498e1918d87f4bbe, type: 3}
+      propertyPath: m_Size.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773999160523408333, guid: 4b1067efdfa5ed84498e1918d87f4bbe, type: 3}
+      propertyPath: m_Size.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773999160523408333, guid: 4b1067efdfa5ed84498e1918d87f4bbe, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6d5e9cfd3129ce2459c9b237afbfaf46, type: 3}
+      objectReference: {fileID: 21300000, guid: cc90f4f0b362ae347a36f79e1aa7fe12, type: 3}
     - target: {fileID: 2773999160523408371, guid: 4b1067efdfa5ed84498e1918d87f4bbe, type: 3}
       propertyPath: m_Name
       value: Wall_Prefab
@@ -786,13 +826,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268602773}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -75, y: 0, z: -0.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -80, y: 9, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 753689617}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1357139686
 PrefabInstance:
@@ -807,11 +847,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2773999160523408332, guid: 4b1067efdfa5ed84498e1918d87f4bbe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.9
+      value: 94.3
       objectReference: {fileID: 0}
     - target: {fileID: 2773999160523408332, guid: 4b1067efdfa5ed84498e1918d87f4bbe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2773999160523408332, guid: 4b1067efdfa5ed84498e1918d87f4bbe, type: 3}
       propertyPath: m_LocalPosition.z
@@ -846,9 +886,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2773999160523408333, guid: 4b1067efdfa5ed84498e1918d87f4bbe, type: 3}
+      propertyPath: m_Size.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773999160523408333, guid: 4b1067efdfa5ed84498e1918d87f4bbe, type: 3}
+      propertyPath: m_Size.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773999160523408333, guid: 4b1067efdfa5ed84498e1918d87f4bbe, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6d5e9cfd3129ce2459c9b237afbfaf46, type: 3}
+      objectReference: {fileID: 21300000, guid: cc90f4f0b362ae347a36f79e1aa7fe12, type: 3}
     - target: {fileID: 2773999160523408371, guid: 4b1067efdfa5ed84498e1918d87f4bbe, type: 3}
       propertyPath: m_Name
       value: Wall_Prefab (1)
@@ -1175,8 +1223,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600878067}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 83, y: 0, z: -0.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 80, y: 9, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1709,6 +1757,7 @@ MonoBehaviour:
   - {fileID: 17204444}
   - {fileID: 1357139688}
   _startPos: {fileID: 1600878068}
+  _centerPos: {fileID: 1130628383}
   _endPos: {fileID: 1268602774}
   _moveSpeed: 5
   isPhonDebug: 0
@@ -1720,7 +1769,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112330933}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1746,6 +1795,6 @@ MonoBehaviour:
   - {fileID: 17204444}
   - {fileID: 1357139688}
   _backgroundSprites:
-  - {fileID: 21300000, guid: 6d5e9cfd3129ce2459c9b237afbfaf46, type: 3}
+  - {fileID: 21300000, guid: cc90f4f0b362ae347a36f79e1aa7fe12, type: 3}
   - {fileID: 21300000, guid: 5d31d7bd30aa5b344abb910d4c5e85ba, type: 3}
   - {fileID: 21300000, guid: 60782cff09bf8c34db92eb960bf8d658, type: 3}
