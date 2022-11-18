@@ -95,8 +95,8 @@ public class Obon : MonoBehaviour
         }
     }
 
-    public void MisalignmentOfSweetsCausedByMovement()
+    public void MisalignmentOfSweetsCausedByMovement(int stickX)
     {
-        Movement += 0.0005f;////////•Ï”‚É‚µ‚Ä‚Ë
+        Movement += 0.0005f * stickX;////////•Ï”‚É‚µ‚Ä‚Ë
     }
 }
