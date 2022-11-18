@@ -90,7 +90,7 @@ public class SoundManager// : Singleton<SoundManager>
             return;
         }
 
-        //CueSheet‚ªBGM‚Å–³‚¯‚ê‚Îİ’è
+        //CueSheet‚ªBGM‚Å‚È‚¯‚ê‚Îİ’è
         if (_criAtomBGMSource.cueSheet != BGMCueSheet)
             _criAtomBGMSource.cueSheet = BGMCueSheet;
 
