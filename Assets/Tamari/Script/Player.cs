@@ -138,6 +138,7 @@ public class Player : MonoBehaviour
 			_nowPos++;
 
 			gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _raneNum[_nowPos].position.z);
+			SoundManager.Instance.CriAtomPlay(CueSheet.SE, "");
 			Debug.Log("è„Ç…à⁄ìÆ");
 		}
     }
@@ -155,6 +156,7 @@ public class Player : MonoBehaviour
         {
 			_nowPos--;
 			gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _raneNum[_nowPos].position.z);
+			SoundManager.Instance.CriAtomPlay(CueSheet.SE, "");
 			Debug.Log("â∫Ç…à⁄ìÆ");
 		}
 
