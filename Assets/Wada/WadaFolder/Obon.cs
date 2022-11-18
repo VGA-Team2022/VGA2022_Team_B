@@ -15,7 +15,9 @@ public class Obon : MonoBehaviour
 
     private float _zure;
 
-    
+    private float _movement;
+
+
     float h;
     float n = 1;
 
@@ -28,6 +30,17 @@ public class Obon : MonoBehaviour
         set
         {
             _zure = value;
+        }
+    }
+    public float Movement
+    {
+        get
+        {
+            return _movement;
+        }
+        set
+        {
+            _movement = value;
         }
     }
 
@@ -61,6 +74,8 @@ public class Obon : MonoBehaviour
         {
             n = 1;
         }
+
+        Movement += 0.0005f;////////ïœêîÇ…ÇµÇƒÇÀ
     }
 
     public void SweetsAdd(GameObject[] gameObjects)
