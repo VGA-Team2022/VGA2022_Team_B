@@ -156,7 +156,7 @@ public class Player : MonoBehaviour
         {
 			_nowPos--;
 			gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _raneNum[_nowPos].position.z);
-			SoundManager.Instance.CriAtomPlay(CueSheet.SE, "");
+			SoundManager.Instance.CriAtomPlay(CueSheet.SE, "ƒŒ[ƒ“ˆÚ“®");
 			Debug.Log("‰º‚ÉˆÚ“®");
 		}
 
