@@ -75,7 +75,7 @@ public class Obon : MonoBehaviour
             n = 1;
         }
 
-        MisalignmentOfSweetsCausedByMovement();
+        //MisalignmentOfSweetsCausedByMovement();
     }
 
     public void SweetsAdd(GameObject[] gameObjects)
@@ -95,7 +95,7 @@ public class Obon : MonoBehaviour
         }
     }
 
-    public void MisalignmentOfSweetsCausedByMovement(int stickX)
+    public void MisalignmentOfSweetsCausedByMovement(float stickX)
     {
         Movement += 0.0005f * stickX;////////ïœêîÇ…ÇµÇƒÇÀ
     }
