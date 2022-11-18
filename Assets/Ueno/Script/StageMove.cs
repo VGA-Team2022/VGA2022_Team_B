@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 
@@ -8,9 +9,9 @@ public class StageMove : MonoBehaviour
 {
     [Header("アタッチするもの")]
     [SerializeField] private GameObject[] _wall;
-    [SerializeField] private Transform _startPos;
+    [SerializeField] public Transform StartPos;
     [SerializeField] private Transform _centerPos;
-    [SerializeField] private Transform _endPos;
+    [SerializeField] public Transform EndPos;
 
     [Header("Pram")]
     [Tooltip("移動速度"),SerializeField] private float _moveSpeed = 5f;
@@ -33,28 +34,52 @@ public class StageMove : MonoBehaviour
     {
         if (!isPhonDebug)
         {
-            if (Input.GetKey(KeyCode.Space))
-            {
-                MoveSpeed = _keepSpeed;
-            }
-            else
-            {
-                MoveSpeed = 0;
-            }
+            //if (Input.GetKey(KeyCode.Space))
+            //{
+            //    MoveSpeed = _keepSpeed;
+                
+            //}
+            //else
+            //{
+            //    MoveSpeed = 0;
+            //}
+            StickMove();
         }
-
         for (int i = 0; i < _wall.Length; i++)
         {
 
             _wall[i].transform.position -= new Vector3(Time.deltaTime * MoveSpeed, 0);
 
 
-            if (_wall[i].transform.position.x <= _endPos.position.x)
+            if (_wall[i].transform.position.x <= EndPos.position.x)
             {
-                _wall[i].transform.position = _startPos.position;
+                _wall[i].transform.position = StartPos.position;
             }
         }
 
+    }
+    private void StickMove()
+    {
+        // 現在のゲームパッド情報
+        var current = Gamepad.current;
+
+        // ゲームパッド接続チェック
+        if (current == null)
+            return;
+
+        // 左スティック入力取得
+        var leftStickValue = current.leftStick.ReadValue();
+
+        //左には動かない
+        if (leftStickValue.x < 0)
+        {
+            return;
+        }
+        else if (leftStickValue.x > 0f)
+        {
+            //transform.Translate(-(leftStickValue.x * MoveSpeed * Time.deltaTime), 0, 0);
+            MoveSpeed = leftStickValue.x * 2;
+        }
     }
 
     public void OnTapAdvance()
