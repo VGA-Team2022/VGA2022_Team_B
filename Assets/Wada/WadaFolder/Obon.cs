@@ -15,7 +15,9 @@ public class Obon : MonoBehaviour
 
     private float _zure;
 
-    
+    private float _movement;
+
+
     float h;
     float n = 1;
 
@@ -28,6 +30,17 @@ public class Obon : MonoBehaviour
         set
         {
             _zure = value;
+        }
+    }
+    public float Movement
+    {
+        get
+        {
+            return _movement;
+        }
+        set
+        {
+            _movement = value;
         }
     }
 
@@ -61,6 +74,8 @@ public class Obon : MonoBehaviour
         {
             n = 1;
         }
+
+        MisalignmentOfSweetsCausedByMovement();
     }
 
     public void SweetsAdd(GameObject[] gameObjects)
@@ -78,5 +93,10 @@ public class Obon : MonoBehaviour
                 _okasis[i].transform.position = _okasis[i - 1].GetComponent<Sweets>().NextPos.position;
             }
         }
+    }
+
+    public void MisalignmentOfSweetsCausedByMovement()
+    {
+        Movement += 0.0005f;////////ïœêîÇ…ÇµÇƒÇÀ
     }
 }

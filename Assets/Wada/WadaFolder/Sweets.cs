@@ -59,7 +59,7 @@ public class Sweets : MonoBehaviour
         }
         else
         {
-            this.transform.position = new Vector3(_prevObj.transform.position.x + obon.Zure, this.transform.position.y, this.transform.position.z);
+            this.transform.position = new Vector3(_prevObj.transform.position.x + obon.Zure - obon.Movement, this.transform.position.y, this.transform.position.z);
         }
     }
 
