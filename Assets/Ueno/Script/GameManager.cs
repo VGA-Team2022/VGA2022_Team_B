@@ -13,9 +13,13 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    public void StagePrefarence(int i)
+    public void PrefarenceStage(int i)
     {
         GameStageNum = i;
+    }
+    public void PrefarenceLevel(int i)
+    {
+        StageLevelNum = i;
     }
 
 
