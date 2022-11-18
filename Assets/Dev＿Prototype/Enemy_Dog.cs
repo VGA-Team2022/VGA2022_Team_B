@@ -27,7 +27,7 @@ public class Enemy_Dog : MonoBehaviour
 
     private void Start()
     {
-        _stageMove = GameObject.Find("StageManager_Yasiki").GetComponent<StageMove>();
+        _stageMove = GameObject.Find("StageManager").GetComponent<StageMove>();
         Speed = _stageMove.MoveSpeed;
         _startPosX = transform.position.x;
     }
