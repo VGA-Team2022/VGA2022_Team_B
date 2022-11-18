@@ -73,15 +73,14 @@ public class Player : MonoBehaviour
 		var leftStickValue = current.leftStick.ReadValue();
 
 		//¶‚É‚Í“®‚©‚È‚¢
-		if (leftStickValue.x < 0)
-        {
-			return;
-        }
-        else if (leftStickValue.x > 0f)
-        {
-
-            transform.Translate(leftStickValue.x * _playerSpeed * Time.deltaTime, 0, 0);
-        }
+		//if (leftStickValue.x < 0)
+  //      {
+		//	return;
+  //      }
+  //      else if (leftStickValue.x > 0f)
+  //      {
+  //          transform.Translate(leftStickValue.x * _playerSpeed * Time.deltaTime, 0, 0); 
+  //      }
 
 		if(leftStickValue.y > 0.8f && !_up)
         {
@@ -138,7 +137,7 @@ public class Player : MonoBehaviour
 			_nowPos++;
 
 			gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _raneNum[_nowPos].position.z);
-			SoundManager.Instance.CriAtomPlay(CueSheet.SE, "");
+			SoundManager.Instance.CriAtomPlay(CueSheet.SE, "ƒŒ[ƒ“ˆÚ“®");
 			Debug.Log("ã‚ÉˆÚ“®");
 		}
     }
