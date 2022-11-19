@@ -18,6 +18,8 @@ public class StageMove : MonoBehaviour
     public float MoveSpeed  
         { get { return _moveSpeed; } set { _moveSpeed = value; } }
 
+    Obon _obon;
+
     /// <summary>停止する時にSpeedの値を取っておく</summary>
     private float _keepSpeed;
     /// <summary>スマホデバッグ用のフラグ</summary>
@@ -28,6 +30,7 @@ public class StageMove : MonoBehaviour
         _keepSpeed = MoveSpeed;
         MoveSpeed = 0;
         _wall[0].transform.position = _centerPos.position;
+        _obon = GetComponent<Obon>();
     }
 
     void Update()
@@ -80,6 +83,7 @@ public class StageMove : MonoBehaviour
             //transform.Translate(-(leftStickValue.x * MoveSpeed * Time.deltaTime), 0, 0);
             MoveSpeed = leftStickValue.x * 2;
         }
+        _obon.MisalignmentOfSweetsCausedByMovement(leftStickValue.x);
     }
 
     public void OnTapAdvance()
