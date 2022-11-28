@@ -52,11 +52,13 @@ public class Obon : MonoBehaviour
             {
                 _okasis.Add(_startOkasis[0]);
                 _okasis[0].transform.position = this.transform.position;
+                _startOkasis[0].GetComponent<Sweets>().MisalignmentDifference = 0;//追加したお菓子の揺れの差を変更
             }
             else
             {
                 _okasis.Add(_startOkasis[i]);
                 _okasis[i].transform.position = _okasis[i - 1].GetComponent<Sweets>().NextPos.position;
+                _startOkasis[i].GetComponent<Sweets>().MisalignmentDifference = 1 + (float)i / 10;//追加したお菓子の揺れの差を変更
             }
         }
     }
@@ -85,7 +87,7 @@ public class Obon : MonoBehaviour
             if (_okasis.Count == 0)
             {
                 _okasis.Add(gameObjects[0]);
-                _okasis[0].transform.position = this.transform.position;
+                _okasis[0].transform.position = this.transform.position;//要修正
             }
             else
             {
@@ -97,6 +99,11 @@ public class Obon : MonoBehaviour
 
     public void MisalignmentOfSweetsCausedByMovement(float stickX)
     {
-        Movement += 0.0005f * stickX;////////変数にしてね
+        Movement += 0.0005f * stickX;////////変数にしてねby過去の俺
+    }
+
+    public void GameOver()
+    {
+
     }
 }

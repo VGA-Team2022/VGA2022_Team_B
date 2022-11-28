@@ -7,10 +7,12 @@ public class Sweets : MonoBehaviour
     [SerializeField]
     Transform _nextPos;
 
-    [SerializeField]
+    [Tooltip("これ以上横にはみ出したら落ちる"), SerializeField]
     float _deadWidth;
 
     public GameObject _prevObj;
+
+    private float _misalignmentDifference;//ずれの差上に行けば行くほど大きく動くやつの変数
 
     Obon obon;
 
@@ -43,23 +45,37 @@ public class Sweets : MonoBehaviour
         }
     }
 
+    public float MisalignmentDifference
+    {
+        get
+        {
+            return _misalignmentDifference;
+        }
+        set
+        {
+            _misalignmentDifference = value;
+            Debug.Log(_misalignmentDifference);
+        }
+    }
+
     private void Start()
     {
         obon = GameObject.FindGameObjectWithTag("Obon").GetComponent<Obon>();
         _rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+
     void FixedUpdate()
     {
         if (this.transform.position.x >= _prevObj.transform.position.x + _deadWidth || this.transform.position.x <= _prevObj.transform.position.x - _deadWidth)
         {
             this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-            _rb.AddForce(Vector2.up * 1);
+            _rb.AddForce(Vector2.up * 1);//AddForceせんと崩れないからAddForce。演出にも使えソう;
+            obon.GameOver();//Obonクラスのゲームオーバー関数の呼び出し
         }
         else
         {
-            this.transform.position = new Vector3(_prevObj.transform.position.x + obon.Zure - obon.Movement, this.transform.position.y, this.transform.position.z);
+            this.transform.position = new Vector3(_prevObj.transform.position.x + (obon.Zure * _misalignmentDifference) - obon.Movement, this.transform.position.y, this.transform.position.z);
         }
     }
 
