@@ -2964,9 +2964,9 @@ MonoBehaviour:
   _wall:
   - {fileID: 1662947388}
   - {fileID: 1999176022}
-  StartPos: {fileID: 0}
-  _centerPos: {fileID: 0}
-  EndPos: {fileID: 0}
+  StartPos: {fileID: 1999176023}
+  _centerPos: {fileID: 1791959937}
+  EndPos: {fileID: 1662947389}
   _moveSpeed: 5
   isPhonDebug: 0
 --- !u!4 &516990446
