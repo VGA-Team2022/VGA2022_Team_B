@@ -197,6 +197,8 @@ MonoBehaviour:
   _centerPos: {fileID: 611450220}
   EndPos: {fileID: 992709109}
   _moveSpeed: 5
+  _obon: {fileID: 0}
+  i: 0
   isPhonDebug: 0
 --- !u!1 &99355594
 GameObject:
@@ -558,13 +560,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c2b0e8532bd8b145a93e78a7524415f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerSpeed: 3
+  _stickYNum: 0
   _gyroTime: 1
   _raneNum:
   - {fileID: 567172685}
   - {fileID: 839821487}
   - {fileID: 391709730}
-  _flickValue: 70
 --- !u!212 &180136893
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -704,8 +705,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 437643865}
         m_TargetAssemblyTypeName: AttachedSceneController, Assembly-CSharp
-        m_MethodName: ChangeScene
-        m_Mode: 5
+        m_MethodName: ChangeTitleScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
