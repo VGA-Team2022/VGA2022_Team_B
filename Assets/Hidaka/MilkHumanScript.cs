@@ -5,37 +5,49 @@ using UnityEngine.UI;
 
 public class MilkHumanScript : MonoBehaviour
 {
-    Color color; //水滴の不透明度を変化するための
 
-    [Tooltip("牛乳を注ぐ女の牛乳で視界が覆われる"), SerializeField] Image _milk = null;
-    private void Start()
+    Image _milk = null; //敵オブジェクトの攻撃用イメージ
+
+    Color _fadeMilk; //水滴の不透明度を変化するための
+    bool _isMilkAttack;
+
+    private void Awake()
     {
-        _milk.gameObject.SetActive(false);
-        color = _milk.color;
-        color.a = 0.0f;
+        _milk = GameObject.Find("MilkPanel").gameObject.GetComponent<Image>();
+        _fadeMilk = _milk.gameObject.GetComponent<Image>().color;
+        _isMilkAttack = false;
     }
     private void Update()
     {
-        if (this.gameObject.transform.position.x == 12)
+        MilkAttack();
+    }
+
+    void MilkAttack()
+    {
+        if (this.gameObject.transform.position.x == 12 && _isMilkAttack == false) //x軸12になったときに発動
         {
-            _milk.gameObject.SetActive(true);
-            color.a = 100.0f;
             StartCoroutine(FadeInMilk());
-        }
-        //5秒かけてフェードアウト
-        if(this.gameObject.transform.position.x == -20)
-        {
-            Destroy(gameObject);
+            _isMilkAttack = true;
         }
     }
 
     private IEnumerator FadeInMilk()
     {
-        if (color.a > 1.6f) //1.5秒かけてフェードアウト
+        _milk.enabled = true;
+        float _milkAlpha = 1f;
+        Color _milkColor = _fadeMilk;
+
+        while(_milkAlpha > 0f)
         {
-            color.a -= Time.deltaTime * 1.5f;
+            _fadeMilk.a -= Time.deltaTime * 1.5f;//1.5秒かけてフェードアウト
+            if (_milkAlpha <= 0f) 
+            {
+                _milkAlpha = 0f;
+            }
+            _milk.color = _milkColor;
+
+            yield return null;
         }
-        _milk.gameObject.SetActive(false);
-        yield return null;
+        _milk.enabled = false;
     }
 }
