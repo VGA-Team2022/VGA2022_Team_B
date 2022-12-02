@@ -17,6 +17,9 @@ public class Obon : MonoBehaviour
 
     private float _movement;
 
+    [HideInInspector]
+    public bool _gameOver = false;
+
 
     float h;
     float n = 1;
@@ -104,6 +107,10 @@ public class Obon : MonoBehaviour
 
     public void GameOver()
     {
-
+        if(!_gameOver)
+        {
+            Debug.Log("死ねカス　ザコ　呼吸すんな酸素がもったいない");
+            _gameOver = true;
+        }
     }
 }

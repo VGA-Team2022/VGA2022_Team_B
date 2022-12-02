@@ -70,8 +70,8 @@ public class MovingArmor : MonoBehaviour
         {
 
         }
-        //_startPos = a;//Test
-        //_finishPos = b;//Test
+        _startPos = a;//Test
+        _finishPos = b;//Test
 
         this.transform.position = new Vector3(this.transform.position.x, _startPos.position.y, _startPos.position.z);
     }
