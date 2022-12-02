@@ -42,6 +42,8 @@ public class EnemyMove : MonoBehaviour
             case Dogs.Run:
                 if (_startPosX >= 0)
                 {
+                    SpriteRenderer children = this.gameObject.GetComponentInChildren<SpriteRenderer>();
+                    children.flipX = true;
                     this.gameObject.transform.position -= new Vector3(Time.deltaTime * _speed, 0);
                 }
                 else
@@ -50,8 +52,9 @@ public class EnemyMove : MonoBehaviour
                 }
                 break;
             case Dogs.Stop:
-                if (_startPosX == 0)
+                if (_startPosX >= 0)
                 {
+                    
                     //‘–‚Á‚Ä‚éŒ¢
                     transform.position += new Vector3(Time.deltaTime * _speed, 0);
                 }

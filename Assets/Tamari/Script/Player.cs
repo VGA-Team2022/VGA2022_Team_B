@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-	[SerializeField, Tooltip("プレイヤーの移動速度")] float _playerSpeed = 2;
+	[SerializeField, Tooltip("上下移動のY方向の値")] float _stickYNum;
 	//[SerializeField, Tooltip("ジャイロの速度")] float _playerGyroSpeed;
 	[SerializeField, Tooltip("ジャイロを受け付ける間隔")] float _gyroTime;
 
@@ -12,12 +12,6 @@ public class Player : MonoBehaviour
 
 	[SerializeField, Tooltip("レーンの位置")] Transform[] _raneNum;
 	[Tooltip("プレイヤーの現在地")] private int _nowPos;
-
-    //フリック関連の情報
-	private Vector3 _touchStartPos;
-	private Vector3 _touchEndPos;
-	float _flickValueY;
-	[SerializeField, Tooltip("フリックの感度")] float _flickValue;
 
 	SpriteRenderer _sp;
 
@@ -41,17 +35,6 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
-        if (Input.GetMouseButtonDown(0))
-        {
-            _touchStartPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            _touchEndPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
-            //FlickDirection();
-            //GetDirection();
-        }
-
         //GetGyro();
 
 		StickMove();
@@ -62,32 +45,32 @@ public class Player : MonoBehaviour
 	/// </summary>
 	private void StickMove()
     {
-		// 現在のゲームパッド情報
 		var current = Gamepad.current;
 
-		// ゲームパッド接続チェック
+		// ゲームパッドの接続確認
 		if (current == null)
 			return;
 
-		// 左スティック入力取得
+		// 左スティック入力を取得
 		var leftStickValue = current.leftStick.ReadValue();
 
-		//左には動かない
-		//if (leftStickValue.x < 0)
-  //      {
-		//	return;
-  //      }
-  //      else if (leftStickValue.x > 0f)
-  //      {
-  //          transform.Translate(leftStickValue.x * _playerSpeed * Time.deltaTime, 0, 0); 
-  //      }
+        //左には動かない
 
-		if(leftStickValue.y > 0.8f && !_up)
+        //if (leftStickValue.x < 0)
+        //{
+        //    return;
+        //}
+        //else if (leftStickValue.x > 0f)
+        //{
+        //    transform.Translate(leftStickValue.x * _playerSpeed * Time.deltaTime, 0, 0);
+        //}
+
+        if (leftStickValue.y > _stickYNum && !_up)
         {
 			Up();
 			_up = true;
         }
-		else if(leftStickValue.y < -0.8f && !_down)
+		else if(leftStickValue.y <  -_stickYNum && !_down)
         {
 			Down();
 			_down = true;
@@ -98,30 +81,6 @@ public class Player : MonoBehaviour
 			_down = false;
         }
     }
-
-	/// <summary>
-	/// フリックの量を計算
-	/// </summary>
-	void FlickDirection()
-	{
-		//flickValue_x = _touchEndPos.x - _touchStartPos.x;
-		_flickValueY = _touchEndPos.y - _touchStartPos.y;
-	}
-
-	/// <summary>
-	/// フリック量に応じて上に行くか下に行くか
-	/// </summary>
-	void GetDirection()
-	{
-		if (_flickValueY > _flickValue)
-		{
-			Up();
-		}
-		if (_flickValueY < -_flickValue)
-        {
-			Down();
-        }
-	}
 	/// <summary>
 	/// 上のレーンに移動
 	/// </summary>
