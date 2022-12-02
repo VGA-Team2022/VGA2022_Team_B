@@ -2179,6 +2179,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905021844}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &927137368 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 421818439038519347, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+  m_PrefabInstance: {fileID: 5140913827395038924}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &949044641
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3617,6 +3622,38 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _appearLane.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _appearLane.Array.data[1]
+      value: 
+      objectReference: {fileID: 927137368}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _appearLane.Array.data[4]
+      value: 
+      objectReference: {fileID: 927137368}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _appearTime.Array.data[0]
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _appearTime.Array.data[1]
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _appearTime.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _appearTime.Array.data[3]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _gimmickPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 3864848064520975736, guid: 68df4be0485182b4a834ce76b647365f, type: 3}
     - target: {fileID: 5052681711918801213, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
       propertyPath: m_LocalPosition.z
       value: -7

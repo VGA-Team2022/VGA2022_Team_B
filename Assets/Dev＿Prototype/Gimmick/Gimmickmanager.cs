@@ -35,7 +35,7 @@ public class Gimmickmanager : MonoBehaviour
         //  //ケーキを積む使用人  
         //    GenerateGimmick(3, 3);
         //}
-        if (_time >= _appearTime[_appearGimmickNum] && !isAppearGimmick)
+        if (_time <= _appearTime[_appearGimmickNum] && !isAppearGimmick)
         {
             var index = Random.Range(0, 2);
             GenerateGimmick(index, 3);
