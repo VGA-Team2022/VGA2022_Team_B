@@ -15,7 +15,7 @@ public class GyroController : MonoBehaviour
     void Update()
     {
         this._gyro = Input.gyro.attitude;
-        _gyro = Quaternion.Euler(90, 0, 0) * (new Quaternion(-_gyro.x, -_gyro.y, _gyro.z, _gyro.w));
+        _gyro = Quaternion.Euler(0, 0, 90) * (new Quaternion(-_gyro.x, -_gyro.y, _gyro.z, _gyro.w));
         _obon.MisalignmentOfSweetsCausedByMovement(_gyro.z);
     }
 }
