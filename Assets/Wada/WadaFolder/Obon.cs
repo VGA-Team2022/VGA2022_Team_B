@@ -51,7 +51,7 @@ public class Obon : MonoBehaviour
     {
         for (int i = 0; i < _startOkasis.Length; i++)
         {
-            if(_okasis.Count == 0)
+            if (_okasis.Count == 0)
             {
                 _okasis.Add(_startOkasis[0]);
                 _okasis[0].transform.position = this.transform.position;
@@ -105,9 +105,22 @@ public class Obon : MonoBehaviour
         Movement += 0.0005f * stickX;////////•Ï”‚É‚µ‚Ä‚Ëby‰ß‹Ž‚Ì‰´
     }
 
+    public void Hit()
+    {
+        Debug.Log("tamarinoKinntamari");
+        //foreach (GameObject sweets in _okasis)
+        //{
+        //    if(sweets.TryGetComponent(out Sweets sweetsClass))
+        //    {
+        //        sweetsClass Zure
+        //    }
+        //}
+        Zure += 10;
+    }
+
     public void GameOver()
     {
-        if(!_gameOver)
+        if (!_gameOver)
         {
             Debug.Log("Ž€‚ËƒJƒX@ƒUƒR@ŒÄ‹z‚·‚ñ‚ÈŽ_‘f‚ª‚à‚Á‚½‚¢‚È‚¢");
             _gameOver = true;
