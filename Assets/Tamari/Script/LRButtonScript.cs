@@ -8,12 +8,7 @@ public class LRButtonScript : MonoBehaviour
     [SerializeField, Tooltip("バランスとる関数の引数に渡す数値(右)")] float RightValue;
     [SerializeField, Tooltip("バランスとる関数の引数に渡す数値(左)")] float LeftValue;
 
-    Obon _obon;
-    void Start()
-    {
-        _obon = GetComponent<Obon>();
-    }
-
+    [SerializeField] Obon _obon;
     void Update()
     {
         GetBalance();

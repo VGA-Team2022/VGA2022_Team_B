@@ -97,7 +97,7 @@ public class SoundManager// : Singleton<SoundManager>
         ChangeBGM(cueName);
     }
 
-    //どこかのタイミングで音を止める必要が出てくるかもなので、必要なときにコメント解除・コードの更新
+    //音停止。今後コードの更新
     public void CriAtomStop()
     {
         if (!_criAtomSource)
