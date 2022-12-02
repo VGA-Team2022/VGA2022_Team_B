@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,8 +19,8 @@ public class StageMove : MonoBehaviour
     public float MoveSpeed  
         { get { return _moveSpeed; } set { _moveSpeed = value; } }
 
-    Obon _obon;
-
+    [SerializeField] Obon _obon;
+    [SerializeField] int i;
     /// <summary>停止する時にSpeedの値を取っておく</summary>
     private float _keepSpeed;
     /// <summary>スマホデバッグ用のフラグ</summary>
@@ -30,7 +31,7 @@ public class StageMove : MonoBehaviour
         _keepSpeed = MoveSpeed;
         MoveSpeed = 0;
         _wall[0].transform.position = _centerPos.position;
-        _obon = GetComponent<Obon>();
+        _obon = _obon.gameObject.GetComponent<Obon>();
     }
 
     void Update()
@@ -81,7 +82,11 @@ public class StageMove : MonoBehaviour
         else if (leftStickValue.x > 0f)
         {
             //transform.Translate(-(leftStickValue.x * MoveSpeed * Time.deltaTime), 0, 0);
-            MoveSpeed = leftStickValue.x * 2;
+            MoveSpeed = leftStickValue.x * i;
+        }
+        else if (leftStickValue.x == 0)
+        {
+            MoveSpeed = 0;
         }
         _obon.MisalignmentOfSweetsCausedByMovement(leftStickValue.x);
     }
