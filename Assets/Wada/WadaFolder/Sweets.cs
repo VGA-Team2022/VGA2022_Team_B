@@ -7,6 +7,8 @@ public class Sweets : MonoBehaviour
     [SerializeField]
     Transform _nextPos;
 
+    
+
     [Tooltip("これ以上横にはみ出したら落ちる"), SerializeField]
     float _deadWidth;
 
@@ -71,11 +73,18 @@ public class Sweets : MonoBehaviour
         {
             this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             _rb.AddForce(Vector2.up * 1);//AddForceせんと崩れないからAddForce。演出にも使えソう;
-            obon.GameOver();//Obonクラスのゲームオーバー関数の呼び出し
+            Obon.GameOver();//Obonクラスのゲームオーバー関数の呼び出し
         }
         else
         {
             this.transform.position = new Vector3(_prevObj.transform.position.x + (obon.Zure * _misalignmentDifference) - obon.Movement, this.transform.position.y, this.transform.position.z);
+        }
+
+        //Debug.Log(_prevObj.transform.position.x - _deadWidth);
+
+        if (this.transform.position.x >= (_prevObj.transform.position.x + _deadWidth / 2) || this.transform.position.x <= _prevObj.transform.position.x - _deadWidth / 2)
+        {
+            obon._playerAnim.Abunaaaaaaai();
         }
     }
 
