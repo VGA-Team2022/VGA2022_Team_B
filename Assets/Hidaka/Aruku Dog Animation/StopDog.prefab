@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7612620108660593076}
   - component: {fileID: 7612620108660593077}
-  - component: {fileID: 7612620108660593066}
+  - component: {fileID: 5645677590279538971}
   m_Layer: 0
   m_Name: StopDog
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &7612620108660593066
+--- !u!95 &5645677590279538971
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
