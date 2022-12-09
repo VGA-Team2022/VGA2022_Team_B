@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum DogType
@@ -12,6 +10,8 @@ public class Enemy_Dog : MonoBehaviour
 {
     [Tooltip("犬の種類"), SerializeField] private DogType _dogType = DogType.Outrun;
 
+    [Tooltip("止まる犬がどこで止まるかの値調整"), SerializeField, Range(0f, 10f)] private float _stopRange = 1;
+
     /// <summary>エネミーのスピード</summary>
     private float _speed = 2.0f;
     public float Speed
@@ -19,31 +19,66 @@ public class Enemy_Dog : MonoBehaviour
 
     private StageMove _stageMove;
 
-    /// <summary>止まる犬の止まっている時間</summary>
-    private int _stopTime = 2;
 
     /// <summary>エネミーの軸移動方向</summary>
     private float _startPosX = 0;
 
+    /// <summary>Animation</summary>
+    private Animator _anim = default;
+
+    /// <summary>生成位置のx軸が負の値かの判定</summary>
+    private bool isSpawnNegativeX = false;
+    /// <summary>止まる犬の座る判定</summary>
+    private bool isStop = false;
+
+
     private void Start()
     {
         _stageMove = GameObject.Find("StageManager").GetComponent<StageMove>();
-        Speed = _stageMove.MoveSpeed;
+        _anim= this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<Animator>();
+        Speed = _stageMove._keepSpeed;
         _startPosX = transform.position.x;
+        isStop = false;
+
+        if (this.gameObject.transform.position.x <= 0)//生成位置が０より小さいのでTrue
+        {
+            isSpawnNegativeX = true;
+        }
+        else 
+        {
+            isSpawnNegativeX = false;
+        }
+
     }
+
+    private void Update()
+    {
+        if (isStop && isSpawnNegativeX)//座る判定が正になったら且つ進行方向が右(正方向)の犬の場合
+        {
+            Speed = -_stageMove.MoveSpeed;//ステージと同じスピードにする
+        }
+        else if (isStop && !isSpawnNegativeX)//座る判定が正になったら且つ進行方向が左(負方向)の犬の場合
+        {
+            Speed = _stageMove.MoveSpeed;//マイナスをかけステージと同じ方向とスピードにする
+        }
+
+    }
+
 
     /// <summary>
     /// エネミーの移動
     /// </summary>
     void FixedUpdate()
     {
+
         switch (_dogType)
         {
             case DogType.Outrun:
 
-                    //スタート位置によって進行方向を変える
-                    if (_startPosX >= 0)
-                    {
+                //スタート位置によって進行方向とSpriteの向きを変える
+                if (!isSpawnNegativeX)//Playerの進行方向(画面右端から左端に向けて)からくる挙動
+                {
+                        this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().flipX = true;
                         this.gameObject.transform.position -= new Vector3(Time.deltaTime * Speed, 0);
                     }
                     else
@@ -55,15 +90,16 @@ public class Enemy_Dog : MonoBehaviour
 
             case DogType.Stop:
 
-                //スタート位置によって進行方向を変える
-                if (_startPosX >= 0)//Playerの進行方向からくる挙動
+                //スタート位置によって進行方向とSpriteの向きを変える
+                if (!isSpawnNegativeX)//Playerの進行方向(画面右端から左端に向けて)からくる挙動
                 {
+                    this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().flipX = true;
                     this.gameObject.transform.position -= new Vector3(Time.deltaTime * Speed, 0);
 
-                    //ｘ軸の-1～1Ｍ地点に入ったら止まる(Playerの場所)
-                    if (transform.position.x >= -1 && transform.position.x <= 1)
+                    //ｘ軸の_stopRngeＭ地点に入ったら止まる(Playerの場所)
+                    if (transform.position.x >= -_stopRange && transform.position.x <= _stopRange)
                     {
-                        StartCoroutine(StopDog(_stopTime));
+                        isStop = true;//アニメーションの座る判定を正にする
                     }
                     
                 }
@@ -71,10 +107,10 @@ public class Enemy_Dog : MonoBehaviour
                 {
                     this.gameObject.transform.position += new Vector3(Time.deltaTime * Speed, 0);
 
-                    //ｘ軸の-1～1Ｍ地点に入ったら止まる(Playerの場所)
-                    if (transform.position.x >= -1 && transform.position.x <= 1)
+                    //ｘ軸の_stopRange地点に入ったら止まる(Playerの場所)
+                    if (transform.position.x >= -_stopRange && transform.position.x <= _stopRange)
                     {
-                        StartCoroutine(StopDog(_stopTime));
+                        isStop = true;//アニメーションの座る判定を正にする
                     }
                 }
 
@@ -88,15 +124,11 @@ public class Enemy_Dog : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-    }
 
-
-    //止まる犬
-    private IEnumerator StopDog(float time)
-    {
-        Speed = 0;
-        yield return new WaitForSeconds(time);
-        Speed = _stageMove.MoveSpeed;
+        if (_anim)
+        {
+            _anim.SetBool("isStop",isStop);
+        }
     }
 
 
