@@ -12,7 +12,12 @@ public class TarbanGarl : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        this.gameObject.transform.position -= new Vector3(Time.deltaTime * _stageMove.MoveSpeed, 0);
+        if(transform.position.x <= -47) 
+        {
+            gameObject.SetActive(false);
+            return; 
+        }
+        gameObject.transform.position -= new Vector3(Time.deltaTime * _stageMove.MoveSpeed, 0);
     }
     private void OnTriggerEnter(Collider other)
     {
