@@ -7,6 +7,9 @@ public class Obon : MonoBehaviour
     [Tooltip("プレイヤーがゲーム開始時に持っているお菓子の配列"), SerializeField]
     private GameObject[] _startOkasis;
 
+    [Tooltip("プレイヤーのアニメーション管理クラス")]
+    public PlayerAnimControl _playerAnim;
+
     [Tooltip("プレイヤーがプレイ中に持っているお菓子の配列")]
     private List<GameObject> _okasis = new List<GameObject>();
 
@@ -17,8 +20,7 @@ public class Obon : MonoBehaviour
 
     private float _movement;
 
-    [HideInInspector]
-    public bool _gameOver = false;
+    public static bool _gameOver = false;
 
 
     float h;
@@ -118,7 +120,7 @@ public class Obon : MonoBehaviour
         Zure += 10;
     }
 
-    public void GameOver()
+    public static void GameOver()
     {
         if (!_gameOver)
         {
