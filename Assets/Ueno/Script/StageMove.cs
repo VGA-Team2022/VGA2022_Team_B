@@ -22,9 +22,8 @@ public class StageMove : MonoBehaviour
     [SerializeField] Obon _obon;
     [SerializeField] int i;
     /// <summary>停止する時にSpeedの値を取っておく</summary>
-    private float _keepSpeed;
-    /// <summary>スマホデバッグ用のフラグ</summary>
-    [SerializeField] private bool isPhonDebug;
+    [HideInInspector] public float _keepSpeed;
+
 
     void Start()
     {
@@ -36,19 +35,10 @@ public class StageMove : MonoBehaviour
 
     void Update()
     {
-        if (!isPhonDebug)
-        {
-            //if (Input.GetKey(KeyCode.Space))
-            //{
-            //    MoveSpeed = _keepSpeed;
-                
-            //}
-            //else
-            //{
-            //    MoveSpeed = 0;
-            //}
-            StickMove();
-        }
+
+
+        StickMove();
+        
         for (int i = 0; i < _wall.Length; i++)
         {
 
