@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7612620108660593077}
   - component: {fileID: 7612620108660593066}
   m_Layer: 0
-  m_Name: aruku
+  m_Name: StopDog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
