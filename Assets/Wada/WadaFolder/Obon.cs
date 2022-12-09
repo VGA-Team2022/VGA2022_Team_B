@@ -101,6 +101,19 @@ public class Obon : MonoBehaviour
             }
         }
     }
+    public void SweetsAdd(GameObject gameObjects)
+    {
+        if (_okasis.Count == 0)
+        {
+            _okasis.Add(gameObjects);
+            _okasis[0].transform.position = this.transform.position;//óvèCê≥
+        }
+        else
+        {
+            _okasis.Add(gameObjects);
+            _okasis[_okasis.Count - 1].transform.position = _okasis[_okasis.Count - 2].GetComponent<Sweets>().NextPos.position;
+        }
+    }
 
     public void MisalignmentOfSweetsCausedByMovement(float stickX)
     {
