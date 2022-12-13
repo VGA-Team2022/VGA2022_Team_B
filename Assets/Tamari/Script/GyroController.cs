@@ -17,10 +17,10 @@ public class GyroController : MonoBehaviour
     {
         var dire = Vector3.zero;
 
-        dire.z = Input.acceleration.x * -1;
-        dire.x = Input.acceleration.y;
+        dire.z = Input.acceleration.x;
+        //dire.x = Input.acceleration.y;
 
-        dire *= Time.deltaTime;
-        transform.Rotate(dire * _speed);
+        dire.z *= Time.deltaTime;
+        _obon.MisalignmentOfSweetsCausedByMovement(dire.z * _speed);
     }
 }
