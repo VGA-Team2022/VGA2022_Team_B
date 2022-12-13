@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class cube : MonoBehaviour
+public class GyroController : MonoBehaviour
 {
     [SerializeField] float _speed = 10;
 
