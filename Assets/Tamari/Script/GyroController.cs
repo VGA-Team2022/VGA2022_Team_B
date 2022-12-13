@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GyroController : MonoBehaviour
 {
-    [SerializeField] float _adjustNum = 25;
+    [SerializeField] float _adjustNum = 100;
     private Quaternion _gyro;
     [SerializeField] Obon _obon;
     void Start()
@@ -16,7 +16,7 @@ public class GyroController : MonoBehaviour
     void Update()
     {
         this._gyro = Input.gyro.attitude;
-        //_gyro = Quaternion.Euler(0, 0, 90) * (new Quaternion(-_gyro.x, -_gyro.y, _gyro.z, _gyro.w));
+        _gyro = Quaternion.Euler(0, 0, 90) * (new Quaternion(-_gyro.x, -_gyro.y, _gyro.z, _gyro.w));
         _obon.MisalignmentOfSweetsCausedByMovement(_gyro.z * _adjustNum);
     }
 }
