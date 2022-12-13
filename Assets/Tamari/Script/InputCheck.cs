@@ -39,7 +39,7 @@ public class InputCheck : MonoBehaviour
             float w = Screen.width * 8 / 10;
             float h = Screen.height / 20;
 
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 3; i++)
             {
                 y = Screen.height / 10 + h * i;
                 string text = string.Empty;
@@ -58,30 +58,30 @@ public class InputCheck : MonoBehaviour
                     case 3://X
                         text = string.Format("comps-X:{0}", this.compass.rawVector.x);
                         break;
-                    case 4://Y
-                        text = string.Format("comps-Y:{0}", this.compass.rawVector.y);
-                        break;
-                    case 5://Z
-                        text = string.Format("comps-Z:{0}", this.compass.rawVector.z);
-                        break;
-                    case 6://Z
-                        text = string.Format("magneticHeading:{0}", this.compass.magneticHeading);
-                        break;
-                    case 7://Z
-                        text = string.Format("trueHeading:{0}", this.compass.trueHeading);
-                        break;
-                    case 8://Y
-                        text = string.Format("gyro-x:{0}", this.gyro.x);
-                        break;
-                    case 9://Y
-                        text = string.Format("gyro-y:{0}", this.gyro.y);
-                        break;
-                    case 10://Y
-                        text = string.Format("gyro-z:{0}", this.gyro.z);
-                        break;
-                    case 11://Y
-                        text = string.Format("gyro-w:{0}", this.gyro.w);
-                        break;
+                    //case 4://Y
+                    //    text = string.Format("comps-Y:{0}", this.compass.rawVector.y);
+                    //    break;
+                    //case 5://Z
+                    //    text = string.Format("comps-Z:{0}", this.compass.rawVector.z);
+                    //    break;
+                    //case 6://Z
+                    //    text = string.Format("magneticHeading:{0}", this.compass.magneticHeading);
+                    //    break;
+                    //case 7://Z
+                    //    text = string.Format("trueHeading:{0}", this.compass.trueHeading);
+                    //    break;
+                    //case 8://Y
+                    //    text = string.Format("gyro-x:{0}", this.gyro.x);
+                    //    break;
+                    //case 9://Y
+                    //    text = string.Format("gyro-y:{0}", this.gyro.y);
+                    //    break;
+                    //case 10://Y
+                    //    text = string.Format("gyro-z:{0}", this.gyro.z);
+                    //    break;
+                    //case 11://Y
+                    //    text = string.Format("gyro-w:{0}", this.gyro.w);
+                    //    break;
                     default:
                         throw new System.InvalidOperationException();
                 }
