@@ -5,7 +5,6 @@ public class GyroController : MonoBehaviour
 {
     [SerializeField] float _speed = 100;
 
-    private Vector3 acceleration;
 
     Obon _obon;
 
@@ -16,12 +15,12 @@ public class GyroController : MonoBehaviour
 
     void Update()
     {
-        this.acceleration = Input.acceleration;
+        var dire = Vector3.zero;
 
-        //var dir = Vector3.zero;
-        //dir.z = Input.acceleration.x * -1;
+        dire.z = Input.acceleration.x * -1;
+        dire.x = Input.acceleration.y;
 
-        //dir *= Time.deltaTime;
-        _obon.MisalignmentOfSweetsCausedByMovement(acceleration.x * _speed);
+        dire *= Time.deltaTime;
+        transform.Rotate(dire * _speed);
     }
 }
