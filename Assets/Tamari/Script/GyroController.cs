@@ -1,26 +1,27 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GyroController : MonoBehaviour
 {
     [SerializeField] float _speed = 100;
+    Vector3 _acceleration;
 
-
-    Obon _obon;
+    [SerializeField] Obon _obon;
 
     void Start()
     {
-
+        _obon = _obon.gameObject.GetComponent<Obon>();
     }
 
     void Update()
     {
-        var dire = Vector3.zero;
 
-        dire.z = Input.acceleration.x;
-        //dire.x = Input.acceleration.y;
+        _acceleration = Input.acceleration;
 
-        dire.z *= Time.deltaTime;
-        _obon.MisalignmentOfSweetsCausedByMovement(dire.z * _speed);
+        _obon.MisalignmentOfSweetsCausedByMovement(-_acceleration.x * _speed);
+        
+        Debug.Log(_acceleration.x);
+
     }
 }
