@@ -1,6 +1,8 @@
+using Common;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 /// <summary>
 /// ギミック生成Manager
 /// </summary>
@@ -12,12 +14,19 @@ public class Gimmickmanager : MonoBehaviour
     [Tooltip("出現する時間"), SerializeField] private float[] _appearTime;
     [Tooltip("GameManager"), SerializeField] private GameManager _gameManager;
 
+    /// <summary>
+    /// ゲーム全体の時間
+    /// </summary>
+    private float _gameTime;
+
     private int _appearGimmickNum = 0;
     private float _time = 120;
     private bool isAppearGimmick = false;
 
     private void Update()
     {
+        _gameTime = Define.GAME_TIME;//定数から参照
+
         _time -= Time.deltaTime;
         isAppearGimmick = false;
 
