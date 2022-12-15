@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 99e3d71c9ff83d549a4ebea266908c6a
+guid: d33d558f5f3c91844a65d74397aa64d2
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - WanpakuRuikaSeikyo-05
+  - WanpakuRuikaSeikyo-04
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
