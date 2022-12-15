@@ -12,8 +12,11 @@ public class MessageSequencer : MonoBehaviour
 
     int _currentIndex = -1;
 
+    [SerializeField] GameObject _sceneChangeButtons = default;
+
     void Start()
     {
+        _sceneChangeButtons.SetActive(false);
         MoveNext();
     }
 
@@ -31,6 +34,8 @@ public class MessageSequencer : MonoBehaviour
             }
             Debug.Log(_printer.IsPrinting);
         }
+
+
     }
 
     /// <summary>
@@ -47,6 +52,12 @@ public class MessageSequencer : MonoBehaviour
         {
             _currentIndex++;
             _printer?.ShowMessage(_messages[_currentIndex]);
+
+            if (_currentIndex + 1 >= _messages.Length)
+            {
+                FadeScript.StartFadeOut();
+                _sceneChangeButtons.SetActive(true);
+            }
         }
     }
 }
