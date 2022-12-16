@@ -20,7 +20,8 @@ public class Obon : MonoBehaviour
 
     private float _movement;
 
-    public static bool _gameOver = false;
+    [HideInInspector]
+    public bool _sweetsFall = false;
 
 
     float h;
@@ -133,12 +134,20 @@ public class Obon : MonoBehaviour
         Zure += 10;
     }
 
-    public static void GameOver()
+    public void GameOver()
     {
-        if (!_gameOver)
+        if (!_sweetsFall)
         {
             Debug.Log("死ねカス　ザコ　呼吸すんな酸素がもったいない");
-            _gameOver = true;
+
+            foreach (GameObject okasis in _okasis)
+            {
+                if(okasis.TryGetComponent(out Sweets sweets))
+                {
+                    sweets.Boom(50);//マジックナンバー滅ぶべし
+                }
+            }
+            _sweetsFall = true;
         }
     }
 }
