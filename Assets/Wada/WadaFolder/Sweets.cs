@@ -56,7 +56,6 @@ public class Sweets : MonoBehaviour
         set
         {
             _misalignmentDifference = value;
-            Debug.Log(_misalignmentDifference);
         }
     }
 
@@ -69,16 +68,21 @@ public class Sweets : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (this.transform.position.x >= _prevObj.transform.position.x + _deadWidth || this.transform.position.x <= _prevObj.transform.position.x - _deadWidth)
+        if(!obon._sweetsFall)
         {
-            this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-            _rb.AddForce(Vector2.up * 1);//AddForceせんと崩れないからAddForce。演出にも使えソう;
-            Obon.GameOver();//Obonクラスのゲームオーバー関数の呼び出し
+            if (this.transform.position.x >= _prevObj.transform.position.x + _deadWidth || this.transform.position.x <= _prevObj.transform.position.x - _deadWidth)
+            {
+
+                //_rb.AddForce(Vector2.up * 10);//AddForceせんと崩れないからAddForce。演出にも使えソう;
+                obon.GameOver();//Obonクラスのゲームオーバー関数の呼び出し
+                obon._sweetsFall = true;
+            }
+            else
+            {
+                this.transform.position = new Vector3(_prevObj.transform.position.x + (obon.Zure * _misalignmentDifference) - obon.Movement, this.transform.position.y, this.transform.position.z);
+            }
         }
-        else
-        {
-            this.transform.position = new Vector3(_prevObj.transform.position.x + (obon.Zure * _misalignmentDifference) - obon.Movement, this.transform.position.y, this.transform.position.z);
-        }
+        
 
         //Debug.Log(_prevObj.transform.position.x - _deadWidth);
 
@@ -91,5 +95,14 @@ public class Sweets : MonoBehaviour
     public void PutOnSweets(GameObject gameObj)
     {
         gameObj.transform.position = _nextPos.position;
+    }
+
+    public void Boom(int power)
+    {
+        _prevObj = null;
+        this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+        this.transform.eulerAngles = new Vector3(0, 0,Random.Range(-30,30));
+        Debug.Log(_prevObj);
+        _rb.AddForce(new Vector3(Random.Range(-1, 1), 1,0) * power);//AddForceせんと崩れないからAddForce。演出にも使えソう;
     }
 }
