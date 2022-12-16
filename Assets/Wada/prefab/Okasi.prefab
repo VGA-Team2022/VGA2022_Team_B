@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2333746914238586428}
-  - component: {fileID: 1613040812981414332}
   - component: {fileID: 311051486}
-  m_Layer: 0
+  - component: {fileID: 3642698917109091937}
+  - component: {fileID: 2801114137242037837}
+  m_Layer: 6
   m_Name: Okasi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,27 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &1613040812981414332
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2333746914238586431}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 6
 --- !u!114 &311051486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,8 +49,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextPos: {fileID: 2333746915068949407}
-  _prevObj: {fileID: 0}
   _deadWidth: 1
+  _prevObj: {fileID: 0}
+--- !u!54 &3642698917109091937
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2333746914238586431}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 92
+  m_CollisionDetection: 0
+--- !u!65 &2801114137242037837
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2333746914238586431}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2333746915068949406
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,7 +89,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2333746915068949407}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NextPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2333746915121517480}
   - component: {fileID: 2333746915121517481}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
