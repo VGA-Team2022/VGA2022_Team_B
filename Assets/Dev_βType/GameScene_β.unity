@@ -1565,7 +1565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3471612382978859920, guid: 10c6f8aef165dde48a0e8bd30d2d61f6, type: 3}
       propertyPath: _interval
-      value: 3
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3471612382978859920, guid: 10c6f8aef165dde48a0e8bd30d2d61f6, type: 3}
       propertyPath: _enemys.Array.size
@@ -1574,7 +1574,7 @@ PrefabInstance:
     - target: {fileID: 3471612382978859920, guid: 10c6f8aef165dde48a0e8bd30d2d61f6, type: 3}
       propertyPath: _enemys.Array.data[0]
       value: 
-      objectReference: {fileID: 7315473094776360875, guid: 0a198ab1681ea284893cc4b53b208e67, type: 3}
+      objectReference: {fileID: 7315473094776360875, guid: 9bfe3dbcca5cc5f48b04cc0a07804c2a, type: 3}
     - target: {fileID: 3471612382978859920, guid: 10c6f8aef165dde48a0e8bd30d2d61f6, type: 3}
       propertyPath: _enemys.Array.data[1]
       value: 
@@ -3834,6 +3834,7 @@ MonoBehaviour:
   - {fileID: 205553039}
   _playerAnim: {fileID: 0}
   _int: 
+  _sweetsFall: 0
 --- !u!1001 &5140913827395038924
 PrefabInstance:
   m_ObjectHideFlags: 0

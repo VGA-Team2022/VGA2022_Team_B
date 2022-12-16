@@ -31,7 +31,7 @@ public class Enemy_Dog : MonoBehaviour
     /// <summary>止まる犬の座る判定</summary>
     private bool isStop = false;
 
-
+   
     private void Start()
     {
         _stageMove = GameObject.Find("StageManager").GetComponent<StageMove>();
@@ -43,10 +43,17 @@ public class Enemy_Dog : MonoBehaviour
         if (this.gameObject.transform.position.x <= 0)//生成位置が０より小さいのでTrue
         {
             isSpawnNegativeX = true;
+
         }
         else 
         {
             isSpawnNegativeX = false;
+            this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().flipX = true;
+        }
+
+        if (this.gameObject.transform.position.z <= -4)
+        {
+            this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder= 10;
         }
 
     }
@@ -78,7 +85,7 @@ public class Enemy_Dog : MonoBehaviour
                 //スタート位置によって進行方向とSpriteの向きを変える
                 if (!isSpawnNegativeX)//Playerの進行方向(画面右端から左端に向けて)からくる挙動
                 {
-                        this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().flipX = true;
+                        //this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().flipX = true;
                         this.gameObject.transform.position -= new Vector3(Time.deltaTime * Speed, 0);
                     }
                     else
@@ -93,7 +100,7 @@ public class Enemy_Dog : MonoBehaviour
                 //スタート位置によって進行方向とSpriteの向きを変える
                 if (!isSpawnNegativeX)//Playerの進行方向(画面右端から左端に向けて)からくる挙動
                 {
-                    this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().flipX = true;
+                    //this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().flipX = true;
                     this.gameObject.transform.position -= new Vector3(Time.deltaTime * Speed, 0);
 
                     //ｘ軸の_stopRngeＭ地点に入ったら止まる(Playerの場所)
