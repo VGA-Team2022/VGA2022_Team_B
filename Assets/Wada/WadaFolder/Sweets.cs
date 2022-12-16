@@ -18,22 +18,7 @@ public class Sweets : MonoBehaviour
 
     Obon obon;
 
-    Rigidbody2D _rb;
-
-
-    //public GameObject PrevObj
-    //{
-    //    get
-    //    {
-    //        return _prevObj;
-    //    }
-    //    set
-    //    {
-    //        _prevObj = value;
-    //        this.transform.position = _prevObj.GetComponent<Sweets>()._nextPos.position;
-    //    }
-    //}
-
+    Rigidbody _rb;
 
     public Transform NextPos
     {
@@ -62,7 +47,7 @@ public class Sweets : MonoBehaviour
     private void Start()
     {
         obon = GameObject.FindGameObjectWithTag("Obon").GetComponent<Obon>();
-        _rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody>();
     }
 
 
@@ -100,9 +85,8 @@ public class Sweets : MonoBehaviour
     public void Boom(int power)
     {
         _prevObj = null;
-        this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-        this.transform.eulerAngles = new Vector3(0, 0,Random.Range(-30,30));
-        Debug.Log(_prevObj);
+        this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;//Rigidbodyのロックを解除
+        this.transform.eulerAngles = new Vector3(0, 0,Random.Range(-30,30));//お菓子の向きをランダムに変える
         _rb.AddForce(new Vector3(Random.Range(-1, 1), 1,0) * power);//AddForceせんと崩れないからAddForce。演出にも使えソう;
     }
 }

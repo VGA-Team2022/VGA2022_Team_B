@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 128905819}
   - component: {fileID: 128905818}
   - component: {fileID: 128905817}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Lane4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,7 +438,7 @@ PrefabInstance:
       objectReference: {fileID: 1612993529}
     - target: {fileID: 311051486, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
       propertyPath: _deadWidth
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2333746914238586428, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
       propertyPath: m_RootOrder
@@ -519,6 +519,30 @@ PrefabInstance:
     - target: {fileID: 2333746915121517481, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5445461
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Size.y
+      value: 0.6284971
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Size.z
+      value: 0.18354134
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Center.x
+      value: -0.038144846
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Center.y
+      value: 0.2248792
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Center.z
+      value: 0.021725778
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
@@ -611,7 +635,7 @@ PrefabInstance:
       objectReference: {fileID: 705416420}
     - target: {fileID: 311051486, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
       propertyPath: _deadWidth
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1150352455, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
       propertyPath: _deadWidth
@@ -708,6 +732,30 @@ PrefabInstance:
     - target: {fileID: 2333746915121517481, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Size.x
+      value: 2.119371
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Size.y
+      value: 0.5911321
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Size.z
+      value: 0.2278172
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Center.x
+      value: 0.024704002
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Center.y
+      value: 0.31786835
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Center.z
+      value: -0.0077714375
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
@@ -864,7 +912,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 391709730}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: UpPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -975,7 +1023,7 @@ GameObject:
   - component: {fileID: 496442556}
   - component: {fileID: 496442555}
   - component: {fileID: 496442554}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Lane0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1288,7 +1336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 567172685}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DownPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1562,7 +1610,7 @@ GameObject:
   - component: {fileID: 777880923}
   - component: {fileID: 777880922}
   - component: {fileID: 777880921}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Lane3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1694,7 +1742,7 @@ GameObject:
   - component: {fileID: 796747127}
   - component: {fileID: 796747126}
   - component: {fileID: 796747125}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Lane2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1837,7 +1885,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 839821487}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CenterPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1872,7 +1920,7 @@ PrefabInstance:
       objectReference: {fileID: 623403055}
     - target: {fileID: 311051486, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
       propertyPath: _deadWidth
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1150352455, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
       propertyPath: _deadWidth
@@ -1970,6 +2018,30 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Size.x
+      value: 2.4536343
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Size.y
+      value: 0.74795866
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Size.z
+      value: 0.29483408
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Center.x
+      value: -0.098086305
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Center.y
+      value: 0.40531132
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Center.z
+      value: -0.0029296367
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
 --- !u!1001 &889997700
@@ -1985,7 +2057,7 @@ PrefabInstance:
       objectReference: {fileID: 1431733295}
     - target: {fileID: 311051486, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
       propertyPath: _deadWidth
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1150352455, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
       propertyPath: _deadWidth
@@ -2083,6 +2155,30 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Size.x
+      value: 1.9862242
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Size.y
+      value: 0.58300626
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Size.z
+      value: 0.19603196
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Center.x
+      value: -0.017492304
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Center.y
+      value: 0.27638158
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Center.z
+      value: -0.025873935
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
 --- !u!1 &905021844
@@ -2097,7 +2193,7 @@ GameObject:
   - component: {fileID: 905021848}
   - component: {fileID: 905021847}
   - component: {fileID: 905021846}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Lane1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2436,7 +2532,7 @@ PrefabInstance:
       objectReference: {fileID: 2131431389}
     - target: {fileID: 311051486, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
       propertyPath: _deadWidth
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1150352455, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
       propertyPath: _deadWidth
@@ -2517,6 +2613,30 @@ PrefabInstance:
     - target: {fileID: 2333746915121517481, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Size.x
+      value: 2.1754918
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8580889
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Size.z
+      value: 0.37302205
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Center.x
+      value: -0.068559386
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Center.y
+      value: 0.48265326
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801114137242037837, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
+      propertyPath: m_Center.z
+      value: 0.014469803
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1150352455, guid: 2a72dbf62eb047e41b9ea1955b9bc8ee, type: 3}
@@ -3633,8 +3753,9 @@ MonoBehaviour:
   - {fileID: 1431733295}
   - {fileID: 1612993529}
   - {fileID: 205553039}
+  _playerAnim: {fileID: 0}
   _int: 
-  _gameOver: 0
+  _sweetsFall: 0
 --- !u!4 &1670789330516027843 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8140620933022193575, guid: 9e49397e5f8d46744b45d443e1f2dd95, type: 3}
