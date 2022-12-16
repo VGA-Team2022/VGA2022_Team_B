@@ -82,7 +82,7 @@ public class Sweets : MonoBehaviour
 
         //Debug.Log(_prevObj.transform.position.x - _deadWidth);
 
-        if (this.transform.position.x >= (_prevObj.transform.position.x + _deadWidth / 2) || this.transform.position.x <= _prevObj.transform.position.x - _deadWidth / 2)
+        if (this.transform.position.x >= _prevObj.transform.position.x + _deadWidth / 2 || this.transform.position.x <= _prevObj.transform.position.x - _deadWidth / 2)
         {
             obon._playerAnim.Abunaaaaaaai();
         }
