@@ -22,6 +22,7 @@ public class Gimmickmanager : MonoBehaviour
     private int _appearGimmickNum = 0;
     private float _time = 120;
     private bool isAppearGimmick = false;
+    private bool employee = false;
 
     private void Update()
     {
@@ -31,18 +32,19 @@ public class Gimmickmanager : MonoBehaviour
         isAppearGimmick = false;
 
         //GameManagerの時間が必須
-        //if (_gameManager._time >= _appearTime[_appearGimmickNum] && !isAppearGimmick)
+        //if (_gameTime <= _appearTime[_appearGimmickNum] && !isAppearGimmick)
         //{
-        //    var index = Random.Range(0, _gimmickPrefabs.Length);
+        //    var index = Random.Range(0, _gimmickPrefabs.Length -1);
         //    GenerateGimmick(index, 3);
-        //    if(_appearGimmickNum == _appearTime.Length) { return; }
+        //    if (_appearGimmickNum == _appearTime.Length) { return; }
         //    _appearGimmickNum++;
         //    isAppearGimmick = true;
         //}
-        //if(_gameManager._time <= 60)
+        //if (_gameTime <= _gameTime/2 && !employee)
         //{
-        //  //ケーキを積む使用人  
+        //    //ケーキを積む使用人  
         //    GenerateGimmick(3, 3);
+        //    employee = true;
         //}
         if (_time <= _appearTime[_appearGimmickNum] && !isAppearGimmick)
         {
@@ -51,6 +53,11 @@ public class Gimmickmanager : MonoBehaviour
             if (_appearGimmickNum == _appearTime.Length) { return; }
             _appearGimmickNum++;
             isAppearGimmick = true;
+        }
+        if (_time < 60 && !employee)
+        {
+            GenerateGimmick(3, 3);
+            employee = true;
         }
     }
 
