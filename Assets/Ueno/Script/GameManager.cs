@@ -33,7 +33,8 @@ public class GameManager : MonoBehaviour
     /// <summary>åªç›ÇÃéûä‘</summary>
     private float _currentTime;
 
-    bool _ks;
+    /// <summary>àÍâÒÇæÇØSceneManagerÇíTÇ∑à◊ÇÃîªíË</summary>
+   public static bool isFindScenemng;
 
     void Awake()
     {
@@ -54,32 +55,50 @@ public class GameManager : MonoBehaviour
         GameTime = i;
     }
 
+    
     private void Start()
     {
+        isGameStart = false;
         isGameOver = false;
         isGameClear = false;
+        FindSceneManager();
+
+        isFindScenemng = false;
+
+    }
+
+    private void FindSceneManager()
+    {
         _scenemng = GameObject.Find("SceneManager").GetComponent<AttachedSceneController>();
         Debug.Log(_scenemng);
-
-        _ks = false;
-
     }
 
     private void Update()
     {
-        
 
-        if (_scenemng.gameObject.scene.name == Define.SCENENAME_MASTERGAME && !_ks)
+         if (!_scenemng && !isFindScenemng)
         {
+            FindSceneManager();
             Debug.Log(_scenemng);
-            isGameStart  = true;
+            isGameStart = false;
             isGameOver = false;
             isGameClear = false;
-            _ks = true;
+            isFindScenemng = true;
             _currentTime = GameTime;
         }
 
-        GemeClearjudge();
+        if (_scenemng.gameObject.scene.name == Define.SCENENAME_MASTERGAME)
+        {
+            if (!isFindScenemng)
+            {
+                isGameStart = true;
+                isFindScenemng = true;
+                _currentTime = GameTime;
+            }
+            GemeClearjudge();
+        }
+
+
 
     }
 
@@ -87,15 +106,17 @@ public class GameManager : MonoBehaviour
     {
         if (_scenemng)
         {
-            isGameOver = Obon._gameOver;
+            isGameOver = Obon._sweetsFall;
 
             if (isGameOver  && !isGameClear)
             {
                 _scenemng.ChangeResultScene();
+                isFindScenemng = false;
             }
             else if (!isGameOver && isGameClear)
             {
                 _scenemng.ChangeResultScene();
+                isFindScenemng = false;
             }
         }
 

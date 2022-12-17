@@ -16,6 +16,7 @@ public class SceneChangeScript
         }
         roadNow = true;
         FadeScript.StartFadeOut(() => Load(sceneName));
+        GameManager.isFindScenemng = false;
     }
     private static void Load(string sceneName)
     {
