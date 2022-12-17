@@ -60,7 +60,7 @@ public class LevelPrefarence : MonoBehaviour
                 }
                 break;
             case (StageType)1:
-                num = 3;
+                num = 2;
                 foreach (var i in _levelButtons)
                 {
                     i.GetComponent<Image>().sprite = _stageSprite[num];
