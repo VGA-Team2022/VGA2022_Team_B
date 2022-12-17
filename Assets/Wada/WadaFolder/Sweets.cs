@@ -64,6 +64,7 @@ public class Sweets : MonoBehaviour
                 //_rb.AddForce(Vector2.up * 10);//AddForceせんと崩れないからAddForce。演出にも使えソう;
                 obon.GameOver();//Obonクラスのゲームオーバー関数の呼び出し
                 obon._sweetsFall = true;
+                Obon._staticSweetsFall = true;
             }
             else
             {
