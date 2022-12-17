@@ -16,6 +16,7 @@ public class Obon : MonoBehaviour
     [Tooltip("プレイヤーがゲーム開始時に持っているお菓子の配列"), SerializeField]
     private int[] _int;
 
+
     private float _zure;
 
     private float _movement;
@@ -173,7 +174,7 @@ public class Obon : MonoBehaviour
             {
                 if(okasis.TryGetComponent(out Sweets sweets))
                 {
-                    sweets.Boom(50);//マジックナンバー滅ぶべし
+                    sweets.Boom(100);//マジックナンバー滅ぶべし
                 }
             }
             _sweetsFall = true;
