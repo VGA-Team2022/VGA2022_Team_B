@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
     {
         if (_scenemng)
         {
-            isGameOver = Obon._sweetsFall;
+            //isGameOver = Obon._sweetsFall;
 
             if (isGameOver  && !isGameClear )//GameOver
             {
