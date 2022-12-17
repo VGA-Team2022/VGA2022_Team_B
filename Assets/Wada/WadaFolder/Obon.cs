@@ -23,9 +23,12 @@ public class Obon : MonoBehaviour
     [HideInInspector]
     public bool _sweetsFall = false;
 
-
     float h;
     float n = 1;
+
+    //////////////仮置き/////////////////
+    private static List<GameObject> _staticOkasis;
+    private static bool _staticSweetsFall;
 
     public float Zure
     {
@@ -50,6 +53,7 @@ public class Obon : MonoBehaviour
         }
     }
 
+
     private void Awake()
     {
         for (int i = 0; i < _startOkasis.Length; i++)
@@ -67,6 +71,9 @@ public class Obon : MonoBehaviour
                 _startOkasis[i].GetComponent<Sweets>().MisalignmentDifference = 1 + (float)i / 10;//追加したお菓子の揺れの差を変更
             }
         }
+
+        _staticOkasis = _okasis;
+        _staticSweetsFall = _sweetsFall;
     }
 
     private void Update()
@@ -145,7 +152,7 @@ public class Obon : MonoBehaviour
         }
 
 
-        if (!_sweetsFall)//まだゲームオーバーしてないとき
+        if (!_sweetsFall || !_staticSweetsFall)//まだゲームオーバーしてないとき
         {
             foreach (GameObject okasis in _okasis)//揺らす
             {
@@ -159,7 +166,7 @@ public class Obon : MonoBehaviour
 
     public void GameOver()
     {
-        if (!_sweetsFall)
+        if (!_sweetsFall || !_staticSweetsFall)
         {
 
             foreach (GameObject okasis in _okasis)
@@ -170,6 +177,22 @@ public class Obon : MonoBehaviour
                 }
             }
             _sweetsFall = true;
+        }
+    }
+
+    public static void OutSideGameOver()
+    {
+        if (!_staticSweetsFall)
+        {
+
+            foreach (GameObject okasis in _staticOkasis)
+            {
+                if (okasis.TryGetComponent(out Sweets sweets))
+                {
+                    sweets.Boom(50);//マジックナンバー滅ぶべし
+                }
+            }
+            _staticSweetsFall = true;
         }
     }
 }
