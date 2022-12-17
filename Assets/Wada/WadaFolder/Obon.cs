@@ -29,7 +29,7 @@ public class Obon : MonoBehaviour
 
     //////////////‰¼’u‚«/////////////////
     private static List<GameObject> _staticOkasis;
-    private static bool _staticSweetsFall;
+    public static bool _staticSweetsFall;
 
     public float Zure
     {
