@@ -15,8 +15,12 @@ public class MilkMaid : MonoBehaviour
     private Image _milkPanel;
     private Color _fadeColor = default;
     private bool isGimmickAction;
+
+    private StageMove _stageMove;
+
     private void Awake()
     {
+        _stageMove = GameObject.Find("StageManager").GetComponent<StageMove>();
         _milkPanel = GameObject.Find("MilkPanel").gameObject.GetComponent<Image>();
         _fadeColor = _milkPanel.gameObject.GetComponent<Image>().color;
         isGimmickAction = false;
@@ -69,5 +73,14 @@ public class MilkMaid : MonoBehaviour
             yield return null;
         }
         _milkPanel.enabled = false;//while•¶‚ªI—¹‚µ‚½‚çImage‚ğfalse‚É‚·‚é
+    }
+
+    /// <summary>
+    /// ˆÚ“®ˆ—
+    /// </summary>
+    private void FixedUpdate()
+    {
+        
+         this.gameObject.transform.position -= new Vector3(Time.deltaTime * _stageMove.MoveSpeed, 0); 
     }
 }
