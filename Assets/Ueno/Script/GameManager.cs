@@ -21,12 +21,16 @@ public class GameManager : MonoBehaviour
     /// <summary>ゲームクリアまでの時間</summary>
     public static float GameTime = Define.GAME_TIME;
 
-    /// <summary>ゲームクリアの判定</summary>
-    public static bool isGameClear = false;
     /// <summary>ゲームが開始されたかの判定</summary>
     private bool isGameStart = false;
+
+    /// <summary>ゲームクリアの判定</summary>
+    public static bool isGameClear = false;
     /// <summary>ゲームオーバーの判定</summary>
-    private bool isGameOver = false;
+    public static bool isGameOver = false;
+
+    /// <summary>リザルト演出の終了判定</summary>
+    public static bool isGameStaged = false;
 
     /// <summary>scenemanager格納用変数</summary>
     private AttachedSceneController _scenemng;
@@ -61,6 +65,7 @@ public class GameManager : MonoBehaviour
         isGameStart = false;
         isGameOver = false;
         isGameClear = false;
+        isGameStaged = false;
         FindSceneManager();
 
         isFindScenemng = false;
@@ -76,29 +81,45 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
 
-         if (!_scenemng && !isFindScenemng)
+        if (!_scenemng && !isFindScenemng)
         {
             FindSceneManager();
-            Debug.Log(_scenemng);
-            isGameStart = false;
-            isGameOver = false;
-            isGameClear = false;
-            isFindScenemng = true;
-            _currentTime = GameTime;
+            Debug.Log(111111111);
+
+            if (_scenemng.gameObject.scene.name == Define.SCENENAME_RESULT)
+            {
+                isGameStart = false;
+                isGameStaged = false;
+                //isGameOver = false;
+                //isGameClear = false;
+                isFindScenemng = true;
+            }
+
+
+            else if (_scenemng.gameObject.scene.name != Define.SCENENAME_RESULT && _scenemng.gameObject.scene.name != Define.SCENENAME_MASTERGAME)
+            {
+                Debug.Log(_scenemng);
+                isGameStart = false;
+                isGameOver = false;
+                isGameClear = false;
+                isGameStaged = false;
+                isFindScenemng = true;
+                _currentTime = GameTime;
+            }
         }
 
-        if (_scenemng.gameObject.scene.name == Define.SCENENAME_MASTERGAME)
+         if (_scenemng.gameObject.scene.name == Define.SCENENAME_MASTERGAME)
         {
             if (!isFindScenemng)
             {
+                Debug.Log(_scenemng.gameObject.scene.name);
                 isGameStart = true;
                 isFindScenemng = true;
+                isGameStaged = false;
                 _currentTime = GameTime;
             }
             GemeClearjudge();
         }
-
-
 
     }
 
@@ -108,15 +129,21 @@ public class GameManager : MonoBehaviour
         {
             isGameOver = Obon._sweetsFall;
 
-            if (isGameOver  && !isGameClear)
+            if (isGameOver  && !isGameClear )//GameOver
             {
-                _scenemng.ChangeResultScene();
-                isFindScenemng = false;
+                if (isGameStaged)//演出が終わったか
+                {
+                    _scenemng.ChangeResultScene();
+                    isFindScenemng = false;
+                }
             }
-            else if (!isGameOver && isGameClear)
+            else if (!isGameOver && isGameClear)//GameClear
             {
-                _scenemng.ChangeResultScene();
-                isFindScenemng = false;
+                if (isGameStaged)
+                {
+                    _scenemng.ChangeResultScene();
+                    isFindScenemng = false;
+                }
             }
         }
 
