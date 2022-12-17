@@ -69,6 +69,16 @@ public class Obon : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Debug.Log("tamarinoKinntamari");
+            Hit(this.transform.position.x - 1);
+        }
+    }
+
+
     private void FixedUpdate()
     {
         h = Input.GetAxisRaw("Horizontal");
@@ -84,6 +94,8 @@ public class Obon : MonoBehaviour
         }
 
         //MisalignmentOfSweetsCausedByMovement();
+
+        
     }
 
     public void SweetsAdd(GameObject[] gameObjects)
@@ -121,24 +133,34 @@ public class Obon : MonoBehaviour
         Movement += 0.0005f * stickX;////////変数にしてねby過去の俺
     }
 
-    public void Hit()
+    public void Hit(float hitPos)
     {
-        Debug.Log("tamarinoKinntamari");
-        //foreach (GameObject sweets in _okasis)
-        //{
-        //    if(sweets.TryGetComponent(out Sweets sweetsClass))
-        //    {
-        //        sweetsClass Zure
-        //    }
-        //}
-        Zure += 10;
+        if(this.transform.position.x > hitPos)
+        {
+            Zure += 0.1f;
+        }
+        else if(this.transform.position.x < hitPos)
+        {
+            Zure -= 0.1f;
+        }
+
+
+        if (!_sweetsFall)//まだゲームオーバーしてないとき
+        {
+            foreach (GameObject okasis in _okasis)//揺らす
+            {
+                if (okasis.TryGetComponent(out Sweets sweets))/////////////毎回ゲットコンポーネントするのだるいから最初からSweets型のListにする
+                {
+                    sweets.SwayAnim();
+                }
+            }
+        }
     }
 
     public void GameOver()
     {
         if (!_sweetsFall)
         {
-            Debug.Log("死ねカス　ザコ　呼吸すんな酸素がもったいない");
 
             foreach (GameObject okasis in _okasis)
             {

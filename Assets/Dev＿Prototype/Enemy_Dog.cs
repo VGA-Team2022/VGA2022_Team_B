@@ -135,8 +135,13 @@ public class Enemy_Dog : MonoBehaviour
     //あたり判定
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Obon")
         {
+            if(collision.gameObject.TryGetComponent(out Obon obon))
+            {
+                isStop = true;
+                obon.Hit(this.transform.position.x);
+            }
             Debug.Log("メイド「あああああああああああ」");
         }
     }

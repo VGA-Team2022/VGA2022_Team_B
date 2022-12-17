@@ -20,6 +20,8 @@ public class Sweets : MonoBehaviour
 
     Rigidbody _rb;
 
+    Animator _anim;
+
     public Transform NextPos
     {
         get
@@ -48,6 +50,7 @@ public class Sweets : MonoBehaviour
     {
         obon = GameObject.FindGameObjectWithTag("Obon").GetComponent<Obon>();
         _rb = GetComponent<Rigidbody>();
+        _anim = GetComponent<Animator>();
     }
 
 
@@ -88,5 +91,10 @@ public class Sweets : MonoBehaviour
         this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;//Rigidbodyのロックを解除
         this.transform.eulerAngles = new Vector3(0, 0,Random.Range(-30,30));//お菓子の向きをランダムに変える
         _rb.AddForce(new Vector3(Random.Range(-1, 1), 1,0) * power);//AddForceせんと崩れないからAddForce。演出にも使えソう;
+    }
+
+    public void SwayAnim()
+    {
+        _anim.Play("GuraGura");
     }
 }
