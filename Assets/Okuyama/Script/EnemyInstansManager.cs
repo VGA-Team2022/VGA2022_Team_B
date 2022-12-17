@@ -25,9 +25,14 @@ public class EnemyInstansManager : MonoBehaviour
         var index = Random.Range(0, _enemys.Length);
         if(index == 0) 
         {
-            Instantiate(_enemys[index], _enemyspoint[0].transform.position, Quaternion.identity); 
+            Instantiate(_enemys[index], _enemyspoint[0].transform.position, Quaternion.identity);
+            SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_big dog_cry");
         }
-        else {Instantiate(_enemys[index], _enemyspoint[point].transform.position, Quaternion.identity); }
+        else 
+        {
+            Instantiate(_enemys[index], _enemyspoint[point].transform.position, Quaternion.identity);
+            SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_big dog_cry");
+        }
     }
 
     /// <summary>

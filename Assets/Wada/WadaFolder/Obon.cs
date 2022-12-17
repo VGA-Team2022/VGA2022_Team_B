@@ -152,7 +152,7 @@ public class Obon : MonoBehaviour
         }
 
 
-        if (!_sweetsFall || !_staticSweetsFall)//まだゲームオーバーしてないとき
+        if (!_sweetsFall && !_staticSweetsFall)//まだゲームオーバーしてないとき
         {
             foreach (GameObject okasis in _okasis)//揺らす
             {
@@ -166,7 +166,7 @@ public class Obon : MonoBehaviour
 
     public void GameOver()
     {
-        if (!_sweetsFall || !_staticSweetsFall)
+        if (!_sweetsFall && !_staticSweetsFall)
         {
 
             foreach (GameObject okasis in _okasis)

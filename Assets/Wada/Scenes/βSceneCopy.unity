@@ -779,7 +779,7 @@ Animator:
   m_GameObject: {fileID: 205553039}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 399d6ffc0b385374cbfa843dcd735f9b, type: 2}
+  m_Controller: {fileID: 9100000, guid: cdaf71c8eb9a9524a823bbad9b364a49, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1429,7 +1429,7 @@ Animator:
   m_GameObject: {fileID: 623403055}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7f7adc86906be2e4caac929d69f2d936, type: 2}
+  m_Controller: {fileID: 9100000, guid: cdaf71c8eb9a9524a823bbad9b364a49, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2765,7 +2765,7 @@ Animator:
   m_GameObject: {fileID: 1431733295}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6e980143380c3c244b5e0de1ed1cd470, type: 2}
+  m_Controller: {fileID: 9100000, guid: cdaf71c8eb9a9524a823bbad9b364a49, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3054,7 +3054,7 @@ Animator:
   m_GameObject: {fileID: 1612993529}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 05a40064921ea984095c896d42156035, type: 2}
+  m_Controller: {fileID: 9100000, guid: cdaf71c8eb9a9524a823bbad9b364a49, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3808,6 +3808,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2131431390}
   - component: {fileID: 2131431391}
+  - component: {fileID: 2131431393}
+  - component: {fileID: 2131431392}
   m_Layer: 0
   m_Name: ObonPos
   m_TagString: Obon
@@ -3856,6 +3858,35 @@ MonoBehaviour:
   _playerAnim: {fileID: 0}
   _int: 
   _sweetsFall: 0
+--- !u!65 &2131431392
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131431389}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0875376, y: 5.3771777, z: 1}
+  m_Center: {x: -1.7423155, y: -0.0125742955, z: 0}
+--- !u!54 &2131431393
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131431389}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &1670789330516027843 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8140620933022193575, guid: 9e49397e5f8d46744b45d443e1f2dd95, type: 3}

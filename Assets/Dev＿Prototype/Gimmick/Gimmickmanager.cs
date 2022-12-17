@@ -12,12 +12,8 @@ public class Gimmickmanager : MonoBehaviour
     [Tooltip("ギミックPrefab"),SerializeField] private GameObject[] _gimmickPrefabs;
     [Tooltip("出現するレーン"), SerializeField] private Transform[] _appearLane;
     [Tooltip("出現する時間"), SerializeField] private float[] _appearTime;
-    [Tooltip("GameManager"), SerializeField] private GameManager _gameManager;
+  //  [Tooltip("GameManager"), SerializeField] private GameManager _gameManager;
 
-    /// <summary>
-    /// ゲーム全体の時間
-    /// </summary>
-    private float _gameTime;
 
     private int _appearGimmickNum = 0;
     private float _time = 120;
@@ -26,7 +22,7 @@ public class Gimmickmanager : MonoBehaviour
 
     private void Update()
     {
-        _gameTime = Define.GAME_TIME;//定数から参照
+        _time = Define.GAME_TIME;//定数から参照
 
         _time -= Time.deltaTime;
         isAppearGimmick = false;
