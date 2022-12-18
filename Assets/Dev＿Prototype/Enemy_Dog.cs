@@ -51,9 +51,13 @@ public class Enemy_Dog : MonoBehaviour
             this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().flipX = true;
         }
 
-        if (this.gameObject.transform.position.z <= -6)
+        if (this.gameObject.transform.position.z <= -4 && this.gameObject.transform.position.z >= -7)
         {
-            this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder= 15;
+            this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder= 8;
+        }
+        else if (this.gameObject.transform.position.z <= -6)
+        {
+            this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = 15;
         }
 
     }
