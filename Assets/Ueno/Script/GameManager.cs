@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 using Common;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour
     public static bool isGameStaged = false;
 
     /// <summary>scenemanageräiî[ópïœêî</summary>
-    private AttachedSceneController _scenemng;
+    private AttachedSceneController _scenemng = default;
     /// <summary>åªç›ÇÃéûä‘</summary>
     private float _currentTime;
 
@@ -86,7 +87,8 @@ public class GameManager : MonoBehaviour
             FindSceneManager();
             Debug.Log(111111111);
 
-            if (_scenemng.gameObject.scene.name == Define.SCENENAME_RESULT)
+            //if (_scenemng.gameObject.scene.name == Define.SCENENAME_RESULT)
+            if (SceneManager.GetActiveScene().name == Define.SCENENAME_RESULT)
             {
                 isGameStart = false;
                 isGameStaged = false;
@@ -96,7 +98,8 @@ public class GameManager : MonoBehaviour
             }
 
 
-            else if (_scenemng.gameObject.scene.name != Define.SCENENAME_RESULT && _scenemng.gameObject.scene.name != Define.SCENENAME_MASTERGAME)
+            //else if (_scenemng.gameObject.scene.name != Define.SCENENAME_RESULT && _scenemng.gameObject.scene.name != Define.SCENENAME_MASTERGAME)
+            else if (SceneManager.GetActiveScene().name != Define.SCENENAME_RESULT && SceneManager.GetActiveScene().name != Define.SCENENAME_MASTERGAME)
             {
                 Debug.Log(_scenemng);
                 isGameStart = false;
@@ -108,7 +111,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-         if (_scenemng.gameObject.scene.name == Define.SCENENAME_MASTERGAME)
+         if (SceneManager.GetActiveScene().name == Define.SCENENAME_MASTERGAME)
         {
             if (!isFindScenemng)
             {
@@ -127,7 +130,7 @@ public class GameManager : MonoBehaviour
     {
         if (_scenemng)
         {
-            //isGameOver = Obon._sweetsFall;
+            isGameOver = Obon._staticSweetsFall;
 
             if (isGameOver  && !isGameClear )//GameOver
             {
