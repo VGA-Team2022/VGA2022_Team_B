@@ -16,14 +16,12 @@ public class Gimmickmanager : MonoBehaviour
 
 
     private int _appearGimmickNum = 0;
-    private float _time = 120;
+    private float _time = Define.GAME_TIME;
     private bool isAppearGimmick = false;
     private bool employee = false;
 
     private void Update()
     {
-        _time = Define.GAME_TIME;//’è”‚©‚çQÆ
-
         _time -= Time.deltaTime;
         isAppearGimmick = false;
 
@@ -50,7 +48,7 @@ public class Gimmickmanager : MonoBehaviour
             _appearGimmickNum++;
             isAppearGimmick = true;
         }
-        if (_time < 60 && !employee)
+        if (_time < Define.GAME_TIME/2 && !employee)
         {
             GenerateGimmick(3, 3);
             employee = true;
