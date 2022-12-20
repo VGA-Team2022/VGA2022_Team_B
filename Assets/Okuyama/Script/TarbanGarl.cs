@@ -6,9 +6,12 @@ public class TarbanGarl : MonoBehaviour
 {
     [SerializeField] GameObject _tarban;
     StageMove _stageMove;
+
+    public StageMove StageMove { get => _stageMove; set => _stageMove = value; }
+
     private void Start()
     {
-        _stageMove = GameObject.Find("StageManager").GetComponent<StageMove>();
+        StageMove = GameObject.Find("StageManager").GetComponent<StageMove>();
     }
     private void FixedUpdate()
     {
@@ -17,13 +20,15 @@ public class TarbanGarl : MonoBehaviour
             gameObject.SetActive(false);
             return; 
         }
-        gameObject.transform.position -= new Vector3(Time.deltaTime * _stageMove.MoveSpeed, 0);
+        gameObject.transform.position -= new Vector3(Time.deltaTime * StageMove.MoveSpeed, 0);
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
             Instantiate(_tarban, gameObject.transform);
+            SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_kaiga_turban");
+            //obon.Hit(this.transform.position.x);
         }
     }
 }
