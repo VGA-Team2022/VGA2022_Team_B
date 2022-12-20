@@ -12,23 +12,25 @@ public class Employee : MonoBehaviour
     GameObject _cakePos = null;
 
     StageMove _stageMove;
-    bool _cakeInstance = false;
+    Gimmickmanager _gimmickmanager;
     GameObject _obonObj;
+    bool _cakeInstance = false;
+
+    public StageMove StageMove { get => _stageMove; set => _stageMove = value; }
+    public Gimmickmanager Gimmickmanager { get => _gimmickmanager; set => _gimmickmanager = value; }
+    public GameObject ObonObj { get => _obonObj; set => _obonObj = value; }
 
     void Start()
     {
-        _stageMove = GameObject.Find("StageManager").GetComponent<StageMove>();
-        var gimmickManaget = GameObject.Find("GimmickManager").GetComponent<Gimmickmanager>();
-        _cakePos = gimmickManaget.gameObject.transform.GetChild(1).gameObject;
-        _obonObj = GameObject.Find("ObonPos");
+        _cakePos = Gimmickmanager.gameObject.transform.GetChild(1).gameObject;
     }
     private void FixedUpdate()
     {
-        gameObject.transform.position -= new Vector3(Time.deltaTime * _stageMove.MoveSpeed, 0);
+        gameObject.transform.position -= new Vector3(Time.deltaTime * StageMove.MoveSpeed, 0);
         if(this.gameObject.transform.position.x <= 0 && _cakeInstance == false)
         {
             var cake = Instantiate(_cake, _cakePos.transform);
-            cake.transform.parent = _obonObj.transform;
+            cake.transform.parent = ObonObj.transform;
             _cakeInstance = true;
         }
         if(gameObject.transform.position.x <= -47)
