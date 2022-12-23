@@ -22,11 +22,19 @@ public class TarbanGarl : MonoBehaviour
         }
         gameObject.transform.position -= new Vector3(Time.deltaTime * StageMove.MoveSpeed, 0);
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Instantiate(_tarban, gameObject.transform);
+            _tarban.SetActive(true);
+            if(_tarban.activeInHierarchy && other.gameObject.CompareTag("Obon"))
+            {
+                if (other.gameObject.TryGetComponent(out Obon obon))
+                {
+                    obon.Hit(this.transform.position.x);
+                }
+            }
             SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_kaiga_turban");
             //obon.Hit(this.transform.position.x);
         }

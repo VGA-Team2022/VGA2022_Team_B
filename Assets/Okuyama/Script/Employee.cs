@@ -22,7 +22,7 @@ public class Employee : MonoBehaviour
 
     void Start()
     {
-        _cakePos = Gimmickmanager.gameObject.transform.GetChild(1).gameObject;
+        _cakePos = ObonObj.gameObject.transform.GetChild(5).gameObject;
     }
     private void FixedUpdate()
     {
