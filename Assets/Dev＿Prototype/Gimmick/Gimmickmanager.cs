@@ -10,7 +10,6 @@ public class Gimmickmanager : MonoBehaviour
     [Tooltip("ギミックPrefab"),SerializeField] private GameObject[] _gimmickPrefabs;
     [Tooltip("出現するレーン"), SerializeField] private Transform[] _appearLane;
     [Tooltip("出現する時間"), SerializeField] private float[] _appearTime;
-    //  [Tooltip("GameManager"), SerializeField] private GameManager _gameManager;
     [Tooltip("StageMove"), SerializeField] private StageMove _stageMove;
     [Tooltip("おぼんObj"), SerializeField] private GameObject _obonObj;
 
@@ -20,24 +19,24 @@ public class Gimmickmanager : MonoBehaviour
     private bool employee = false;
     const int TARBANGARL_INDEX_ONE = 1, EMPLOYEE_INDEX_TWO = 2, LANE_THREE = 3;
 
-
     private void Update()
     {
         _time -= Time.deltaTime;
         isAppearGimmick = false;
 
+        if (_time < Define.GAME_TIME / 2 && !employee)
+        {
+            GenerateGimmick(EMPLOYEE_INDEX_TWO, LANE_THREE);
+            employee = true;
+        }
+
+        if (_appearGimmickNum == _appearTime.Length) { return; }
         if (_time <= _appearTime[_appearGimmickNum] && !isAppearGimmick)
         {
             var index = Random.Range(0, _gimmickPrefabs.Length -1);
             GenerateGimmick(index, LANE_THREE);
-            if (_appearGimmickNum == _appearTime.Length) { return; }
             _appearGimmickNum++;
             isAppearGimmick = true;
-        }
-        if (_time < Define.GAME_TIME/2 && !employee)
-        {
-            GenerateGimmick(EMPLOYEE_INDEX_TWO, LANE_THREE);
-            employee = true;
         }
     }
 

@@ -2811,12 +2811,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d04c03abfee97488fb51d1cd81954a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stagingJudgeType: 0
-  _clearImage: {fileID: 574761252}
-  _gameOverImage: {fileID: 2034598400}
-  _gameOver2: {fileID: 21300000, guid: f3b29989bc34f4e45b2042020192ec25, type: 3}
-  _gameOverText2: {fileID: 21300000, guid: 632ace305ce2dfd4a9950480d8095c89, type: 3}
-  isDebug: 0
 --- !u!1001 &1391165178
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3468,6 +3462,37 @@ Transform:
   - {fileID: 1743002165}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1727968935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1727968936}
+  m_Layer: 0
+  m_Name: NewCake
+  m_TagString: Untagged
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1727968936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727968935}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 6.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1921525356}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1743002164
 GameObject:
@@ -4189,6 +4214,7 @@ Transform:
   - {fileID: 324370262}
   - {fileID: 102070862}
   - {fileID: 1606351948}
+  - {fileID: 1727968936}
   m_Father: {fileID: 1786589910}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4732,6 +4758,14 @@ PrefabInstance:
       value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _obonObj
+      value: 
+      objectReference: {fileID: 1921525355}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _stageMove
+      value: 
+      objectReference: {fileID: 15158040}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
       propertyPath: _appearLane.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -4740,24 +4774,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 927137368}
     - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _appearLane.Array.data[2]
+      value: 
+      objectReference: {fileID: 927137368}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
       propertyPath: _appearLane.Array.data[4]
       value: 
       objectReference: {fileID: 927137368}
     - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
       propertyPath: _appearTime.Array.data[0]
-      value: 110
-      objectReference: {fileID: 0}
-    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
-      propertyPath: _appearTime.Array.data[1]
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _appearTime.Array.data[1]
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
       propertyPath: _appearTime.Array.data[2]
-      value: 0
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
       propertyPath: _appearTime.Array.data[3]
-      value: 10
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
       propertyPath: _gimmickPrefabs.Array.data[1]
