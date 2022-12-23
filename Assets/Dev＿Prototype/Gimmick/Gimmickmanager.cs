@@ -1,6 +1,4 @@
 using Common;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -30,7 +28,7 @@ public class Gimmickmanager : MonoBehaviour
 
         if (_time <= _appearTime[_appearGimmickNum] && !isAppearGimmick)
         {
-            var index = Random.Range(0, _gimmickPrefabs.Length);
+            var index = Random.Range(0, _gimmickPrefabs.Length -1);
             GenerateGimmick(index, LANE_THREE);
             if (_appearGimmickNum == _appearTime.Length) { return; }
             _appearGimmickNum++;
