@@ -51,9 +51,22 @@ public class Enemy_Dog : MonoBehaviour
             this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().flipX = true;
         }
 
-        if (this.gameObject.transform.position.z <= -6)
+        if (this.gameObject.transform.position.z <= -4 && this.gameObject.transform.position.z >= -7)
         {
-            this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder= 15;
+            this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder= 8;
+        }
+        else if (this.gameObject.transform.position.z <= -6)
+        {
+            this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = 15;
+        }
+
+        if (_dogType == DogType.Outrun)
+        {
+            SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_small dog_cry");
+        }
+        else 
+        {
+            SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_big dog_cry");
         }
 
     }
@@ -81,7 +94,7 @@ public class Enemy_Dog : MonoBehaviour
         switch (_dogType)
         {
             case DogType.Outrun:
-
+                SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE._enemy_small dog_breath");
                 //スタート位置によって進行方向とSpriteの向きを変える
                 if (!isSpawnNegativeX)//Playerの進行方向(画面右端から左端に向けて)からくる挙動
                 {
@@ -96,7 +109,7 @@ public class Enemy_Dog : MonoBehaviour
                 break;
 
             case DogType.Stop:
-
+                SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_big dog_breath");
                 //スタート位置によって進行方向とSpriteの向きを変える
                 if (!isSpawnNegativeX)//Playerの進行方向(画面右端から左端に向けて)からくる挙動
                 {
