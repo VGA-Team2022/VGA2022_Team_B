@@ -3,6 +3,7 @@ using UnityEngine;
 
 using Common;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -87,7 +88,6 @@ public class GameManager : MonoBehaviour
             FindSceneManager();
             Debug.Log(111111111);
 
-            //if (_scenemng.gameObject.scene.name == Define.SCENENAME_RESULT)
             if (SceneManager.GetActiveScene().name == Define.SCENENAME_RESULT)
             {
                 isGameStart = false;
@@ -97,8 +97,6 @@ public class GameManager : MonoBehaviour
                 isFindScenemng = true;
             }
 
-
-            //else if (_scenemng.gameObject.scene.name != Define.SCENENAME_RESULT && _scenemng.gameObject.scene.name != Define.SCENENAME_MASTERGAME)
             else if (SceneManager.GetActiveScene().name != Define.SCENENAME_RESULT && SceneManager.GetActiveScene().name != Define.SCENENAME_MASTERGAME)
             {
                 Debug.Log(_scenemng);
@@ -119,6 +117,8 @@ public class GameManager : MonoBehaviour
                 isGameStart = true;
                 isFindScenemng = true;
                 isGameStaged = false;
+                isGameOver = false;
+                isGameClear = false;
                 _currentTime = GameTime;
             }
             GemeClearjudge();
@@ -130,9 +130,12 @@ public class GameManager : MonoBehaviour
     {
         if (_scenemng)
         {
-            isGameOver = Obon._staticSweetsFall;
+            if (Obon._staticSweetsFall == true)
+            {
+                StartCoroutine(GameOver());
+            }
 
-            if (isGameOver  && !isGameClear )//GameOver
+            if (isGameOver && !isGameClear)//GameOver
             {
                 if (isGameStaged)//演出が終わったか
                 {
@@ -153,7 +156,7 @@ public class GameManager : MonoBehaviour
         if (isGameStart)
         {
             _currentTime -= Time.deltaTime;
-            Debug.Log(_currentTime);
+           // Debug.Log(_currentTime);
 
             if (_currentTime <= 0 && !isGameOver)
             {
@@ -161,4 +164,14 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// 落下モーションを見る為
+    /// </summary>
+    /// <returns></returns>
+   private IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(2f);
+        isGameOver = Obon._staticSweetsFall;
+    }
+
 }
