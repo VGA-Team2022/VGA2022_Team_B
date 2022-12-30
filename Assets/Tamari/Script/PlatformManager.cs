@@ -13,21 +13,22 @@ public class PlatformManager : MonoBehaviour
 #if UNITY_EDITOR
         _LButton.gameObject.SetActive(true);
         _RButton.gameObject.SetActive(true);
-        _Gyro.SetActive(true);
+        _Gyro.gameObject.SetActive(false);
         Debug.Log("Unity_Editor");
 #endif
 
 #if UNITY_ANDROID
         _LButton.gameObject.SetActive(true);
         _RButton.gameObject.SetActive(true);
-        _Gyro.SetActive(true);
+        _Gyro.gameObject.SetActive(true);
         Debug.Log("Unity_Android");
 #endif
 
 #if UNITY_STANDALONE_WIN
-        _LRButton.SetActive(true);
-        _Gyro.SetActive(false);
-        Debug.Log("Unity_Windows");
+        _LButton.gameObject.SetActive(true);
+        _RButton.gameObject.SetActive(true);
+        _Gyro.gameObject.SetActive(false);
+        Debug.Log("Unity_Win");
 #endif
     }
 }
