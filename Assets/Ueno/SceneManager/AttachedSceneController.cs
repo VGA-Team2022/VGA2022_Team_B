@@ -15,12 +15,6 @@ public class AttachedSceneController : MonoBehaviour
         SceneChangeScript.LoadScene(target);
     }
 
-    public void NoFadeChangeTitleScene()
-    {
-        FadeScript.StartFadeOut(() => SceneChangeScript.Load(Define.SCENENAME_TITLE));
-        GameManager.isFindScenemng = false;
-    }
-
     public void ChangeTitleScene()
     {
         SceneChangeScript.LoadScene(Define.SCENENAME_TITLE);

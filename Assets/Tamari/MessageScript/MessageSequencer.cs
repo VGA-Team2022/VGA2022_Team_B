@@ -3,19 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
-using System.Diagnostics;
-
 
 public class MessageSequencer : MonoBehaviour
 {
-    [SerializeField] public Story StoryJudge = Story.yashiki_Failed;
-
     [SerializeField] MessagePrinter _printer = default;
 
-    private string[] _messages = default;
-
-    [SerializeField] private string[] _yasikiClearMessages = default;
-    [SerializeField] private string[] _yashikiFailedMessages = default;
+    [SerializeField] string[] _messages = default;
 
     int _currentIndex = -1;
 
@@ -24,18 +17,6 @@ public class MessageSequencer : MonoBehaviour
     void Start()
     {
         _sceneChangeButtons.SetActive(false);
-
-        switch (StoryJudge)
-        {
-            case Story.yashiki_Clear:
-                _messages = _yasikiClearMessages;
-                break;
-
-            case Story.yashiki_Failed:
-                _messages = _yashikiFailedMessages;
-                break;
-        }
-
         MoveNext();
     }
 
@@ -51,7 +32,7 @@ public class MessageSequencer : MonoBehaviour
             {
                 _printer?.Skip();
             }
-            UnityEngine.Debug.Log(_printer.IsPrinting);
+            Debug.Log(_printer.IsPrinting);
         }
 
 

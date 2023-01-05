@@ -19,7 +19,6 @@ public class TapEffectScript : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_touch_normal");
             // マウスのワールド座標までパーティクルを移動し、パーティクルエフェクトを1つ生成する
             var pos = _camera.ScreenToWorldPoint(Input.mousePosition + _camera.transform.forward * 10);
             _tapEffect.transform.position = pos;
