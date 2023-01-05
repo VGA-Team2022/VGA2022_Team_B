@@ -4,27 +4,31 @@ using UnityEngine;
 
 public class PlatformManager : MonoBehaviour
 {
-    [SerializeField] GameObject _LRButton;
+    [SerializeField] GameObject _LButton;
+    [SerializeField] GameObject _RButton;
     [SerializeField] GameObject _Gyro;
 
     private void Awake()
     {
 #if UNITY_EDITOR
-        _LRButton.SetActive(true);
-        _Gyro.SetActive(true);
+        _LButton.gameObject.SetActive(true);
+        _RButton.gameObject.SetActive(true);
+        _Gyro.gameObject.SetActive(false);
         Debug.Log("Unity_Editor");
-
-#elif UNITY_ANDROID
-        _LRButton.SetActive(true);
-        _Gyro.SetActive(true);
-        Debug.Log("Unity_Android");
-
-#elif UNITY_STANDALONE_WIN
-        _LRButton.SetActive(true);
-        _Gyro.SetActive(false);
-        Debug.Log("Unity_Windows");
-
 #endif
 
+#if UNITY_ANDROID
+        _LButton.gameObject.SetActive(true);
+        _RButton.gameObject.SetActive(true);
+        _Gyro.gameObject.SetActive(true);
+        Debug.Log("Unity_Android");
+#endif
+
+#if UNITY_STANDALONE_WIN
+        _LButton.gameObject.SetActive(true);
+        _RButton.gameObject.SetActive(true);
+        _Gyro.gameObject.SetActive(false);
+        Debug.Log("Unity_Win");
+#endif
     }
 }
