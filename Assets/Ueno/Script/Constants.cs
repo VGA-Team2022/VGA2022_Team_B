@@ -7,8 +7,8 @@ namespace Common
     {
         public const string SCENENAME_TITLE = "TitleScene";
         public const string SCENENAME_HOME = "HomeScene";
-        public const string SCENENAME_MASTERGAME = "GameScene_É¿";
+        public const string SCENENAME_MASTERGAME = "GameScene_Master";
         public const string SCENENAME_RESULT = "ResultScene";
-        public const float GAME_TIME = 90;
+       // public const float GAME_TIME = 90;
     }
 }
