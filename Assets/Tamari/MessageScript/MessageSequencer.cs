@@ -2,21 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System;
+using System.Diagnostics;
+
 
 public class MessageSequencer : MonoBehaviour
 {
-    [SerializeField] MessagePrinter _printer = default;
+    public Story StoryJudge = Story.yashiki_Clear;
 
-    [SerializeField] string[] _messages = default;
+    [SerializeField]
+        private MessagePrinter _printer = default;
+    
+    [Header("ストーリー入力欄")]
+    [SerializeField] 
+        private string[] _yashikiClearMessages = default;
 
-    int _currentIndex = -1;
+    [SerializeField]
+        private string[] _yashikiFaildMessages = default;
 
-    [SerializeField] GameObject _sceneChangeButtons = default;
+    [SerializeField]
+        private GameObject _sceneChangeButtons = default;
+
+    private string[] _storyMessages;
+    private int _currentIndex = -1;
 
     void Start()
     {
         _sceneChangeButtons.SetActive(false);
+
+        switch(StoryJudge)
+        {
+            case Story.yashiki_Clear:
+                _storyMessages = _yashikiClearMessages;
+                break;
+            case Story.yashiki_Failed:
+                _storyMessages = _yashikiFaildMessages;
+                break;
+        }
+
         MoveNext();
     }
 
@@ -32,7 +54,7 @@ public class MessageSequencer : MonoBehaviour
             {
                 _printer?.Skip();
             }
-            Debug.Log(_printer.IsPrinting);
+            UnityEngine.Debug.Log(_printer.IsPrinting);
         }
 
 
@@ -43,17 +65,17 @@ public class MessageSequencer : MonoBehaviour
     /// </summary>
     void MoveNext()
     {
-        if (_messages is null or { Length: 0 })
+        if (_storyMessages is null or { Length: 0 })
         {
             return;
         }
 
-        if (_currentIndex + 1 < _messages.Length)
+        if (_currentIndex + 1 < _storyMessages.Length)
         {
             _currentIndex++;
-            _printer?.ShowMessage(_messages[_currentIndex]);
+            _printer?.ShowMessage(_storyMessages[_currentIndex]);
 
-            if (_currentIndex + 1 >= _messages.Length)
+            if (_currentIndex + 1 >= _storyMessages.Length)
             {
                 FadeScript.StartFadeOut();
                 _sceneChangeButtons.SetActive(true);
