@@ -19,9 +19,12 @@ public class GameManager : MonoBehaviour
     public static float GameBGMVolume = 50;
     /// <summary>SEのボリューム</summary>
     public static float GameSEVolume = 50;
-    
+
     /// <summary>ゲームクリアまでの時間</summary>
-    public static float GameTime = Define.GAME_TIME;
+    public static float GameTimeClearLength;
+
+    /// <summary>現在の時間</summary>
+    public static float CurrentTime;
 
     /// <summary>ゲームが開始されたかの判定</summary>
     private bool isGameStart = false;
@@ -36,8 +39,7 @@ public class GameManager : MonoBehaviour
 
     /// <summary>scenemanager格納用変数</summary>
     private AttachedSceneController _scenemng = default;
-    /// <summary>現在の時間</summary>
-    private float _currentTime;
+
 
     /// <summary>一回だけSceneManagerを探す為の判定</summary>
    public static bool isFindScenemng;
@@ -58,7 +60,7 @@ public class GameManager : MonoBehaviour
     }
     public void PrefarenceTime(float i)
     {
-        GameTime = i;
+        GameTimeClearLength = i;
     }
 
     
@@ -105,7 +107,7 @@ public class GameManager : MonoBehaviour
                 isGameClear = false;
                 isGameStaged = false;
                 isFindScenemng = true;
-                _currentTime = GameTime;
+                CurrentTime = GameTimeClearLength;
             }
         }
 
@@ -119,7 +121,7 @@ public class GameManager : MonoBehaviour
                 isGameStaged = false;
                 isGameOver = false;
                 isGameClear = false;
-                _currentTime = GameTime;
+                CurrentTime = GameTimeClearLength;
             }
             GemeClearjudge();
         }
@@ -155,10 +157,10 @@ public class GameManager : MonoBehaviour
 
         if (isGameStart)
         {
-            _currentTime -= Time.deltaTime;
+            CurrentTime -= Time.deltaTime;
            // Debug.Log(_currentTime);
 
-            if (_currentTime <= 0 && !isGameOver)
+            if (CurrentTime <= 0 && !isGameOver)
             {
                 isGameClear = true;
             }
