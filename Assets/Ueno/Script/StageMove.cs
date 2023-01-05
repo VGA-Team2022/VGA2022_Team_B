@@ -71,13 +71,14 @@ public class StageMove : MonoBehaviour
         }
         else if (leftStickValue.x > 0f)
         {
+            GameManager.isStop = false;
             //transform.Translate(-(leftStickValue.x * MoveSpeed * Time.deltaTime), 0, 0);
-
             MoveSpeed = leftStickValue.x * i;
 
         }
         else if (leftStickValue.x == 0)
         {
+            GameManager.isStop = true;
             SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_player_footsteps1");
             MoveSpeed = 0;
         }

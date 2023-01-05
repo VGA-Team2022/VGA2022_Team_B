@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public static float GameSEVolume = 50;
 
     /// <summary>ゲームクリアまでの時間</summary>
-    public static float GameTimeClearLength;
+    public static float GameTimeClearLength = 60;
 
     /// <summary>現在の時間</summary>
     public static float CurrentTime;
@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
 
     /// <summary>一回だけSceneManagerを探す為の判定</summary>
    public static bool isFindScenemng;
+    /// <summary>Playerの進行をストップする為の判定</summary>
+    public static bool isStop;
 
     void Awake()
     {
@@ -88,7 +90,6 @@ public class GameManager : MonoBehaviour
         if (!_scenemng && !isFindScenemng)
         {
             FindSceneManager();
-            Debug.Log(111111111);
 
             if (SceneManager.GetActiveScene().name == Define.SCENENAME_RESULT)
             {
@@ -97,6 +98,7 @@ public class GameManager : MonoBehaviour
                 //isGameOver = false;
                 //isGameClear = false;
                 isFindScenemng = true;
+
             }
 
             else if (SceneManager.GetActiveScene().name != Define.SCENENAME_RESULT && SceneManager.GetActiveScene().name != Define.SCENENAME_MASTERGAME)
@@ -107,6 +109,7 @@ public class GameManager : MonoBehaviour
                 isGameClear = false;
                 isGameStaged = false;
                 isFindScenemng = true;
+                isStop = false;
                 CurrentTime = GameTimeClearLength;
             }
         }
@@ -121,6 +124,7 @@ public class GameManager : MonoBehaviour
                 isGameStaged = false;
                 isGameOver = false;
                 isGameClear = false;
+                isStop = false;
                 CurrentTime = GameTimeClearLength;
             }
             GemeClearjudge();
@@ -154,11 +158,11 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-
-        if (isGameStart)
+        Debug.Log(111111111);
+        if (isGameStart && !isStop)
         {
             CurrentTime -= Time.deltaTime;
-           // Debug.Log(_currentTime);
+            Debug.Log(CurrentTime);
 
             if (CurrentTime <= 0 && !isGameOver)
             {

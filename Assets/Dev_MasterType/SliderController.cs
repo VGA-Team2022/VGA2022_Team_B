@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class SliderController : MonoBehaviour
 {
-
     private Slider _slider;
     // Start is called before the first frame update
     void Start()
