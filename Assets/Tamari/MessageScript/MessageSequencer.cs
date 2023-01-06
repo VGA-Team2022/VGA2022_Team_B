@@ -14,7 +14,10 @@ public class MessageSequencer : MonoBehaviour
     
     [Header("ストーリー入力欄")]
     [SerializeField] 
-        private string[] _yashikiClearMessages = default;
+        private string[] _yashiki_DayLight_ClearMessages = default;
+
+    [SerializeField]
+        private string[] _yashiki_Night_ClearMessages = default;
 
     [SerializeField]
         private string[] _yashikiFaildMessages = default;
@@ -32,7 +35,15 @@ public class MessageSequencer : MonoBehaviour
         switch(StoryJudge)
         {
             case Story.yashiki_Clear:
-                _storyMessages = _yashikiClearMessages;
+                if (GameManager.StageLevelNum == 0)
+                {
+                    _storyMessages = _yashiki_DayLight_ClearMessages;
+                }
+                else
+                {
+                    _storyMessages = _yashiki_Night_ClearMessages;
+                }
+
                 break;
             case Story.yashiki_Failed:
                 _storyMessages = _yashikiFaildMessages;
