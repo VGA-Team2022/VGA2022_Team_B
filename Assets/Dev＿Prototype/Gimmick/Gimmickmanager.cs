@@ -14,17 +14,17 @@ public class Gimmickmanager : MonoBehaviour
     [Tooltip("‚¨‚Ú‚ñObj"), SerializeField] private GameObject _obonObj;
 
     private int _appearGimmickNum = 0;
-    private float _time = Define.GAME_TIME;
+    private float _time;
     private bool isAppearGimmick = false;
     private bool employee = false;
     const int TARBANGARL_INDEX_ONE = 1, EMPLOYEE_INDEX_TWO = 2, LANE_THREE = 3;
 
     private void Update()
     {
-        _time -= Time.deltaTime;
+
         isAppearGimmick = false;
 
-        if (_time < Define.GAME_TIME / 2 && !employee)
+        if (GameManager.CurrentTime < GameManager.GameTimeClearLength/ 2 && !employee)
         {
             GenerateGimmick(EMPLOYEE_INDEX_TWO, LANE_THREE);
             employee = true;
