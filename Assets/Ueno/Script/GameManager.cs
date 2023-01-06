@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public static float GameSEVolume = 50;
 
     /// <summary>ゲームクリアまでの時間</summary>
-    public static float GameTimeClearLength = 20;
+    public static float GameTimeClearLength = 90;
 
     /// <summary>現在の時間</summary>
     public static float CurrentTime;
@@ -97,8 +97,6 @@ public class GameManager : MonoBehaviour
             {
                 isGameStart = false;
                 isGameStaged = false;
-                //isGameOver = false;
-                //isGameClear = false;
                 isFindScenemng = true;
 
             }
@@ -149,7 +147,7 @@ public class GameManager : MonoBehaviour
                 if (isGameStaged)//演出が終わったか
                 {
                     _scenemng.ChangeResultScene();
-                    isFindScenemng = false;
+                    //isFindScenemng = false;
                 }
             }
             else if (!isGameOver && isGameClear)//GameClear
@@ -157,15 +155,18 @@ public class GameManager : MonoBehaviour
                 if (isGameStaged)
                 {
                     _scenemng.ChangeResultScene();
-                    isFindScenemng = false;
+                    //isFindScenemng = false;
                 }
             }
         }
         //GameClearになったら扉を呼び出す
-        if (isGameStart && !isStop && !isAppearDoorObj)
+        if (isGameStart && !isStop)
         {
-            CurrentTime -= Time.deltaTime;
-            Debug.Log(CurrentTime);
+            if (!isAppearDoorObj) 
+            {
+                CurrentTime -= Time.deltaTime;
+            }
+           // Debug.Log(CurrentTime);
 
             if (CurrentTime <= 0 && !isGameOver)
             {

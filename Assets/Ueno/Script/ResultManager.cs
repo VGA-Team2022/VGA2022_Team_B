@@ -16,9 +16,16 @@ public class ResultManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _messageSequencer = _messageSequencer.gameObject.GetComponent<MessageSequencer>();
+        if (GameManager.isGameClear)
+        {
+            StoryJudge = Story.yashiki_Clear;
+        }
+        else
+        {
+            StoryJudge = Story.yashiki_Failed;
+        }
 
-        
+        _messageSequencer = _messageSequencer.gameObject.GetComponent<MessageSequencer>();
 
         switch (StoryJudge)
         {
@@ -33,6 +40,5 @@ public class ResultManager : MonoBehaviour
                 break;
         }
     }
-
 
 }
