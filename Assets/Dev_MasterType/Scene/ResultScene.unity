@@ -5996,7 +5996,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6386944373957357797, guid: 0d28353bcc532d549b79365565b3acff, type: 3}
   m_PrefabInstance: {fileID: 772368938}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2137555919}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96938229c6fd9e94e8ba9b0f05fc359a, type: 3}
@@ -6686,10 +6686,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2137555919}
+      - m_Target: {fileID: 772368939}
         m_TargetAssemblyTypeName: AttachedSceneController, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 5
+        m_MethodName: ChangeTitleScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7176,8 +7176,3 @@ MonoBehaviour:
     - 0
   _cueName: "\u30EC\u30FC\u30F3\u79FB\u52D5"
   _cueSheet: CueSheet_SE
---- !u!1 &2137555919 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6386944373957357795, guid: 0d28353bcc532d549b79365565b3acff, type: 3}
-  m_PrefabInstance: {fileID: 772368938}
-  m_PrefabAsset: {fileID: 0}

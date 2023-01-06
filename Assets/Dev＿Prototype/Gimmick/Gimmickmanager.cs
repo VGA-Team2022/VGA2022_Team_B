@@ -31,7 +31,7 @@ public class Gimmickmanager : MonoBehaviour
         }
 
         if (_appearGimmickNum == _appearTime.Length) { return; }
-        if (_time <= _appearTime[_appearGimmickNum] && !isAppearGimmick)
+        if (GameManager.CurrentTime <= _appearTime[_appearGimmickNum] && !isAppearGimmick)
         {
             var index = Random.Range(0, _gimmickPrefabs.Length -1);
             GenerateGimmick(index, LANE_THREE);

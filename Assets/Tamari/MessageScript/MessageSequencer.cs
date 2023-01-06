@@ -30,6 +30,17 @@ public class MessageSequencer : MonoBehaviour
 
     void Start()
     {
+        if (GameManager.isGameClear)
+        {
+            StoryJudge = Story.yashiki_Clear;
+
+        }
+        else
+        {
+            StoryJudge = Story.yashiki_Failed;
+        }
+
+
         _sceneChangeButtons.SetActive(false);
 
         switch(StoryJudge)
