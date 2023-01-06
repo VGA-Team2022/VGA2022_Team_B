@@ -5,14 +5,11 @@ using UnityEngine;
 public class TarbanGarl : MonoBehaviour
 {
     [SerializeField] GameObject _tarban;
+    [SerializeField] float _tarbanOff = 3;
     StageMove _stageMove;
 
     public StageMove StageMove { get => _stageMove; set => _stageMove = value; }
 
-    private void Start()
-    {
-        StageMove = GameObject.Find("StageManager").GetComponent<StageMove>();
-    }
     private void FixedUpdate()
     {
         if(transform.position.x <= -47) 
@@ -27,7 +24,7 @@ public class TarbanGarl : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            _tarban.SetActive(true);
+            StartCoroutine(TarbanStart());
             if(_tarban.activeInHierarchy && other.gameObject.CompareTag("Obon"))
             {
                 if (other.gameObject.TryGetComponent(out Obon obon))
@@ -38,5 +35,12 @@ public class TarbanGarl : MonoBehaviour
             SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_kaiga_turban");
             //obon.Hit(this.transform.position.x);
         }
+    }
+
+    IEnumerator TarbanStart()
+    {
+        _tarban.SetActive(true);
+        yield return new WaitForSeconds(_tarbanOff);
+        _tarban.SetActive(false);
     }
 }
