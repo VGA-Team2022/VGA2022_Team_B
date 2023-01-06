@@ -40,6 +40,7 @@ public class MilkMaid : MonoBehaviour
     {
         if (this.gameObject.transform.position.x <= 12 && !isGimmickAction)//xŽ²‚ª12ˆÈ‰º‚É‚È‚Á‚½‚ç
         {
+            SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_kaiga_miruku");
             StartCoroutine(FadeIn());
             isGimmickAction = true;
         }
