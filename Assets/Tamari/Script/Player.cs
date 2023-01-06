@@ -54,18 +54,20 @@ public class Player : MonoBehaviour
 		// 左スティック入力を取得
 		var leftStickValue = current.leftStick.ReadValue();
 
-        //左には動かない
+		if (leftStickValue.x < 0)
+		{
+			return;
+		}
+		//左には動かない
+		if (GameManager.isAppearDoorObj)
+		{
+			if (leftStickValue.x > 0f)
+			{
+				transform.Translate(leftStickValue.x * /*_playerSpeed*/ 5 * Time.deltaTime, 0, 0);
+			}
+		}
 
-        //if (leftStickValue.x < 0)
-        //{
-        //    return;
-        //}
-        //else if (leftStickValue.x > 0f)
-        //{
-        //    transform.Translate(leftStickValue.x * _playerSpeed * Time.deltaTime, 0, 0);
-        //}
-
-        if (leftStickValue.y > _stickYNum && !_up)
+		if (leftStickValue.y > _stickYNum && !_up)
         {
 			Up();
 			_up = true;

@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public static float GameSEVolume = 50;
 
     /// <summary>ゲームクリアまでの時間</summary>
-    public static float GameTimeClearLength = 60;
+    public static float GameTimeClearLength = 20;
 
     /// <summary>現在の時間</summary>
     public static float CurrentTime;
@@ -37,14 +37,16 @@ public class GameManager : MonoBehaviour
     /// <summary>リザルト演出の終了判定</summary>
     public static bool isGameStaged = false;
 
-    /// <summary>scenemanager格納用変数</summary>
-    private AttachedSceneController _scenemng = default;
-
-
     /// <summary>一回だけSceneManagerを探す為の判定</summary>
    public static bool isFindScenemng;
     /// <summary>Playerの進行をストップする為の判定</summary>
     public static bool isStop;
+
+    /// <summary>Clear判定用のドアを出現させる判定</summary>
+    public static bool isAppearDoorObj;
+
+    /// <summary>scenemanager格納用変数</summary>
+    private AttachedSceneController _scenemng = default;
 
     void Awake()
     {
@@ -125,6 +127,7 @@ public class GameManager : MonoBehaviour
                 isGameOver = false;
                 isGameClear = false;
                 isStop = false;
+                isAppearDoorObj = false;
                 CurrentTime = GameTimeClearLength;
             }
             GemeClearjudge();
@@ -158,15 +161,15 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        Debug.Log(111111111);
-        if (isGameStart && !isStop)
+        //GameClearになったら扉を呼び出す
+        if (isGameStart && !isStop && !isAppearDoorObj)
         {
             CurrentTime -= Time.deltaTime;
             Debug.Log(CurrentTime);
 
             if (CurrentTime <= 0 && !isGameOver)
             {
-                isGameClear = true;
+                isAppearDoorObj = true;
             }
         }
     }

@@ -35,20 +35,26 @@ public class StageMove : MonoBehaviour
 
     void Update()
     {
-
-
-        StickMove();
-        
-        for (int i = 0; i < _wall.Length; i++)
+        if (!GameManager.isAppearDoorObj)
         {
+            StickMove();
 
-            _wall[i].transform.position -= new Vector3(Time.deltaTime * MoveSpeed, 0);
-
-
-            if (_wall[i].transform.position.x <= EndPos.position.x)
+            for (int i = 0; i < _wall.Length; i++)
             {
-                _wall[i].transform.position = StartPos.position;
+
+                _wall[i].transform.position -= new Vector3(Time.deltaTime * MoveSpeed, 0);
+
+
+                if (_wall[i].transform.position.x <= EndPos.position.x)
+                {
+                    _wall[i].transform.position = StartPos.position;
+                }
             }
+        }
+
+        else
+        {
+            MoveSpeed = 0;
         }
 
     }
