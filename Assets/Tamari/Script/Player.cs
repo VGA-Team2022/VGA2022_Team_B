@@ -23,9 +23,6 @@ public class Player : MonoBehaviour
     {
 		get { return _nowPos; }
     }
-
-	float time;
-
 	void Start()
 	{
 		_nowPos = 1;
@@ -35,8 +32,6 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
-        //GetGyro();
-
 		StickMove();
 	}
 
@@ -121,36 +116,4 @@ public class Player : MonoBehaviour
 		}
 
     }
-    /// <summary>
-    /// Ç∆ÇËÇ†Ç¶Ç∏ÇÃÉWÉÉÉCÉçëÄçÏ
-    /// </summary>
-    private void GetGyro()
-    {
-		time += Time.deltaTime;
-		if (time % _gyroTime == 0)
-		{
-			Vector3 acceleration = Input.acceleration;
-			acceleration.x *= 20;
-			acceleration.y *= 0;
-			acceleration.z = 0;
-			Physics2D.gravity = acceleration;
-			Debug.Log(acceleration.x);
-			if(acceleration.x > 40)
-            {
-				_sp.color = Color.red;
-            }
-
-			if(acceleration.x == 0)
-            {
-				_sp.color = Color.white;
-            }
-
-			if(acceleration.x < -40)
-            {
-				_sp.color = Color.green;
-            }
-
-		}
-	}
-
 }
