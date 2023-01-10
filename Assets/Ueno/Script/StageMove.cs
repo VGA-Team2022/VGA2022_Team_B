@@ -79,7 +79,7 @@ public class StageMove : MonoBehaviour
         {
             GameManager.isStop = false;
             //transform.Translate(-(leftStickValue.x * MoveSpeed * Time.deltaTime), 0, 0);
-            MoveSpeed = leftStickValue.x * i;
+            MoveSpeed = _keepSpeed;
 
         }
         else if (leftStickValue.x == 0)
