@@ -8,28 +8,32 @@ using UnityEngine.InputSystem;
 
 public class StageMove : MonoBehaviour
 {
-    [Header("アタッチするもの")]
-    [SerializeField] private GameObject[] _wall;
-    [SerializeField] public Transform StartPos;
-    [SerializeField] private Transform _centerPos;
-    [SerializeField] public Transform EndPos;
-
     [Header("Pram")]
     [Tooltip("移動速度"),SerializeField] private float _moveSpeed = 5f;
     public float MoveSpeed  
         { get { return _moveSpeed; } set { _moveSpeed = value; } }
 
     [SerializeField] Obon _obon;
-    [SerializeField] int i;
+
     /// <summary>停止する時にSpeedの値を取っておく</summary>
     [HideInInspector] public float _keepSpeed;
 
+    [SerializeField] private Material _targetMaterial;
 
+    /// <summary>UVスクロール速度が速いので調整の為</summary>
+    [Tooltip("速度調整"), SerializeField] private float _speedRatio = 0.1f;
+
+    private Vector2 offset;
+
+    private void Awake()
+    {
+        _targetMaterial = GetComponent<MeshRenderer>().material;
+        offset = _targetMaterial.mainTextureOffset;
+    }
     void Start()
     {
         _keepSpeed = MoveSpeed;
         MoveSpeed = 0;
-        _wall[0].transform.position = _centerPos.position;
         _obon = _obon.gameObject.GetComponent<Obon>();
     }
 
@@ -39,17 +43,8 @@ public class StageMove : MonoBehaviour
         {
             StickMove();
 
-            for (int i = 0; i < _wall.Length; i++)
-            {
-
-                _wall[i].transform.position -= new Vector3(Time.deltaTime * MoveSpeed, 0);
-
-
-                if (_wall[i].transform.position.x <= EndPos.position.x)
-                {
-                    _wall[i].transform.position = StartPos.position;
-                }
-            }
+            offset.x += MoveSpeed * _speedRatio * Time.deltaTime;
+            _targetMaterial.mainTextureOffset = offset;
         }
 
         else
