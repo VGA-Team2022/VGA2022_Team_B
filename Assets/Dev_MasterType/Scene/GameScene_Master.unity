@@ -794,7 +794,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 9.64, y: 11.02}
+  m_Size: {x: 10, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -933,7 +933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2773999160523408333, guid: 4b1067efdfa5ed84498e1918d87f4bbe, type: 3}
       propertyPath: m_Size.y
-      value: 15
+      value: 15.428572
       objectReference: {fileID: 0}
     - target: {fileID: 2773999160523408333, guid: 4b1067efdfa5ed84498e1918d87f4bbe, type: 3}
       propertyPath: m_Sprite
@@ -1668,12 +1668,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2773999160523408333, guid: 4b1067efdfa5ed84498e1918d87f4bbe, type: 3}
       propertyPath: m_Size.y
-      value: 15
+      value: 15.428572
       objectReference: {fileID: 0}
     - target: {fileID: 2773999160523408333, guid: 4b1067efdfa5ed84498e1918d87f4bbe, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1bac24cdea1f21d47b6bae288f5038ee, type: 3}
+      objectReference: {fileID: 21300000, guid: 2ee2b50f3ea6fc3428f5df4e31bd19f1, type: 3}
     - target: {fileID: 2773999160523408333, guid: 4b1067efdfa5ed84498e1918d87f4bbe, type: 3}
       propertyPath: m_SortingOrder
       value: 0
@@ -5123,7 +5123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3471612383472559731, guid: 10c6f8aef165dde48a0e8bd30d2d61f6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.91
+      value: -5.44
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10c6f8aef165dde48a0e8bd30d2d61f6, type: 3}
