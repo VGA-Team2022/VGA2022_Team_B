@@ -10,9 +10,9 @@ public class AttachedSceneController : MonoBehaviour
     {
         FadeScript.StartFadeIn();
     }
-    public void ChangeScene(string target)
+    public void NoFadeChangeScene(string target)
     {
-        SceneChangeScript.LoadScene(target);
+        SceneChangeScript.NoFadeLoadScene(target);
     }
 
     public void ChangeTitleScene()
