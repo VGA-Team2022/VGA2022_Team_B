@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerAnimControl : MonoBehaviour
 {
-    [SerializeField] Player _player;
+    Animator _animator;
 
+    bool _coroutine;
     void Start()
     {
-        
+        _animator = this.gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -19,6 +20,20 @@ public class PlayerAnimControl : MonoBehaviour
 
     public void Abunaaaaaaai()
     {
+        if(!_coroutine)
+        {
+            StartCoroutine(FaceReturn());
+        }
+    }
 
+    IEnumerator FaceReturn()
+    {
+        _coroutine = true;
+        _animator.SetBool("Face", true);
+        yield return new WaitForSecondsRealtime(1.5f);
+        _animator.SetBool("Face", false);
+
+        yield return new WaitForSecondsRealtime(0.5f);
+        _coroutine = false;
     }
 }

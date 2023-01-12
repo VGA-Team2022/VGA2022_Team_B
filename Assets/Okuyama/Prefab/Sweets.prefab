@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextPos: {fileID: 6365076445637207243}
-  _deadWidth: 0.5
+  _deadWidth: 1
   _prevObj: {fileID: 0}
 --- !u!54 &6473321712899567224
 Rigidbody:
