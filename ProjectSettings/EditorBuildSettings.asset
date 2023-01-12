@@ -11,19 +11,22 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Tamari/Scene/Tamari.unity
     guid: 019eb7945ecc01c498825c6dc022d31d
-  - enabled: 1
+  - enabled: 0
     path: "Assets/Tamari/Scene/Tamari_GameScene_\u03B2.unity"
     guid: 48aa09dd248fa284f868ac58e3f3c66c
   - enabled: 1
-    path: Assets/Ueno/Scene/TitleScene.unity
+    path: Assets/Dev_MasterType/Scene/TitleScene.unity
     guid: 9ad1e4100e48f444da04ec9e401ba370
-  - enabled: 0
-    path: Assets/Ueno/Scene/HomeScene.unity
+  - enabled: 1
+    path: Assets/Dev_MasterType/Scene/HomeScene.unity
     guid: 0e81ed9a8fba11b4299398b9c0e89a01
+  - enabled: 1
+    path: Assets/Dev_MasterType/Scene/GameScene_Master.unity
+    guid: 819167ca6161e2a4ca82dfc35bc6b21f
   - enabled: 0
     path: "Assets/Dev\uFF3FPrototype/GameScene_Proto.unity"
     guid: c4d44f7dc5473e54c8625163d2186740
-  - enabled: 0
-    path: Assets/Ueno/Scene/ResultScene.unity
+  - enabled: 1
+    path: Assets/Dev_MasterType/Scene/ResultScene.unity
     guid: 3053ac88d8b42084eb87f8563088a091
   m_configObjects: {}

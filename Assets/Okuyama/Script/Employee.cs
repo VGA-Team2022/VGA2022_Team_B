@@ -22,18 +22,20 @@ public class Employee : MonoBehaviour
 
     void Start()
     {
-        _cakePos = ObonObj.gameObject.transform.GetChild(5).gameObject;
+        //_cakePos = ObonObj.gameObject.transform.GetChild(5).gameObject;
     }
     private void FixedUpdate()
     {
         gameObject.transform.position -= new Vector3(Time.deltaTime * StageMove.MoveSpeed, 0);
-        if(this.gameObject.transform.position.x <= 0 && _cakeInstance == false)
+        if (this.gameObject.transform.position.x <= 0 && _cakeInstance == false)
         {
-            var cake = Instantiate(_cake, _cakePos.transform);
+            Debug.Log(1234567898654323456);
+            //var cake = Instantiate(_cake, _cakePos.transform);
+            var cake = ObonObj.GetComponent<Obon>().SweetsAdd(_cake, true);
             cake.transform.parent = ObonObj.transform;
             _cakeInstance = true;
         }
-        if(gameObject.transform.position.x <= -47)
+        if (gameObject.transform.position.x <= -47)
         {
             gameObject.SetActive(false);
         }

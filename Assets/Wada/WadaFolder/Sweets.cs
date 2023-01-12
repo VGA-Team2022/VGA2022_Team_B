@@ -14,6 +14,8 @@ public class Sweets : MonoBehaviour
 
     public GameObject _prevObj;
 
+    private bool _tanma = true;
+
     private float _misalignmentDifference;//ずれの差上に行けば行くほど大きく動くやつの変数
 
     Obon obon;
@@ -46,6 +48,18 @@ public class Sweets : MonoBehaviour
         }
     }
 
+    public bool Tanma
+    {
+        get
+        {
+            return _tanma;
+        }
+        set
+        {
+            _tanma = value;
+        }
+    }
+
     private void Start()
     {
         obon = GameObject.FindGameObjectWithTag("Obon").GetComponent<Obon>();
@@ -56,11 +70,10 @@ public class Sweets : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(!obon._sweetsFall)
+        if(!obon._sweetsFall && _tanma)
         {
             if (this.transform.position.x >= _prevObj.transform.position.x + _deadWidth || this.transform.position.x <= _prevObj.transform.position.x - _deadWidth)
             {
-
                 //_rb.AddForce(Vector2.up * 10);//AddForceせんと崩れないからAddForce。演出にも使えソう;
                 obon.GameOver();//Obonクラスのゲームオーバー関数の呼び出し
                 obon._sweetsFall = true;
@@ -77,7 +90,7 @@ public class Sweets : MonoBehaviour
 
         if (this.transform.position.x >= _prevObj.transform.position.x + _deadWidth / 2 || this.transform.position.x <= _prevObj.transform.position.x - _deadWidth / 2)
         {
-            obon._playerAnim.Abunaaaaaaai();
+            //obon._playerAnim.Abunaaaaaaai();
         }
     }
 

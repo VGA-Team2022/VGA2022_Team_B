@@ -142,9 +142,9 @@ Library: lib_burst_generated
 --compilation-defines=MODULE_PHYSICS_2D_EXISTS
 --compilation-defines=MODULE_PARTICLE_SYSTEM_EXISTS
 --compilation-defines=ENABLE_ANIMATION_BURST
+--compilation-defines=CRIWARE_TIMELINE_1_OR_NEWER
 --compilation-defines=ENABLE_SPRITESHAPE_BURST
 --compilation-defines=TIMELINE_FRAMEACCURATE
---compilation-defines=CRIWARE_TIMELINE_1_OR_NEWER
 --generate-link-xml=Temp\burst.link.xml
 --output=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\tempburstlibs\armeabi-v7a\lib_burst_generated
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\UnityEngine.UI.dll
@@ -154,16 +154,17 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Unity.VisualScripting.State.dll
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.Universal.Runtime.dll
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Unity.VisualScripting.Flow.dll
+--root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Unity.VisualScripting.Core.dll
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Unity.Services.Core.Environments.Internal.dll
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Unity.2D.Animation.Runtime.dll
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Unity.TextMeshPro.dll
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Unity.Burst.dll
+--root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\CriMw.CriWare.Assets.Runtime.dll
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Unity.RenderPipeline.Universal.ShaderLibrary.dll
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Unity.Services.Core.Environments.dll
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Unity.2D.SpriteShape.Runtime.dll
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Unity.Services.Core.Internal.dll
---root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Unity.Timeline.dll
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Unity.Mathematics.dll
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\CriMw.CriWare.Runtime.dll
@@ -172,6 +173,7 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Unity.Services.Core.Device.dll
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Unity.Services.Core.Analytics.dll
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Unity.2D.IK.Runtime.dll
+--root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\CriMw.CriWare.Assets.Addressables.Runtime.dll
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Assembly-CSharp-firstpass.dll
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Unity.2D.Tilemap.Extras.dll
 --root-assembly=C:\Users\vantan\Okasi_Team_B\Temp\StagingArea\Data\Managed\Unity.Services.Core.Threading.dll

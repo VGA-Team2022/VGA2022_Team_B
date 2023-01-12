@@ -103,37 +103,30 @@ public class Obon : MonoBehaviour
 
         //MisalignmentOfSweetsCausedByMovement();
 
-        
+
     }
 
-    public void SweetsAdd(GameObject[] gameObjects)
-    {
-        for (int i = 0; i < gameObjects.Length; i++)
-        {
-            if (_okasis.Count == 0)
-            {
-                _okasis.Add(gameObjects[0]);
-                _okasis[0].transform.position = this.transform.position;//要修正
-            }
-            else
-            {
-                _okasis.Add(gameObjects[i]);
-                _okasis[i].transform.position = _okasis[i - 1].GetComponent<Sweets>().NextPos.position;
-            }
-        }
-    }
+    //public void SweetsAdd(GameObject[] gameObjects)
+    //{
+    //    _okasis.AddRange(gameObjects);
+    //    _okasis[i].transform.position = _okasis[i - 1].GetComponent<Sweets>().NextPos.position;
+    //}
     public void SweetsAdd(GameObject gameObjects)
     {
-        if (_okasis.Count == 0)
-        {
-            _okasis.Add(gameObjects);
-            _okasis[0].transform.position = this.transform.position;//要修正
-        }
-        else
-        {
-            _okasis.Add(gameObjects);
-            _okasis[_okasis.Count - 1].transform.position = _okasis[_okasis.Count - 2].GetComponent<Sweets>().NextPos.position;
-        }
+        _okasis.Add(gameObjects);
+        var secondSweet = _okasis[_okasis.Count - 2].GetComponent<Sweets>();
+        _okasis[_okasis.Count - 1].transform.position = secondSweet.NextPos.position;
+        gameObjects.GetComponent<Sweets>()._prevObj = _okasis[_okasis.Count - 2];
+    }
+
+    public GameObject SweetsAdd(GameObject gameObjects, bool boolean)
+    {
+        var obj = Instantiate(gameObjects);
+        var secondSweet = _okasis[_okasis.Count - 1].GetComponent<Sweets>();
+        obj.transform.position = secondSweet.NextPos.position;
+        obj.GetComponent<Sweets>()._prevObj = secondSweet.gameObject;
+        _okasis.Add(obj);
+        return obj;
     }
 
     public void MisalignmentOfSweetsCausedByMovement(float stickX)
@@ -143,11 +136,11 @@ public class Obon : MonoBehaviour
 
     public void Hit(float hitPos)
     {
-        if(this.transform.position.x > hitPos)
+        if (this.transform.position.x > hitPos)
         {
             Zure += 0.1f;
         }
-        else if(this.transform.position.x < hitPos)
+        else if (this.transform.position.x < hitPos)
         {
             Zure -= 0.1f;
         }
@@ -172,7 +165,7 @@ public class Obon : MonoBehaviour
 
             foreach (GameObject okasis in _okasis)
             {
-                if(okasis.TryGetComponent(out Sweets sweets))
+                if (okasis.TryGetComponent(out Sweets sweets))
                 {
                     sweets.Boom(100);//マジックナンバー滅ぶべし
                 }
