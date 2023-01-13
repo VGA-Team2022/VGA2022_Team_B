@@ -28,6 +28,8 @@ public class StageMove : MonoBehaviour
     private Vector2 offset;
 
     private bool isSetMaterial;
+
+    [SerializeField] float _gyroSpeed = 1.2f;
     void Start()
     {
         _stageTypeChange = this.gameObject.GetComponent<StageTypeChange>();
@@ -96,11 +98,11 @@ public class StageMove : MonoBehaviour
         //•à‚¢‚½‚çŒX‚¢‚Ä‚é•û‚ÉŒX‚­‚æ‚¤‚É‚µ‚½
         if(_obon.Movement >= 0)
         {
-            _obon.MisalignmentOfSweetsCausedByMovement(leftStickValue.x);
+            _obon.MisalignmentOfSweetsCausedByMovement(leftStickValue.x * _gyroSpeed);
         }
         else if(_obon.Movement < 0)
         {
-            _obon.MisalignmentOfSweetsCausedByMovement(-leftStickValue.x);
+            _obon.MisalignmentOfSweetsCausedByMovement(-leftStickValue.x * _gyroSpeed);
         }
     }
 
