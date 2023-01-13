@@ -18,6 +18,14 @@ public class EnemyInstansManager : MonoBehaviour
         InvokeRepeating("Instans", spawnDelay, _interval);
     }
 
+    private void Update()
+    {
+        if (GameManager.isAppearDoorObj)
+        {
+            CancelInvoke("Instans");
+        }
+    }
+
     /// <summary>
     /// ê∂ê¨
     /// </summary>
