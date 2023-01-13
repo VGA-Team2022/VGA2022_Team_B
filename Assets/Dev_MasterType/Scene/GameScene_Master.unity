@@ -868,6 +868,7 @@ MonoBehaviour:
   _obon: {fileID: 236472777}
   _keepSpeed: 0
   _speedRatio: 0.1
+  _gyroSpeed: 1.2
 --- !u!23 &243928490
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4895,14 +4896,6 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 275722516}
-    - target: {fileID: 3471612382978859920, guid: 10c6f8aef165dde48a0e8bd30d2d61f6, type: 3}
-      propertyPath: _interval
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3471612382978859920, guid: 10c6f8aef165dde48a0e8bd30d2d61f6, type: 3}
-      propertyPath: spawnDelay
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3471612382978859921, guid: 10c6f8aef165dde48a0e8bd30d2d61f6, type: 3}
       propertyPath: m_Name
       value: DogManager
