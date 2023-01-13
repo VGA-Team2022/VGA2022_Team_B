@@ -18,32 +18,41 @@ public class StageMove : MonoBehaviour
     /// <summary>停止する時にSpeedの値を取っておく</summary>
     [HideInInspector] public float _keepSpeed;
 
-    [SerializeField] private Material _targetMaterial;
+    private Material _targetMaterial;
+
+    private StageTypeChange _stageTypeChange;
 
     /// <summary>UVスクロール速度が速いので調整の為</summary>
     [Tooltip("速度調整"), SerializeField] private float _speedRatio = 0.1f;
 
     private Vector2 offset;
 
-    private void Awake()
-    {
-        _targetMaterial = GetComponent<MeshRenderer>().material;
-        offset = _targetMaterial.mainTextureOffset;
-    }
+    private bool isSetMaterial;
     void Start()
     {
+        _stageTypeChange = this.gameObject.GetComponent<StageTypeChange>();
         _keepSpeed = MoveSpeed;
         MoveSpeed = 0;
         _obon = _obon.gameObject.GetComponent<Obon>();
+        isSetMaterial = false;
     }
 
     void Update()
     {
+        if (!isSetMaterial)
+        {
+            _targetMaterial = _stageTypeChange.CurrentMaterial;
+            offset = _targetMaterial.mainTextureOffset;
+            isSetMaterial = true;
+        }
+
+
         if (!GameManager.isAppearDoorObj)
         {
             StickMove();
 
             offset.x += MoveSpeed * _speedRatio * Time.deltaTime;
+            //Debug.Log($"指定offset{offset.x}:Materialoffset{_targetMaterial.mainTextureOffset}");
             _targetMaterial.mainTextureOffset = offset;
         }
 
