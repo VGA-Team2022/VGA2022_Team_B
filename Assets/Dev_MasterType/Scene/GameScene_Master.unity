@@ -692,7 +692,7 @@ MonoBehaviour:
   - {fileID: 36498980}
   - {fileID: 527893611}
   - {fileID: 1294421107}
-  _playerAnim: {fileID: 0}
+  _playerAnim: {fileID: 1261917085}
   _int: 
   _sweetsFall: 0
 --- !u!4 &236472778
@@ -846,10 +846,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d22a6cd546e0371488f4b49050eced00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stageType: 0
+  _stageType: 1
   _targetMaterial:
   - {fileID: 2100000, guid: b19462f9caf310e42844c7694af0a54d, type: 2}
   - {fileID: 2100000, guid: 14156868380d1cd4d84a623c9cc96c12, type: 2}
+  CurrentMaterial: {fileID: 2100000, guid: 14156868380d1cd4d84a623c9cc96c12, type: 2}
 --- !u!114 &243928489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865,7 +866,6 @@ MonoBehaviour:
   _moveSpeed: 5
   _obon: {fileID: 236472777}
   _keepSpeed: 0
-  _targetMaterial: {fileID: 0}
   _speedRatio: 0.1
 --- !u!23 &243928490
 MeshRenderer:
@@ -887,7 +887,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b19462f9caf310e42844c7694af0a54d, type: 2}
+  - {fileID: 2100000, guid: 14156868380d1cd4d84a623c9cc96c12, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2973,7 +2973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213237c3b9ef993459362927b88c9396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 20
+  _speed: 50
   _obon: {fileID: 236472777}
 --- !u!1 &1218696185
 GameObject:
@@ -3195,6 +3195,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2200435011901385855, guid: 43868274d5835244d92d3987a6e5c23a, type: 3}
   m_PrefabInstance: {fileID: 1991105271}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1261917085 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5723669185313886583, guid: 43868274d5835244d92d3987a6e5c23a, type: 3}
+  m_PrefabInstance: {fileID: 1991105271}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38829b4f4f3691b43af48475e680198b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1270441846
 GameObject:
   m_ObjectHideFlags: 0
@@ -4603,7 +4614,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: 12980aa912f9c974c939d375d9d57cc9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dcc0de23bde865e4faadaec05e7eeb03, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5200,17 +5211,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 275722514}
     m_Modifications:
-    - target: {fileID: 695337712935023612, guid: 43868274d5835244d92d3987a6e5c23a, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 8017f4c8daf2b874a84715274d2e7a2a, type: 2}
     - target: {fileID: 1027271690754569244, guid: 43868274d5835244d92d3987a6e5c23a, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1996405258558766052, guid: 43868274d5835244d92d3987a6e5c23a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2200435011901385855, guid: 43868274d5835244d92d3987a6e5c23a, type: 3}
       propertyPath: m_RootOrder
@@ -5256,18 +5259,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7116536870404212322, guid: 43868274d5835244d92d3987a6e5c23a, type: 3}
-      propertyPath: m_SortingOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7301579639134515175, guid: 43868274d5835244d92d3987a6e5c23a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7550866713640024993, guid: 43868274d5835244d92d3987a6e5c23a, type: 3}
-      propertyPath: _stageMove
-      value: 
-      objectReference: {fileID: 243928489}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43868274d5835244d92d3987a6e5c23a, type: 3}
 --- !u!1 &2019692699
@@ -5396,7 +5387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: 12980aa912f9c974c939d375d9d57cc9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dcc0de23bde865e4faadaec05e7eeb03, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
