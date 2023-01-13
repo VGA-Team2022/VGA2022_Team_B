@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dogType: 0
-  _stopRange: 2
+  _stopRange: 4.72
 --- !u!54 &710444017194020041
 Rigidbody:
   m_ObjectHideFlags: 0

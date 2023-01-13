@@ -25,15 +25,14 @@ public class TarbanGarl : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             StartCoroutine(TarbanStart());
-            if(_tarban.activeInHierarchy && other.gameObject.CompareTag("Obon"))
-            {
-                if (other.gameObject.TryGetComponent(out Obon obon))
-                {
-                    obon.Hit(this.transform.position.x);
-                }
-            }
             SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_kaiga_turban");
-            //obon.Hit(this.transform.position.x);
+        }
+        if (_tarban.activeInHierarchy && other.gameObject.CompareTag("Obon"))
+        {
+            if (other.gameObject.TryGetComponent(out Obon obon))
+            {
+                obon.Hit(this.transform.position.x);
+            }
         }
     }
 
