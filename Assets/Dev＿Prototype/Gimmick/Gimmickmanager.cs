@@ -21,6 +21,7 @@ public class Gimmickmanager : MonoBehaviour
     [Tooltip("出現する時間"), SerializeField] private float[] _appearTime;
     [Tooltip("StageMove"), SerializeField] private StageMove _stageMove;
     [Tooltip("おぼんObj"), SerializeField] private GameObject _obonObj;
+    [Tooltip("第一第二第三レーン")] public Transform[] _lanes;
 
     private GameObject[] _gimmickPrefabs;
     private int _appearGimmickNum = 0;
@@ -59,6 +60,7 @@ public class Gimmickmanager : MonoBehaviour
     private void GenerateGimmick(int gimmickPrefabNum)
     {
         var obj = Instantiate(_gimmickPrefabs[gimmickPrefabNum], _appearLane);
+        obj.transform.parent = null;
         Debug.Log($"{_gimmickPrefabs[gimmickPrefabNum]}が出現した,現在のゲーム内時間{GameManager.CurrentTime}");
         if (gimmickPrefabNum == TARBANGARL_INDEX_ONE && _nowStarg == 0)//_nowStarg == 0は屋敷(昼)に合った番号にする
         {
