@@ -120,7 +120,6 @@ public class MessagePrinter : MonoBehaviour
 
         _currentIndex = -1;
         _interval = _speed / dialogue.Length;
-        Debug.Log(dialogue.Length);
     }
 
     void ChangeSprite()

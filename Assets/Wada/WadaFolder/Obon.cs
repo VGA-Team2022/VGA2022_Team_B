@@ -16,6 +16,9 @@ public class Obon : MonoBehaviour
     [Tooltip("プレイヤーがゲーム開始時に持っているお菓子の配列"), SerializeField]
     private int[] _int;
 
+    [SerializeField]
+    float _zureSpeed;
+
 
     private float _zure;
 
@@ -131,7 +134,7 @@ public class Obon : MonoBehaviour
 
     public void MisalignmentOfSweetsCausedByMovement(float stickX)
     {
-        Movement += 0.0005f * stickX;////////変数にしてねby過去の俺
+        Movement += _zureSpeed * stickX;////////変数にしてねby過去の俺
     }
 
     public void Hit(float hitPos)
@@ -144,7 +147,6 @@ public class Obon : MonoBehaviour
         {
             Zure -= 0.1f;
         }
-
 
         if (!_sweetsFall && !_staticSweetsFall)//まだゲームオーバーしてないとき
         {
