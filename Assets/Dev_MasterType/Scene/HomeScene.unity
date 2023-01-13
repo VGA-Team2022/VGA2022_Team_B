@@ -882,13 +882,14 @@ GameObject:
   - component: {fileID: 302116216}
   - component: {fileID: 302116218}
   - component: {fileID: 302116217}
+  - component: {fileID: 302116219}
   m_Layer: 5
   m_Name: RulePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &302116216
 RectTransform:
   m_ObjectHideFlags: 0
@@ -950,6 +951,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 302116215}
   m_CullTransparentMesh: 1
+--- !u!114 &302116219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302116215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f93b4e67339bec340a723a760d4508ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &316568270
 GameObject:
   m_ObjectHideFlags: 0
