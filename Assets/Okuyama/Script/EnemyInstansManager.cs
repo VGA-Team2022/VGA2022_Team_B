@@ -6,8 +6,10 @@ using UnityEngine;
 /// </summary>
 public class EnemyInstansManager : MonoBehaviour
 {
+    [SerializeField, Tooltip("Player")] Player _player = null;
     [SerializeField, Tooltip("エネミー")] GameObject[] _enemys = default;
     [SerializeField, Tooltip("生成位置")] GameObject[] _enemyspoint = default;
+    [SerializeField, Tooltip("前方生成位置")] GameObject[] _enemysForwardPoint = default;
     [SerializeField, Tooltip("生成インターバル")] float _interval = 2f;
     [SerializeField, Tooltip("呼び出すまでの時間")] float spawnDelay = 1;
 
@@ -21,16 +23,18 @@ public class EnemyInstansManager : MonoBehaviour
     /// </summary>
     void Instans()
     {
+        //Debug.Log($"NowPos{_player.NowPos}"); 
         var point = Random.Range(1, _enemyspoint.Length);
         var index = Random.Range(0, _enemys.Length);
         if(index == 0) 
         {
-            Instantiate(_enemys[index], _enemyspoint[0].transform.position, Quaternion.identity);
+            var obj = Instantiate(_enemys[index], _enemyspoint[3].transform.position, Quaternion.identity);
+            obj.GetComponent<Enemy_Dog>().EnemyInstansManager = this;
             SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_big dog_cry");
         }
         else 
         {
-            Instantiate(_enemys[index], _enemyspoint[point].transform.position, Quaternion.identity);
+            Instantiate(_enemys[index], _enemyspoint[_player.NowPos].transform.position, Quaternion.identity);
             SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_big dog_cry");
         }
     }
@@ -40,9 +44,9 @@ public class EnemyInstansManager : MonoBehaviour
     /// </summary>
     public void Dog(GameObject dogs)
     {
-        Player players = new Player();　//Playerスクリプトからインスタンスを精製 Playerの現在のNowPosを使用
+        //Player players = new Player();　//Playerスクリプトからインスタンスを精製 Playerの現在のNowPosを使用
         Debug.Log("犬");
-        Instantiate(dogs, _enemyspoint[players.NowPos].transform.position, Quaternion.identity);
+        Instantiate(dogs, _enemysForwardPoint[_player.NowPos].transform.position, Quaternion.identity);
     }
 
 }

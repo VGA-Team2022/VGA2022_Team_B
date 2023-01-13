@@ -17,6 +17,8 @@ public class Enemy_Dog : MonoBehaviour
     public float Speed
         { get { return _speed; } set { _speed = value; } }
 
+    public EnemyInstansManager EnemyInstansManager { get => _enemyInstansManager; set => _enemyInstansManager = value; }
+
     private StageMove _stageMove;
 
 
@@ -30,8 +32,10 @@ public class Enemy_Dog : MonoBehaviour
     private bool isSpawnNegativeX = false;
     /// <summary>é~Ç‹ÇÈå¢ÇÃç¿ÇÈîªíË</summary>
     private bool isStop = false;
+    /// <summary>å¢ê∂ê¨Manager/// </summary>
+    private EnemyInstansManager _enemyInstansManager;
+    private bool _forwardFast = false;
 
-   
     private void Start()
     {
         _stageMove = GameObject.Find("StageManager").GetComponent<StageMove>();
@@ -100,11 +104,17 @@ public class Enemy_Dog : MonoBehaviour
                 {
                         //this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().flipX = true;
                         this.gameObject.transform.position -= new Vector3(Time.deltaTime * Speed, 0);
-                    }
-                    else
+                }
+                else
+                {
+                  this.gameObject.transform.position += new Vector3(Time.deltaTime * Speed, 0);
+                    if (!_forwardFast && this.gameObject.transform.position.x >= 25)
                     {
-                        this.gameObject.transform.position += new Vector3(Time.deltaTime * Speed, 0);
+                        EnemyInstansManager.Dog(gameObject);
+                        _forwardFast = true;
                     }
+                    
+                }
 
                 break;
 
