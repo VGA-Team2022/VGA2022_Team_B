@@ -145,7 +145,6 @@ public class Obon : MonoBehaviour
             Zure -= 0.1f;
         }
 
-
         if (!_sweetsFall && !_staticSweetsFall)//まだゲームオーバーしてないとき
         {
             foreach (GameObject okasis in _okasis)//揺らす
