@@ -78,6 +78,8 @@ public class GameManager : MonoBehaviour
 
         isFindScenemng = false;
 
+        CurrentTime = GameTimeClearLength;
+
     }
 
     private void FindSceneManager()
@@ -129,6 +131,7 @@ public class GameManager : MonoBehaviour
                 CurrentTime = GameTimeClearLength;
             }
             GemeClearjudge();
+
         }
 
     }
@@ -166,7 +169,7 @@ public class GameManager : MonoBehaviour
             {
                 CurrentTime -= Time.deltaTime;
             }
-           // Debug.Log(CurrentTime);
+           /// Debug.Log(CurrentTime);
 
             if (CurrentTime <= 0 && !isGameOver)
             {
@@ -180,7 +183,7 @@ public class GameManager : MonoBehaviour
     /// <returns></returns>
    private IEnumerator GameOver()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         isGameOver = Obon._staticSweetsFall;
     }
 
