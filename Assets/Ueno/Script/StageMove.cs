@@ -92,7 +92,16 @@ public class StageMove : MonoBehaviour
             SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_player_footsteps1");
             MoveSpeed = 0;
         }
-        _obon.MisalignmentOfSweetsCausedByMovement(leftStickValue.x);
+
+        //•à‚¢‚½‚çŒX‚¢‚Ä‚é•û‚ÉŒX‚­‚æ‚¤‚É‚µ‚½
+        if(_obon.Movement >= 0)
+        {
+            _obon.MisalignmentOfSweetsCausedByMovement(leftStickValue.x);
+        }
+        else if(_obon.Movement < 0)
+        {
+            _obon.MisalignmentOfSweetsCausedByMovement(-leftStickValue.x);
+        }
     }
 
     public void OnTapAdvance()
