@@ -55,7 +55,7 @@ public class SoundManager// : Singleton<SoundManager>
                 _criAtomBGMSource.Play();
 
                 //Volumeのフェードイン
-                DOVirtual.Float(_criAtomBGMSource.volume, 1, _changeSpeed / 2, value => _criAtomBGMSource.volume = value);
+                DOVirtual.Float(_criAtomBGMSource.volume, 0.25f, _changeSpeed / 2, value => _criAtomBGMSource.volume = value);
             });
     }
 
