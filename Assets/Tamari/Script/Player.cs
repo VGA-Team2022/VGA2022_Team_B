@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
 			_nowPos++;
 
 			gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _raneNum[_nowPos].position.z);
-			SoundManager.Instance.CriAtomPlay(CueSheet.SE, "レーン移動");
+			//SoundManager.Instance.CriAtomPlay(CueSheet.SE, "レーン移動");
 			Debug.Log("上に移動");
 		}
     }
@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
         {
 			_nowPos--;
 			gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _raneNum[_nowPos].position.z);
-			SoundManager.Instance.CriAtomPlay(CueSheet.SE, "レーン移動");
+			//SoundManager.Instance.CriAtomPlay(CueSheet.SE, "レーン移動");
 			Debug.Log("下に移動");
 		}
 
