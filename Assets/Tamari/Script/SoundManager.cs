@@ -47,7 +47,7 @@ public class SoundManager// : Singleton<SoundManager>
     void ChangeBGM(string cueName)
     {
         //Volumeのフェードアウト
-        DOVirtual.Float(_criAtomBGMSource.volume, 0, _changeSpeed / 2, value => _criAtomBGMSource.volume = value)
+        DOVirtual.Float(_criAtomBGMSource.volume, 0, 1, value => _criAtomBGMSource.volume = value)
             .OnComplete(() =>
             {
                 //設定して再生
