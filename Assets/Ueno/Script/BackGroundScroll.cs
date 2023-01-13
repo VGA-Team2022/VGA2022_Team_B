@@ -12,6 +12,9 @@ public class BackGroundScroll : MonoBehaviour
     [Tooltip("xŽ²•ûŒü‚É“®‚­‘¬‚³"),SerializeField]
     private float _scrollX = 1;
 
+    [Tooltip("yŽ²•ûŒü‚É“®‚­‘¬‚³"), SerializeField]
+    private float _scrollY = 0;
+
     private Vector2 offset;
     private void Awake()
     {
@@ -21,6 +24,7 @@ public class BackGroundScroll : MonoBehaviour
     private void Update()
     {
         offset.x += _scrollX * Time.deltaTime;
+        offset.y += _scrollY * Time.deltaTime;
         _targetMaterial.mainTextureOffset = offset;
     }
 
