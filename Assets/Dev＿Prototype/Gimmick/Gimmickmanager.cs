@@ -50,6 +50,7 @@ public class Gimmickmanager : MonoBehaviour
         if (GameManager.CurrentTime <= _appearTime[_appearGimmickNum] && !isAppearGimmick)
         {
             var index = UnityEngine.Random.Range(0, _gimmickPrefabs.Length -1);
+            if(index == _gimmickPrefabs.Length - 1) { return; }
             GenerateGimmick(index);
             _appearGimmickNum++;
             isAppearGimmick = true;

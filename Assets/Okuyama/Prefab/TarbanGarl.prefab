@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 30
   m_Sprite: {fileID: 21300000, guid: 15c6103fabf10af4897a638df997165f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -156,7 +156,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 30
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c45ed6aa9d8d60143a0c82eeba5258e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -229,8 +229,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.5982056, y: 5.4251623, z: 8.519586}
-  m_Center: {x: -0.086502075, y: -2.7599177, z: -6.273539}
+  m_Size: {x: 3.5982056, y: 5.4251623, z: 10.313573}
+  m_Center: {x: -0.086502075, y: -2.7599177, z: -5.3765454}
 --- !u!54 &4087740229301308350
 Rigidbody:
   m_ObjectHideFlags: 0

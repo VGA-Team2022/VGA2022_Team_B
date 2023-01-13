@@ -48,13 +48,13 @@ public class StagingJudgeScript : MonoBehaviour
     {
         if (GameManager.isGameClear && !GameManager.isGameStaged)
         {
+             
+            UnityEngine.Debug.Log("CLEARRRRRRRRRRRRRRRRRRRRRRRRRR");
             StartCoroutine(Clear());
-            GameManager.isGameStaged = true;
         }
         else if (GameManager.isGameOver && !GameManager.isGameStaged)
         {
             StartCoroutine(GameOver());
-            GameManager.isGameStaged = true;
         }
     }
 
@@ -62,12 +62,13 @@ public class StagingJudgeScript : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         _clearImage.enabled = true;
-        SoundManager.Instance.CriAtomPlay(CueSheet.SE, "jingle_success");
+        SoundManager.Instance.CriAtomBGMPlay("jingle_failure");
         yield return new WaitForSeconds(2f);
         _clearImage.enabled = false;
         yield return new WaitForSeconds(2f);
         GameManager.isGameStaged = true;
         yield return null;
+        GameManager.isGameStaged = true;
     }
 
     private IEnumerator GameOver()
@@ -77,7 +78,7 @@ public class StagingJudgeScript : MonoBehaviour
         _gameOverImage.enabled = true;
         yield return new WaitForSeconds(2f);
         _gameOverImage.sprite = _gameOver2;
-        SoundManager.Instance.CriAtomPlay(CueSheet.SE, "jingle_failure");
+        SoundManager.Instance.CriAtomBGMPlay("jingle_failure");
         yield return new WaitForSeconds(3f);
         gameoverTex.enabled = true;
         yield return new WaitForSeconds(2f);
@@ -85,5 +86,6 @@ public class StagingJudgeScript : MonoBehaviour
         yield return new WaitForSeconds(2f);
         GameManager.isGameStaged = true;
         yield return null;
+        GameManager.isGameStaged = true;
     }
 }

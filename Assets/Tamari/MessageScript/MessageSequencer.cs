@@ -95,7 +95,7 @@ public class MessageSequencer : MonoBehaviour
         if (_currentIndex + 1 < _storyMessages.Length)
         {
             _currentIndex++;
-            _printer?.ShowMessage(_storyMessages[_currentIndex]);
+            _printer?.ShowMessage(_storyMessages[_currentIndex], _storyMessages[_currentIndex].Split(',')[0], _storyMessages[_currentIndex].Split(',')[1]);
 
             if (_currentIndex + 1 >= _storyMessages.Length)
             {
