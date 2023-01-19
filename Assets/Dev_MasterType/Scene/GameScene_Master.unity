@@ -971,7 +971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1264,7 +1264,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stickYNum: 0.8
-  _gyroTime: 1
   _raneNum:
   - {fileID: 1353648634}
   - {fileID: 2019692700}
@@ -4102,8 +4101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ab2e68ef725694784ed6fdda8299dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RightValue: -20
-  LeftValue: 20
+  RightValue: -10
+  LeftValue: 10
   _obon: {fileID: 236472777}
 --- !u!1 &1570759922
 GameObject:
@@ -4217,7 +4216,7 @@ RectTransform:
   m_GameObject: {fileID: 1598413362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 90, y: 90, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 254393487}
@@ -4255,7 +4254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
