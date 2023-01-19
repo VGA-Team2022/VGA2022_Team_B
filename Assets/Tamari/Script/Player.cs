@@ -5,8 +5,6 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
 	[SerializeField, Tooltip("上下移動のY方向の値")] float _stickYNum;
-	//[SerializeField, Tooltip("ジャイロの速度")] float _playerGyroSpeed;
-	[SerializeField, Tooltip("ジャイロを受け付ける間隔")] float _gyroTime;
 
 	[Space(10)]
 
