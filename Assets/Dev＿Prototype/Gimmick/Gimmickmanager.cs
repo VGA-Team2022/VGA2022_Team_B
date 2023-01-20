@@ -32,7 +32,7 @@ public class Gimmickmanager : MonoBehaviour
 
     private void Start()
     {
-         _nowStarg = GameManager.GameStageNum;
+         _nowStarg = GameManager.StageLevelNum;
         _gimmickPrefabs = _sceneGimmick[_nowStarg]._gimmickPrefabs;
     }
     private void Update()
