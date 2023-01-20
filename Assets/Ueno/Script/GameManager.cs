@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public static float GameSEVolume = 50;
 
     /// <summary>ƒQ[ƒ€ƒNƒŠƒA‚Ü‚Å‚ÌŠÔ</summary>
-    public static float GameTimeClearLength = 90;
+    public static float GameTimeClearLength = 50;
 
     /// <summary>Œ»İ‚ÌŠÔ</summary>
     public static float CurrentTime;

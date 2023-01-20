@@ -22,9 +22,13 @@ public class StagingJudgeScript : MonoBehaviour
     [SerializeField] private Sprite _gameOverText2;
 
     [SerializeField] private bool isDebug;
+
+    private bool isMigrateToResult;
     // Start is called before the first frame update
     void Start()
     {
+        isMigrateToResult = false;
+
         if (isDebug)
         {
             switch (_stagingJudgeType)
@@ -46,14 +50,16 @@ public class StagingJudgeScript : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.isGameClear && !GameManager.isGameStaged)
+        if (GameManager.isGameClear && !GameManager.isGameStaged && !isMigrateToResult)
         {
              
             UnityEngine.Debug.Log("CLEARRRRRRRRRRRRRRRRRRRRRRRRRR");
+            isMigrateToResult = true;
             StartCoroutine(Clear());
         }
-        else if (GameManager.isGameOver && !GameManager.isGameStaged)
+        else if (GameManager.isGameOver && !GameManager.isGameStaged && !isMigrateToResult)
         {
+            isMigrateToResult = true;
             StartCoroutine(GameOver());
         }
     }
