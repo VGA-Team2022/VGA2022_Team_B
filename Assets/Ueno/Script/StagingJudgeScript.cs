@@ -68,12 +68,10 @@ public class StagingJudgeScript : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         _clearImage.enabled = true;
-        SoundManager.Instance.CriAtomBGMPlay("jingle_failure");
+        SoundManager.Instance.CriAtomBGMPlay("jingle_success");
         yield return new WaitForSeconds(2f);
         _clearImage.enabled = false;
         yield return new WaitForSeconds(2f);
-        GameManager.isGameStaged = true;
-        yield return null;
         GameManager.isGameStaged = true;
     }
 
@@ -91,7 +89,6 @@ public class StagingJudgeScript : MonoBehaviour
         gameoverTex.sprite = _gameOverText2;
         yield return new WaitForSeconds(2f);
         GameManager.isGameStaged = true;
-        yield return null;
-        GameManager.isGameStaged = true;
+
     }
 }

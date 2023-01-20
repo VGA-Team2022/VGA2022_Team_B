@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public static float GameSEVolume = 50;
 
     /// <summary>ゲームクリアまでの時間</summary>
-    public static float GameTimeClearLength = 50;
+    public static float GameTimeClearLength = 30;
 
     /// <summary>現在の時間</summary>
     public static float CurrentTime;
@@ -160,6 +160,10 @@ public class GameManager : MonoBehaviour
                     _scenemng.ChangeResultScene();
                     //isFindScenemng = false;
                 }
+            }
+            else if (isGameOver && isGameClear)//もし両方クリア判定になったら
+            {
+                _scenemng.ChangeResultScene();
             }
         }
         //GameClearになったら扉を呼び出す
