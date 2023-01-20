@@ -7,9 +7,16 @@ using UnityEngine;
 public class EnemyInstansManager : MonoBehaviour
 {
     [SerializeField, Tooltip("Player")] Player _player = null;
-    [SerializeField, Tooltip("エネミー")] GameObject[] _enemys = default;
-    [SerializeField, Tooltip("生成位置")] GameObject[] _enemyspoint = default;
-    [SerializeField, Tooltip("前方生成位置")] GameObject[] _enemysForwardPoint = default;
+
+    [Header("prefab")]
+    [SerializeField, Tooltip("走る犬エネミー")] GameObject[] _runDogEnemyPrefab = default;
+    [SerializeField, Tooltip("止まる犬エネミー")] GameObject[] _stopDogEnemyPrefab = default;
+
+    [Header("位置")]
+    [SerializeField, Tooltip("生成位置")] Transform[] _enemyspoint = default;
+    [SerializeField, Tooltip("前方生成位置")] Transform[] _enemysForwardPoint = default;
+
+    [Header("時間")]
     [SerializeField, Tooltip("生成インターバル")] float _interval = 2f;
     [SerializeField, Tooltip("呼び出すまでの時間")] float spawnDelay = 1;
 
@@ -30,20 +37,22 @@ public class EnemyInstansManager : MonoBehaviour
     /// 生成
     /// </summary>
     void Instans()
-    {
-        //Debug.Log($"NowPos{_player.NowPos}"); 
-        var point = Random.Range(1, _enemyspoint.Length);
-        var index = Random.Range(0, _enemys.Length);
-        if(index == 0) 
+    { 
+        var point = Random.Range(0,_enemyspoint.Length);
+        var index = Random.Range(0, _runDogEnemyPrefab.Length);
+
+        var dogType = Random.Range(0, 2);//0→走る犬、１→止まる犬
+        Debug.Log($"dogType={dogType}");
+
+        if (dogType == 1) //走る犬
         {
-            var obj = Instantiate(_enemys[index], _enemyspoint[3].transform.position, Quaternion.identity);
-            obj.GetComponent<Enemy_Dog>().EnemyInstansManager = this;
-            SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_big dog_cry");
+            var obj = Instantiate(_runDogEnemyPrefab[index], _enemyspoint[point].position, Quaternion.identity);
+            obj.GetComponent<EnemyDogScript>().EnemyInstansManager = this;
+
         }
-        else 
+        else //止まる犬
         {
-            Instantiate(_enemys[index], _enemyspoint[_player.NowPos].transform.position, Quaternion.identity);
-            SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_big dog_cry");
+            Instantiate(_stopDogEnemyPrefab[index], _enemyspoint[_player.NowPos].position, Quaternion.identity);
         }
     }
 

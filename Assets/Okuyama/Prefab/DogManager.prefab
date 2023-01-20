@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 524988137}
   m_Layer: 0
-  m_Name: GameObject (6)
+  m_Name: ForwardLane3
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3471612382978859935}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &787097777
 GameObject:
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 787097778}
   m_Layer: 0
-  m_Name: GameObject (5)
+  m_Name: ForwardLane2
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3471612382978859935}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1294415837
 GameObject:
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1294415838}
   m_Layer: 0
-  m_Name: GameObject (4)
+  m_Name: ForwardLane1
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -91,7 +91,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3471612382978859935}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3471612382736533972
 GameObject:
@@ -103,7 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3471612382736533971}
   m_Layer: 0
-  m_Name: GameObject (2)
+  m_Name: BackwardLane3
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -156,7 +156,6 @@ Transform:
   - {fileID: 3471612383472559731}
   - {fileID: 3471612383394485794}
   - {fileID: 3471612382736533971}
-  - {fileID: 3471612383314378390}
   - {fileID: 1294415838}
   - {fileID: 787097778}
   - {fileID: 524988137}
@@ -178,49 +177,17 @@ MonoBehaviour:
   _player: {fileID: 0}
   _enemys:
   - {fileID: 7315473094776360875, guid: 9bfe3dbcca5cc5f48b04cc0a07804c2a, type: 3}
-  - {fileID: 7315473094776360875, guid: 0a198ab1681ea284893cc4b53b208e67, type: 3}
+  - {fileID: 7315473094776360875, guid: 69105911d9d9395469fe21ba130ea201, type: 3}
   _enemyspoint:
-  - {fileID: 3471612383472559732}
-  - {fileID: 3471612383394485795}
-  - {fileID: 3471612382736533972}
-  - {fileID: 3471612383314378391}
+  - {fileID: 3471612383472559731}
+  - {fileID: 3471612383394485794}
+  - {fileID: 3471612382736533971}
   _enemysForwardPoint:
-  - {fileID: 1294415837}
-  - {fileID: 787097777}
-  - {fileID: 524988136}
+  - {fileID: 1294415838}
+  - {fileID: 787097778}
+  - {fileID: 524988137}
   _interval: 5
   spawnDelay: 10
---- !u!1 &3471612383314378391
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3471612383314378390}
-  m_Layer: 0
-  m_Name: GameObject (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3471612383314378390
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3471612383314378391}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.85, y: 3, z: -0.89}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3471612382978859935}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3471612383394485795
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3471612383394485794}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: BackwardLane2
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -262,7 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3471612383472559731}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: BackwardLane1
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
