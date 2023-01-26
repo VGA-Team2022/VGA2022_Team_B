@@ -15,11 +15,7 @@ public class DoorTouchClear : MonoBehaviour
     {
         if (GameManager.isAppearDoorObj)
         {
-            _anim.SetBool("isClear", true);
-        }
-        else
-        {
-            _anim.SetBool("isClear", false);
+            _anim.SetBool("isClear", GameManager.isAppearDoorObj);
         }
     }
 
