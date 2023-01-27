@@ -100,18 +100,31 @@ public class Player : MonoBehaviour
 	/// </summary>
     private void Down()
     {
-        if (_nowPos == 0)
-        {
+		if (_nowPos == 0)
+		{
 			Debug.Log("‚±‚êˆÈã‰º‚É‚¢‚¯‚Ü‚¹‚ñ");
-            return;
-        }
-        else if (_nowPos > 0)
-        {
+			return;
+		}
+		else if (_nowPos > 0)
+		{
 			_nowPos--;
 			gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _raneNum[_nowPos].position.z);
 			//SoundManager.Instance.CriAtomPlay(CueSheet.SE, "ƒŒ[ƒ“ˆÚ“®");
 			Debug.Log("‰º‚ÉˆÚ“®");
 		}
-
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+		if (SystemInfo.supportsVibration)
+		{
+
+			Handheld.Vibrate();
+
+		}
+		else
+		{
+			Debug.Log("U“®‚É‘Î‰‚µ‚Ä‚È‚¢‚æ‚¨‚¨‚¨‚¨");
+		}
+	}
 }
