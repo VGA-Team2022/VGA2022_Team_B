@@ -118,8 +118,9 @@ public class Player : MonoBehaviour
     {
 		if (SystemInfo.supportsVibration)
 		{
-
+			#if UNITY_ANDROID
 			Handheld.Vibrate();
+			#endif
 
 		}
 		else
