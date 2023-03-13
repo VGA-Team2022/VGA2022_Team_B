@@ -28,7 +28,7 @@ Material:
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 5b71c684a89a2d644bd43d5445faf82b, type: 3}
         m_Scale: {x: 3.5, y: 0.2}
-        m_Offset: {x: 503.9624, y: 0}
+        m_Offset: {x: 4880.5977, y: -15.79999}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -52,7 +52,7 @@ Material:
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 5b71c684a89a2d644bd43d5445faf82b, type: 3}
         m_Scale: {x: 3.5, y: 0.2}
-        m_Offset: {x: 503.9624, y: 0}
+        m_Offset: {x: 4880.5977, y: -15.79999}
     - _MaskTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
