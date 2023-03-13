@@ -23,15 +23,16 @@ public class RuleText : MonoBehaviour
     void Start()
     {
         _image = _image.gameObject.GetComponent<Image>();
+        MoveNext();
     }
 
     private void Update()
     {
-        if (_currentIndex == 3)
+        if (_currentIndex == 2)
         {
             _image.sprite = _ruluPicture[1]; 
         }
-        else if (_currentIndex == 4)
+        else if (_currentIndex == 3)
         {
             _image.sprite = _ruluPicture[2];
         }
@@ -94,7 +95,7 @@ public class RuleText : MonoBehaviour
             return;
         }
 
-        if (_currentIndex - 1 > 0)
+        if (_currentIndex - 1 >= 0)
         {
             _currentIndex--;
             _printer?.ShowMessage(_ruleText[_currentIndex]);
