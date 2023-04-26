@@ -51,12 +51,12 @@ public class StageTypeChange : MonoBehaviour
             case GameStageBackGroundType.yashiki_Daylight:
                 GetComponent<MeshRenderer>().material = _targetMaterial[0];
                 CurrentMaterial = _targetMaterial[0];
-                SoundManager.Instance.CriAtomBGMPlay("BGM_mansion_middey");
+                AudioManager.Instance.CriAtomBGMPlay("BGM_mansion_middey");
                 break;
             case GameStageBackGroundType.yashik_Night:
                 GetComponent<MeshRenderer>().material = _targetMaterial[1];
                 CurrentMaterial = _targetMaterial[1];
-                SoundManager.Instance.CriAtomBGMPlay("BGM_mansion_night");
+                AudioManager.Instance.CriAtomBGMPlay("BGM_mansion_night");
                 break;
             case GameStageBackGroundType.sea_Daylight:
                 

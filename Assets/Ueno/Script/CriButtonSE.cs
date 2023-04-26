@@ -21,6 +21,6 @@ public class CriButtonSE : MonoBehaviour
 
     public void OnButtonClick()
     {
-        SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_touch_normal");
+        AudioManager.Instance.CriAtomPlay(CueSheet.SE, "SE_touch_normal");
     }
 }

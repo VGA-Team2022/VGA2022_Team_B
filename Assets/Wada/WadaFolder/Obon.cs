@@ -105,8 +105,6 @@ public class Obon : MonoBehaviour
         }
 
         //MisalignmentOfSweetsCausedByMovement();
-
-
     }
 
     //public void SweetsAdd(GameObject[] gameObjects)
@@ -180,7 +178,6 @@ public class Obon : MonoBehaviour
     {
         if (!_staticSweetsFall)
         {
-
             foreach (GameObject okasis in _staticOkasis)
             {
                 if (okasis.TryGetComponent(out Sweets sweets))

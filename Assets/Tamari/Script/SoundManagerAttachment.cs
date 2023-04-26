@@ -24,7 +24,7 @@ public class SoundManagerAttachment : MonoBehaviour
         //SoundManagerの初期設定を行う
         if (_atomSource && _atomBGMSource)
         {
-            SoundManager.Instance.Setup(this);
+            AudioManager.Instance.Setup(this);
         }
     }
     private void Start()
@@ -32,7 +32,7 @@ public class SoundManagerAttachment : MonoBehaviour
         if (_bgmCueName == "") return;
 
         //BGMを再生
-        SoundManager.Instance.CriAtomBGMPlay(_bgmCueName);
+        AudioManager.Instance.CriAtomBGMPlay(_bgmCueName);
     }
     //ポーズがあるなら今後更新
 

@@ -6,7 +6,7 @@ using DG.Tweening;
 /// <summary>
 /// CriAtom‚Å‰¹‚ğÄ¶‚³‚¹‚éSoundManager
 /// </summary>
-public class SoundManager// : Singleton<SoundManager>
+public class AudioManager// : Singleton<SoundManager>
 {
     /// <summary>
     /// SE/ME—p‚ÌAtomSorce
@@ -25,9 +25,9 @@ public class SoundManager// : Singleton<SoundManager>
 
     const string BGMCueSheet = "BGM";
 
-    static public SoundManager Instance = new SoundManager();
+    static public AudioManager Instance = new AudioManager();
 
-    SoundManager() { }
+    AudioManager() { }
 
     /// <summary>
     /// SoundManeger‚Ì‰Šúİ’è

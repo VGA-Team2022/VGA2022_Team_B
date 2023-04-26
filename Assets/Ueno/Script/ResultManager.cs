@@ -31,12 +31,12 @@ public class ResultManager : MonoBehaviour
         {
             case Story.yashiki_Clear:
                 _messageSequencer.StoryJudge = Story.yashiki_Clear;
-                SoundManager.Instance.CriAtomBGMPlay("BGM_success");
+                AudioManager.Instance.CriAtomBGMPlay("BGM_success");
                 break;
 
             case Story.yashiki_Failed:
                 _messageSequencer.StoryJudge = Story.yashiki_Failed;
-                SoundManager.Instance.CriAtomBGMPlay("BGM _failure");
+                AudioManager.Instance.CriAtomBGMPlay("BGM _failure");
                 break;
         }
     }
