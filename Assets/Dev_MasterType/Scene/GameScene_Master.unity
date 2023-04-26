@@ -693,7 +693,7 @@ MonoBehaviour:
   - {fileID: 527893611}
   - {fileID: 1294421107}
   _playerAnim: {fileID: 1261917085}
-  _int: 
+  _int: 000000000000000000000000
   _zureSpeed: 0.005
   _sweetsFall: 0
 --- !u!4 &236472778

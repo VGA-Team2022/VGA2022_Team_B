@@ -66,11 +66,11 @@ public class EnemyDogScript : MonoBehaviour
 
         if (_dogType == DogType.Outrun)
         {
-            SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_small dog_cry");
+            AudioManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_small dog_cry");
         }
         else 
         {
-            SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_big dog_cry");
+            AudioManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_big dog_cry");
         }
 
     }
@@ -98,7 +98,7 @@ public class EnemyDogScript : MonoBehaviour
         switch (_dogType)
         {
             case DogType.Outrun:
-                SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE._enemy_small dog_breath");
+                AudioManager.Instance.CriAtomPlay(CueSheet.SE, "SE._enemy_small dog_breath");
                 //スタート位置によって進行方向とSpriteの向きを変える
                 if (!isSpawnNegativeX)//Playerの進行方向(画面右端から左端に向けて)からくる挙動
                 {
@@ -119,7 +119,7 @@ public class EnemyDogScript : MonoBehaviour
                 break;
 
             case DogType.Stop:
-                SoundManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_big dog_breath");
+                AudioManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_big dog_breath");
                 //スタート位置によって進行方向とSpriteの向きを変える
                 if (!isSpawnNegativeX)//Playerの進行方向(画面右端から左端に向けて)からくる挙動
                 {
