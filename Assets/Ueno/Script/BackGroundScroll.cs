@@ -21,12 +21,10 @@ public class BackGroundScroll : MonoBehaviour
     [Tooltip("animä‘äu"), SerializeField]
     private float _durationTime = 0.5f;
 
-    [Header("äCÉXÉeÅ[ÉW"), SerializeField]
-    private bool isSea;
+    [HideInInspector]
+    public bool isSea;
 
     private Vector2 offset;
-
-    private int count;
 
     private float time;
     bool isFlipSeaAnim;
@@ -35,6 +33,8 @@ public class BackGroundScroll : MonoBehaviour
         offset = _targetMaterial.mainTextureOffset;
         offset.y = 0;
         _targetMaterial.mainTextureOffset = offset;
+        GetComponent<MeshRenderer>().enabled= false;
+        this.enabled = false;
     }
     
     private void Update()
@@ -47,29 +47,10 @@ public class BackGroundScroll : MonoBehaviour
 
             if (_durationTime <= time)
             {
-                //count++;
                 time = 0f;
-
-                //if (count % 5 == 4)
-                //{
-                //   //isFlipSeaAnim = (isFlipSeaAnim) ? !isFlipSeaAnim : isFlipSeaAnim;
-                //   if(isFlipSeaAnim)
-                //    {
-                //        isFlipSeaAnim = false;
-                //    }
-                //   else
-                //    {
-                //        isFlipSeaAnim = true;
-                //    }
-                //}
-
-                Debug.Log($"{_targetMaterial.mainTextureOffset}:{count}:ó]ÇË{count % 5}ÅFîΩì]{isFlipSeaAnim}");
-
                 offset.y = (isFlipSeaAnim) ? offset.y += _moveY : offset.y -= _moveY;
-
             }
             _targetMaterial.mainTextureOffset = offset;
-
         }
         else
         {
