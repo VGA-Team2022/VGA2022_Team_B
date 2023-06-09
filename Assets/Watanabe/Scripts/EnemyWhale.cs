@@ -15,7 +15,7 @@ public class EnemyWhale : MonoBehaviour
     [Tooltip("何秒妨害するか")]
     [SerializeField] private float _sabotageTime = 1f;
 
-    [SerializeField] private RectTransform[] _waves = new RectTransform[3];
+    [SerializeField] private RectTransform[] _waves = default;
 
     private void Start()
     {
@@ -29,6 +29,7 @@ public class EnemyWhale : MonoBehaviour
     {
         //以下テスト
         if (Input.GetKeyDown(KeyCode.Space)) Squirting();
+        if (Input.GetKeyDown(KeyCode.Tab)) SquirtingScale();
     }
 
     /// <summary> 潮吹き妨害 </summary>
@@ -64,15 +65,32 @@ public class EnemyWhale : MonoBehaviour
         }
     }
 
+    private void SquirtingScale()
+    {
+        var sequence = DOTween.Sequence();
+
+        //強制終了（仮）
+        //StartCoroutine(KillSequence(sequence));
+
+        sequence.Append(_waves[0].DOScale(new Vector3(1f, 3f, 1f), _sabotageTime))
+                .Join(_waves[0].DOAnchorPos(new Vector3(0f, 0f, 0f), _sabotageTime))
+                .Append(_waves[0].DOScale(new Vector3(1f, 1f, 1f), _sabotageTime))
+                .Join(_waves[0].DOAnchorPos(-_waveStartPos, _sabotageTime))
+                .AppendCallback(() =>
+                {
+                    Debug.Log("妨害終了");
+                    _waves[0].localScale = new Vector3(1f, 1f, 1f);
+                    _waves[0].localPosition = _waveStartPos;
+                });
+    }
+
     /// <summary> 一定時間経ったら強制終了 </summary>
-    private IEnumerator KillSequence(Tween tween1, Tween tween2, Tween tween3)
+    private IEnumerator KillSequence(Tween tween)
     {
         yield return new WaitForSeconds(_sabotageTime);
 
         Debug.Log("終了");
-        tween1.Kill();
-        tween2.Kill();
-        tween3.Kill();
+        tween.Kill();
     }
 
     /// <summary> 水溜り </summary>
