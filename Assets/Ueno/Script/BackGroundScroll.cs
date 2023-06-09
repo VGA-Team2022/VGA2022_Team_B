@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class BackGroundScroll : MonoBehaviour
 {
-    [Tooltip("UVスクロール対象のmaterial"),SerializeField]
-    private Material _targetMaterial;
+    [Tooltip("UVスクロール対象のmaterial")]
+    public Material TargetMaterial;
 
     [Tooltip("x軸方向に動く速さ"),SerializeField]
     private float _scrollX = 1;
@@ -21,7 +21,7 @@ public class BackGroundScroll : MonoBehaviour
     [Tooltip("anim間隔"), SerializeField]
     private float _durationTime = 0.5f;
 
-    [HideInInspector]
+    //[HideInInspector]
     public bool isSea;
 
     private Vector2 offset;
@@ -30,17 +30,29 @@ public class BackGroundScroll : MonoBehaviour
     bool isFlipSeaAnim;
     private void Awake()
     {
-        offset = _targetMaterial.mainTextureOffset;
+        offset = TargetMaterial.mainTextureOffset;
         offset.y = 0;
-        _targetMaterial.mainTextureOffset = offset;
-        GetComponent<MeshRenderer>().enabled= false;
-        this.enabled = false;
+        TargetMaterial.mainTextureOffset = offset;
+        if (isSea)
+        {
+            GetComponent<MeshRenderer>().enabled = false;
+            this.enabled = false;
+        }
     }
-    
-    private void Update()
+
+    private void OnEnable()
+    {
+        GetComponent<MeshRenderer>().enabled = true;
+        isSea = true;
+        Debug.Log(GetComponent<MeshRenderer>().enabled);
+
+    }
+
+    private void FixedUpdate()
     {
         if (isSea)
         {
+           
             time += Time.deltaTime;
 
             offset.x += _scrollX * Time.deltaTime;
@@ -50,7 +62,9 @@ public class BackGroundScroll : MonoBehaviour
                 time = 0f;
                 offset.y = (isFlipSeaAnim) ? offset.y += _moveY : offset.y -= _moveY;
             }
-            _targetMaterial.mainTextureOffset = offset;
+            TargetMaterial.mainTextureOffset = offset;
+
+            Debug.Log(offset);
         }
         else
         {
@@ -62,7 +76,7 @@ public class BackGroundScroll : MonoBehaviour
     {
         offset.x += _scrollX * Time.deltaTime;
         offset.y += _scrollY * Time.deltaTime;
-        _targetMaterial.mainTextureOffset = offset;
+        TargetMaterial.mainTextureOffset = offset;
     }
 
 
