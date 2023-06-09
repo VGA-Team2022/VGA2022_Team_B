@@ -59,10 +59,10 @@ public class StageTypeChange : MonoBehaviour
                 AudioManager.Instance.CriAtomBGMPlay("BGM_mansion_night");
                 break;
             case GameStageBackGroundType.sea_Daylight:
-                GetComponent<MeshRenderer>().enabled = false;
+                GetComponent<MeshRenderer>().material = _targetMaterial[2];
                 break;
             case GameStageBackGroundType.sea_Sunset:
-                GetComponent<MeshRenderer>().enabled = false;
+                GetComponent<MeshRenderer>().material = _targetMaterial[3];
                 break;
         }
     }
