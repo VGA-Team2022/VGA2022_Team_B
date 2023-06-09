@@ -30,24 +30,21 @@ public class SeaStageMoveScript : MonoBehaviour
     [Tooltip("îgobj"), SerializeField] private GameObject _wave; 
     //îgÇÃêßå‰ópscript
     private BackGroundScroll _waveScript;
-
-    [Tooltip("îwåi-ãÛ"),SerializeField] private MeshRenderer _skyMesh;
     
     [Header("äCÇÃîwåiÉIÉuÉWÉFÉNÉgPrefab")]
     [SerializeField] private BackGroundObject[] _backGroundObject;
 
 
     [Header("material")]
-    [Tooltip("è„Ç©ÇÁDayLightÅ®Sunset"), SerializeField] private Material[] _skyMaterial;
     [Tooltip("è„Ç©ÇÁDayLightÅ®Sunset"),SerializeField] private Material[] _waveMaterial;
+    [SerializeField] private Material[] _beauchMaterial;
 
-   private void Awake()
+    [Header("BeauchObj")]
+    [SerializeField] private MeshRenderer[] _beauchMeshRenderer;
+
+    private void Awake()
     {
-        _skyMesh.enabled = false;
-        _waveScript = _wave.GetComponent<BackGroundScroll>();
-
-        StageJudge();
-        
+        StageJudge();  
         this.enabled = false;
     }
 
@@ -56,13 +53,18 @@ public class SeaStageMoveScript : MonoBehaviour
         StageJudge();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     private void StageJudge()
     {
         if (GameManager.GameStageNum == 1)
         {
+            _waveScript = _wave.GetComponent<BackGroundScroll>();
             _waveScript.enabled = true;
             if (GameManager.StageLevelNum == 0)
             {
+                _waveScript.TargetMaterial = _waveMaterial[0];
                 foreach (var i in _backGroundObject[1]._objPrefabs)
                 {
                     i.enabled = false;//_backGroundObject[0]ÇÃobjectà»äOÇîÒï\é¶Ç…Ç∑ÇÈ
@@ -70,6 +72,7 @@ public class SeaStageMoveScript : MonoBehaviour
             }
             else if (GameManager.StageLevelNum == 1)
             {
+                _waveScript.TargetMaterial = _waveMaterial[1];
                 foreach (var i in _backGroundObject[0]._objPrefabs)
                 {
                     i.enabled = false;//_backGroundObject[1]ÇÃobjectà»äOÇîÒï\é¶Ç…Ç∑ÇÈ
@@ -91,4 +94,17 @@ public class SeaStageMoveScript : MonoBehaviour
             }
         }
     }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="stagetype"></param>
+    private void BeauchColorChange(int stagetype) 
+    {
+        //foreach (var item in _beauchMeshRenderer)
+        //{
+        //    item.GetComponent<MeshRenderer>().material = _;
+        //}
+    }
+
 }
