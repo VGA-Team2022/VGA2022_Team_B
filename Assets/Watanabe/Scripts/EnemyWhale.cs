@@ -5,6 +5,8 @@ using UnityEngine;
 /// <summary> 鯨Enemy </summary>
 public class EnemyWhale : MonoBehaviour
 {
+    [SerializeField] private GameObject _wavePrefab = default;
+
     [Tooltip("UIのlocalPosなので注意")]
     [SerializeField] private Vector3 _waveStartPos = Vector3.zero;
 
@@ -17,11 +19,22 @@ public class EnemyWhale : MonoBehaviour
 
     [SerializeField] private RectTransform[] _waves = default;
 
+    private Vector3 _whalePos = default;
+
     private void Start()
     {
+        _whalePos = GetComponent<RectTransform>().localPosition;
+        Debug.Log(_whalePos);
+
+        _waves = new RectTransform[3];
         for (int i = 0; i < _waves.Length; i++)
         {
-            _waves[i].localPosition = _waveStartPos * (i + 1);
+            var wave = Instantiate(_wavePrefab);
+            wave.transform.SetParent(transform, false);
+
+            _waves[i] = wave.GetComponent<RectTransform>();
+
+            _waves[i].localPosition = new Vector3(_waveStartPos.x, _waveStartPos.y * (i + 1));
         }
     }
 
@@ -44,19 +57,19 @@ public class EnemyWhale : MonoBehaviour
 
         for (int i = 0; i < 2; i++)
         {
-            sequenceOne.Append(_waves[0].DOAnchorPos(-_waveStartPos, _moveWaveTime))
+            sequenceOne.Append(_waves[0].DOAnchorPos(new Vector3(_waveStartPos.x, -_waveStartPos.y * 1.5f), _moveWaveTime))
                        .AppendCallback(() =>
                        {
                            Debug.Log("妨害終了0");
                            _waves[0].localPosition = _waveStartPos;
                        });
-            sequenceTwo.Append(_waves[1].DOAnchorPos(-_waveStartPos, _moveWaveTime * 1.5f))
+            sequenceTwo.Append(_waves[1].DOAnchorPos(new Vector3(_waveStartPos.x, -_waveStartPos.y * 1.5f), _moveWaveTime * 1.5f))
                        .AppendCallback(() =>
                        {
                            Debug.Log("妨害終了1");
                            _waves[1].localPosition = _waveStartPos;
                        });
-            sequenceThree.Append(_waves[2].DOAnchorPos(-_waveStartPos, _moveWaveTime * 2f))
+            sequenceThree.Append(_waves[2].DOAnchorPos(new Vector3(_waveStartPos.x, -_waveStartPos.y * 1.5f), _moveWaveTime * 2f))
                          .AppendCallback(() =>
                          {
                              Debug.Log("妨害終了2");
@@ -73,9 +86,9 @@ public class EnemyWhale : MonoBehaviour
         //StartCoroutine(KillSequence(sequence));
 
         sequence.Append(_waves[0].DOScale(new Vector3(1f, 3f, 1f), _sabotageTime))
-                .Join(_waves[0].DOAnchorPos(new Vector3(0f, 0f, 0f), _sabotageTime))
+                .Join(_waves[0].DOAnchorPos(new Vector3(_waveStartPos.x, 0f, 0f), _sabotageTime))
                 .Append(_waves[0].DOScale(new Vector3(1f, 1f, 1f), _sabotageTime))
-                .Join(_waves[0].DOAnchorPos(-_waveStartPos, _sabotageTime))
+                .Join(_waves[0].DOAnchorPos(new Vector3(_waveStartPos.x, -_waveStartPos.y * 1.5f), _sabotageTime))
                 .AppendCallback(() =>
                 {
                     Debug.Log("妨害終了");
