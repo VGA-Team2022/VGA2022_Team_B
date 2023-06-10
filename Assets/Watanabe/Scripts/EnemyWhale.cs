@@ -98,10 +98,4 @@ public class EnemyWhale : MonoBehaviour
         Debug.Log("終了");
         tween.Kill();
     }
-
-    /// <summary> 水溜り </summary>
-    private void WaterPuddle()
-    {
-
-    }
 }
