@@ -23,6 +23,8 @@ public class WaterPuddle : MonoBehaviour
         transform.position -= new Vector3(Time.deltaTime * _moveSpeed, 0);
     }
 
+    //以下2つの関数は、ゲーム開始時にオブジェクトがカメラ内にいる、
+    //シーンビューでも非表示にならないと呼ばれない、等注意点有
     private void OnBecameVisible()
     {
         Debug.Log("見えた");
@@ -34,16 +36,16 @@ public class WaterPuddle : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.TryGetComponent(out Player player))
-    //    {
-    //        //自分（水溜り）が存在するレーンとPlayerがいるレーンが一致したら
-    //        if (player.NowPos == _myRane)
-    //        {
-    //            //ここで揺らす等の処理を呼び出す
-    //            Debug.Log("滑った");
-    //        }
-    //    }
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out Player player))
+        {
+            //自分（水溜り）が存在するレーンとPlayerがいるレーンが一致したら
+            if (player.NowPos == _myRane)
+            {
+                //ここで揺らす等の処理を呼び出す
+                Debug.Log("滑った");
+            }
+        }
+    }
 }
