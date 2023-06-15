@@ -1,19 +1,14 @@
-using Unity.VisualScripting;
-using UnityEngine;
-
 using Common;
-using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
-    public static GameManager instance;
-
     /// <summary>ステージの値</summary>
     public static int GameStageNum = 0;
     /// <summary>ステージレベルの値</summary>
-    public static int StageLevelNum =  0;
+    public static int StageLevelNum = 0;
 
     /// <summary>BGMのボリューム</summary>
     public static float GameBGMVolume = 50;
@@ -27,25 +22,25 @@ public class GameManager : MonoBehaviour
     public static float CurrentTime;
 
     /// <summary>ゲームが開始されたかの判定</summary>
-    private bool isGameStart = false;
+    private bool _isGameStart = false;
 
     /// <summary>ゲームクリアの判定</summary>
-    public static bool isGameClear = false;
+    public static bool IsGameClear = false;
     /// <summary>ゲームオーバーの判定</summary>
-    public static bool isGameOver = false;
+    public static bool IsGameOver = false;
 
     /// <summary>リザルト演出の終了判定</summary>
-    public static bool isGameStaged = false;
+    public static bool IsGameStaged = false;
 
     /// <summary>一回だけSceneManagerを探す為の判定</summary>
-   public static bool isFindScenemng;
+    public static bool IsFindScenemng = false;
     /// <summary>Playerの進行をストップする為の判定</summary>
-    public static bool isStop;
+    public static bool IsStop = false;
 
     /// <summary>Clear判定用のドアを出現させる判定</summary>
-    public static bool isAppearDoorObj;
+    public static bool IsAppearDoorObj = false;
 
-    /// <summary>scenemanager格納用変数</summary>
+    /// <summary>SceneManager格納用変数</summary>
     private AttachedSceneController _scenemng = default;
 
     void Awake()
@@ -53,33 +48,32 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-
     public void PrefarenceStage(int i)
     {
         GameStageNum = i;
     }
+
     public void PrefarenceLevel(int i)
     {
         StageLevelNum = i;
     }
+
     public void PrefarenceTime(float i)
     {
         GameTimeClearLength = i;
     }
 
-    
     private void Start()
     {
-        isGameStart = false;
-        isGameOver = false;
-        isGameClear = false;
-        isGameStaged = false;
+        _isGameStart = false;
+        IsGameOver = false;
+        IsGameClear = false;
+        IsGameStaged = false;
         FindSceneManager();
 
-        isFindScenemng = false;
+        IsFindScenemng = false;
 
         CurrentTime = GameTimeClearLength;
-
     }
 
     private void FindSceneManager()
@@ -91,49 +85,48 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
 
-        if (!_scenemng && !isFindScenemng)
+        if (!_scenemng && !IsFindScenemng)
         {
             FindSceneManager();
 
             if (SceneManager.GetActiveScene().name == Define.SCENENAME_RESULT)
             {
-                isGameStart = false;
-                isGameStaged = false;
-                isFindScenemng = true;
+                _isGameStart = false;
+                IsGameStaged = false;
+                IsFindScenemng = true;
 
             }
 
-            else if (SceneManager.GetActiveScene().name != Define.SCENENAME_RESULT && SceneManager.GetActiveScene().name != Define.SCENENAME_MASTERGAME)
+            else if (SceneManager.GetActiveScene().name != Define.SCENENAME_RESULT &&
+                     SceneManager.GetActiveScene().name != Define.SCENENAME_MASTERGAME)
             {
                 Debug.Log(_scenemng);
-                isGameStart = false;
-                isGameOver = false;
-                isGameClear = false;
-                isGameStaged = false;
-                isFindScenemng = true;
-                isStop = false;
+                _isGameStart = false;
+                IsGameOver = false;
+                IsGameClear = false;
+                IsGameStaged = false;
+                IsFindScenemng = true;
+                IsStop = false;
                 CurrentTime = GameTimeClearLength;
             }
         }
 
-         if (SceneManager.GetActiveScene().name == Define.SCENENAME_MASTERGAME)
+        if (SceneManager.GetActiveScene().name == Define.SCENENAME_MASTERGAME)
         {
-            if (!isFindScenemng)
+            if (!IsFindScenemng)
             {
                 Debug.Log(_scenemng.gameObject.scene.name);
-                isGameStart = true;
-                isFindScenemng = true;
-                isGameStaged = false;
-                isGameOver = false;
-                isGameClear = false;
-                isStop = false;
-                isAppearDoorObj = false;
+                _isGameStart = true;
+                IsFindScenemng = true;
+                IsGameStaged = false;
+                IsGameOver = false;
+                IsGameClear = false;
+                IsStop = false;
+                IsAppearDoorObj = false;
                 CurrentTime = GameTimeClearLength;
             }
             GemeClearjudge();
-
         }
-
     }
 
     private void GemeClearjudge()
@@ -145,50 +138,46 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(GameOver());
             }
 
-            if (isGameOver && !isGameClear)//GameOver
+            if (IsGameOver && !IsGameClear) //GameOver
             {
-                if (isGameStaged)//演出が終わったか
+                if (IsGameStaged)//演出が終わったか
                 {
                     _scenemng.ChangeResultScene();
                     //isFindScenemng = false;
                 }
             }
-            else if (!isGameOver && isGameClear)//GameClear
+            else if (!IsGameOver && IsGameClear)//GameClear
             {
-                if (isGameStaged)
+                if (IsGameStaged)
                 {
                     _scenemng.ChangeResultScene();
                     //isFindScenemng = false;
                 }
             }
-            else if (isGameOver && isGameClear)//もし両方クリア判定になったら
+            else if (IsGameOver && IsGameClear)//もし両方クリア判定になったら
             {
                 _scenemng.ChangeResultScene();
             }
         }
         //GameClearになったら扉を呼び出す
-        if (isGameStart && !isStop)
+        if (_isGameStart && !IsStop)
         {
-            if (!isAppearDoorObj) 
+            if (!IsAppearDoorObj)
             {
                 CurrentTime -= Time.deltaTime;
             }
-           /// Debug.Log(CurrentTime);
+            /// Debug.Log(CurrentTime);
 
-            if (CurrentTime <= 0 && !isGameOver)
+            if (CurrentTime <= 0 && !IsGameOver)
             {
-                isAppearDoorObj = true;
+                IsAppearDoorObj = true;
             }
         }
     }
-    /// <summary>
-    /// 落下モーションを見る為
-    /// </summary>
-    /// <returns></returns>
-   private IEnumerator GameOver()
+    /// <summary> 落下モーションを見る為 </summary>
+    private IEnumerator GameOver()
     {
         yield return new WaitForSeconds(1f);
-        isGameOver = Obon._staticSweetsFall;
+        IsGameOver = Obon._staticSweetsFall;
     }
-
 }

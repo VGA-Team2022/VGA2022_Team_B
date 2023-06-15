@@ -13,9 +13,9 @@ public class DoorTouchClear : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.isAppearDoorObj)
+        if (GameManager.IsAppearDoorObj)
         {
-            _anim.SetBool("isClear", GameManager.isAppearDoorObj);
+            _anim.SetBool("isClear", GameManager.IsAppearDoorObj);
         }
     }
 
@@ -24,8 +24,8 @@ public class DoorTouchClear : MonoBehaviour
         if (other.gameObject.tag == "Obon")
         {
             Debug.Log(11111111111);
-            GameManager.isGameClear= true;
-            Debug.Log($"aaaaaaaaaaaaaaaaaaaa:{GameManager.isGameClear}");
+            GameManager.IsGameClear= true;
+            Debug.Log($"aaaaaaaaaaaaaaaaaaaa:{GameManager.IsGameClear}");
         }
         
     }

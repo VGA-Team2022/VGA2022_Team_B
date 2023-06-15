@@ -6386,7 +6386,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d60bf71c8483f5047a98864ea14eeafd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 03921430f645d9143a565aac43836884, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6971,7 +6971,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -207, y: -82}
+  m_AnchoredPosition: {x: -206.99994, y: -82}
   m_SizeDelta: {x: 1227.2682, y: 1735.794}
   m_Pivot: {x: -0.1, y: 0.38}
 --- !u!114 &1626733139
@@ -7165,10 +7165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0466a3b0dc5cce9428b38d250fc3fdf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _atomSource: {fileID: 2066523533}
-  _atomBGMSource: {fileID: 1105667616}
-  changeBGMSpeed: 1
-  _bgmCueName: 
 --- !u!1 &1856573818
 GameObject:
   m_ObjectHideFlags: 0

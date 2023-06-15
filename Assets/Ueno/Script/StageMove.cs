@@ -49,7 +49,7 @@ public class StageMove : MonoBehaviour
         }
 
 
-        if (!GameManager.isAppearDoorObj)
+        if (!GameManager.IsAppearDoorObj)
         {
             StickMove();
 
@@ -83,15 +83,15 @@ public class StageMove : MonoBehaviour
         }
         else if (leftStickValue.x > 0f)
         {
-            GameManager.isStop = false;
+            GameManager.IsStop = false;
             //transform.Translate(-(leftStickValue.x * MoveSpeed * Time.deltaTime), 0, 0);
             MoveSpeed = _keepSpeed;
 
         }
         else if (leftStickValue.x == 0)
         {
-            GameManager.isStop = true;
-            AudioManager.Instance.CriAtomPlay(CueSheet.SE, "SE_player_footsteps1");
+            GameManager.IsStop = true;
+            //AudioManager.Instance.CriAtomPlay(CueSheet.SE, "SE_player_footsteps1");
             MoveSpeed = 0;
         }
 

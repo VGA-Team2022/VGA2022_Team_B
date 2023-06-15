@@ -27,7 +27,7 @@ public class EnemyInstansManager : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.isAppearDoorObj)
+        if (GameManager.IsAppearDoorObj)
         {
             CancelInvoke("Instans");
         }
