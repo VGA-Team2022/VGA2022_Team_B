@@ -1,44 +1,54 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
 public enum Story
 {
     yashiki_Clear,
     yashiki_Failed,
+
+    SeaStage_Clear,
+    SeaStage_Failed,
 }
 
 public class ResultManager : MonoBehaviour
 {
-    [SerializeField] public Story StoryJudge = Story.yashiki_Failed;
+    [SerializeField] private Story _storyJudge = Story.yashiki_Failed;
 
     [SerializeField] private MessageSequencer _messageSequencer;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        if (GameManager.isGameClear)
+        //ここが複数のステージに対応していないため、修正する
+        if (GameManager.IsGameClear)
         {
-            StoryJudge = Story.yashiki_Clear;
+            _storyJudge = Story.yashiki_Clear;
         }
         else
         {
-            StoryJudge = Story.yashiki_Failed;
+            _storyJudge = Story.yashiki_Failed;
         }
 
-        _messageSequencer = _messageSequencer.gameObject.GetComponent<MessageSequencer>();
+        //_messageSequencer = _messageSequencer.gameObject.GetComponent<MessageSequencer>();
 
-        switch (StoryJudge)
+        switch (_storyJudge)
         {
             case Story.yashiki_Clear:
                 _messageSequencer.StoryJudge = Story.yashiki_Clear;
-                AudioManager.Instance.CriAtomBGMPlay("BGM_success");
                 break;
 
             case Story.yashiki_Failed:
                 _messageSequencer.StoryJudge = Story.yashiki_Failed;
-                AudioManager.Instance.CriAtomBGMPlay("BGM _failure");
                 break;
+
+            case Story.SeaStage_Clear:
+                _messageSequencer.StoryJudge = Story.SeaStage_Clear;
+                break;
+
+            case Story.SeaStage_Failed:
+                _messageSequencer.StoryJudge = Story.SeaStage_Failed;
+                break;
+
+            default:
+                return;
         }
     }
-
 }

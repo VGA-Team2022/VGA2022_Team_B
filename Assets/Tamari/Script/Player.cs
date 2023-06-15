@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 			return;
 		}
 		//¶‚É‚Í“®‚©‚È‚¢
-		if (GameManager.isAppearDoorObj)
+		if (GameManager.IsAppearDoorObj)
 		{
 			if (leftStickValue.x > 0f)
 			{

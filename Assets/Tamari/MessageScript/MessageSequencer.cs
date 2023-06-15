@@ -1,49 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-using System.Diagnostics;
-
+﻿using UnityEngine;
 
 public class MessageSequencer : MonoBehaviour
 {
-    public Story StoryJudge = Story.yashiki_Clear;
+    private Story _storyJudge = Story.yashiki_Clear;
 
-    [SerializeField]
-        private MessagePrinter _printer = default;
+    [SerializeField] private MessagePrinter _printer = default;
     
-    [Header("�X�g�[���[���͗�")]
-    [SerializeField] 
-        private string[] _yashiki_DayLight_ClearMessages = default;
+    [Header("ストーリー入力欄")]
+    [SerializeField] private string[] _yashiki_DayLight_ClearMessages = default;
+    [SerializeField] private string[] _yashiki_Night_ClearMessages = default;
+    [SerializeField] private string[] _yashikiFaildMessages = default;
 
-    [SerializeField]
-        private string[] _yashiki_Night_ClearMessages = default;
+    [SerializeField] private string[] _seaStageClearMessage = default;
+    [SerializeField] private string[] _seaStageFailedMessage = default;
 
-    [SerializeField]
-        private string[] _yashikiFaildMessages = default;
-
-    [SerializeField]
-        private GameObject _sceneChangeButtons = default;
+    [SerializeField] private GameObject _sceneChangeButtons = default;
 
     private string[] _storyMessages;
     private int _currentIndex = -1;
 
-    void Start()
+    public Story StoryJudge { get => _storyJudge; set => _storyJudge = value; }
+
+    private void Start()
     {
-        if (GameManager.isGameClear)
+        //ここが複数のステージに対応していないため、修正する
+        if (GameManager.IsGameClear)
         {
-            StoryJudge = Story.yashiki_Clear;
+            _storyJudge = Story.yashiki_Clear;
 
         }
         else
         {
-            StoryJudge = Story.yashiki_Failed;
+            _storyJudge = Story.yashiki_Failed;
         }
-
-
         _sceneChangeButtons.SetActive(false);
 
-        switch(StoryJudge)
+        switch(_storyJudge)
         {
             case Story.yashiki_Clear:
                 if (GameManager.StageLevelNum == 0)
@@ -54,17 +46,24 @@ public class MessageSequencer : MonoBehaviour
                 {
                     _storyMessages = _yashiki_Night_ClearMessages;
                 }
-
                 break;
+
             case Story.yashiki_Failed:
                 _storyMessages = _yashikiFaildMessages;
                 break;
-        }
 
+            case Story.SeaStage_Clear:
+                _storyMessages = _seaStageClearMessage;
+                break;
+
+            case Story.SeaStage_Failed:
+                _storyMessages = _seaStageFailedMessage;
+                break;
+        }
         MoveNext();
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -76,26 +75,20 @@ public class MessageSequencer : MonoBehaviour
             {
                 _printer?.Skip();
             }
-            UnityEngine.Debug.Log(_printer.IsPrinting);
+            Debug.Log(_printer.IsPrinting);
         }
-
-
     }
 
-    /// <summary>
-    /// ���̃Z���t������Ȃ玟�ɐi��
-    /// </summary>
-    void MoveNext()
+    /// <summary> 次のセリフがあるなら次に進む </summary>
+    private void MoveNext()
     {
-        if (_storyMessages is null or { Length: 0 })
-        {
-            return;
-        }
+        if (_storyMessages is null or { Length: 0 }) return;
 
         if (_currentIndex + 1 < _storyMessages.Length)
         {
             _currentIndex++;
-            _printer?.ShowMessage(_storyMessages[_currentIndex], _storyMessages[_currentIndex].Split(',')[0], _storyMessages[_currentIndex].Split(',')[1]);
+            _printer?.ShowMessage(
+                _storyMessages[_currentIndex], _storyMessages[_currentIndex].Split(',')[0], _storyMessages[_currentIndex].Split(',')[1]);
 
             if (_currentIndex + 1 >= _storyMessages.Length)
             {
