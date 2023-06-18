@@ -35,32 +35,32 @@ public class Sequencer : MonoBehaviour
         }
     }
 
-    public void SetDialogue(StoryResult result)
+    public void SetDialogue(GameResult result)
     {
         //以下ResultSceneに表示するTextを設定する処理
         string[] dialogue = default;
         switch (result)
         {
             //屋敷ステージ
-            case StoryResult.YashikiStage_Daytime_Clear:
+            case GameResult.YashikiStage_Daytime_Clear:
                 dialogue = _resultTexts[0];
                 break;
-            case StoryResult.YashikiStage_Night_Clear:
+            case GameResult.YashikiStage_Night_Clear:
                 dialogue = _resultTexts[1];
                 break;
-            case StoryResult.YashikiStage_Daytime_Failed:
-            case StoryResult.YashikiStage_Night_Failed:
+            case GameResult.YashikiStage_Daytime_Failed:
+            case GameResult.YashikiStage_Night_Failed:
                 dialogue = _resultTexts[2];
                 break;
             //海ステージ
-            case StoryResult.SeaStage_Daytime_Clear:
+            case GameResult.SeaStage_Daytime_Clear:
                 dialogue = _resultTexts[3];
                 break;
-            case StoryResult.SeaStage_Night_Clear:
+            case GameResult.SeaStage_Night_Clear:
                 dialogue = _resultTexts[4];
                 break;
-            case StoryResult.SeaStage_Daytime_Failed:
-            case StoryResult.SeaStage_Night_Failed:
+            case GameResult.SeaStage_Daytime_Failed:
+            case GameResult.SeaStage_Night_Failed:
                 dialogue = _resultTexts[5];
                 break;
         }
