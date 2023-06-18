@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 /// <summary> UIデータの出力を行うクラス </summary>
 [System.Serializable]
@@ -10,14 +11,18 @@ public class Printer
     [Header("Text一覧")]
     [SerializeField] private Text _speakerText = default;
     [SerializeField] private Text _dialogueText = default;
+
     [Header("Image類のUI")]
     [SerializeField] private Image _princessImage = default;
     [SerializeField] private Image _maidImage = default;
     [SerializeField] private List<Sprite> _princessSprites = new();
     [SerializeField] private List<Sprite> _maidSprites = new();
+
     [Header("Debug")]
     [Tooltip("Textの表示をどうするか")]
     [SerializeField] private bool _isTextMove = false;
+    [Tooltip("何秒かけてセリフを表示させるか")]
+    [SerializeField] private float _indicateTime = 1f;
 
     /// <summary> 表示するセリフのインデックス </summary>
     private int _dialogueIndex = 2;
@@ -47,27 +52,42 @@ public class Printer
 
     public void ShowText()
     {
-        if (_isTextMove)
+        if (_dialogueIndex < _dialogue.Length - 1)
         {
-            //1文字ずつ(DOTween使う)
+            ShowTextPattern(_isTextMove);
         }
         else
         {
-            //通常表示(ただ切り替えるだけ)
-            if (_dialogueIndex < _dialogue.Length - 1)
-            {
-                var show = _dialogue[_dialogueIndex].Split(',');
+            _fade.FadeOut();
+        }
+    }
 
-                _speakerText.text = show[0];
-                _dialogueText.text = show[1];
-                _dialogueIndex++;
+    private void ShowTextPattern(bool isMove)
+    {
+        var show = _dialogue[_dialogueIndex].Split(',');
 
-                SwitchSprite(show[0], int.Parse(show[2]));
-            }
-            else
-            {
-                _fade.FadeOut();
-            }
+        //1文字ずつ
+        if (isMove)
+        {
+            var sequence = DOTween.Sequence();
+
+            _speakerText.text = show[0];
+            _dialogueText.text = "";
+
+            SwitchSprite(show[0], int.Parse(show[2]));
+            //DOText...指定した文字列を指定した時間で1文字ずつ表示する
+            sequence.Append(_dialogueText.DOText(show[1], _indicateTime))
+                    .SetEase(Ease.Linear)
+                    .OnComplete(() => _dialogueIndex++);
+        }
+        //通常表示(ただ切り替えるだけ)
+        else
+        {
+            _speakerText.text = show[0];
+            _dialogueText.text = show[1];
+            _dialogueIndex++;
+
+            SwitchSprite(show[0], int.Parse(show[2]));
         }
     }
 }
