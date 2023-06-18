@@ -7,6 +7,7 @@ using DG.Tweening;
 [System.Serializable]
 public class Printer
 {
+    [SerializeField] private Color _unSpeak = default;
     [SerializeField] private Fade _fade = default;
     [Header("Text一覧")]
     [SerializeField] private Text _speakerText = default;
@@ -42,10 +43,16 @@ public class Printer
     {
         if (speaker == _princess)
         {
+            _princessImage.color = Color.white;
+            _maidImage.color = _unSpeak;
+
             _princessImage.sprite = _princessSprites[index];
         }
         else if (speaker == _maid)
         {
+            _princessImage.color = _unSpeak;
+            _maidImage.color = Color.white;
+
             _maidImage.sprite = _maidSprites[index];
         }
     }
