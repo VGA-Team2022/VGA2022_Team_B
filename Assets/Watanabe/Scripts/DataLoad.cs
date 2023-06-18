@@ -25,12 +25,12 @@ public class DataLoad : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            ViewMessage();
+            ShowMessage();
         }
     }
 
     /// <summary> 読み込んだテキストファイルの内容を表示 </summary>
-    private void ViewMessage()
+    private void ShowMessage()
     {
         if (_textIndex < _textArray.Length)
         {

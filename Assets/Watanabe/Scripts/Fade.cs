@@ -9,28 +9,28 @@ public class Fade : MonoBehaviour
 
     private void Start()
     {
-        _fadePanel.enabled = false;
+        _fadePanel.gameObject.SetActive(false);
 
         FadeIn();
     }
 
     public void FadeIn()
     {
-        _fadePanel.enabled = true;
+        _fadePanel.gameObject.SetActive(true);
 
         _fadePanel.DOFade(0f, _fadeSpeed)
                   .OnComplete(() =>
                   {
-                      _fadePanel.enabled = false;
-                      Debug.Log("end");
+                      _fadePanel.gameObject.SetActive(false);
+                      Debug.Log("finished fadein");
                   });
     }
 
     public void FadeOut()
     {
-        _fadePanel.enabled = true;
+        _fadePanel.gameObject.SetActive(true);
 
         _fadePanel.DOFade(1f, _fadeSpeed)
-                  .OnComplete(() => Debug.Log("end"));
+                  .OnComplete(() => Debug.Log("finished fadeout"));
     }
 }
