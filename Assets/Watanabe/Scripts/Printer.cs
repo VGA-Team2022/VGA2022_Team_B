@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using DG.Tweening;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
 /// <summary> UIデータの出力を行うクラス </summary>
 [System.Serializable]
@@ -20,8 +20,6 @@ public class Printer
     [SerializeField] private List<Sprite> _maidSprites = new();
 
     [Header("Debug")]
-    [Tooltip("Textの表示をどうするか")]
-    [SerializeField] private bool _isTextMove = false;
     [Tooltip("何秒かけてセリフを表示させるか")]
     [SerializeField] private float _indicateTime = 1f;
 
@@ -29,6 +27,8 @@ public class Printer
     private int _dialogueIndex = 2;
     /// <summary> セリフ全体 </summary>
     private string[] _dialogue = default;
+    /// <summary> Text表示を実行中かどうか </summary>
+    private bool _isShowText = false;
 
     private const string _princess = "お嬢様";
     private const string _maid = "メイド";
@@ -59,23 +59,13 @@ public class Printer
 
     public void ShowText()
     {
+        if (_isShowText) return;
+
         if (_dialogueIndex < _dialogue.Length - 1)
         {
-            ShowTextPattern(_isTextMove);
-        }
-        else
-        {
-            _fade.FadeOut();
-        }
-    }
+            _isShowText = true;
 
-    private void ShowTextPattern(bool isMove)
-    {
-        var show = _dialogue[_dialogueIndex].Split(',');
-
-        //1文字ずつ
-        if (isMove)
-        {
+            var show = _dialogue[_dialogueIndex].Split(',');
             var sequence = DOTween.Sequence();
 
             _speakerText.text = show[0];
@@ -85,16 +75,15 @@ public class Printer
             //DOText...指定した文字列を指定した時間で1文字ずつ表示する
             sequence.Append(_dialogueText.DOText(show[1], _indicateTime))
                     .SetEase(Ease.Linear)
-                    .OnComplete(() => _dialogueIndex++);
+                    .OnComplete(() =>
+                    {
+                        _isShowText = false;
+                        _dialogueIndex++;
+                    });
         }
-        //通常表示(ただ切り替えるだけ)
         else
         {
-            _speakerText.text = show[0];
-            _dialogueText.text = show[1];
-            _dialogueIndex++;
-
-            SwitchSprite(show[0], int.Parse(show[2]));
+            _fade.FadeOut();
         }
     }
 }
