@@ -10,17 +10,18 @@ public class Result : MonoBehaviour
 
     private void Start()
     {
-        _resultPatterns =
-            new Patterns[]
+        _resultPatterns = new Patterns[]
             { new Patterns(0, 0, true), new Patterns(0, 0, false),
               new Patterns(0, 1, true), new Patterns(0, 1, false),
               new Patterns(1, 0, true), new Patterns(1, 0, false),
               new Patterns(1, 1, true), new Patterns(1, 1, false) };
 
-        _storyJudge =
-            (GameResult)Array.IndexOf(
-            _resultPatterns,
-            new Patterns(GameManager.GameStageNum, GameManager.StageLevelNum, GameManager.IsGameClear));
+        //挑戦結果がリザルトパターンのどれに該当するか
+        var index = Array.IndexOf(
+                    _resultPatterns,
+                    new Patterns(GameManager.GameStageNum, GameManager.StageLevelNum, GameManager.IsGameClear));
+
+        _storyJudge = (GameResult)index;
 
         _sequencer.SetDialogue(_storyJudge);
     }
