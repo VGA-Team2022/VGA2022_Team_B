@@ -287,7 +287,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 825b09dc54bba4b40bd29afa83ce3938, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
@@ -608,7 +608,7 @@ GameObject:
   - component: {fileID: 1281584757}
   - component: {fileID: 1281584758}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Result
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -676,7 +676,6 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 53a06dbbf36175341b8cde33510389d5, type: 3}
     - {fileID: 21300000, guid: 1d4ef372f15e0dc43b1050307a1adcec, type: 3}
     - {fileID: 21300000, guid: ae7ec339ef0cce844b77ddf449bb7410, type: 3}
-    _isTextMove: 1
     _indicateTime: 2
 --- !u!1 &1410842173
 GameObject:
@@ -737,7 +736,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 825b09dc54bba4b40bd29afa83ce3938, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0

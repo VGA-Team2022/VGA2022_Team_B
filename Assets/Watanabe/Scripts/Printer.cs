@@ -1,15 +1,19 @@
 ﻿using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary> UIデータの出力を行うクラス </summary>
-[System.Serializable]
+[Serializable]
 public class Printer
 {
     [SerializeField] private Color _unSpeak = default;
     [SerializeField] private Fade _fade = default;
+
     [Header("Text一覧")]
+    [Tooltip("何秒かけてセリフを表示させるか")]
+    [SerializeField] private float _indicateTime = 1f;
     [SerializeField] private Text _speakerText = default;
     [SerializeField] private Text _dialogueText = default;
 
@@ -19,10 +23,6 @@ public class Printer
     [SerializeField] private List<Sprite> _princessSprites = new();
     [SerializeField] private List<Sprite> _maidSprites = new();
 
-    [Header("Debug")]
-    [Tooltip("何秒かけてセリフを表示させるか")]
-    [SerializeField] private float _indicateTime = 1f;
-
     /// <summary> 表示するセリフのインデックス </summary>
     private int _dialogueIndex = 2;
     /// <summary> セリフ全体 </summary>
@@ -30,9 +30,11 @@ public class Printer
     /// <summary> Text表示を実行中かどうか </summary>
     private bool _isShowText = false;
 
+    //話者
     private const string _princess = "お嬢様";
     private const string _maid = "メイド";
 
+    /// <summary> 表示するセリフの取得 </summary>
     public void Init(string[] dialogue)
     {
         _dialogue = dialogue;
@@ -72,7 +74,7 @@ public class Printer
             _dialogueText.text = "";
 
             SwitchSprite(show[0], int.Parse(show[2]));
-            //DOText...指定した文字列を指定した時間で1文字ずつ表示する
+            //Text.DOText...指定した文字列を指定した時間で1文字ずつ表示する
             sequence.Append(_dialogueText.DOText(show[1], _indicateTime))
                     .SetEase(Ease.Linear)
                     .OnComplete(() =>

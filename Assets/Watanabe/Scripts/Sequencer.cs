@@ -8,8 +8,6 @@ public class Sequencer : MonoBehaviour
 
     private List<string[]> _resultTexts = new();
 
-    private string _loadText = "";
-
     private void OnEnable()
     {
         TextLoad();
@@ -26,8 +24,7 @@ public class Sequencer : MonoBehaviour
     /// <summary> TextAssetのセリフを配列に格納する </summary>
     private void TextLoad()
     {
-        _loadText = _textData.text;
-        var messages = _loadText.Split(",,");
+        var messages = _textData.text.Split(",,");
 
         for (int i = 0; i <  messages.Length; i++)
         {
