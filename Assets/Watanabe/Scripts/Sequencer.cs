@@ -62,5 +62,6 @@ public class Sequencer : MonoBehaviour
                 break;
         }
         _printer.Init(dialogue);
+        _printer.SetBackGround(result);
     }
 }

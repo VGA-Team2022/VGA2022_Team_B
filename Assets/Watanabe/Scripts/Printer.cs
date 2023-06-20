@@ -20,8 +20,11 @@ public class Printer
     [Header("Image類のUI")]
     [SerializeField] private Image _princessImage = default;
     [SerializeField] private Image _maidImage = default;
+    [SerializeField] private Image _resultBackGround = default;
+
     [SerializeField] private List<Sprite> _princessSprites = new();
     [SerializeField] private List<Sprite> _maidSprites = new();
+    [SerializeField] private Sprite[] _backGrounds = new Sprite[4];
 
     /// <summary> 表示するセリフのインデックス </summary>
     private int _dialogueIndex = 2;
@@ -38,6 +41,30 @@ public class Printer
     public void Init(string[] dialogue)
     {
         _dialogue = dialogue;
+    }
+
+    /// <summary> 背景設定 </summary>
+    public void SetBackGround(GameResult result)
+    {
+        switch (result)
+        {
+            case GameResult.YashikiStage_Daytime_Clear:
+            case GameResult.YashikiStage_Daytime_Failed:
+                _resultBackGround.sprite = _backGrounds[0];
+                break;
+            case GameResult.YashikiStage_Night_Clear:
+            case GameResult.YashikiStage_Night_Failed:
+                _resultBackGround.sprite = _backGrounds[1];
+                break;
+            case GameResult.SeaStage_Daytime_Clear:
+            case GameResult.SeaStage_Daytime_Failed:
+                _resultBackGround.sprite= _backGrounds[2];
+                break;
+            case GameResult.SeaStage_Night_Clear:
+            case GameResult.SeaStage_Night_Failed:
+                _resultBackGround.sprite = _backGrounds[3];
+                break;
+        }
     }
 
     /// <summary> セリフ毎にキャラクターのイラストを切り替える </summary>
