@@ -52,12 +52,16 @@ public class WaterPuddle : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out Player player))
+        var hit = collision.gameObject;
+
+        if (hit.TryGetComponent(out Obon obon) &&
+            hit.transform.parent.gameObject.TryGetComponent(out Player player))
         {
             //自分（水溜り）が存在するレーンとPlayerがいるレーンが一致したら
             if (player.NowPos == _myRane)
             {
-                //ここで揺らす等の処理を呼び出し、自身を消す
+                //揺らす処理を呼び出す→自身を消す
+                obon.Hit(transform.position.x);
                 Debug.Log("滑った");
                 gameObject.SetActive(false);
             }
