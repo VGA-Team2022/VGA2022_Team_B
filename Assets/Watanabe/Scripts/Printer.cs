@@ -8,9 +8,11 @@ using UnityEngine.UI;
 [Serializable]
 public class Printer
 {
+    [Tooltip("話していない人は暗くする")]
     [SerializeField] private Color _unSpeak = default;
     [SerializeField] private Fade _fade = default;
 
+    #region Inspectorで設定するUI
     [Header("Text一覧")]
     [Tooltip("何秒かけてセリフを表示させるか")]
     [SerializeField] private float _indicateTime = 1f;
@@ -24,7 +26,8 @@ public class Printer
 
     [SerializeField] private List<Sprite> _princessSprites = new();
     [SerializeField] private List<Sprite> _maidSprites = new();
-    [SerializeField] private Sprite[] _backGrounds = new Sprite[4];
+    [SerializeField] private BackGrounds _backGrounds = new();
+    #endregion
 
     /// <summary> 表示するセリフのインデックス </summary>
     private int _dialogueIndex = 2;
@@ -50,19 +53,22 @@ public class Printer
         {
             case GameResult.YashikiStage_Daytime_Clear:
             case GameResult.YashikiStage_Daytime_Failed:
-                _resultBackGround.sprite = _backGrounds[0];
+                _resultBackGround.sprite = _backGrounds.YashikiDaytime;
                 break;
+
             case GameResult.YashikiStage_Night_Clear:
             case GameResult.YashikiStage_Night_Failed:
-                _resultBackGround.sprite = _backGrounds[1];
+                _resultBackGround.sprite = _backGrounds.YashikiNight;
                 break;
+
             case GameResult.SeaStage_Daytime_Clear:
             case GameResult.SeaStage_Daytime_Failed:
-                _resultBackGround.sprite= _backGrounds[2];
+                _resultBackGround.sprite= _backGrounds.SeaStageDaytime;
                 break;
+
             case GameResult.SeaStage_Night_Clear:
             case GameResult.SeaStage_Night_Failed:
-                _resultBackGround.sprite = _backGrounds[3];
+                _resultBackGround.sprite = _backGrounds.SeaStageNight;
                 break;
         }
     }
@@ -95,13 +101,15 @@ public class Printer
             _isShowText = true;
 
             var show = _dialogue[_dialogueIndex].Split(',');
-            var sequence = DOTween.Sequence();
 
             _speakerText.text = show[0];
             _dialogueText.text = "";
 
             SwitchSprite(show[0], int.Parse(show[2]));
-            //Text.DOText...指定した文字列を指定した時間で1文字ずつ表示する
+
+            //DOTween.Sequence() ... 複数のDOTweenの処理を1つにまとめることができる
+            var sequence = DOTween.Sequence();
+            //Text.DOText ... 指定した文字列を指定した時間で1文字ずつ表示する
             sequence.Append(_dialogueText.DOText(show[1], _indicateTime))
                     .SetEase(Ease.Linear)
                     .OnComplete(() =>
@@ -114,5 +122,19 @@ public class Printer
         {
             _fade.FadeOut();
         }
+    }
+
+    [Serializable]
+    private class BackGrounds
+    {
+        [SerializeField] private Sprite _yashikiDaytime = default;
+        [SerializeField] private Sprite _yashikiNight = default;
+        [SerializeField] private Sprite _seaStageDaytime = default;
+        [SerializeField] private Sprite _seaStageNight = default;
+
+        public Sprite YashikiDaytime => _yashikiDaytime;
+        public Sprite YashikiNight => _yashikiNight;
+        public Sprite SeaStageDaytime => _seaStageDaytime;
+        public Sprite SeaStageNight => _seaStageNight;
     }
 }

@@ -10,6 +10,7 @@ public class Result : MonoBehaviour
 
     private void Start()
     {
+        //挑戦結果の該当し得るパターンを列挙
         _resultPatterns = new Patterns[]
             { new Patterns(0, 0, true), new Patterns(0, 0, false),
               new Patterns(0, 1, true), new Patterns(0, 1, false),
