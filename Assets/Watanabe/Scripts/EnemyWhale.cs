@@ -1,5 +1,4 @@
 ﻿using DG.Tweening;
-using System.Collections;
 using UnityEngine;
 
 /// <summary> 鯨Enemy </summary>
@@ -49,8 +48,8 @@ public class EnemyWhale : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab)) SquirtingScale();
     }
 
-    /// <summary> 潮吹き妨害 </summary>
-    private void Squirting()
+    /// <summary> 潮吹き妨害(DOMove) </summary>
+    public void Squirting()
     {
         var sequenceOne = DOTween.Sequence();
         var sequenceTwo = DOTween.Sequence();
@@ -74,12 +73,13 @@ public class EnemyWhale : MonoBehaviour
                          Debug.Log("妨害終了2");
                          _waves[2].position = _waveStartPos;
 
-                         //波妨害が一通り終わったら水溜りギミック開始
+                         //波妨害が一通り終わったら水溜りギミック開始(違うかも)
                          AppearPuddle();
                      });
     }
 
-    private void SquirtingScale()
+    /// <summary> 潮吹き妨害(DOScale) </summary>
+    public void SquirtingScale()
     {
         var sequence = DOTween.Sequence();
 
@@ -96,7 +96,7 @@ public class EnemyWhale : MonoBehaviour
     }
 
     /// <summary> 水溜りを発生させる </summary>
-    private void AppearPuddle()
+    public void AppearPuddle()
     {
         for (int i = 0; i < _puddleNum; i++)
         {

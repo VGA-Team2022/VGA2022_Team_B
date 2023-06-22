@@ -207,6 +207,71 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1615356255
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5307662357114766814, guid: ee929f8327abaa6499fb61a17ea23b3a, type: 3}
+      propertyPath: m_Name
+      value: WaterPuddle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307662357114766816, guid: ee929f8327abaa6499fb61a17ea23b3a, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307662357114766816, guid: ee929f8327abaa6499fb61a17ea23b3a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307662357114766816, guid: ee929f8327abaa6499fb61a17ea23b3a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307662357114766816, guid: ee929f8327abaa6499fb61a17ea23b3a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307662357114766816, guid: ee929f8327abaa6499fb61a17ea23b3a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307662357114766816, guid: ee929f8327abaa6499fb61a17ea23b3a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307662357114766816, guid: ee929f8327abaa6499fb61a17ea23b3a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307662357114766816, guid: ee929f8327abaa6499fb61a17ea23b3a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307662357114766816, guid: ee929f8327abaa6499fb61a17ea23b3a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307662357114766816, guid: ee929f8327abaa6499fb61a17ea23b3a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307662357114766816, guid: ee929f8327abaa6499fb61a17ea23b3a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307662357114766819, guid: ee929f8327abaa6499fb61a17ea23b3a, type: 3}
+      propertyPath: _moveSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307662357114766821, guid: ee929f8327abaa6499fb61a17ea23b3a, type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ee929f8327abaa6499fb61a17ea23b3a, type: 3}
 --- !u!1 &2031397681
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +425,7 @@ MonoBehaviour:
   _waveStartPos: {x: 0, y: 12, z: 0}
   _moveWaveTime: 10
   _sabotageTime: 3
+  _puddleNum: 1
 --- !u!212 &2033705910
 SpriteRenderer:
   m_ObjectHideFlags: 0
