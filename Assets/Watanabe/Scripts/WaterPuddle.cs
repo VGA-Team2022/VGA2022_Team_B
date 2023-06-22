@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[RequireComponent (typeof(Rigidbody2D))]
+[RequireComponent (typeof(Rigidbody))]
 /// <summary> 水溜り </summary>
 public class WaterPuddle : MonoBehaviour
 {
@@ -10,7 +10,7 @@ public class WaterPuddle : MonoBehaviour
     [SerializeField] private float _minPosX = -10f;
     [SerializeField] private float _maxPosX = 10f;
 
-    private Rigidbody2D _rb2d = default;
+    private Rigidbody _rb = default;
     /// <summary> 自分がどのレーンに存在するか </summary>
     private int _myRane = 0;
 
@@ -25,25 +25,18 @@ public class WaterPuddle : MonoBehaviour
         pos.z = posZ;
         transform.position = pos;
 
-        Debug.Log(posX);
-
         _myRane = posZ;
 
-        _rb2d = GetComponent<Rigidbody2D>();
-        _rb2d.gravityScale = 0f;
+        _rb = GetComponent<Rigidbody>();
+        _rb.useGravity = false;
         //設定忘れ防止
-        GetComponent<BoxCollider2D>().isTrigger = true;
+        GetComponent<BoxCollider>().isTrigger = true;
     }
-
-    //private void Update()
-    //{
-    //    transform.position -= new Vector3(Time.deltaTime * _moveSpeed, 0f);
-    //}
 
     private void FixedUpdate()
     {
         //水溜りの移動(当たり判定をとるため、Rigidbody2D)
-        _rb2d.velocity = new Vector2(-Time.deltaTime * _moveSpeed, 0f);
+        _rb.velocity = new Vector2(-Time.deltaTime * _moveSpeed, 0f);
     }
 
     //以下2つの関数は、オブジェクト出現時にオブジェクトがカメラ内にいる、
@@ -59,9 +52,9 @@ public class WaterPuddle : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider other)
     {
-        var hit = collision.gameObject;
+        var hit = other.gameObject;
 
         if (hit.TryGetComponent(out Obon obon) &&
             hit.transform.parent.gameObject.TryGetComponent(out Player player))
