@@ -38,10 +38,12 @@ public class GameManager : MonoBehaviour
     public static bool IsStop = false;
 
     /// <summary>Clear判定用のドアを出現させる判定</summary>
-    public static bool IsAppearDoorObj = false;
+    private static bool isAppearDoorObj = false;
 
     /// <summary>SceneManager格納用変数</summary>
     private AttachedSceneController _scenemng = default;
+
+    public static bool IsAppearDoorObj { get => isAppearDoorObj; set => isAppearDoorObj = value; }
 
     void Awake()
     {

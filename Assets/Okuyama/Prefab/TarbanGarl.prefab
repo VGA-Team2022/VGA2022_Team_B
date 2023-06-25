@@ -218,6 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tarban: {fileID: 160644701113980138}
   _tarbanOff: 3
+  _ratio: 4.2
 --- !u!65 &5046977041275818936
 BoxCollider:
   m_ObjectHideFlags: 0
