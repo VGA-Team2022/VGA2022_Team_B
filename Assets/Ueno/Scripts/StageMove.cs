@@ -25,6 +25,8 @@ public class StageMove : MonoBehaviour
     /// <summary>UVスクロール速度が速いので調整の為</summary>
     [Tooltip("速度調整"), SerializeField] private float _speedRatio = 0.1f;
 
+    public float SpeedRatio => _speedRatio;
+
     private Vector2 offset;
 
     private bool isSetMaterial;
@@ -53,7 +55,7 @@ public class StageMove : MonoBehaviour
         {
             StickMove();
 
-            offset.x += MoveSpeed * _speedRatio * Time.deltaTime;
+            offset.x += MoveSpeed * SpeedRatio * Time.deltaTime;
             //Debug.Log($"指定offset{offset.x}:Materialoffset{_targetMaterial.mainTextureOffset}");
             _targetMaterial.mainTextureOffset = offset;
         }

@@ -27,7 +27,6 @@ public class Gimmickmanager : MonoBehaviour
     private int _appearGimmickNum = 0;
     private bool isAppearGimmick = false;
     private bool employee = false;
-    const int TARBANGARL_INDEX_ONE = 1;
     int _nowStarg;
 
     private void Start()
@@ -55,16 +54,16 @@ public class Gimmickmanager : MonoBehaviour
             _appearGimmickNum++;
             isAppearGimmick = true;
         }
+        //Debug.Log($"CurrentTime{GameManager.CurrentTime}");
     }
 
     private void GenerateGimmick(int gimmickPrefabNum)
     {
         var obj = Instantiate(_gimmickPrefabs[gimmickPrefabNum], _appearLane);
         obj.transform.parent = null;
-        Debug.Log($"{_gimmickPrefabs[gimmickPrefabNum]}‚ªoŒ»‚µ‚½,Œ»İ‚ÌƒQ[ƒ€“àŠÔ{GameManager.CurrentTime}");
-        if (gimmickPrefabNum == TARBANGARL_INDEX_ONE && _nowStarg == 0)//_nowStarg == 0‚Í‰®•~(’‹)‚É‡‚Á‚½”Ô†‚É‚·‚é
+        if (obj.GetComponent<ArtPainting>() != null /*&& _nowStarg == 0*/)//_nowStarg == 0‚Í‰®•~(’‹)‚É‡‚Á‚½”Ô†‚É‚·‚é
         {
-            obj.GetComponent<TarbanGarl>().StageMove = _stageMove;
+            obj.GetComponent<ArtPainting>().StageMove = _stageMove;
         }
         else if (gimmickPrefabNum == _gimmickPrefabs.Length - 1)
         {
