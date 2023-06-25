@@ -4,15 +4,18 @@
 /// <summary> 水溜り </summary>
 public class WaterPuddle : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed = 50f;
-
     [Header("以下の2値はカメラ内に収まる値にしてください")]
     [SerializeField] private float _minPosX = -10f;
     [SerializeField] private float _maxPosX = 10f;
 
+    [Tooltip("移動速度（参照を取得できなかったとき用）")]
+    [SerializeField] private float _moveSpeed = 5f;
+
     private Rigidbody _rb = default;
     /// <summary> 自分がどのレーンに存在するか </summary>
     private int _myRane = 0;
+
+    private float _puddleSpeed = 0f;
 
     private void Start()
     {
@@ -33,10 +36,16 @@ public class WaterPuddle : MonoBehaviour
         GetComponent<BoxCollider>().isTrigger = true;
     }
 
+    public void Init(float value)
+    {
+        //値が未設定だった場合のみ、自分で設定した値にする
+        _puddleSpeed = value == 0 ? value : _moveSpeed;
+    }
+
     private void FixedUpdate()
     {
-        //水溜りの移動(当たり判定をとるため、Rigidbody2D)
-        _rb.velocity = new Vector2(-Time.deltaTime * _moveSpeed, 0f);
+        //水溜りの移動(当たり判定をとるため、Rigidbody)
+        _rb.velocity = new Vector2(-Time.deltaTime * _puddleSpeed * 10, 0f);
     }
 
     //以下2つの関数は、オブジェクト出現時にオブジェクトがカメラ内にいる、

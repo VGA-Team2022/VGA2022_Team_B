@@ -24,6 +24,7 @@ public class EnemyWhale : MonoBehaviour
     [SerializeField] private int _puddleNum = 1;
 
     private Transform[] _waves = default;
+    private StageMove _stage = default;
 
     private void Start()
     {
@@ -39,6 +40,8 @@ public class EnemyWhale : MonoBehaviour
 
             _waves[i].position = _waveStartPos * (i + 1);
         }
+
+        _stage = FindObjectOfType<StageMove>();
     }
 
     private void Update()
@@ -100,7 +103,8 @@ public class EnemyWhale : MonoBehaviour
     {
         for (int i = 0; i < _puddleNum; i++)
         {
-            Instantiate(_puddlePrefab);
+            var go = Instantiate(_puddlePrefab);
+            if (go.TryGetComponent(out WaterPuddle puddle)) puddle.Init(_stage.MoveSpeed);
         }
     }
 }
