@@ -39,7 +39,7 @@ public class WaterPuddle : MonoBehaviour
     public void Init(float value)
     {
         //値が未設定だった場合のみ、自分で設定した値にする
-        _puddleSpeed = value == 0 ? value : _moveSpeed;
+        _puddleSpeed = value <= 1f ? value : _moveSpeed;
     }
 
     private void FixedUpdate()
