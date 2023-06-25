@@ -6,17 +6,20 @@ public class Result : MonoBehaviour
     [SerializeField] private GameResult _storyJudge = GameResult.YashikiStage_Daytime_Clear;
     [SerializeField] private Sequencer _sequencer = default;
 
-    private Patterns[] _resultPatterns = default;
+    private static Patterns[] _resultPatterns = default;
 
-    private void Start()
+    private void Awake()
     {
-        //挑戦結果の該当し得るパターンを列挙
-        _resultPatterns = new Patterns[]
+        //挑戦結果の該当し得るパターンを列挙（ゲーム一周目のみ初期化を行う）
+        _resultPatterns ??= new Patterns[]
             { new Patterns(0, 0, true), new Patterns(0, 0, false),
               new Patterns(0, 1, true), new Patterns(0, 1, false),
               new Patterns(1, 0, true), new Patterns(1, 0, false),
               new Patterns(1, 1, true), new Patterns(1, 1, false) };
+    }
 
+    private void Start()
+    {
         //挑戦結果がリザルトパターンのどれに該当するか
         var index = Array.IndexOf(
                     _resultPatterns,
