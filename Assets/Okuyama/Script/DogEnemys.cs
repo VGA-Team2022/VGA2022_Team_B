@@ -1,12 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[Serializable]
+class DogPrefabs
+{
+    [Tooltip("‘–‚éŒ¢Prefab"), SerializeField] public GameObject[] _runDogPrefabs;
+    [Tooltip("~‚Ü‚éŒ¢Prefab"), SerializeField] public GameObject[] _stopDogPrefabs;
+}
 public class DogEnemys : MonoBehaviour
 {
+    [Header("Scecn”Ô†‚Æ“¯‚¶Element”Ô†‚ÉScene‚É‡‚Á‚½Prefab‚ğ“ü‚ê‚é\n‰®•~(’‹)‚ª0”Ô‚È‚çElement”Ô†0”Ô‚É‰®•~(’‹)‚Ég‚¤ƒMƒ~ƒbƒN‚ğ“ü‚ê‚é")]
+    [SerializeField] private DogPrefabs[] _sceneDogGimmick;
     [SerializeField, Tooltip("Player")] Player _player = null;
-    [SerializeField, Tooltip("Œ¢‚ÅŒ¾‚¤‚Æ‘–‚é•û")] GameObject[] _runObj = default;
-    [SerializeField, Tooltip("Œ¢‚ÅŒ¾‚¤‚Æ•à‚­•û")] GameObject[] _stopObj = default;
+    [Tooltip("Œ¢‚ÅŒ¾‚¤‚Æ‘–‚é•û")] GameObject[] _runObj = default;
+    [Tooltip("Œ¢‚ÅŒ¾‚¤‚Æ•à‚­•û")] GameObject[] _stopObj = default;
 
     [Header("ˆÊ’u")]
     [SerializeField, Tooltip("¶¬ˆÊ’u")] Transform[] _enemyspoint = default;
@@ -20,6 +28,8 @@ public class DogEnemys : MonoBehaviour
     void Start()
     {
         _nowStarg = GameManager.StageLevelNum;
+        _runObj = _sceneDogGimmick[_nowStarg]._runDogPrefabs;
+        _stopObj = _sceneDogGimmick[_nowStarg]._stopDogPrefabs;
         InvokeRepeating("Instans", spawnDelay, _interval);
     }
 
@@ -36,16 +46,18 @@ public class DogEnemys : MonoBehaviour
     /// </summary>
     void Instans()
     {
-        var point = Random.Range(0, _enemyspoint.Length);
-        var type = Random.Range(0, 2);
+        var point = UnityEngine.Random.Range(0, _enemyspoint.Length);
+        var runIndex = UnityEngine.Random.Range(0, _runObj.Length);
+        var stopIndex = UnityEngine.Random.Range(0, _stopObj.Length);
 
+        var type = UnityEngine.Random.Range(0, 2);
         if (type == 0)//‘–‚é
         {
-            Instantiate(_runObj[_nowStarg], _enemyspoint[point].position, Quaternion.identity);
+            Instantiate(_runObj[runIndex], _enemyspoint[point].position, Quaternion.identity);
         }
         else//~‚Ü‚é
         {
-            Instantiate(_stopObj[_nowStarg], _enemyspoint[_player.NowPos].position, Quaternion.identity);
+            Instantiate(_stopObj[stopIndex], _enemyspoint[_player.NowPos].position, Quaternion.identity);
         }
     }
 }
