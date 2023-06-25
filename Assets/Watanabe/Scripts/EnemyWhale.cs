@@ -104,7 +104,10 @@ public class EnemyWhale : MonoBehaviour
         for (int i = 0; i < _puddleNum; i++)
         {
             var go = Instantiate(_puddlePrefab);
-            if (go.TryGetComponent(out WaterPuddle puddle)) puddle.Init(_stage.MoveSpeed);
+            if (go.TryGetComponent(out WaterPuddle puddle))
+            {
+                puddle.Init(_stage == null ? 0f : _stage.MoveSpeed);
+            }
         }
     }
 }
