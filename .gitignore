@@ -78,3 +78,7 @@ crashlytics-build.properties
 .vsconfig
 
 Assets/Plugins/Demigiant/DOTween/
+Assets/Sound/
+Assets/Sound.meta
+Assets/Resources/SoundList.prefab
+Assets/Resources/SoundList.prefab.meta
