@@ -25,6 +25,15 @@ public class Result : MonoBehaviour
                     _resultPatterns,
                     new Patterns(GameManager.GameStageNum, GameManager.StageLevelNum, GameManager.IsGameClear));
 
+        if (index % 2 == 0)
+        {
+            Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.BGM_Type.BGM_Result_GameClear);
+        }
+        else
+        {
+            Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.BGM_Type.BGM_Result_GameOver);
+        }
+
         _storyJudge = (GameResult)index;
 
         _sequencer.SetDialogue(_storyJudge);
