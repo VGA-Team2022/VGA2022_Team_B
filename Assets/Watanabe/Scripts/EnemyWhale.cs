@@ -29,6 +29,7 @@ public class EnemyWhale : MonoBehaviour
     private void Start()
     {
         Debug.Log("鯨出現");
+        Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_Whale_Voice);
 
         _waves = new Transform[3];
         for (int i = 0; i < _waves.Length; i++)
@@ -54,6 +55,8 @@ public class EnemyWhale : MonoBehaviour
     /// <summary> 潮吹き妨害(DOMove) </summary>
     public void Squirting()
     {
+        Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_Whale_WaterSplash);
+
         var sequenceOne = DOTween.Sequence();
         var sequenceTwo = DOTween.Sequence();
         var sequenceThree = DOTween.Sequence();
@@ -84,6 +87,8 @@ public class EnemyWhale : MonoBehaviour
     /// <summary> 潮吹き妨害(DOScale) </summary>
     public void SquirtingScale()
     {
+        Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_Whale_WaterSplash);
+
         var sequence = DOTween.Sequence();
 
         sequence.Append(_waves[0].DOScale(new Vector3(1f, 3f, 1f), _sabotageTime))
