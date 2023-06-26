@@ -44,7 +44,7 @@ public class Soundmanager : MonoBehaviour
     }
 
 
-    private static AudioSource _SoundEfectSource;
+    private static AudioSource _soundEffectSource;
     private static AudioSource _BGMSource;
 
     private static Soundmanager instanceSound;
@@ -56,7 +56,7 @@ public class Soundmanager : MonoBehaviour
             {
                 var soundObj = new GameObject("SoundManagerObj");
                 instanceSound = soundObj.AddComponent<Soundmanager>();
-                _SoundEfectSource = soundObj.AddComponent<AudioSource>();
+                _soundEffectSource = soundObj.AddComponent<AudioSource>();
 
                 var bgmObj = new GameObject("BGMObj");
                 _BGMSource = bgmObj.AddComponent<AudioSource>();
@@ -84,6 +84,15 @@ public class Soundmanager : MonoBehaviour
 
 
     //////////////////////////////////////////////////////////////////////////////////////////
+    
+    /// <summary> Player移動時に呼び出す関数 </summary>
+    public void PlayerMoveSE(SE_Type audioClip)
+    {
+        //移動中 && サウンド実行中だったら何もしない
+        if (_soundEffectSource.isPlaying) return;
+
+        _soundEffectSource.PlayOneShot(GetSoundEffectList((int)audioClip));
+    }
 
     /// <summary>
     ///　SEを鳴らす関数
@@ -91,8 +100,8 @@ public class Soundmanager : MonoBehaviour
     public void PlayAudioClip(SE_Type audioClip)
     {
 
-        _SoundEfectSource.Stop();
-        _SoundEfectSource.PlayOneShot(GetSoundEffectList((int)audioClip));
+        _soundEffectSource.Stop();
+        _soundEffectSource.PlayOneShot(GetSoundEffectList((int)audioClip));
 
     }
 
@@ -129,12 +138,12 @@ public class Soundmanager : MonoBehaviour
 
     public void SEVolumeSeT(float vol)
     {
-        if (_SoundEfectSource == null)
+        if (_soundEffectSource == null)
         {
             Debug.LogError("SEのオーディオソースがないのだbyずんだもん");
             return;
         }
-        _SoundEfectSource.volume = vol;
+        _soundEffectSource.volume = vol;
     }
     public void BGMVolumeSeT(float vol)
     {
