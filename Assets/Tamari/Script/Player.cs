@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -11,21 +10,24 @@ public class Player : MonoBehaviour
 	[SerializeField, Tooltip("レーンの位置")] Transform[] _raneNum;
 	[Tooltip("プレイヤーの現在地")] private int _nowPos;
 
-	SpriteRenderer _sp;
-
 	bool _up;
 	bool _down;
 
+	private Soundmanager.SE_Type _moveSE = Soundmanager.SE_Type.FootStep_Yashiki;
+
 	//プレイヤーの現在地をプロパティ化
-	public int NowPos
-    {
-		get { return _nowPos; }
-    }
-	void Start()
+	public int NowPos => _nowPos;
+
+    void Start()
 	{
 		_nowPos = 1;
 		gameObject.transform.position = _raneNum[_nowPos].position;
-		_sp = GetComponent<SpriteRenderer>();
+
+		_moveSE = GameManager.GameStageNum switch
+		{
+			0 => Soundmanager.SE_Type.FootStep_Yashiki,
+			1 => Soundmanager.SE_Type.FootStep_Sea
+        };
 	}
 
 	void Update()
@@ -38,6 +40,8 @@ public class Player : MonoBehaviour
 	/// </summary>
 	private void StickMove()
     {
+		Soundmanager.InstanceSound.PlayerMoveSE(_moveSE);
+
 		var current = Gamepad.current;
 
 		// ゲームパッドの接続確認
@@ -76,10 +80,8 @@ public class Player : MonoBehaviour
 			_down = false;
         }
     }
-	/// <summary>
-	/// 上のレーンに移動
-	/// </summary>
-	private void Up()
+    /// <summary> 上のレーンに移動 </summary>
+    private void Up()
     {
         if (_nowPos >= _raneNum.Length - 1)
         {
@@ -90,14 +92,13 @@ public class Player : MonoBehaviour
         {
 			_nowPos++;
 
-			gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _raneNum[_nowPos].position.z);
-			//SoundManager.Instance.CriAtomPlay(CueSheet.SE, "レーン移動");
+			gameObject.transform.position
+				= new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _raneNum[_nowPos].position.z);
+			Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Player_LaneMove);
 			Debug.Log("上に移動");
 		}
     }
-	/// <summary>
-	/// 下のレーンに移動
-	/// </summary>
+    /// <summary> 下のレーンに移動 </summary>
     private void Down()
     {
 		if (_nowPos == 0)
@@ -108,9 +109,10 @@ public class Player : MonoBehaviour
 		else if (_nowPos > 0)
 		{
 			_nowPos--;
-			gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _raneNum[_nowPos].position.z);
-			//SoundManager.Instance.CriAtomPlay(CueSheet.SE, "レーン移動");
-			Debug.Log("下に移動");
+			gameObject.transform.position
+				= new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _raneNum[_nowPos].position.z);
+            Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Player_LaneMove);
+            Debug.Log("下に移動");
 		}
     }
 

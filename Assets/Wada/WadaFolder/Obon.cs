@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -57,7 +56,6 @@ public class Obon : MonoBehaviour
         }
     }
 
-
     private void Awake()
     {
         for (int i = 0; i < _startOkasis.Length; i++)
@@ -84,7 +82,7 @@ public class Obon : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            Debug.Log("tamarinoKinntamari");
+            Debug.Log("input b");
             Hit(this.transform.position.x - 1);
         }
     }
@@ -112,6 +110,7 @@ public class Obon : MonoBehaviour
     //    _okasis.AddRange(gameObjects);
     //    _okasis[i].transform.position = _okasis[i - 1].GetComponent<Sweets>().NextPos.position;
     //}
+
     public void SweetsAdd(GameObject gameObjects)
     {
         _okasis.Add(gameObjects);
@@ -155,6 +154,7 @@ public class Obon : MonoBehaviour
                     sweets.SwayAnim();
                 }
             }
+            Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Player_Collision);
         }
     }
 
@@ -162,7 +162,6 @@ public class Obon : MonoBehaviour
     {
         if (!_sweetsFall && !_staticSweetsFall)
         {
-
             foreach (GameObject okasis in _okasis)
             {
                 if (okasis.TryGetComponent(out Sweets sweets))
@@ -171,6 +170,7 @@ public class Obon : MonoBehaviour
                 }
             }
             _sweetsFall = true;
+            Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.CakeStandFall);
         }
     }
 
