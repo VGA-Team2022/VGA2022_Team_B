@@ -659,10 +659,12 @@ MonoBehaviour:
   _printer:
     _unSpeak: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     _fade: {fileID: 774897497}
+    _indicateTime: 2
     _speakerText: {fileID: 1410842175}
     _dialogueText: {fileID: 331394787}
     _princessImage: {fileID: 1920558504}
     _maidImage: {fileID: 512287608}
+    _resultBackGround: {fileID: 0}
     _princessSprites:
     - {fileID: 21300000, guid: 4efe55376edf64049ab52ae598f836de, type: 3}
     - {fileID: 21300000, guid: a8400529701306a40b916e2d160dbca8, type: 3}
@@ -676,7 +678,11 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 53a06dbbf36175341b8cde33510389d5, type: 3}
     - {fileID: 21300000, guid: 1d4ef372f15e0dc43b1050307a1adcec, type: 3}
     - {fileID: 21300000, guid: ae7ec339ef0cce844b77ddf449bb7410, type: 3}
-    _indicateTime: 2
+    _backGrounds:
+      _yashikiDaytime: {fileID: 0}
+      _yashikiNight: {fileID: 0}
+      _seaStageDaytime: {fileID: 0}
+      _seaStageNight: {fileID: 0}
 --- !u!1 &1410842173
 GameObject:
   m_ObjectHideFlags: 0
