@@ -1,6 +1,5 @@
 using UnityEngine.SceneManagement;
 
-
 public class SceneChangeScript
 {
     private static bool roadNow = false;
@@ -33,6 +32,8 @@ public class SceneChangeScript
     /// <return> 挑戦するステージがあればtrue, なければfalse </return>
     public static bool StageUp()
     {
+        GameManager.IsGameClear = false;
+
         //屋敷ステージ
         if (GameManager.GameStageNum == 0)
         {
