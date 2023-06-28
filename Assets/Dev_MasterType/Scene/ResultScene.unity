@@ -5606,6 +5606,7 @@ GameObject:
   - component: {fileID: 614696187}
   - component: {fileID: 614696186}
   - component: {fileID: 614696185}
+  - component: {fileID: 614696188}
   m_Layer: 5
   m_Name: NextStageButton
   m_TagString: Untagged
@@ -5677,10 +5678,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 772368939}
-        m_TargetAssemblyTypeName: AttachedSceneController, Assembly-CSharp
-        m_MethodName: NoFadeChangeScene
-        m_Mode: 5
+      - m_Target: {fileID: 614696188}
+        m_TargetAssemblyTypeName: LoadToNextStageButton, Assembly-CSharp
+        m_MethodName: LoadNextSatge
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5727,6 +5728,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614696183}
   m_CullTransparentMesh: 1
+--- !u!114 &614696188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614696183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e194651d94fb8f4ca7a002f40e65faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneNames: 2
 --- !u!1 &654632826
 GameObject:
   m_ObjectHideFlags: 0
@@ -5954,17 +5968,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d28353bcc532d549b79365565b3acff, type: 3}
---- !u!114 &772368939 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6386944373957357797, guid: 0d28353bcc532d549b79365565b3acff, type: 3}
-  m_PrefabInstance: {fileID: 772368938}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96938229c6fd9e94e8ba9b0f05fc359a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &884681566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6246,7 +6249,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1018174803}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3624ce7ce7810d040b3bfe922ab91da6, type: 3}
   m_Name: 
@@ -6610,6 +6613,7 @@ GameObject:
   - component: {fileID: 1382958326}
   - component: {fileID: 1382958325}
   - component: {fileID: 1382958324}
+  - component: {fileID: 1382958327}
   m_Layer: 5
   m_Name: TitleButton
   m_TagString: Untagged
@@ -6681,10 +6685,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 772368939}
-        m_TargetAssemblyTypeName: AttachedSceneController, Assembly-CSharp
-        m_MethodName: NoFadeChangeScene
-        m_Mode: 5
+      - m_Target: {fileID: 1382958327}
+        m_TargetAssemblyTypeName: LoadToNextStageButton, Assembly-CSharp
+        m_MethodName: LoadNextSatge
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6731,6 +6735,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382958322}
   m_CullTransparentMesh: 1
+--- !u!114 &1382958327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382958322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e194651d94fb8f4ca7a002f40e65faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneNames: 0
 --- !u!1 &1516179926
 GameObject:
   m_ObjectHideFlags: 0
@@ -7192,6 +7209,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1856573820}
     - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: _printer._titleButton
+      value: 
+      objectReference: {fileID: 1382958322}
+    - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
       propertyPath: _printer._dialogueText
       value: 
       objectReference: {fileID: 399752301}
@@ -7199,6 +7220,10 @@ PrefabInstance:
       propertyPath: _printer._princessImage
       value: 
       objectReference: {fileID: 674872570}
+    - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: _printer._nextStageButton
+      value: 
+      objectReference: {fileID: 614696183}
     - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
       propertyPath: _printer._resultBackGround
       value: 

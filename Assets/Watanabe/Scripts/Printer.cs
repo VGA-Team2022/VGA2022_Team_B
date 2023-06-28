@@ -8,7 +8,8 @@ using UnityEngine.UI;
 [Serializable]
 public class Printer
 {
-    [SerializeField] private GameObject _sceneLoadButtons = default;
+    [SerializeField] private GameObject _titleButton = default;
+    [SerializeField] private GameObject _nextStageButton = default;
 
     [Tooltip("話していない人は暗くする")]
     [SerializeField] private Color _unSpeak = default;
@@ -46,7 +47,8 @@ public class Printer
     {
         _dialogue = dialogue;
 
-        _sceneLoadButtons.SetActive(false);
+        _nextStageButton.SetActive(false);
+        _titleButton.SetActive(false);
         ShowText();
     }
 
@@ -124,7 +126,18 @@ public class Printer
         }
         else
         {
-            FadeScript.StartFadeOut(() => _sceneLoadButtons.SetActive(true));
+            Action onCompleteFadeOut
+                = SceneChangeScript.StageUp() ?
+                () =>
+                {
+                    _titleButton.SetActive(true);
+                    _nextStageButton.SetActive(true);
+                } : 
+                () =>
+                {
+                    _titleButton.SetActive(true);
+                };
+            FadeScript.StartFadeOut(() => onCompleteFadeOut());
         }
     }
 
