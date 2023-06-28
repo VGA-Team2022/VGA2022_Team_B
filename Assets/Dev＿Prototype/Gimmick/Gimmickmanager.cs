@@ -31,7 +31,9 @@ public class Gimmickmanager : MonoBehaviour
 
     private void Start()
     {
-         _nowStarg = GameManager.StageLevelNum;
+        _nowStarg = (GameManager.GameStageNum * 2) + GameManager.StageLevelNum;
+        Debug.Log($"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa{ _nowStarg}");
+
         _gimmickPrefabs = _sceneGimmick[_nowStarg]._gimmickPrefabs;
     }
     private void Update()
@@ -41,7 +43,7 @@ public class Gimmickmanager : MonoBehaviour
 
         if (GameManager.CurrentTime < GameManager.GameTimeClearLength/ 2 && !employee)
         {
-            GenerateGimmick(_gimmickPrefabs.Length -1);
+            GenerateGimmick(_gimmickPrefabs.Length);
             employee = true;
         }
 
