@@ -210,12 +210,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37317906}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eba854fa2209d0647a4f89489f8d1ba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StoryJudge: 0
   _printer: {fileID: 37317911}
   _yashiki_DayLight_ClearMessages:
   - "\u304A\u5B22\u69D8,\u3042\u3089\u3001\u3061\u3083\u3093\u3068\u6301\u3063\u3066\u304D\u3066\u304F\u3060\u3055\u3063\u305F\u306E\u306D,6"
@@ -256,6 +255,8 @@ MonoBehaviour:
   - "\u30E1\u30A4\u30C9,\u305D\u3093\u306A\u2026\u2026,2"
   - "\u30E1\u30A4\u30C9,(\u30B1\u3001\u30B1\u30FC\u30AD\u843D\u3068\u3057\u305F\u3060\u3051\u306A\u306E\u306B\u2026\u2026\uFF01),2"
   - ',,'
+  _seaStageClearMessage: []
+  _seaStageFailedMessage: []
   _sceneChangeButtons: {fileID: 1018174803}
 --- !u!114 &37317911
 MonoBehaviour:
@@ -264,7 +265,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37317906}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 794a2358222ad0542a4fa4385de6dce7, type: 3}
   m_Name: 
@@ -322,10 +323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f154ff0ac54c142928b46e94a4ee0790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableDebugPrintOnTerminal: 0
-  enableForceCrashOnError: 0
-  dontDestroyOnLoad: 1
-  messageBufferCounts: 8
 --- !u!4 &99082965
 Transform:
   m_ObjectHideFlags: 0
@@ -370,72 +367,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e49f339aff054453b2d8287aec75bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initializesFileSystem: 1
-  fileSystemConfig:
-    numberOfLoaders: 16
-    numberOfBinders: 8
-    numberOfInstallers: 2
-    installBufferSize: 32
-    maxPath: 256
-    userAgentString: 
-    minimizeFileDescriptorUsage: 0
-    enableCrcCheck: 0
-    androidDeviceReadBitrate: 50000000
-  initializesAtom: 1
-  atomConfig:
-    acfFileName: 
-    maxVirtualVoices: 32
-    maxVoiceLimitGroups: 32
-    maxCategories: 32
-    maxAisacs: 8
-    maxBusSends: 8
-    maxSequenceEventsPerFrame: 2
-    maxBeatSyncCallbacksPerFrame: 1
-    maxCueLinkCallbacksPerFrame: 1
-    standardVoicePoolConfig:
-      memoryVoices: 16
-      streamingVoices: 8
-    hcaMxVoicePoolConfig:
-      memoryVoices: 0
-      streamingVoices: 0
-    outputSamplingRate: 0
-    usesInGamePreview: 0
-    inGamePreviewMode: 0
-    inGamePreviewConfig:
-      maxPreviewObjects: 200
-      communicationBufferSize: 2048
-      playbackPositionUpdateInterval: 8
-    serverFrequency: 60
-    asrOutputChannels: 0
-    useRandomSeedWithTime: 1
-    categoriesPerPlayback: 4
-    maxFaders: 4
-    maxBuses: 8
-    maxParameterBlocks: 1024
-    vrMode: 0
-    keepPlayingSoundOnPause: 1
-    editorPcmOutputConfig:
-      enable: 0
-      bufferLength: 4096
-    pcBufferingTime: 0
-    iosEnableSonicSync: 1
-    iosBufferingTime: 50
-    iosOverrideIPodMusic: 0
-    androidEnableSonicSync: 1
-    androidBufferingTime: 133
-    androidStartBufferingTime: 100
-    androidLowLatencyStandardVoicePoolConfig:
-      memoryVoices: 0
-      streamingVoices: 0
-    androidUsesAndroidFastMixer: 1
-    androidForceToUseAsrForDefaultPlayback: 1
-    androidUsesAAudio: 0
-  initializesMana: 1
-  manaConfig:
-    numberOfDecoders: 8
-    numberOfMaxEntries: 4
-  dontInitializeOnAwake: 0
-  dontDestroyOnLoad: 0
 --- !u!4 &211962711
 Transform:
   m_ObjectHideFlags: 0
@@ -622,7 +553,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 479131425}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &479131428
 Camera:
   m_ObjectHideFlags: 0
@@ -5811,7 +5742,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &654632827
 Transform:
   m_ObjectHideFlags: 0
@@ -6210,7 +6141,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 971849860}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &971849863
 Camera:
   m_ObjectHideFlags: 0
@@ -6468,27 +6399,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e631c3b9947b54c823c6853a05529c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playOnStart: 1
-  _regionOnStart: {fileID: 0}
-  _listenerOnStart: {fileID: 0}
-  _use3dPositioning: 1
-  _freezeOrientation: 0
-  _loop: 0
-  _volume: 0.25
-  _pitch: 0
-  _androidUseLowLatencyVoicePool: 0
-  need_to_player_update_all: 1
-  _use3dRandomization: 0
-  _randomPositionListMaxLength: 0
-  randomize3dConfig:
-    followsOriginalSource: 0
-    calculationType: 0
-    calculationParameters:
-    - 0
-    - 0
-    - 0
-  _cueName: BGM_success
-  _cueSheet: CueSheet_BGM  JINGLE
 --- !u!1 &1138030405
 GameObject:
   m_ObjectHideFlags: 0
@@ -6905,7 +6815,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1623812236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6918,7 +6828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d53f393d6b3cc345a3f67e400b375d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StoryJudge: 1
+  _storyJudge: 1
   _messageSequencer: {fileID: 37317910}
 --- !u!4 &1623812237
 Transform:
@@ -6971,7 +6881,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -207, y: -82}
+  m_AnchoredPosition: {x: -206.99994, y: -82}
   m_SizeDelta: {x: 1227.2682, y: 1735.794}
   m_Pivot: {x: -0.1, y: 0.38}
 --- !u!114 &1626733139
@@ -7108,19 +7018,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f529aa944b914449d62b8c40f188fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acfFile: "\u304A\u83D3\u5B50.acf"
-  cueSheets:
-  - name: CueSheet_SE
-    acbFile: CueSheet_SE.acb
-    awbFile: 
-    loaderStatus: 0
-  - name: CueSheet_BGM  JINGLE
-    acbFile: CueSheet_BGM  JINGLE.acb
-    awbFile: CueSheet_BGM  JINGLE.awb
-    loaderStatus: 0
-  dspBusSetting: 
-  dontDestroyOnLoad: 0
-  dontRemoveExistsCueSheet: 0
 --- !u!1 &1710597564
 GameObject:
   m_ObjectHideFlags: 0
@@ -7165,10 +7062,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0466a3b0dc5cce9428b38d250fc3fdf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _atomSource: {fileID: 2066523533}
-  _atomBGMSource: {fileID: 1105667616}
-  changeBGMSpeed: 1
-  _bgmCueName: 
 --- !u!1 &1856573818
 GameObject:
   m_ObjectHideFlags: 0
@@ -7283,6 +7176,91 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2001306240
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: _printer._maidImage
+      value: 
+      objectReference: {fileID: 1626733139}
+    - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: _printer._speakerText
+      value: 
+      objectReference: {fileID: 1856573820}
+    - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: _printer._dialogueText
+      value: 
+      objectReference: {fileID: 399752301}
+    - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: _printer._princessImage
+      value: 
+      objectReference: {fileID: 674872570}
+    - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: _printer._resultBackGround
+      value: 
+      objectReference: {fileID: 1071801404}
+    - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: _printer._sceneLoadButtons
+      value: 
+      objectReference: {fileID: 1018174803}
+    - target: {fileID: 110029950107716651, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 110029950107716651, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 110029950107716651, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 110029950107716651, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 110029950107716651, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 110029950107716651, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 110029950107716651, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 110029950107716651, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 110029950107716651, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 110029950107716651, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 110029950107716651, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 110029950107716652, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: m_Name
+      value: Result
+      objectReference: {fileID: 0}
+    - target: {fileID: 110029950107716652, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
 --- !u!1 &2066523531
 GameObject:
   m_ObjectHideFlags: 0
@@ -7327,24 +7305,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e631c3b9947b54c823c6853a05529c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playOnStart: 0
-  _regionOnStart: {fileID: 0}
-  _listenerOnStart: {fileID: 0}
-  _use3dPositioning: 1
-  _freezeOrientation: 0
-  _loop: 0
-  _volume: 0.23
-  _pitch: 0
-  _androidUseLowLatencyVoicePool: 0
-  need_to_player_update_all: 1
-  _use3dRandomization: 0
-  _randomPositionListMaxLength: 0
-  randomize3dConfig:
-    followsOriginalSource: 0
-    calculationType: 0
-    calculationParameters:
-    - 0
-    - 0
-    - 0
-  _cueName: "\u30EC\u30FC\u30F3\u79FB\u52D5"
-  _cueSheet: CueSheet_SE
