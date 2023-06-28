@@ -78,23 +78,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGimmick:
   - _gimmickPrefabs:
-    - {fileID: 4581314397129326892, guid: 01cb173fc29f6ff498d8fcdac9e1d834, type: 3}
     - {fileID: 84186214253110219, guid: 6a9b0fea219a58b48b4f7165e5ad4093, type: 3}
-  - _gimmickPrefabs: []
+  - _gimmickPrefabs:
+    - {fileID: 4581314397129326892, guid: 01cb173fc29f6ff498d8fcdac9e1d834, type: 3}
+    - {fileID: 505428341683561616, guid: f1511abd195a9694380616c49141c8c2, type: 3}
+    - {fileID: 84186214253110219, guid: 6a9b0fea219a58b48b4f7165e5ad4093, type: 3}
+  - _gimmickPrefabs:
+    - {fileID: 440068893640481458, guid: 5b546fe573794a24ebde258eb9b59fc5, type: 3}
+    - {fileID: 84186214253110219, guid: 6a9b0fea219a58b48b4f7165e5ad4093, type: 3}
+  - _gimmickPrefabs:
+    - {fileID: 440068893640481458, guid: 5b546fe573794a24ebde258eb9b59fc5, type: 3}
+    - {fileID: 7550710172475099114, guid: 8b641f60882b6fd42b1e1afdb3d5082f, type: 3}
+    - {fileID: 84186214253110219, guid: 6a9b0fea219a58b48b4f7165e5ad4093, type: 3}
   _appearLane: {fileID: 421818439038519347}
   _appearTime:
+  - 50
+  - 40
   - 30
-  - 25
-  - 20
-  - 10
-  - 5
+  - 15
   _stageMove: {fileID: 0}
   _obonObj: {fileID: 0}
   _lanes:
   - {fileID: 5052681711918801213}
   - {fileID: 6713780263941611653}
   - {fileID: 2203912612226536711}
-  _halfPoint: {fileID: 4513691791668147716, guid: 952be1e5bc6587a4b9835cd7c6b63792, type: 3}
 --- !u!1 &3443330940372345020
 GameObject:
   m_ObjectHideFlags: 0
