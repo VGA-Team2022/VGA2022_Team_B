@@ -27,12 +27,16 @@ public class BackGroundScroll : MonoBehaviour
     private Vector2 offset;
 
     private float time;
-    bool isFlipSeaAnim;
+    private bool isFlipSeaAnim;
     private void Awake()
     {
-        offset = TargetMaterial.mainTextureOffset;
-        offset.y = 0;
-        TargetMaterial.mainTextureOffset = offset;
+        if (TargetMaterial)
+        {
+            offset = TargetMaterial.mainTextureOffset;
+            offset.y = 0;
+            TargetMaterial.mainTextureOffset = offset;
+        }
+
         if (isSea)
         {
             GetComponent<MeshRenderer>().enabled = false;
