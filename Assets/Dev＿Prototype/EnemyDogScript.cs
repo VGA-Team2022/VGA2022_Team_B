@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Soundmanager;
 
 public enum DogType
 {
@@ -66,11 +67,11 @@ public class EnemyDogScript : MonoBehaviour
 
         if (_dogType == DogType.Outrun)
         {
-            AudioManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_small dog_cry");
+            Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_SmallDog_Cry);
         }
         else 
         {
-            AudioManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_big dog_cry");
+            Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_BigDog_Cry);
         }
 
     }
@@ -98,7 +99,7 @@ public class EnemyDogScript : MonoBehaviour
         switch (_dogType)
         {
             case DogType.Outrun:
-                AudioManager.Instance.CriAtomPlay(CueSheet.SE, "SE._enemy_small dog_breath");
+                InvokeRepeating("SmallDogBreathPlayAudio", 0, 2f);
                 //スタート位置によって進行方向とSpriteの向きを変える
                 if (!isSpawnNegativeX)//Playerの進行方向(画面右端から左端に向けて)からくる挙動
                 {
@@ -119,7 +120,7 @@ public class EnemyDogScript : MonoBehaviour
                 break;
 
             case DogType.Stop:
-                AudioManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_big dog_breath");
+                InvokeRepeating("BigDogBreathPlayAudio", 0, 2f);
                 //スタート位置によって進行方向とSpriteの向きを変える
                 if (!isSpawnNegativeX)//Playerの進行方向(画面右端から左端に向けて)からくる挙動
                 {
@@ -161,6 +162,14 @@ public class EnemyDogScript : MonoBehaviour
         }
     }
 
+    private void BigDogBreathPlayAudio()
+    {
+         InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_BigDog_Breath);
+    }
+    private void SmallDogBreathPlayAudio()
+    {
+        InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_SmallDog_Breath);           
+    }
 
     //あたり判定
     private void OnCollisionEnter(Collision collision)
@@ -172,7 +181,7 @@ public class EnemyDogScript : MonoBehaviour
             {
                 obon.Hit(this.transform.position.x);
             }
-            //Debug.Log("メイド「あああああああああああ」");
+
         }
     }
 }
