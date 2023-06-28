@@ -62,7 +62,10 @@ public class Soundmanager : MonoBehaviour
                 _BGMSource = bgmObj.AddComponent<AudioSource>();
                 bgmObj.transform.parent = soundObj.transform;
 
-                DontDestroyOnLoad(soundObj);
+                if (Application.isPlaying) // プレイモード内でのみ実行
+                {
+                    DontDestroyOnLoad(soundObj);
+                }
             }
             return instanceSound;
         }
