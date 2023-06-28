@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// ステージ切替
@@ -44,7 +45,8 @@ public class SeaStageMoveScript : MonoBehaviour
 
     private void Awake()
     {
-        StageJudge();  
+        CacheReferences();
+        StageJudge();
         this.enabled = false;
     }
 
@@ -53,30 +55,27 @@ public class SeaStageMoveScript : MonoBehaviour
         StageJudge();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
+    private void CacheReferences()
+    {
+        _waveScript = _wave.GetComponent<BackGroundScroll>();
+    }
+
     private void StageJudge()
     {
         if (GameManager.GameStageNum == 1)
         {
-            _waveScript = _wave.GetComponent<BackGroundScroll>();
             _waveScript.enabled = true;
             if (GameManager.StageLevelNum == 0)
             {
                 _waveScript.TargetMaterial = _waveMaterial[0];
-                foreach (var i in _backGroundObject[1]._objPrefabs)
-                {
-                    i.enabled = false;//_backGroundObject[0]のobject以外を非表示にする
-                }
+                Debug.Log($"海ステージ昼");
+                DisableObjects(_backGroundObject[1]._objPrefabs);
             }
             else if (GameManager.StageLevelNum == 1)
             {
                 _waveScript.TargetMaterial = _waveMaterial[1];
-                foreach (var i in _backGroundObject[0]._objPrefabs)
-                {
-                    i.enabled = false;//_backGroundObject[1]のobject以外を非表示にする
-                }
+                Debug.Log($"海ステージ夕方");
+                DisableObjects(_backGroundObject[0]._objPrefabs);
             }
             else
             {
@@ -85,26 +84,27 @@ public class SeaStageMoveScript : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < _backGroundObject.Length; i++)
+            foreach (var backGround in _backGroundObject)
             {
-                foreach (var obj in _backGroundObject[i]._objPrefabs)
-                {
-                    obj.enabled = false;//海objectを非表示にする
-                }
+                DisableObjects(backGround._objPrefabs);
+                Debug.Log($"海ステージではないので{backGround._objPrefabs}を非表示にした");
             }
         }
     }
-    
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="stagetype"></param>
-    private void BeauchColorChange(int stagetype) 
+
+    private void DisableObjects(SpriteRenderer[] objects)
     {
-        //foreach (var item in _beauchMeshRenderer)
-        //{
-        //    item.GetComponent<MeshRenderer>().material = _;
-        //}
+        foreach (var obj in objects)
+        {
+            obj.enabled = false;
+        }
     }
 
+    //private void BeauchColorChange(int stageType)
+    //{
+    //    foreach (var item in _beauchMeshRenderer)
+    //    {
+    //        item.material = _beauchMaterial[stageType];
+    //    }
+    //}
 }
