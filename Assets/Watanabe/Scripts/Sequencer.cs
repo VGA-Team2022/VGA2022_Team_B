@@ -15,7 +15,7 @@ public class Sequencer : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
             _printer.ShowText();
         }

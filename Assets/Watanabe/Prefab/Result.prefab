@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &110029950107716652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 110029950107716651}
+  - component: {fileID: 110029950107716650}
+  - component: {fileID: 110029950107716649}
+  m_Layer: 0
+  m_Name: Result
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &110029950107716651
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110029950107716652}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &110029950107716650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110029950107716652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7698f4d17e7bb464e9e5563b6991de69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _storyJudge: 0
+  _sequencer: {fileID: 110029950107716649}
+--- !u!114 &110029950107716649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110029950107716652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53955449f97799f489d7c87f3d86572b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textData: {fileID: 4900000, guid: 3dc1f75bbc35fbb4099eb5a9439dc4ce, type: 3}
+  _printer:
+    _unSpeak: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
+    _fade: {fileID: 0}
+    _indicateTime: 2
+    _speakerText: {fileID: 0}
+    _dialogueText: {fileID: 0}
+    _princessImage: {fileID: 0}
+    _maidImage: {fileID: 0}
+    _resultBackGround: {fileID: 0}
+    _princessSprites:
+    - {fileID: 21300000, guid: 4efe55376edf64049ab52ae598f836de, type: 3}
+    - {fileID: 21300000, guid: a8400529701306a40b916e2d160dbca8, type: 3}
+    - {fileID: 21300000, guid: 337d5f3c3e708dd48882d6d49e45c121, type: 3}
+    - {fileID: 21300000, guid: c238de345b6df9241b3c7d06a0b9bad3, type: 3}
+    - {fileID: 21300000, guid: eab01696f73270f43b4c9939a590a63d, type: 3}
+    - {fileID: 21300000, guid: f89481204565e4c449d00f7c855633b1, type: 3}
+    - {fileID: 21300000, guid: 404ce893e82770043abbc953847015c1, type: 3}
+    _maidSprites:
+    - {fileID: 21300000, guid: 3280f62453fb41e44b48204ca5a8e4ad, type: 3}
+    - {fileID: 21300000, guid: 53a06dbbf36175341b8cde33510389d5, type: 3}
+    - {fileID: 21300000, guid: 1d4ef372f15e0dc43b1050307a1adcec, type: 3}
+    - {fileID: 21300000, guid: ae7ec339ef0cce844b77ddf449bb7410, type: 3}
+    _backGrounds:
+      _yashikiDaytime: {fileID: 21300000, guid: d60bf71c8483f5047a98864ea14eeafd, type: 3}
+      _yashikiNight: {fileID: 21300000, guid: a502f4826c1c85340abd6ba61bacf172, type: 3}
+      _seaStageDaytime: {fileID: 21300000, guid: 82736016960239f4192aed19c790c051, type: 3}
+      _seaStageNight: {fileID: 21300000, guid: d747f838dc1cbf94bbbb53d0a15c964a, type: 3}
