@@ -8,9 +8,10 @@ using UnityEngine.UI;
 [Serializable]
 public class Printer
 {
+    [SerializeField] private GameObject _sceneLoadButtons = default;
+
     [Tooltip("話していない人は暗くする")]
     [SerializeField] private Color _unSpeak = default;
-    [SerializeField] private Fade _fade = default;
 
     #region Inspectorで設定するUI
     [Header("Text一覧")]
@@ -44,6 +45,9 @@ public class Printer
     public void Init(string[] dialogue)
     {
         _dialogue = dialogue;
+
+        _sceneLoadButtons.SetActive(false);
+        ShowText();
     }
 
     /// <summary> 背景設定 </summary>
@@ -120,7 +124,7 @@ public class Printer
         }
         else
         {
-            _fade.FadeOut();
+            FadeScript.StartFadeOut(() => _sceneLoadButtons.SetActive(true));
         }
     }
 
