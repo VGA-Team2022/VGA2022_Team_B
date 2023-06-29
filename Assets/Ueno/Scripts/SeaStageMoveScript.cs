@@ -45,7 +45,6 @@ public class SeaStageMoveScript : MonoBehaviour
 
     private void Awake()
     {
-        CacheReferences();
         StageJudge();
         this.enabled = false;
     }
@@ -55,7 +54,7 @@ public class SeaStageMoveScript : MonoBehaviour
         StageJudge();
     }
 
-    private void CacheReferences()
+    private void CacheReferences()                              
     {
         _waveScript = _wave.GetComponent<BackGroundScroll>();
     }
