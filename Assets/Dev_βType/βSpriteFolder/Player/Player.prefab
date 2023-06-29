@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 852472069176131689}
   - component: {fileID: 5632234850338873009}
   m_Layer: 0
-  m_Name: "\u8EAB\u4F53"
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,8 +104,8 @@ MonoBehaviour:
   - {fileID: 3653510673357140916}
   - {fileID: 1240616061305344136}
   m_Bounds:
-    m_Center: {x: -0.0005698204, y: 0.002204895, z: 0}
-    m_Extent: {x: 2.5378203, y: 2.862795, z: 0}
+    m_Center: {x: -0.00057029724, y: 0.0022051334, z: 0}
+    m_Extent: {x: 2.5378203, y: 2.8627954, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 7246817956177465832}
   - component: {fileID: 1729599803722975345}
   m_Layer: 0
-  m_Name: "\u5DE6\u624B"
+  m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -363,8 +363,8 @@ MonoBehaviour:
   - {fileID: 993174142101607947}
   - {fileID: 4208865612240485833}
   m_Bounds:
-    m_Center: {x: -0.00071048737, y: 0.0023400187, z: 0}
-    m_Extent: {x: 1.3892899, y: 0.57912, z: 0}
+    m_Center: {x: -0.00071036816, y: 0.0023403168, z: 0}
+    m_Extent: {x: 1.3892901, y: 0.5791198, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 5104729655149963264}
   - component: {fileID: 4135157928033722593}
   m_Layer: 0
-  m_Name: "\u53F3\u8DB3"
+  m_Name: RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -469,8 +469,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 6071194968976726661}
   m_Bounds:
-    m_Center: {x: -0.0017845631, y: -0.00027430058, z: 0}
-    m_Extent: {x: 0.59821486, y: 0.50369483, z: 0}
+    m_Center: {x: -0.0017847419, y: -0.0002747774, z: 0}
+    m_Extent: {x: 0.598215, y: 0.5036949, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 8447987471989740888}
   - component: {fileID: 176636674120345378}
   m_Layer: 0
-  m_Name: "\u5DE6\u8DB3"
+  m_Name: LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -575,8 +575,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 3382957137775677812}
   m_Bounds:
-    m_Center: {x: -0.0016000867, y: -0.00037002563, z: 0}
-    m_Extent: {x: 0.5882399, y: 0.48415995, z: 0}
+    m_Center: {x: -0.0016000867, y: -0.00037017465, z: 0}
+    m_Extent: {x: 0.58824, y: 0.48416, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -592,7 +592,7 @@ GameObject:
   - component: {fileID: 3357342721970458398}
   - component: {fileID: 9058137551353254140}
   m_Layer: 0
-  m_Name: "\u306B\u3053\u306B\u3053"
+  m_Name: Face_Default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -916,7 +916,7 @@ GameObject:
   - component: {fileID: 8563464692683271931}
   - component: {fileID: 9192656577176320148}
   m_Layer: 0
-  m_Name: "\u7126"
+  m_Name: Face_Hupning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1116,7 +1116,7 @@ GameObject:
   - component: {fileID: 1504834270021090780}
   - component: {fileID: 3314717780246205212}
   m_Layer: 0
-  m_Name: "\u7B11"
+  m_Name: Face_Laf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1222,7 +1222,7 @@ GameObject:
   - component: {fileID: 3366692795887675109}
   - component: {fileID: 7844078502181327788}
   m_Layer: 0
-  m_Name: "\u30EA\u30DC\u30F3"
+  m_Name: Ribbon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1312,8 +1312,8 @@ MonoBehaviour:
   - {fileID: 2304178557368970754}
   - {fileID: 6262177501821578296}
   m_Bounds:
-    m_Center: {x: 0.001085043, y: -0.00000023841858, z: 0}
-    m_Extent: {x: 1.6633346, y: 0.7500002, z: 0}
+    m_Center: {x: 0.0010848045, y: 0.00000029802322, z: 0}
+    m_Extent: {x: 1.6633346, y: 0.75000024, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -1422,7 +1422,7 @@ GameObject:
   - component: {fileID: 7116536870404212322}
   - component: {fileID: 1767400058341087239}
   m_Layer: 0
-  m_Name: "\u53F3\u624B"
+  m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1512,8 +1512,8 @@ MonoBehaviour:
   - {fileID: 2105884809140616228}
   - {fileID: 760125945626352342}
   m_Bounds:
-    m_Center: {x: 0.0021750927, y: -0.0018805265, z: 0}
-    m_Extent: {x: 1.357825, y: 0.7881199, z: 0}
+    m_Center: {x: 0.0021749735, y: -0.0018800497, z: 0}
+    m_Extent: {x: 1.3578252, y: 0.78812003, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -1559,7 +1559,7 @@ GameObject:
   - component: {fileID: 3827238591446895771}
   - component: {fileID: 203353151952210773}
   m_Layer: 0
-  m_Name: "\u76BF"
+  m_Name: Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1644,7 +1644,7 @@ GameObject:
   - component: {fileID: 8455760870261563120}
   - component: {fileID: 8390668827771872962}
   m_Layer: 0
-  m_Name: '!'
+  m_Name: Face_Fight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1733,8 +1733,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 8325778335791238793}
   m_Bounds:
-    m_Center: {x: 10.152407, y: 3.2708662, z: 0}
-    m_Extent: {x: 2.1382804, y: 2.1203253, z: 0}
+    m_Center: {x: 10.152407, y: 3.2708666, z: 0}
+    m_Extent: {x: 2.1382804, y: 2.1203256, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0

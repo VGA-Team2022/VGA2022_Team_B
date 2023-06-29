@@ -6,7 +6,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\u30AF\u30E9\u30FC\u30B1\u30F3"
+  m_Name: Klaken
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers: []

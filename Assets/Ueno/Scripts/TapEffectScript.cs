@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Soundmanager;
 /// <summary>
 /// 画面をタップした時にタップエフェクトを出したい
 /// </summary>
@@ -21,7 +22,7 @@ public class TapEffectScript : MonoBehaviour
         {
             // マウスのワールド座標までパーティクルを移動し、パーティクルエフェクトを1つ生成する
             var pos = _camera.ScreenToWorldPoint(Input.mousePosition + _camera.transform.forward * 10);
-            AudioManager.Instance.CriAtomPlay(CueSheet.SE, "SE_touch_normal");
+            Soundmanager.InstanceSound.PlayAudioClip(SE_Type.Touch_Button);
             _tapEffect.transform.position = pos;
             _tapEffect.Emit(10);
         }
