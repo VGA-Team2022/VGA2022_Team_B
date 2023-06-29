@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 public enum Judge
@@ -11,7 +9,7 @@ public enum Judge
 public class StagingJudgeScript : MonoBehaviour
 {
 
-    [SerializeField] private Judge _stagingJudgeType= Judge.Clear;
+    [SerializeField] private Judge _stagingJudgeType = Judge.Clear;
 
     [SerializeField] private Image _clearImage;
     [SerializeField] private Image _gameOverImage;
@@ -20,11 +18,11 @@ public class StagingJudgeScript : MonoBehaviour
 
     [SerializeField] private bool isDebug;
 
-    private bool isMigrateToResult;
-    // Start is called before the first frame update
-    void Start()
+    private bool _isMigrateToResult;
+
+    private void Start()
     {
-        isMigrateToResult = false;
+        _isMigrateToResult = false;
 
         if (isDebug)
         {
@@ -47,15 +45,15 @@ public class StagingJudgeScript : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.IsGameClear && !GameManager.IsGameStaged && !isMigrateToResult)
+        if (GameManager.IsGameClear && !GameManager.IsGameStaged && !_isMigrateToResult)
         {   
-            UnityEngine.Debug.Log("CLEAR");
-            isMigrateToResult = true;
+            Debug.Log("CLEAR");
+            _isMigrateToResult = true;
             StartCoroutine(Clear());
         }
-        else if (GameManager.IsGameOver && !GameManager.IsGameStaged && !isMigrateToResult)
+        else if (GameManager.IsGameOver && !GameManager.IsGameStaged && !_isMigrateToResult)
         {
-            isMigrateToResult = true;
+            _isMigrateToResult = true;
             StartCoroutine(GameOver());
         }
     }
