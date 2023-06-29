@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public static float GameSEVolume = 50;
 
     /// <summary>ゲームクリアまでの時間</summary>
-    public static float GameTimeClearLength = 30;
+    public static float GameTimeClearLength = 10;
 
     /// <summary>現在の時間</summary>
     public static float CurrentTime;
@@ -43,13 +43,15 @@ public class GameManager : MonoBehaviour
     /// <summary>SceneManager格納用変数</summary>
     private AttachedSceneController _scenemng = default;
 
-    public static bool IsAppearDoorObj { get => isAppearDoorObj; set => isAppearDoorObj = value; }
+    /// <summary>クリア判定後に出現するobjectフラグ</summary>
+    public static bool IsAppearClearObj { get => isAppearDoorObj; set => isAppearDoorObj = value; }
 
     void Awake()
     {
         DontDestroyOnLoad(this);
     }
 
+    #region ステージとレベルの選択操作で使うメソッド
     public void PrefarenceStage(int i)
     {
         GameStageNum = i;
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
     {
         GameTimeClearLength = i;
     }
+    #endregion
 
     private void Start()
     {
@@ -124,13 +127,14 @@ public class GameManager : MonoBehaviour
                 IsGameOver = false;
                 IsGameClear = false;
                 IsStop = false;
-                IsAppearDoorObj = false;
+                IsAppearClearObj = false;
                 CurrentTime = GameTimeClearLength;
             }
             GemeClearjudge();
         }
     }
 
+    #region クリア判定
     private void GemeClearjudge()
     {
         if (_scenemng)
@@ -164,7 +168,7 @@ public class GameManager : MonoBehaviour
         //GameClearになったら扉を呼び出す
         if (_isGameStart && !IsStop)
         {
-            if (!IsAppearDoorObj)
+            if (!IsAppearClearObj)
             {
                 CurrentTime -= Time.deltaTime;
             }
@@ -172,10 +176,12 @@ public class GameManager : MonoBehaviour
 
             if (CurrentTime <= 0 && !IsGameOver)
             {
-                IsAppearDoorObj = true;
+                IsAppearClearObj = true;
             }
         }
     }
+    #endregion
+
     /// <summary> 落下モーションを見る為 </summary>
     private IEnumerator GameOver()
     {

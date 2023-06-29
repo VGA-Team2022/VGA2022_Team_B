@@ -51,7 +51,7 @@ public class StageMove : MonoBehaviour
         }
 
 
-        if (!GameManager.IsAppearDoorObj)
+        if (!GameManager.IsAppearClearObj)
         {
             StickMove();
 

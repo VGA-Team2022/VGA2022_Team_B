@@ -35,7 +35,7 @@ public class DogEnemys : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.IsAppearDoorObj)
+        if (GameManager.IsAppearClearObj)
         {
             CancelInvoke("Instans");
         }
