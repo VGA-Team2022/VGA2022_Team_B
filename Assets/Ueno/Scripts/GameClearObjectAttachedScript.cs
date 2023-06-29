@@ -1,8 +1,12 @@
 using UnityEngine;
 
-public class DoorTouchClear : MonoBehaviour
+/// <summary>
+/// コライダーに触れるとクリア判定になるobjectにアタッチする
+/// 
+/// </summary>
+public class GameClearObjectAttachedScript : MonoBehaviour
 {
-
+    [SerializeField] GameObject[] _ObjectPrefab;
     private Animator _anim;
 
     private void Start()
@@ -13,9 +17,9 @@ public class DoorTouchClear : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.IsAppearDoorObj)
+        if (GameManager.IsAppearClearObj)
         {
-            _anim.SetBool("isClear", GameManager.IsAppearDoorObj);
+            _anim.SetBool("isClear", GameManager.IsAppearClearObj);
         }
     }
 
