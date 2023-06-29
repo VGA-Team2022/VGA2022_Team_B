@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
-//using UnityEngine.InputSystem.Switch;
 using UnityEngine.UI;
-
-
 public enum Judge
 {
     Clear,
@@ -51,9 +48,8 @@ public class StagingJudgeScript : MonoBehaviour
     private void Update()
     {
         if (GameManager.IsGameClear && !GameManager.IsGameStaged && !isMigrateToResult)
-        {
-             
-            UnityEngine.Debug.Log("CLEARRRRRRRRRRRRRRRRRRRRRRRRRR");
+        {   
+            UnityEngine.Debug.Log("CLEAR");
             isMigrateToResult = true;
             StartCoroutine(Clear());
         }
@@ -68,7 +64,7 @@ public class StagingJudgeScript : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         _clearImage.enabled = true;
-        //AudioManager.Instance.CriAtomBGMPlay("jingle_success");
+        Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.BGM_Type.Jingle_Clear);
         yield return new WaitForSeconds(2f);
         _clearImage.enabled = false;
         yield return new WaitForSeconds(2f);
@@ -82,7 +78,7 @@ public class StagingJudgeScript : MonoBehaviour
         _gameOverImage.enabled = true;
         yield return new WaitForSeconds(2f);
         _gameOverImage.sprite = _gameOver2;
-        //AudioManager.Instance.CriAtomBGMPlay("jingle_failure");
+        Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.BGM_Type.Jingle_Faild);
         yield return new WaitForSeconds(3f);
         gameoverTex.enabled = true;
         yield return new WaitForSeconds(2f);
