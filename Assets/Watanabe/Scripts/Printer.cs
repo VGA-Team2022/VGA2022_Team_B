@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Common;
+using DG.Tweening;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -149,7 +150,8 @@ public class Printer
                 } : 
                 () =>
                 {
-                    _titleButton.SetActive(true);
+                    SceneChangeScript.NoFadeLoadScene(Define.Scenes[SceneNames.TITLE_SCENE]);
+                    //_titleButton.SetActive(true);
                 };
             FadeScript.StartFadeOut(() => onCompleteFadeOut());
         }
