@@ -592,7 +592,7 @@ GameObject:
   - component: {fileID: 3357342721970458398}
   - component: {fileID: 9058137551353254140}
   m_Layer: 0
-  m_Name: Face_Default
+  m_Name: Face_Smile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -681,8 +681,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 3656225902579715985}
   m_Bounds:
-    m_Center: {x: -0.32708502, y: 1.3389148, z: 0}
-    m_Extent: {x: 2.0835795, y: 2.1199996, z: 0}
+    m_Center: {x: -0.3270855, y: 1.3389148, z: 0}
+    m_Extent: {x: 2.08358, y: 2.12, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -1116,12 +1116,12 @@ GameObject:
   - component: {fileID: 1504834270021090780}
   - component: {fileID: 3314717780246205212}
   m_Layer: 0
-  m_Name: Face_Laf
+  m_Name: Face_Default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7717265266394389888
 Transform:
   m_ObjectHideFlags: 0
@@ -1205,8 +1205,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5902707240379316727}
   m_Bounds:
-    m_Center: {x: 5.3112144, y: 3.6463678, z: 0}
-    m_Extent: {x: 2.1528504, y: 2.1118052, z: 0}
+    m_Center: {x: 5.3112135, y: 3.6463683, z: 0}
+    m_Extent: {x: 2.1528502, y: 2.1118052, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
