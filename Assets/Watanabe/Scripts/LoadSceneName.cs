@@ -1,5 +1,4 @@
 ﻿using Common;
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
