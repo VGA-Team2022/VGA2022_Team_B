@@ -1,27 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-/// <summary>
-/// ‰æ–Ê‚ğƒ^ƒbƒv‚µ‚½‚Éƒ^ƒbƒvƒGƒtƒFƒNƒg‚ğo‚µ‚½‚¢
-/// </summary>
+ï»¿using UnityEngine;
+
+/// <summary> ç”»é¢ã‚’ã‚¿ãƒƒãƒ—ã—ãŸæ™‚ã«ã‚¿ãƒƒãƒ—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å‡ºã—ãŸã„ </summary>
 public class TapEffectScript : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _tapEffect;
     [SerializeField] private Camera _camera;
-    // Start is called before the first frame update
-    void Start()
-    {
-       _tapEffect = _tapEffect.gameObject.GetComponent<ParticleSystem>();  
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if(Input.GetMouseButtonDown(0))
         {
-            // ƒ}ƒEƒX‚Ìƒ[ƒ‹ƒhÀ•W‚Ü‚Åƒp[ƒeƒBƒNƒ‹‚ğˆÚ“®‚µAƒp[ƒeƒBƒNƒ‹ƒGƒtƒFƒNƒg‚ğ1‚Â¶¬‚·‚é
+            // ãƒã‚¦ã‚¹ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã¾ã§ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’ç§»å‹•ã—ã€ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’1ã¤ç”Ÿæˆã™ã‚‹
             var pos = _camera.ScreenToWorldPoint(Input.mousePosition + _camera.transform.forward * 10);
-            AudioManager.Instance.CriAtomPlay(CueSheet.SE, "SE_touch_normal");
+            //AudioManager.Instance.CriAtomPlay(CueSheet.SE, "SE_touch_normal");
             _tapEffect.transform.position = pos;
             _tapEffect.Emit(10);
         }

@@ -1,52 +1,47 @@
-using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class FadeButton : MonoBehaviour
 {
-    [SerializeField] private Button[] _buttons;
-
+    [SerializeField] private Button[] _buttons = default;
     [SerializeField] private float _fadeDuration;
 
-    private Color _fadeColor;
+    private bool _isTitle = false;
+
+    public bool IsTitle { get => _isTitle; set => _isTitle = value; }
 
     private void Start()
     {
-        foreach(var b in _buttons)
+        foreach(var button in _buttons)
         {
-            b.gameObject.GetComponent<Button>();
-            b.onClick.AddListener(ButtonFade);
+            button.onClick.AddListener(button.gameObject.GetComponent<LoadSceneName>().PassFlag);
+            button.onClick.AddListener(ButtonFade);
         }
-
     }
 
     private void ButtonFade()
     {
-        StartCoroutine(FadeIn());
-    }
+        var title = _buttons[0].gameObject;
+        var next = _buttons[1].gameObject;
 
-    private IEnumerator FadeIn()
-    {
-        float clearScale = 1f;//α値
-
-        Color currentColor = _fadeColor;
-
-        while (clearScale > 0f)//clearScaleが０になるまで回す
+        if (_isTitle)
         {
-            clearScale -= _fadeDuration * Time.deltaTime;//1秒ごとにα値を下げる
+            title.GetComponent<Image>()
+                .DOFade(0f, _fadeDuration)
+                .OnComplete(() => title.GetComponent<LoadSceneName>().SceneLoad());
 
-            if (clearScale <= 0f)//値が0未満になることを避けている
-            {
-                clearScale = 0f;
-            }
 
-            currentColor.a = clearScale;//α値をcolorに代入
-
-            foreach (var i in _buttons)
-            {
-                i.GetComponent<Image>().color = currentColor;//colorを実際のImageのcolorに代入
-            }
-            yield return null;
+            next.GetComponent<Image>().DOFade(0f, _fadeDuration);
         }
+        else
+        {
+            title.GetComponent<Image>().DOFade(0f, _fadeDuration);
+
+            next.GetComponent<Image>()
+                .DOFade(0f, _fadeDuration)
+                .OnComplete(() => next.GetComponent<LoadSceneName>().SceneLoad());
+        }
+
     }
 }

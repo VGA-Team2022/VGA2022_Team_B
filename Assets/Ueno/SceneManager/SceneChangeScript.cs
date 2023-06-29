@@ -1,11 +1,11 @@
-using UnityEngine.SceneManagement;
+ï»¿using UnityEngine.SceneManagement;
 
 public class SceneChangeScript
 {
     private static bool roadNow = false;
 
     /// <summary>
-    /// w’èƒV[ƒ“‚ÉˆÚs‚·‚é
+    /// æŒ‡å®šã‚·ãƒ¼ãƒ³ã«ç§»è¡Œã™ã‚‹
     /// </summary>
     public static void LoadScene(string sceneName)
     {
@@ -28,13 +28,14 @@ public class SceneChangeScript
         SceneManager.LoadScene(sceneName);
     }
 
-    /// <summary> Ÿ‚ÌƒXƒe[ƒW‚Éi‚Ş‚Æ‚«AGameManager‚Ì’l‚ğXV‚·‚é </summary>
-    /// <return> ’§í‚·‚éƒXƒe[ƒW‚ª‚ ‚ê‚Îtrue, ‚È‚¯‚ê‚Îfalse </return>
+    /// <summary> æ¬¡ã®ã‚¹ãƒ†ãƒ¼ã‚¸ã«é€²ã‚€ã¨ãã€GameManagerã®å€¤ã‚’æ›´æ–°ã™ã‚‹ </summary>
+    /// <return> æŒ‘æˆ¦ã™ã‚‹ã‚¹ãƒ†ãƒ¼ã‚¸ãŒã‚ã‚Œã°true, ãªã‘ã‚Œã°false </return>
     public static bool StageUp()
     {
         GameManager.IsGameClear = false;
 
-        //‰®•~ƒXƒe[ƒW
+        //ã“ã“ã‚«ã‚¯ãƒ‹ãƒ³ã™ã‚‹
+        //å±‹æ•·ã‚¹ãƒ†ãƒ¼ã‚¸
         if (GameManager.GameStageNum == 0)
         {
             if (GameManager.StageLevelNum == 0)
@@ -47,7 +48,7 @@ public class SceneChangeScript
                 GameManager.StageLevelNum = 0;
             }
         }
-        //ŠCƒXƒe[ƒW
+        //æµ·ã‚¹ãƒ†ãƒ¼ã‚¸
         else
         {
             if (GameManager.StageLevelNum == 0)
@@ -56,7 +57,7 @@ public class SceneChangeScript
             }
             else
             {
-                //ÅŒã‚Ü‚Å‚¢‚Á‚½‚çƒŠƒZƒbƒg
+                //æœ€å¾Œã¾ã§ã„ã£ãŸã‚‰ãƒªã‚»ãƒƒãƒˆ
                 GameManager.GameStageNum = 0;
                 GameManager.StageLevelNum = 0;
                 return false;
