@@ -1,6 +1,5 @@
 ﻿using DG.Tweening;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,8 +25,9 @@ public class Printer
     [SerializeField] private Image _maidImage = default;
     [SerializeField] private Image _resultBackGround = default;
 
-    [SerializeField] private List<Sprite> _princessSprites = new();
-    [SerializeField] private List<Sprite> _maidSprites = new();
+    [Tooltip("各キャラクターのステージ毎のSprite")]
+    [SerializeField] private CharacterSprites _characters = new();
+    [Tooltip("背景Sprite")]
     [SerializeField] private BackGrounds _backGrounds = new();
     #endregion
 
@@ -38,14 +38,28 @@ public class Printer
     /// <summary> Text表示を実行中かどうか </summary>
     private bool _isShowText = false;
 
+    private Sprite[] _princessSprites = default;
+    private Sprite[] _maidSprites = default;
+
     //話者
     private const string _princess = "お嬢様";
     private const string _maid = "メイド";
 
     /// <summary> 表示するセリフの取得 </summary>
-    public void Init(string[] dialogue)
+    public void Init(string[] dialogue, Stage stage)
     {
         _dialogue = dialogue;
+
+        if (stage == Stage.Yashiki)
+        {
+            _princessSprites = _characters.PrincessYashiki;
+            _maidSprites = _characters.MaidYashiki;
+        }
+        else
+        {
+            _princessSprites = _characters.PrincessSea;
+            _maidSprites = _characters.MaidSea;
+        }
 
         _nextStageButton.SetActive(false);
         _titleButton.SetActive(false);
@@ -141,6 +155,7 @@ public class Printer
         }
     }
 
+    /// <summary> 背景のSpriteをまとめるクラス </summary>
     [Serializable]
     private class BackGrounds
     {
@@ -153,5 +168,20 @@ public class Printer
         public Sprite YashikiNight => _yashikiNight;
         public Sprite SeaStageDaytime => _seaStageDaytime;
         public Sprite SeaStageNight => _seaStageNight;
+    }
+
+    /// <summary> 各キャラクターのステージ毎のSpriteをまとめるクラス </summary>
+    [Serializable]
+    private class CharacterSprites
+    {
+        [SerializeField] private Sprite[] _princessYashiki = default;
+        [SerializeField] private Sprite[] _princeeeSea = default;
+        [SerializeField] private Sprite[] _maidYashiki = default;
+        [SerializeField] private Sprite[] _maidSea = default;
+
+        public Sprite[] PrincessYashiki => _princessYashiki;
+        public Sprite[] PrincessSea => _princeeeSea;
+        public Sprite[] MaidYashiki => _maidYashiki;
+        public Sprite[] MaidSea => _maidSea;
     }
 }
