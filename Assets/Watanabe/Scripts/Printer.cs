@@ -38,6 +38,8 @@ public class Printer
     private string[] _dialogue = default;
     /// <summary> Text表示を実行中かどうか </summary>
     private bool _isShowText = false;
+    /// <summary> 全てのセリフが出たか </summary>
+    private bool _isFinishShowTexts = false;
 
     private Sprite[] _princessSprites = default;
     private Sprite[] _maidSprites = default;
@@ -51,16 +53,15 @@ public class Printer
     {
         _dialogue = dialogue;
 
-        if (stage == Stage.Yashiki)
-        {
-            _princessSprites = _characters.PrincessYashiki;
-            _maidSprites = _characters.MaidYashiki;
-        }
-        else
-        {
-            _princessSprites = _characters.PrincessSea;
-            _maidSprites = _characters.MaidSea;
-        }
+        //キャラクターのSprite割り当て
+        _princessSprites =
+            stage == Stage.Yashiki ?
+            _characters.PrincessYashiki : _characters.PrincessSea;
+
+        _maidSprites = _characters.Maid;
+
+        _isShowText = false;
+        _isFinishShowTexts = false;
 
         _nextStageButton.SetActive(false);
         _titleButton.SetActive(false);
@@ -115,7 +116,7 @@ public class Printer
 
     public void ShowText()
     {
-        if (_isShowText) return;
+        if (_isShowText || _isFinishShowTexts) return;
 
         if (_dialogueIndex < _dialogue.Length - 1)
         {
@@ -141,6 +142,8 @@ public class Printer
         }
         else
         {
+            _isFinishShowTexts = true;
+
             Action onCompleteFadeOut
                 = SceneChangeScript.StageUp() ?
                 () =>
@@ -151,7 +154,6 @@ public class Printer
                 () =>
                 {
                     SceneChangeScript.NoFadeLoadScene(Define.Scenes[SceneNames.TITLE_SCENE]);
-                    //_titleButton.SetActive(true);
                 };
             FadeScript.StartFadeOut(() => onCompleteFadeOut());
         }
@@ -177,13 +179,11 @@ public class Printer
     private class CharacterSprites
     {
         [SerializeField] private Sprite[] _princessYashiki = default;
-        [SerializeField] private Sprite[] _princeeeSea = default;
-        [SerializeField] private Sprite[] _maidYashiki = default;
-        [SerializeField] private Sprite[] _maidSea = default;
+        [SerializeField] private Sprite[] _princessSea = default;
+        [SerializeField] private Sprite[] _maid = default;
 
         public Sprite[] PrincessYashiki => _princessYashiki;
-        public Sprite[] PrincessSea => _princeeeSea;
-        public Sprite[] MaidYashiki => _maidYashiki;
-        public Sprite[] MaidSea => _maidSea;
+        public Sprite[] PrincessSea => _princessSea;
+        public Sprite[] Maid => _maid;
     }
 }

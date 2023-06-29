@@ -5589,19 +5589,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 614696186}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 614696188}
-        m_TargetAssemblyTypeName: LoadToNextStageButton, Assembly-CSharp
-        m_MethodName: LoadNextSatge
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: GameScene_Master
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &614696186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5653,6 +5641,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneNames: 2
+  _fadeButton: {fileID: 1018174805}
+  _fadeDuration: 1
+  _isTitle: 0
 --- !u!1 &674872568
 GameObject:
   m_ObjectHideFlags: 0
@@ -6132,7 +6123,7 @@ MonoBehaviour:
   _buttons:
   - {fileID: 1382958324}
   - {fileID: 614696185}
-  _fadeDuration: 0.5
+  _fadeDuration: 1
 --- !u!1 &1071801402
 GameObject:
   m_ObjectHideFlags: 0
@@ -6515,19 +6506,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1382958325}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1382958327}
-        m_TargetAssemblyTypeName: LoadToNextStageButton, Assembly-CSharp
-        m_MethodName: LoadNextSatge
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: TitleScene
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1382958325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6579,6 +6558,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneNames: 0
+  _fadeButton: {fileID: 1018174805}
+  _fadeDuration: 1
+  _isTitle: 1
 --- !u!1 &1516179926
 GameObject:
   m_ObjectHideFlags: 0
@@ -6729,7 +6711,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -207, y: -82}
+  m_AnchoredPosition: {x: -206.99994, y: -82}
   m_SizeDelta: {x: 1227.2682, y: 1735.794}
   m_Pivot: {x: -0.1, y: 0.38}
 --- !u!114 &1626733139
@@ -6948,6 +6930,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1626733139}
     - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: _printer._tapEffect
+      value: 
+      objectReference: {fileID: 1138030405}
+    - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
       propertyPath: _printer._speakerText
       value: 
       objectReference: {fileID: 1856573820}
@@ -6975,6 +6961,26 @@ PrefabInstance:
       propertyPath: _printer._sceneLoadButtons
       value: 
       objectReference: {fileID: 1018174803}
+    - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: _printer._characters._maid.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: _printer._characters._maid.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3280f62453fb41e44b48204ca5a8e4ad, type: 3}
+    - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: _printer._characters._maid.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 53a06dbbf36175341b8cde33510389d5, type: 3}
+    - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: _printer._characters._maid.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1d4ef372f15e0dc43b1050307a1adcec, type: 3}
+    - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: _printer._characters._maid.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: ae7ec339ef0cce844b77ddf449bb7410, type: 3}
     - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
       propertyPath: _printer._characters._maidYashiki.Array.size
       value: 4
