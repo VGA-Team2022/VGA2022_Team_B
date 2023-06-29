@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -84,15 +85,32 @@ public class Sweets : MonoBehaviour
                 this.transform.position = new Vector3(_prevObj.transform.position.x + (obon.Zure * _misalignmentDifference) - obon.Movement, this.transform.position.y, this.transform.position.z);
             }
         }
-        
+
 
         //Debug.Log(_prevObj.transform.position.x - _deadWidth);
 
-        if (this.transform.position.x >= _prevObj.transform.position.x + _deadWidth / 2 || this.transform.position.x <= _prevObj.transform.position.x - _deadWidth / 2)
+        //if (this.transform.position.x >= _prevObj.transform.position.x + _deadWidth / 2 
+        //    || this.transform.position.x <= _prevObj.transform.position.x - _deadWidth / 2)
+        //{
+        //    obon._playerAnim.Abunaaaaaaai();
+        //}
+
+        try
+        {
+            if (this.transform.position.x >= _prevObj.transform.position.x + _deadWidth / 2
+                || this.transform.position.x <= _prevObj.transform.position.x - _deadWidth / 2)
+            {
+                obon._playerAnim.Abunaaaaaaai();
+            }
+        }
+        catch (NullReferenceException nullException)
         {
             obon._playerAnim.Abunaaaaaaai();
         }
     }
+
+
+
 
     public void PutOnSweets(GameObject gameObj)
     {
@@ -104,10 +122,10 @@ public class Sweets : MonoBehaviour
         _prevObj = null;
         this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;//Rigidbodyのロックを解除
         _anim.enabled = false;
-        this.transform.eulerAngles = new Vector3(0, 0,Random.Range(-30,30));//お菓子の向きをランダムに変える
+        this.transform.eulerAngles = new Vector3(0, 0,UnityEngine.Random.Range(-30,30));//お菓子の向きをランダムに変える
         //transform.rotation = Quaternion.Euler(0, 0, 90);
         //this.transform.eulerAngles = new Vector3(90, 90, 90);//お菓子の向きをランダムに変える
-        _rb.AddForce(new Vector3(Random.Range(-1, 1), 1,0) * power);//AddForceせんと崩れないからAddForce。演出にも使えソう;
+        _rb.AddForce(new Vector3(UnityEngine.Random.Range(-1, 1), 1,0) * power);//AddForceせんと崩れないからAddForce。演出にも使えソう;
     }
 
     public void SwayAnim()
