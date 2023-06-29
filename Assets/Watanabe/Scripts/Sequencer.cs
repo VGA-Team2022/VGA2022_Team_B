@@ -36,32 +36,46 @@ public class Sequencer : MonoBehaviour
     {
         //以下ResultSceneに表示するTextを設定する処理
         string[] dialogue = default;
+        Stage stage = Stage.Yashiki;
+
         switch (result)
         {
             //屋敷ステージ
             case GameResult.YashikiStage_Daytime_Clear:
                 dialogue = _resultTexts[0];
+                stage = Stage.Yashiki;
                 break;
             case GameResult.YashikiStage_Night_Clear:
                 dialogue = _resultTexts[1];
+                stage = Stage.Yashiki;
                 break;
             case GameResult.YashikiStage_Daytime_Failed:
             case GameResult.YashikiStage_Night_Failed:
                 dialogue = _resultTexts[2];
+                stage = Stage.Yashiki;
                 break;
             //海ステージ
             case GameResult.SeaStage_Daytime_Clear:
                 dialogue = _resultTexts[3];
+                stage = Stage.Sea;
                 break;
             case GameResult.SeaStage_Night_Clear:
                 dialogue = _resultTexts[4];
+                stage = Stage.Sea;
                 break;
             case GameResult.SeaStage_Daytime_Failed:
             case GameResult.SeaStage_Night_Failed:
                 dialogue = _resultTexts[5];
+                stage = Stage.Sea;
                 break;
         }
-        _printer.Init(dialogue);
+        _printer.Init(dialogue, stage);
         _printer.SetBackGround(result);
     }
+}
+
+public enum Stage
+{
+    Yashiki,
+    Sea,
 }
