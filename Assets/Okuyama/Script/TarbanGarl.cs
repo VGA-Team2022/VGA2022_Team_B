@@ -35,7 +35,7 @@ public class TarbanGarl : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             StartCoroutine(TarbanStart());
-            AudioManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_kaiga_turban");
+           // AudioManager.Instance.CriAtomPlay(CueSheet.SE, "SE_enemy_kaiga_turban");
         }
         if (_tarban.activeInHierarchy && other.gameObject.CompareTag("Obon"))
         {
