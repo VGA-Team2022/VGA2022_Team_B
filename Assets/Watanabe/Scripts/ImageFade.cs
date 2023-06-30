@@ -8,7 +8,7 @@ public class ImageFade : MonoBehaviour
 
     private void Start()
     {
-        _unMask.localScale = new Vector3(25f, 25f, 25f);
+        _unMask.localScale = new Vector3(30f, 30f, 30f);
     }
 
     private void Update()
@@ -16,7 +16,7 @@ public class ImageFade : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.Space)) Fade();
     }
 
-    private void Fade()
+    public void Fade()
     {
         _unMask
             .DOScale(0f, _duration).SetEase(Ease.Linear)
