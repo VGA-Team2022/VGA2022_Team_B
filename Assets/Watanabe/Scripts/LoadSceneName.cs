@@ -7,12 +7,11 @@ public class LoadSceneName : MonoBehaviour
     [Tooltip("シーン遷移先")]
     [SerializeField] private SceneNames _sceneNames = default;
     [SerializeField] FadeButton _fadeButton = default;
-    [SerializeField] private float _fadeDuration = 1f;
-    [SerializeField] private bool _isTitle = false;
+    [SerializeField] private NextScene _nextScene = NextScene.None;
 
-    public void PassFlag()
+    public void PassNextScene()
     {
-        _fadeButton.IsTitle = _isTitle;
+        _fadeButton.Next = _nextScene;
     }
 
     public void SceneLoad()

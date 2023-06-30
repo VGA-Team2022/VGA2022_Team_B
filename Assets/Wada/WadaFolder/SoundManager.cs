@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public class Soundmanager : MonoBehaviour
 {
@@ -28,8 +25,8 @@ public class Soundmanager : MonoBehaviour
         Enemy_Whale_Voice = 18,
         Enemy_Whale_WaterSplash = 19,
         Enemy_Whale_WaterPaddle = 20,
-
     }
+
     public enum BGM_Type
     {
         Jingle_Clear = 0,
@@ -42,7 +39,6 @@ public class Soundmanager : MonoBehaviour
         BGM_Sea_DayLight = 7,
         BGM_Sea_Sunset = 8,
     }
-
 
     private static AudioSource _soundEffectSource;
     private static AudioSource _BGMSource;
@@ -71,8 +67,6 @@ public class Soundmanager : MonoBehaviour
         }
     }
 
-
-
     public AudioClip GetSoundEffectList(int num)
     {
         var list = Resources.Load<SoundID>("SoundList");
@@ -84,7 +78,6 @@ public class Soundmanager : MonoBehaviour
         var list = Resources.Load<SoundID>("SoundList");
         return list.BGM_Clips[num];
     }
-
 
     //////////////////////////////////////////////////////////////////////////////////////////
     
@@ -102,10 +95,8 @@ public class Soundmanager : MonoBehaviour
     /// </summary>
     public void PlayAudioClip(SE_Type audioClip)
     {
-
         _soundEffectSource.Stop();
         _soundEffectSource.PlayOneShot(GetSoundEffectList((int)audioClip));
-
     }
 
     /// <summary>
@@ -114,7 +105,13 @@ public class Soundmanager : MonoBehaviour
     public void PlayAudioClip(BGM_Type audioClip)
     {
         _BGMSource.Stop();
-        _BGMSource.PlayOneShot(GetBGMList((int)audioClip));
+
+        //再生するサウンドがジングルでなければループ設定
+        _BGMSource.loop = audioClip != BGM_Type.Jingle_Clear && audioClip != BGM_Type.Jingle_Faild;
+        _BGMSource.clip = GetBGMList((int)audioClip);
+
+        _BGMSource.Play();
+        //_BGMSource.Play(GetBGMList((int)audioClip));
     }
 
     /// <summary>
@@ -148,6 +145,7 @@ public class Soundmanager : MonoBehaviour
         }
         _soundEffectSource.volume = vol;
     }
+
     public void BGMVolumeSeT(float vol)
     {
         if (_BGMSource == null)
