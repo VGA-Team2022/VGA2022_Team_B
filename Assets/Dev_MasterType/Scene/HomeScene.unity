@@ -1814,7 +1814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5208961381230126328, guid: 9689d401f7753534787ced44fe738d3f, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5208961381230126328, guid: 9689d401f7753534787ced44fe738d3f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4375,7 +4375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _image: {fileID: 1309235603}
-  _ruluPicture:
+  _rulePicture:
   - {fileID: 21300000, guid: 533b0354fea49024c90d3537f4d3a6d5, type: 3}
   - {fileID: 21300000, guid: 5f553b42385f1844fbe03efb6c445270, type: 3}
   - {fileID: 21300000, guid: 46eb1b9211e434640a5839af62cdc66a, type: 3}

@@ -1,56 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 
 public class RuleTextPrinter : MonoBehaviour
 {
-    [SerializeField] Text _textUi = default;
+    [SerializeField] private Text _textUi = default;
+    [SerializeField] private float _speed = 1f;
 
-    /// <summary>
-    /// 名前、セリフのセット
-    /// </summary>
-    [SerializeField] string _message = "";
+    /// <summary> 名前、セリフのセット </summary>
+    private string _message = "";
+    private float _elapsed = 0;
+    private float _interval;
+    private int _currentIndex = -1;
 
-    [SerializeField] float _speed = 1.0F;
+    public bool IsPrinting => !(_currentIndex == _message.Length - 1);
 
-
-    float _elapsed = 0;
-    float _interval;
-    int _currentIndex = -1;
-
-
-    public bool IsPrinting
+    private void Start()
     {
-        get
-        {
-            if (_currentIndex == _message.Length - 1)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-    }
-
-    void Start()
-    {
-
-        if (_textUi is null)
-        {
-            return;
-        }
+        if (_textUi == null) return;
 
         ShowMessage(_message);
     }
 
-    void Update()
+    private void Update()
     {
-        if (_textUi is null || _message is null || _currentIndex + 1 >= _message.Length)
+        if (_textUi == null || _message is null || _currentIndex + 1 >= _message.Length)
         {
             return;
         }
@@ -70,13 +44,11 @@ public class RuleTextPrinter : MonoBehaviour
 
         _message = message;
 
-
         _currentIndex = -1;
         _interval = _speed / _message.Length;
         //Debug.Log(dialogue.Length);
     }
 
-   
     /// <summary>
     /// 現在のセリフをスキップ
     /// </summary>
@@ -85,5 +57,4 @@ public class RuleTextPrinter : MonoBehaviour
         _textUi.text = _message;
         _currentIndex = _message.Length - 1;
     }
-
 }
