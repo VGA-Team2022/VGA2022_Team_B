@@ -50,17 +50,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stageLevelType: 0
   _wave: {fileID: 4186627687486594638}
-  _skyMesh: {fileID: 0}
   _backGroundObject:
   - _objPrefabs:
     - {fileID: 4186627687835358922}
   - _objPrefabs:
     - {fileID: 4186627687916234954}
     - {fileID: 4186627686793993497}
-  _skyMaterial: []
   _waveMaterial:
   - {fileID: 2100000, guid: 0dd991996c8030a4c99ef4b357e13388, type: 2}
   - {fileID: 2100000, guid: 08bff81f8d2242c4ba4ba6c943b86494, type: 2}
+  _beauchMaterial: []
+  _beauchMeshRenderer: []
 --- !u!1 &4186627686793993503
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,12 +241,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 174ae05e06425c24893224ce885304e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetMaterial: {fileID: 2100000, guid: 0dd991996c8030a4c99ef4b357e13388, type: 2}
+  TargetMaterial: {fileID: 2100000, guid: 0dd991996c8030a4c99ef4b357e13388, type: 2}
   _scrollX: 0.1
   _scrollY: 0.1
   _moveY: 0.2
   _durationTime: 0.2
   isSea: 1
+  MoveSpeed: 0
+  SpeedRatio: 5
 --- !u!1 &4186627687835358920
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +330,7 @@ SpriteRenderer:
   m_Size: {x: 11, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &4186627687916234952

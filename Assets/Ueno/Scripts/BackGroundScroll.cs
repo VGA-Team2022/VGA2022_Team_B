@@ -28,6 +28,11 @@ public class BackGroundScroll : MonoBehaviour
 
     private float time;
     private bool isFlipSeaAnim;
+
+
+    [HideInInspector] public float MoveSpeed = 0;
+    [HideInInspector] public float SpeedRatio = 5;
+
     private void Awake()
     {
         if (TargetMaterial)
@@ -44,22 +49,21 @@ public class BackGroundScroll : MonoBehaviour
         }
     }
 
+
     private void OnEnable()
     {
         GetComponent<MeshRenderer>().enabled = true;
         isSea = true;
         Debug.Log(GetComponent<MeshRenderer>().enabled);
-
     }
+
 
     private void FixedUpdate()
     {
         if (isSea)
         {
-           
             time += Time.deltaTime;
-
-            offset.x += _scrollX * Time.deltaTime;
+            offset.x +=  MoveSpeed * SpeedRatio * Time.deltaTime;
 
             if (_durationTime <= time)
             {
@@ -67,8 +71,6 @@ public class BackGroundScroll : MonoBehaviour
                 offset.y = (isFlipSeaAnim) ? offset.y += _moveY : offset.y -= _moveY;
             }
             TargetMaterial.mainTextureOffset = offset;
-
-            Debug.Log(offset);
         }
         else
         {
