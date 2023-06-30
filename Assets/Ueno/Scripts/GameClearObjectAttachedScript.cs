@@ -6,27 +6,23 @@ using UnityEngine;
 public class GameClearObjectAttachedScript : MonoBehaviour
 {
     [Tooltip("接触したらクリア判定にするobjects"),SerializeField] private Animator[] _objectPrefabsAnim;
-    [SerializeField] private StageMove _stageMove;
 
     private int _gameStageNum;
     //AnimatorのClearアニメーションに遷移するためのParamの名前
     private string _animClearPram = "isClear";
-    private BoxCollider _col;
+    private bool _isClear;
+
 
     private void Start()
     {
         _gameStageNum = GameManager.GameStageNum; 
         _objectPrefabsAnim[_gameStageNum] = _objectPrefabsAnim[_gameStageNum].GetComponent<Animator>();
-        _stageMove = _stageMove.gameObject.GetComponent<StageMove>();
-        _col = GetComponent<BoxCollider>();
-        _col.enabled = false;
     }
 
     private void Update()
     {
-        if (GameManager.IsAppearClearObj)
+        if (GameManager.IsAppearClearObj&& !_isClear)
         {
-            _col.enabled = true;
             _objectPrefabsAnim[_gameStageNum].SetBool(_animClearPram,true);
         }
     }
@@ -36,6 +32,7 @@ public class GameClearObjectAttachedScript : MonoBehaviour
         if (other.gameObject.tag == "Obon")
         {
             GameManager.IsGameClear = true;
+            _isClear = true;
             Debug.Log("GameClear");
         }
     }

@@ -262,6 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6351792010379316968}
   - component: {fileID: 1087517632815329824}
+  - component: {fileID: 2031530050}
   m_Layer: 0
   m_Name: GoalPrefab_Sea
   m_TagString: Untagged
@@ -298,5 +299,25 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.533044, y: 10.660557, z: 16.891472}
-  m_Center: {x: 3.168508, y: 0.26124883, z: 4.5392876}
+  m_Size: {x: 10.743926, y: 10.660557, z: 16.891472}
+  m_Center: {x: 2.563067, y: 0.2612486, z: 4.5392876}
+--- !u!95 &2031530050
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7203985161407183004}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a441380ab496cc2428d0ddc50d5f8bd9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
