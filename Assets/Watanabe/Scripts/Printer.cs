@@ -10,6 +10,7 @@ public class Printer
 {
     [SerializeField] private GameObject _titleButton = default;
     [SerializeField] private GameObject _nextStageButton = default;
+    [SerializeField] private GameObject _retryButton = default;
 
     [Tooltip("話していない人は暗くする")]
     [SerializeField] private Color _unSpeak = default;
@@ -63,8 +64,9 @@ public class Printer
         _isShowText = false;
         _isFinishShowTexts = false;
 
-        _nextStageButton.SetActive(false);
         _titleButton.SetActive(false);
+        _nextStageButton.SetActive(false);
+        _retryButton.SetActive(false);
         ShowText();
     }
 
@@ -150,6 +152,7 @@ public class Printer
                 {
                     _titleButton.SetActive(true);
                     _nextStageButton.SetActive(true);
+                    _retryButton.SetActive(true);
                 } : 
                 () =>
                 {

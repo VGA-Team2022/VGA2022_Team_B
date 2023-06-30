@@ -706,7 +706,6 @@ MonoBehaviour:
   - {fileID: 527893611}
   - {fileID: 1294421107}
   _playerAnim: {fileID: 1261917085}
-  _int: 000000000000000000000000
   _zureSpeed: 0.005
   _sweetsFall: 0
 --- !u!4 &236472778
@@ -862,10 +861,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stageType: 0
-  _targetMaterials: []
-  _groundsObjs: []
+  _targetMaterial: []
+  _groundsObj: []
   CurrentMaterial: {fileID: 2100000, guid: b19462f9caf310e42844c7694af0a54d, type: 2}
-  IsSea: 0
+  isSea: 0
   _seaScript: {fileID: 1599628160}
 --- !u!114 &243928489
 MonoBehaviour:
@@ -881,7 +880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 3
   _obon: {fileID: 236472777}
-  _keepSpeed: 0
+  KeepSpeed: 0
   _speedRatio: 0.1
   _gyroSpeed: 0.5
 --- !u!23 &243928490
@@ -2469,7 +2468,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 50
   _obon: {fileID: 236472777}
-  _startKeepCakeTime: 5
 --- !u!1 &1218696185
 GameObject:
   m_ObjectHideFlags: 0
@@ -3427,11 +3425,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc37ebc65f5c70f49b9ceaddef3d42ae, type: 3}
---- !u!4 &1502214250 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7598365774175857728, guid: 459331cd2047674438f5e2f09d0996e7, type: 3}
-  m_PrefabInstance: {fileID: 7598365773227430954}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1566600668
 GameObject:
   m_ObjectHideFlags: 0
@@ -3934,7 +3927,6 @@ Transform:
   m_Children:
   - {fileID: 1651960162}
   - {fileID: 199986950}
-  - {fileID: 1502214250}
   m_Father: {fileID: 1055251473}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5108,64 +5100,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2145213040}
   m_CullTransparentMesh: 1
---- !u!1001 &7598365773227430954
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1689881486}
-    m_Modifications:
-    - target: {fileID: 7598365774175857728, guid: 459331cd2047674438f5e2f09d0996e7, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7598365774175857728, guid: 459331cd2047674438f5e2f09d0996e7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7598365774175857728, guid: 459331cd2047674438f5e2f09d0996e7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7598365774175857728, guid: 459331cd2047674438f5e2f09d0996e7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7598365774175857728, guid: 459331cd2047674438f5e2f09d0996e7, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7598365774175857728, guid: 459331cd2047674438f5e2f09d0996e7, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7598365774175857728, guid: 459331cd2047674438f5e2f09d0996e7, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7598365774175857728, guid: 459331cd2047674438f5e2f09d0996e7, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7598365774175857728, guid: 459331cd2047674438f5e2f09d0996e7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7598365774175857728, guid: 459331cd2047674438f5e2f09d0996e7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7598365774175857728, guid: 459331cd2047674438f5e2f09d0996e7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7598365774175857731, guid: 459331cd2047674438f5e2f09d0996e7, type: 3}
-      propertyPath: m_Name
-      value: Yasiki
-      objectReference: {fileID: 0}
-    - target: {fileID: 7598365774175857731, guid: 459331cd2047674438f5e2f09d0996e7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 459331cd2047674438f5e2f09d0996e7, type: 3}
