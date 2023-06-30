@@ -2,7 +2,7 @@
 using UnityEngine;
 
 /// <summary> 鯨Enemy </summary>
-public class EnemyWhale : MonoBehaviour
+public class EnemyWhale : GimmickBase
 {
     [Tooltip("波のPrefab")]
     [SerializeField] private GameObject _wavePrefab = default;

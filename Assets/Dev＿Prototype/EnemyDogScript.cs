@@ -1,5 +1,4 @@
 using UnityEngine;
-using static Soundmanager;
 
 public enum DogType
 {
@@ -32,7 +31,7 @@ public class EnemyDogScript : MonoBehaviour
     /// <summary>生成位置のx軸が負の値かの判定</summary>
     private bool isSpawnNegativeX = false;
     /// <summary>止まる犬の座る判定</summary>
-    private bool isStop = false;
+    private bool _isStop = false;
     /// <summary>犬生成Manager/// </summary>
     private EnemyInstansManager _enemyInstansManager;
     private bool _forwardFast = false;
@@ -43,7 +42,7 @@ public class EnemyDogScript : MonoBehaviour
         _anim= this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<Animator>();
         Speed = _stageMove.KeepSpeed;
         _startPosX = transform.position.x;
-        isStop = false;
+        _isStop = false;
 
         if (this.gameObject.transform.position.x <= 0)//生成位置が０より小さいのでTrue
         {
@@ -78,11 +77,11 @@ public class EnemyDogScript : MonoBehaviour
 
     private void Update()
     {
-        if (isStop && isSpawnNegativeX)//座る判定が正になったら且つ進行方向が右(正方向)の犬の場合
+        if (_isStop && isSpawnNegativeX)//座る判定が正になったら且つ進行方向が右(正方向)の犬の場合
         {
             Speed = -_stageMove.MoveSpeed;//ステージと同じスピードにする
         }
-        else if (isStop && !isSpawnNegativeX)//座る判定が正になったら且つ進行方向が左(負方向)の犬の場合
+        else if (_isStop && !isSpawnNegativeX)//座る判定が正になったら且つ進行方向が左(負方向)の犬の場合
         {
             Speed = _stageMove.MoveSpeed;//マイナスをかけステージと同じ方向とスピードにする
         }
@@ -130,7 +129,7 @@ public class EnemyDogScript : MonoBehaviour
                     //ｘ軸の_stopRngeＭ地点に入ったら止まる(Playerの場所)
                     if (transform.position.x >= -_stopRange && transform.position.x <= _stopRange)
                     {
-                        isStop = true;//アニメーションの座る判定を正にする
+                        _isStop = true;//アニメーションの座る判定を正にする
                     }
                     
                 }
@@ -141,7 +140,7 @@ public class EnemyDogScript : MonoBehaviour
                     //ｘ軸の_stopRange地点に入ったら止まる(Playerの場所)
                     if (transform.position.x >= -_stopRange && transform.position.x <= _stopRange)
                     {
-                        isStop = true;//アニメーションの座る判定を正にする
+                        _isStop = true;//アニメーションの座る判定を正にする
                     }
                 }
 
@@ -158,17 +157,17 @@ public class EnemyDogScript : MonoBehaviour
 
         if (_anim)
         {
-            _anim.SetBool("isStop",isStop);
+            _anim.SetBool("isStop",_isStop);
         }
     }
 
     private void BigDogBreathPlayAudio()
     {
-         InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_BigDog_Breath);
+        Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_BigDog_Breath);
     }
     private void SmallDogBreathPlayAudio()
     {
-        InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_SmallDog_Breath);           
+        Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_SmallDog_Breath);           
     }
 
     //あたり判定
@@ -176,7 +175,7 @@ public class EnemyDogScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Obon")
         {
-            isStop = true;
+            _isStop = true;
             if(collision.gameObject.TryGetComponent(out Obon obon))
             {
                 obon.Hit(this.transform.position.x);

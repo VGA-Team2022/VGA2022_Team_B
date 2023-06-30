@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd184b54457f7da44966f7f558246b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timeToAppear: 50
   _suikaImage: {fileID: 21300000, guid: cf8855749f2ca7e499ba8007eed5f7ad, type: 3}
   _animator: {fileID: 3311921985977369758}
 --- !u!1 &860676200383077633

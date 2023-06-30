@@ -1,10 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// ŠG‰æŒn
 /// </summary>
-public class ArtPainting : MonoBehaviour
+public class ArtPainting : GimmickBase
 {
     [SerializeField, Tooltip("ŠG‰æ‚ÌƒXƒvƒ‰ƒCƒg")]
     private Sprite[] _art = default;
