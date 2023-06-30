@@ -34,7 +34,6 @@ public class Gimmickmanager : MonoBehaviour
     private GameObject[] _gimmicks = default;
     private int _appearGimmickNum = 0;
     private bool isAppearGimmick = false;
-    //private bool employee = false;
 
     private void Start()
     {
@@ -46,12 +45,6 @@ public class Gimmickmanager : MonoBehaviour
     private void Update()
     {
         isAppearGimmick = false;
-
-        //if (GameManager.CurrentTime < GameManager.GameTimeClearLength / 2 && !employee)
-        //{
-        //    GenerateGimmick(_gimmickPrefabs.Length);
-        //    employee = true;
-        //}
 
         if (_appearGimmickNum == _appearTime.Length) return;
 
@@ -65,7 +58,6 @@ public class Gimmickmanager : MonoBehaviour
             _appearGimmickNum++;
             isAppearGimmick = true;
         }
-        //Debug.Log($"CurrentTime{GameManager.CurrentTime}");
     }
 
     private void GenerateGimmick(int gimmickPrefabNum)
@@ -82,5 +74,4 @@ public class Gimmickmanager : MonoBehaviour
             obj.GetComponent<Employee>().Init(_stageMove, _obonObj);
         }
     }
-
 }
