@@ -1,25 +1,33 @@
 using UnityEngine;
 
 /// <summary>
-/// コライダーに触れるとクリア判定になるobjectにアタッチする
-/// 
+/// クリア判定 
 /// </summary>
 public class GameClearObjectAttachedScript : MonoBehaviour
 {
-    [SerializeField] GameObject[] _ObjectPrefab;
-    private Animator _anim;
+    [Tooltip("接触したらクリア判定にするobjects"),SerializeField] private Animator[] _objectPrefabsAnim;
+    [SerializeField] private StageMove _stageMove;
+
+    private int _gameStageNum;
+    //AnimatorのClearアニメーションに遷移するためのParamの名前
+    private string _animClearPram = "isClear";
+    private BoxCollider _col;
 
     private void Start()
     {
-        _anim= GetComponent<Animator>();    
-
+        _gameStageNum = GameManager.GameStageNum; 
+        _objectPrefabsAnim[_gameStageNum] = _objectPrefabsAnim[_gameStageNum].GetComponent<Animator>();
+        _stageMove = _stageMove.gameObject.GetComponent<StageMove>();
+        _col = GetComponent<BoxCollider>();
+        _col.enabled = false;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (GameManager.IsAppearClearObj)
         {
-            _anim.SetBool("isClear", GameManager.IsAppearClearObj);
+            _col.enabled = true;
+            _objectPrefabsAnim[_gameStageNum].SetBool(_animClearPram,true);
         }
     }
 
@@ -27,10 +35,12 @@ public class GameClearObjectAttachedScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Obon")
         {
-            Debug.Log(11111111111);
-            GameManager.IsGameClear= true;
-            Debug.Log($"aaaaaaaaaaaaaaaaaaaa:{GameManager.IsGameClear}");
+            GameManager.IsGameClear = true;
+            Debug.Log("GameClear");
         }
-        
     }
+
+
 }
+
+
