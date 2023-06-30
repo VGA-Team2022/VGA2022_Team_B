@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public class Soundmanager : MonoBehaviour
 {
@@ -30,6 +27,7 @@ public class Soundmanager : MonoBehaviour
         Enemy_Whale_WaterPaddle = 20,
 
     }
+
     public enum BGM_Type
     {
         Jingle_Clear = 0,
@@ -42,7 +40,6 @@ public class Soundmanager : MonoBehaviour
         BGM_Sea_DayLight = 7,
         BGM_Sea_Sunset = 8,
     }
-
 
     private static AudioSource _soundEffectSource;
     private static AudioSource _BGMSource;
@@ -71,8 +68,6 @@ public class Soundmanager : MonoBehaviour
         }
     }
 
-
-
     public AudioClip GetSoundEffectList(int num)
     {
         var list = Resources.Load<SoundID>("SoundList");
@@ -84,7 +79,6 @@ public class Soundmanager : MonoBehaviour
         var list = Resources.Load<SoundID>("SoundList");
         return list.BGM_Clips[num];
     }
-
 
     //////////////////////////////////////////////////////////////////////////////////////////
     
@@ -113,8 +107,17 @@ public class Soundmanager : MonoBehaviour
     /// </summary>
     public void PlayAudioClip(BGM_Type audioClip)
     {
+        //再生するサウンドがジングルでなければ
+        if (audioClip != BGM_Type.Jingle_Clear &&
+            audioClip != BGM_Type.Jingle_Faild)
+        {
+            _BGMSource.loop = true;
+        }
+        _BGMSource.clip = GetBGMList((int)audioClip);
+
         _BGMSource.Stop();
-        _BGMSource.PlayOneShot(GetBGMList((int)audioClip));
+        _BGMSource.Play();
+        //_BGMSource.Play(GetBGMList((int)audioClip));
     }
 
     /// <summary>
@@ -148,6 +151,7 @@ public class Soundmanager : MonoBehaviour
         }
         _soundEffectSource.volume = vol;
     }
+
     public void BGMVolumeSeT(float vol)
     {
         if (_BGMSource == null)
