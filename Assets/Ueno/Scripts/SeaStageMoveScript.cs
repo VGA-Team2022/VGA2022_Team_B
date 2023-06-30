@@ -1,8 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
+
 
 /// <summary>
 /// ステージ切替
@@ -31,6 +30,7 @@ public class SeaStageMoveScript : MonoBehaviour
     [Tooltip("波obj"), SerializeField] private GameObject _wave; 
     //波の制御用script
     private BackGroundScroll _waveScript;
+    private MeshRenderer _waveMeshRenderer;
     
     [Header("海の背景オブジェクトPrefab")]
     [SerializeField] private BackGroundObject[] _backGroundObject;
@@ -63,18 +63,24 @@ public class SeaStageMoveScript : MonoBehaviour
     {
         if (GameManager.GameStageNum == 1)
         {
+            _waveMeshRenderer = _wave.gameObject.GetComponent<MeshRenderer>();
+            _waveScript = _wave.gameObject.GetComponent<BackGroundScroll>();
             _waveScript.enabled = true;
             if (GameManager.StageLevelNum == 0)
             {
-                _waveScript.TargetMaterial = _waveMaterial[0];
+                _waveMeshRenderer.material = _waveMaterial[GameManager.StageLevelNum];
+                _waveScript.TargetMaterial = _waveMaterial[GameManager.StageLevelNum];
                 Debug.Log($"海ステージ昼");
                 DisableObjects(_backGroundObject[1]._objPrefabs);
+                BeauchColorChange(GameManager.StageLevelNum);
             }
             else if (GameManager.StageLevelNum == 1)
             {
-                _waveScript.TargetMaterial = _waveMaterial[1];
+                _waveMeshRenderer.material = _waveMaterial[GameManager.StageLevelNum];
+                _waveScript.TargetMaterial = _waveMaterial[GameManager.StageLevelNum];
                 Debug.Log($"海ステージ夕方");
                 DisableObjects(_backGroundObject[0]._objPrefabs);
+                BeauchColorChange(GameManager.StageLevelNum);
             }
             else
             {
@@ -98,12 +104,33 @@ public class SeaStageMoveScript : MonoBehaviour
             obj.enabled = false;
         }
     }
+    private void BeauchColorChange(int stageType)
+    {
+        if (stageType == 0)
+        {
+            Debug.Log("ステージは昼");
+            _beauchMeshRenderer
+                .Where((_, index) => index % 2 == 0)
+                .ToList()
+                .ForEach(meshRenderer => meshRenderer.gameObject.GetComponent<MeshRenderer>().material = _beauchMaterial[0]);
 
-    //private void BeauchColorChange(int stageType)
-    //{
-    //    foreach (var item in _beauchMeshRenderer)
-    //    {
-    //        item.material = _beauchMaterial[stageType];
-    //    }
-    //}
+            _beauchMeshRenderer
+                .Where((_, index) => index % 2 != 0)
+                .ToList()
+                .ForEach(meshRenderer => meshRenderer.gameObject.GetComponent<MeshRenderer>().material = _beauchMaterial[1]);
+        }
+        else if (stageType == 1)
+        {
+            _beauchMeshRenderer
+                .Where((_, index) => index % 2 == 0)
+                .ToList()
+                .ForEach(meshRenderer => meshRenderer.gameObject.GetComponent<MeshRenderer>().material = _beauchMaterial[2]);
+
+            _beauchMeshRenderer
+                .Where((_, index) => index % 2 != 0)
+                .ToList()
+                .ForEach(meshRenderer => meshRenderer.gameObject.GetComponent<MeshRenderer>().material = _beauchMaterial[3]);
+        }
+    }
+
 }

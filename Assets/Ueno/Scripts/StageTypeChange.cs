@@ -1,6 +1,6 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
+
 public enum GameStageBackGroundType
 {
     yashiki_Daylight,
@@ -14,18 +14,19 @@ public enum GameStageBackGroundType
 public class StageTypeChange : MonoBehaviour
 {
     [SerializeField] private GameStageBackGroundType _stageType = GameStageBackGroundType.yashiki_Daylight;
+
     [Header("アタッチするもの")]
-    [SerializeField] private Material[] _targetMaterial;
-    [SerializeField] private GameObject[] _groundsObj;
+    [SerializeField] private Material[] _targetMaterials;
+    [SerializeField] private GameObject[] _groundsObjs;
 
     [HideInInspector] public Material CurrentMaterial;
 
     [Header("海ステージ用の設定")]
-    [SerializeField] public bool isSea;
+    public bool IsSea;
     [SerializeField] private SeaStageMoveScript _seaScript;
 
-
     private Soundmanager _soundManager;
+
 
     private void Start()
     {
@@ -43,15 +44,17 @@ public class StageTypeChange : MonoBehaviour
     {
         if (GameManager.GameStageNum == 0)
         {
-            _stageType = (GameManager.StageLevelNum == 0) ? GameStageBackGroundType.yashiki_Daylight : GameStageBackGroundType.yashik_Night;
-            isSea = false;
+            _stageType = (GameManager.StageLevelNum == 0) ? GameStageBackGroundType.yashiki_Daylight
+                                                                                             : GameStageBackGroundType.yashik_Night;
+            IsSea = false;
         }
         else if (GameManager.GameStageNum == 1)
         {
-            _stageType = (GameManager.StageLevelNum == 0) ? GameStageBackGroundType.sea_Daylight : GameStageBackGroundType.sea_Sunset;
+            _stageType = (GameManager.StageLevelNum == 0) ? GameStageBackGroundType.sea_Daylight 
+                                                                                            : GameStageBackGroundType.sea_Sunset;
             _seaScript = _seaScript.gameObject.GetComponent<SeaStageMoveScript>();
             _seaScript.enabled = true;
-            isSea = true;
+            IsSea = true;
         }
     }
 
@@ -60,29 +63,30 @@ public class StageTypeChange : MonoBehaviour
     /// </summary>
     private void StageChange()
     {
+
+        Debug.Log(_stageType);
         switch (_stageType)
         {
             case GameStageBackGroundType.yashiki_Daylight:
-                SetStageMaterial(_targetMaterial[0]);
+                SetStageMaterial(_targetMaterials[0]);
                 SetGroundObject(0);
                 PlayBGM(Soundmanager.BGM_Type.BGM_Yshiki_DayLight);
                 break;
             case GameStageBackGroundType.yashik_Night:
                 SetGroundObject(0);
-                SetStageMaterial(_targetMaterial[1]);
+                SetStageMaterial(_targetMaterials[1]);
                 PlayBGM(Soundmanager.BGM_Type.BGM_Yashiki_Night);
                 break;
             case GameStageBackGroundType.sea_Daylight:
                 SetGroundObject(1);
-                SetStageMaterial(_targetMaterial[2]);
+                SetStageMaterial(_targetMaterials[2]);
                 PlayBGM(Soundmanager.BGM_Type.BGM_Sea_DayLight);
                 break;
             case GameStageBackGroundType.sea_Sunset:
                 SetGroundObject(1);
-                SetStageMaterial(_targetMaterial[3]);
+                SetStageMaterial(_targetMaterials[3]);
                 PlayBGM(Soundmanager.BGM_Type.BGM_Sea_Sunset);
                 break;
-
         }
     }
 
@@ -102,11 +106,11 @@ public class StageTypeChange : MonoBehaviour
     /// </summary>
     private void SetGroundObject(int num)
     {
-        Array.ForEach(_groundsObj, obj => obj.SetActive(false));
+        Array.ForEach(_groundsObjs, obj => obj.SetActive(false));
 
-        if (num >= 0 && num < _groundsObj.Length)
+        if (num >= 0 && num < _groundsObjs.Length)
         {
-            _groundsObj[num].SetActive(true);
+            _groundsObjs[num].SetActive(true);
         }
     }
 

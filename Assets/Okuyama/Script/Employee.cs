@@ -22,8 +22,6 @@ public class Employee : MonoBehaviour
 
         if (transform.position.x <= 0 && !_cakeInstance)
         {
-            Debug.Log(1234567898654323456);
-
             var cake = _obonObj.GetComponent<Obon>().SweetsAdd(_cake, true);
             cake.transform.parent = _obonObj.transform;
             _cakeInstance = true;

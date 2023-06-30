@@ -27,11 +27,16 @@ public class StageMove : MonoBehaviour
     private bool isSetMaterial;
 
     [SerializeField] float _gyroSpeed = 1.2f;
+
+    [SerializeField] private BackGroundScroll _waveObjectScroll;
     void Start()
     {
         _stageTypeChange = this.gameObject.GetComponent<StageTypeChange>();
+        _waveObjectScroll = _waveObjectScroll.gameObject.GetComponent<BackGroundScroll>();
+        
         KeepSpeed = MoveSpeed;
         MoveSpeed = 0;
+        
         _obon = _obon.gameObject.GetComponent<Obon>();
         isSetMaterial = false;
     }
@@ -50,8 +55,10 @@ public class StageMove : MonoBehaviour
         {
             StickMove();
 
-            offset.x += MoveSpeed * SpeedRatio * Time.deltaTime;
-            //Debug.Log($"Žw’èoffset{offset.x}:Materialoffset{_targetMaterial.mainTextureOffset}");
+            offset.x +=(GameManager.GameStageNum != 1)? MoveSpeed * SpeedRatio * Time.deltaTime : 0;
+            _waveObjectScroll.SpeedRatio = SpeedRatio;
+            _waveObjectScroll.MoveSpeed = MoveSpeed;
+           
             _targetMaterial.mainTextureOffset = offset;
         }
 
