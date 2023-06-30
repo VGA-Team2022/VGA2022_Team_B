@@ -34,8 +34,6 @@ public class SceneChangeScript
     {
         if (!GameManager.IsGameClear) return true;
 
-        GameManager.IsGameClear = false;
-
         //ここカクニンする
         //屋敷ステージ
         if (GameManager.GameStageNum == 0)
