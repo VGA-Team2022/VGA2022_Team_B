@@ -41,7 +41,7 @@ public class EnemyDogScript : MonoBehaviour
     {
         _stageMove = GameObject.Find("StageManager").GetComponent<StageMove>();
         _anim= this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<Animator>();
-        Speed = _stageMove._keepSpeed;
+        Speed = _stageMove.KeepSpeed;
         _startPosX = transform.position.x;
         isStop = false;
 

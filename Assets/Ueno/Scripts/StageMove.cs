@@ -1,10 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
-
 
 public class StageMove : MonoBehaviour
 {
@@ -16,7 +11,7 @@ public class StageMove : MonoBehaviour
     [SerializeField] Obon _obon;
 
     /// <summary>’âŽ~‚·‚éŽž‚ÉSpeed‚Ì’l‚ðŽæ‚Á‚Ä‚¨‚­</summary>
-    [HideInInspector] public float _keepSpeed;
+    [HideInInspector] public float KeepSpeed;
 
     private Material _targetMaterial;
 
@@ -35,7 +30,7 @@ public class StageMove : MonoBehaviour
     void Start()
     {
         _stageTypeChange = this.gameObject.GetComponent<StageTypeChange>();
-        _keepSpeed = MoveSpeed;
+        KeepSpeed = MoveSpeed;
         MoveSpeed = 0;
         _obon = _obon.gameObject.GetComponent<Obon>();
         isSetMaterial = false;
@@ -87,7 +82,7 @@ public class StageMove : MonoBehaviour
         {
             GameManager.IsStop = false;
             //transform.Translate(-(leftStickValue.x * MoveSpeed * Time.deltaTime), 0, 0);
-            MoveSpeed = _keepSpeed;
+            MoveSpeed = KeepSpeed;
 
         }
         else if (leftStickValue.x == 0)
@@ -110,7 +105,7 @@ public class StageMove : MonoBehaviour
 
     public void OnTapAdvance()
     {
-        MoveSpeed = _keepSpeed;
+        MoveSpeed = KeepSpeed;
     }
     public void ExitTapAdvance()
     {
