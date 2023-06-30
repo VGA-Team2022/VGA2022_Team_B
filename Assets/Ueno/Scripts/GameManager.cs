@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviour
                 IsFindScenemng = true;
                 IsStop = false;
                 CurrentTime = GameTimeClearLength;
+                Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.BGM_Type.BGM_Title_Home);
             }
         }
 
