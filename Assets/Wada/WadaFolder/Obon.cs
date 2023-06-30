@@ -3,58 +3,37 @@ using UnityEngine;
 
 public class Obon : MonoBehaviour
 {
-    [Tooltip("プレイヤーがゲーム開始時に持っているお菓子の配列"), SerializeField]
+    [Tooltip("プレイヤーがゲーム開始時に持っているお菓子の配列")]
+    [SerializeField]
     private GameObject[] _startOkasis;
 
     [Tooltip("プレイヤーのアニメーション管理クラス")]
-    public PlayerAnimControl _playerAnim;
+    [SerializeField]
+    private PlayerAnimControl _playerAnim;
 
-    [Tooltip("プレイヤーがプレイ中に持っているお菓子の配列")]
-    private List<GameObject> _okasis = new List<GameObject>();
-
-    [Tooltip("プレイヤーがゲーム開始時に持っているお菓子の配列"), SerializeField]
-    private int[] _int;
+    public PlayerAnimControl PlayerAnim => _playerAnim;
 
     [SerializeField]
-    float _zureSpeed;
+    private float _zureSpeed;
 
+    [HideInInspector]
+    public bool _sweetsFall = false;
+
+    /// <summary> プレイヤーがプレイ中に持っているお菓子の配列 </summary>
+    private List<GameObject> _okasis = new();
 
     private float _zure;
 
     private float _movement;
 
-    [HideInInspector]
-    public bool _sweetsFall = false;
-
-    float h;
-    float n = 1;
+    private float n = 1;
 
     //////////////仮置き/////////////////
     private static List<GameObject> _staticOkasis;
     public static bool _staticSweetsFall;
 
-    public float Zure
-    {
-        get
-        {
-            return _zure;
-        }
-        set
-        {
-            _zure = value;
-        }
-    }
-    public float Movement
-    {
-        get
-        {
-            return _movement;
-        }
-        set
-        {
-            _movement = value;
-        }
-    }
+    public float Zure => _zure;
+    public float Movement => _movement;
 
     private void Awake()
     {
@@ -78,38 +57,20 @@ public class Obon : MonoBehaviour
         _staticSweetsFall = _sweetsFall;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Debug.Log("input b");
-            Hit(this.transform.position.x - 1);
-        }
-    }
-
-
     private void FixedUpdate()
     {
-        h = Input.GetAxisRaw("Horizontal");
+        var hol = Input.GetAxisRaw("Horizontal");
 
         //Zure += ((n += h * 0.00001f) * 100f);
 
-        Zure += (h * 0.00001f) * n;
-        n += Mathf.Abs(Zure * 1000);
+        _zure += (hol * 0.00001f) * n;
+        n += Mathf.Abs(_zure * 1000);
 
-        if (h == 0)
+        if (hol == 0)
         {
             n = 1;
         }
-
-        //MisalignmentOfSweetsCausedByMovement();
     }
-
-    //public void SweetsAdd(GameObject[] gameObjects)
-    //{
-    //    _okasis.AddRange(gameObjects);
-    //    _okasis[i].transform.position = _okasis[i - 1].GetComponent<Sweets>().NextPos.position;
-    //}
 
     public void SweetsAdd(GameObject gameObjects)
     {
@@ -131,18 +92,18 @@ public class Obon : MonoBehaviour
 
     public void MisalignmentOfSweetsCausedByMovement(float stickX)
     {
-        Movement += _zureSpeed * stickX;////////変数にしてねby過去の俺
+        _movement += _zureSpeed * stickX;
     }
 
     public void Hit(float hitPos)
     {
         if (this.transform.position.x > hitPos)
         {
-            Zure += 0.1f;
+            _zure += 0.1f;
         }
         else if (this.transform.position.x < hitPos)
         {
-            Zure -= 0.1f;
+            _zure -= 0.1f;
         }
 
         if (!_sweetsFall && !_staticSweetsFall)//まだゲームオーバーしてないとき
@@ -166,7 +127,7 @@ public class Obon : MonoBehaviour
             {
                 if (okasis.TryGetComponent(out Sweets sweets))
                 {
-                    sweets.Boom(100);//マジックナンバー滅ぶべし
+                    sweets.Boom(100);
                 }
             }
             _sweetsFall = true;
@@ -182,7 +143,7 @@ public class Obon : MonoBehaviour
             {
                 if (okasis.TryGetComponent(out Sweets sweets))
                 {
-                    sweets.Boom(50);//マジックナンバー滅ぶべし
+                    sweets.Boom(50);
                 }
             }
             _staticSweetsFall = true;
