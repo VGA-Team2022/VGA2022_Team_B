@@ -159,13 +159,13 @@ public class Printer
                     {
                         _retryButton.SetActive(true);
                     }
+                    GameManager.IsGameClear = false;
                 } : 
                 () =>
                 {
+                    GameManager.IsGameClear = false;
                     SceneChangeScript.NoFadeLoadScene(Define.Scenes[SceneNames.TITLE_SCENE]);
                 };
-
-            GameManager.IsGameClear = false;
             FadeScript.StartFadeOut(() => onCompleteFadeOut());
         }
     }
