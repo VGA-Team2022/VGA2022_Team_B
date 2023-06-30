@@ -164,6 +164,8 @@ public class Printer
                 {
                     SceneChangeScript.NoFadeLoadScene(Define.Scenes[SceneNames.TITLE_SCENE]);
                 };
+
+            GameManager.IsGameClear = false;
             FadeScript.StartFadeOut(() => onCompleteFadeOut());
         }
     }
