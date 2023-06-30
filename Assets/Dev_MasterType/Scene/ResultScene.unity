@@ -661,7 +661,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneNames: 2
   _fadeButton: {fileID: 1018174805}
-  _fadeDuration: 1
   _nextScene: 3
 --- !u!1 &538297232
 GameObject:
@@ -5781,7 +5780,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneNames: 2
   _fadeButton: {fileID: 1018174805}
-  _fadeDuration: 1
   _nextScene: 2
 --- !u!1 &674872568
 GameObject:
@@ -6700,7 +6698,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneNames: 0
   _fadeButton: {fileID: 1018174805}
-  _fadeDuration: 1
   _nextScene: 1
 --- !u!1 &1516179926
 GameObject:
@@ -7074,6 +7071,10 @@ PrefabInstance:
       propertyPath: _printer._tapEffect
       value: 
       objectReference: {fileID: 1138030405}
+    - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
+      propertyPath: _printer._retryButton
+      value: 
+      objectReference: {fileID: 495952881}
     - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
       propertyPath: _printer._speakerText
       value: 
