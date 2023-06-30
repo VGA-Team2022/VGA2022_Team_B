@@ -32,7 +32,7 @@ public class SceneChangeScript
     /// <return> 挑戦するステージがあればtrue, なければfalse </return>
     public static bool StageUp()
     {
-        if (!GameManager.IsGameClear) return false;
+        if (!GameManager.IsGameClear) return true;
 
         GameManager.IsGameClear = false;
 
