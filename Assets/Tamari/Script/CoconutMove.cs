@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-public class CoconutMove : MonoBehaviour
+public class CoconutMove : GimmickBase
 {
     [Tooltip("ココナッツが止まる場所")]
     [Range(0f, 10f)]
