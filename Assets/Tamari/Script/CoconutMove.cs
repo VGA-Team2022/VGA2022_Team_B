@@ -1,45 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using DG.Tweening;
 using UnityEngine;
 
 public class CoconutMove : MonoBehaviour
 {
-    [Tooltip("ココナッツが止まる場所"), SerializeField, Range(0f, 10f)]
-    private float _stopRange = 1;
-
+    [Tooltip("ココナッツが止まる場所")]
+    [Range(0f, 10f)]
     [SerializeField]
-    private float _speed = 2.0f;
-    public float Speed { get { return _speed; } set { _speed = value; } }
-
-    [SerializeField, Tooltip("オブジェクトが消える範囲")]
+    private float _stopRange = 1;
+    [Tooltip("1周するのに何秒かかるか")]
+    [SerializeField]
+    private float _duration = 1f;
+    [SerializeField]
+    private float _speed = 2f;
+    [Tooltip("オブジェクトが消える範囲")]
+    [SerializeField]
     private float _destroyRange = 30;
 
-    private EnemyInstansManager _enemyInstansManager = default;
-    public EnemyInstansManager EnemyInstansManager { get => _enemyInstansManager; set => _enemyInstansManager = value; }
-
     private StageMove _stageMove = default;
-
-    /// <summary>エネミーの軸移動方向</summary>
-    private float _startPosX = 0;
-
     /// <summary>生成位置のx軸が負の値かの判定</summary>
     private bool _isSpawnNegativeX = false;
-
     /// <summary>止まる犬の座る判定</summary>
     private bool _isStop = false;
 
-    /// <summary>Animation</summary>
-    private Animator _anim = default;
-
     private void Start()
     {
+        Rotate();
+
         _stageMove = GameObject.Find("StageManager").GetComponent<StageMove>();
-        // _anim = gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<Animator>();
-        Speed = _stageMove._keepSpeed;
-        _startPosX = transform.position.x;
+        _speed = _stageMove.KeepSpeed;
         _isStop = false;
 
-        if (gameObject.transform.position.x <= 0)//生成位置が０より小さいのでTrue
+        if (gameObject.transform.position.x <= 0)//生成位置が0より小さいのでTrue
         {
             _isSpawnNegativeX = true;
         }
@@ -60,23 +51,24 @@ public class CoconutMove : MonoBehaviour
     }
     private void Update()
     {
+        Soundmanager.InstanceSound.PlayerMoveSE(Soundmanager.SE_Type.Enemy_Rooling);
+
         if (_isStop && _isSpawnNegativeX)
         {
-            Speed = -_stageMove.MoveSpeed;//ステージと同じスピードにする
+            _speed = -_stageMove.MoveSpeed; //ステージと同じスピードにする
         }
         else if (_isStop && !_isSpawnNegativeX)
         {
-            Speed = _stageMove.MoveSpeed;//マイナスをかけステージと同じ方向とスピードにする
+            _speed = _stageMove.MoveSpeed; //マイナスをかけステージと同じ方向とスピードにする
         }
-
     }
 
     void FixedUpdate()
     {
         //スタート位置によって進行方向とSpriteの向きを変える
-        if (!_isSpawnNegativeX)//Playerの進行方向(画面右端から左端に向けて)からくる挙動
+        if (!_isSpawnNegativeX) //Playerの進行方向(画面右端から左端に向けて)からくる挙動
         {
-            gameObject.transform.position -= new Vector3(Time.deltaTime * Speed, 0);
+            gameObject.transform.position -= new Vector3(Time.deltaTime * _speed, 0);
 
             // Playerの周辺で止まる
             if (transform.position.x >= -_stopRange && transform.position.x <= _stopRange)
@@ -87,7 +79,7 @@ public class CoconutMove : MonoBehaviour
         }
         else//Playerの後ろ方向からくる挙動
         {
-            gameObject.transform.position += new Vector3(Time.deltaTime * Speed, 0);
+            gameObject.transform.position += new Vector3(Time.deltaTime * _speed, 0);
 
             //Playerの周辺で止まる
             if (transform.position.x >= -_stopRange && transform.position.x <= _stopRange)
@@ -98,26 +90,25 @@ public class CoconutMove : MonoBehaviour
         //画面外に行ったら消える
         if (transform.position.x <= _destroyRange || transform.position.x >= _destroyRange)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
+    }
 
-        if (_anim)
-        {
-            // ココナッツのアニメーション次第
-            // _anim.SetBool("isStop", isStop);
-        }
+    private void Rotate()
+    {
+        transform
+            .DORotate(Vector3.forward * 360f, _duration, RotateMode.FastBeyond360)
+            .SetEase(Ease.Linear)
+            .SetLoops(-1);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Obon")
+        if (collision.gameObject.TryGetComponent(out Obon obon))
         {
+            Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_Coconut);
             _isStop = true;
-            if (collision.gameObject.TryGetComponent(out Obon obon))
-            {
-                obon.Hit(this.transform.position.x);
-            }
+            obon.Hit(transform.position.x);
         }
     }
-
 }
