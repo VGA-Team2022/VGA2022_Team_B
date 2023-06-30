@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 //ÉXÉCÉJ
-public class Siika : MonoBehaviour
+public class Siika : GimmickBase
 {
     [SerializeField] Sprite _suikaImage = null;
     [SerializeField] Animator _animator= null;
@@ -13,8 +12,8 @@ public class Siika : MonoBehaviour
         {
             _animator.enabled = false;
             transform.GetChild(0).rotation = Quaternion.Euler(0f, 0f, 0f);
-            this.gameObject.transform.GetChild(0).
-                gameObject.GetComponentInChildren<SpriteRenderer>().sprite = _suikaImage; 
+            transform.GetChild(0).
+                GetComponentInChildren<SpriteRenderer>().sprite = _suikaImage;
         }
     }
 }

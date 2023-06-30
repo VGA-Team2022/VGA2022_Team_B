@@ -151,8 +151,14 @@ public class Printer
                 () =>
                 {
                     _titleButton.SetActive(true);
-                    _nextStageButton.SetActive(true);
-                    _retryButton.SetActive(true);
+                    if (GameManager.IsGameClear)
+                    {
+                        _nextStageButton.SetActive(true);
+                    }
+                    else
+                    {
+                        _retryButton.SetActive(true);
+                    }
                 } : 
                 () =>
                 {

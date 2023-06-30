@@ -8,9 +8,10 @@ enum Movement
     No
 }
 
-public class MovingArmor : MonoBehaviour
+public class MovingArmor : GimmickBase
 {
-    [Tooltip("“®‚­‚Ì‚É‚©‚©‚éŽžŠÔ"), SerializeField]
+    [Tooltip("“®‚­‚Ì‚É‚©‚©‚éŽžŠÔ")]
+    [SerializeField]
     float _moveSpeed;
 
     int _random = 0;
@@ -26,8 +27,8 @@ public class MovingArmor : MonoBehaviour
     private Movement _movement = Movement.FirstMove;
 
     private Vector3 _pos = default;
-    
-    void Start()
+
+    private void Start()
     {
         _stageMove = GameObject.Find("StageManager").GetComponent<StageMove>();
         _gimmickManager = GameObject.Find("GimmickManager").GetComponent<Gimmickmanager>();
@@ -48,6 +49,7 @@ public class MovingArmor : MonoBehaviour
                     _movement = Movement.SecondMove;
                 }
                 break;
+
             case Movement.SecondMove:
                 _moveTime += Time.deltaTime;
                 transform.position -= new Vector3(Time.deltaTime * _stageMove.MoveSpeed, 0);
@@ -58,9 +60,14 @@ public class MovingArmor : MonoBehaviour
                                  new Vector3(transform.position.x, transform.position.y, _gimmickManager.Lanes[_random].position.z),
                                  _moveTime / _moveSpeed);
 
-                if (_random == 0) { gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = 15; }
-                else if (_random == 1) { gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = 8; }
-                else { gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = 1; }
+                gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder
+                    = _random switch
+                    {
+                        0 => 15,
+                        1 => 8,
+                        _ => 1,
+                    };
+
 
                 if (_moveTime >= _moveSpeed)
                 {
@@ -77,7 +84,7 @@ public class MovingArmor : MonoBehaviour
                 break;
 
             case Movement.No:
-                if(GetComponent<BoxCollider>().enabled)
+                if (GetComponent<BoxCollider>().enabled)
                 {
                     GetComponent<BoxCollider>().enabled = false;
                 }
@@ -85,15 +92,16 @@ public class MovingArmor : MonoBehaviour
         }
     }
 
-    int MakeRandom()
+    private int MakeRandom()
     {
         if (!_isMove)
         {
             _isMove = true;
             return Random.Range(0, 3);
         }
-        else { return _random; }
+        else return _random;
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Obon")

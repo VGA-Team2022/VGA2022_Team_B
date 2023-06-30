@@ -311,6 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081b8ce41d78cb948a483e78719d96bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timeToAppear: 20
   _art:
   - {fileID: 21300000, guid: 7f30cfeedeb3304469f97defff47b9fa, type: 3}
   - {fileID: 21300000, guid: c45ed6aa9d8d60143a0c82eeba5258e5, type: 3}

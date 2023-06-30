@@ -20,8 +20,6 @@ public class Gimmickmanager : MonoBehaviour
     [SerializeField] private GimmickPrefabs[] _sceneGimmick;
     [Tooltip("出現するレーン")]
     [SerializeField] private Transform _appearLane;
-    [Tooltip("出現する時間")]
-    [SerializeField] private float[] _appearTime;
     [Tooltip("StageMove")]
     [SerializeField] private StageMove _stageMove;
     [Tooltip("おぼんObj")]
@@ -29,11 +27,13 @@ public class Gimmickmanager : MonoBehaviour
     [Tooltip("第一第二第三レーン")]
     [SerializeField] private Transform[] _lanes;
 
-    public Transform[] Lanes => _lanes;
-
+    /// <summary> 出現する時間 </summary>
+    private float[] _appearTimes;
     private GameObject[] _gimmicks = default;
     private int _appearGimmickNum = 0;
-    private bool isAppearGimmick = false;
+    private bool _isAppearGimmick = false;
+
+    public Transform[] Lanes => _lanes;
 
     private void Start()
     {
@@ -41,22 +41,30 @@ public class Gimmickmanager : MonoBehaviour
         Debug.Log($"StageNum : {nowStage}");
 
         _gimmicks = _sceneGimmick[nowStage].Gimmicks;
+        _appearTimes = new float[_gimmicks.Length - 1];
+        for (int i = 0; i < _appearTimes.Length; i++)
+        {
+            _appearTimes[i] =
+                GameManager.GameTimeClearLength * (_gimmicks[i].GetComponent<GimmickBase>().TimeToAppear / 100);
+        }
+        ArraySort();
     }
+
     private void Update()
     {
-        isAppearGimmick = false;
+        _isAppearGimmick = false;
 
-        if (_appearGimmickNum == _appearTime.Length) return;
+        if (_appearGimmickNum == _appearTimes.Length) return;
 
-        if (GameManager.CurrentTime <= _appearTime[_appearGimmickNum] && !isAppearGimmick)
+        if (GameManager.CurrentTime <= _appearTimes[_appearGimmickNum] && !_isAppearGimmick)
         {
             var index = UnityEngine.Random.Range(0, _gimmicks.Length -1);
 
-            if (index == _gimmicks.Length - 1) return;
+            //if (index == _gimmicks.Length - 1) return;
 
             GenerateGimmick(index);
             _appearGimmickNum++;
-            isAppearGimmick = true;
+            _isAppearGimmick = true;
         }
     }
 
@@ -73,5 +81,34 @@ public class Gimmickmanager : MonoBehaviour
         {
             obj.GetComponent<Employee>().Init(_stageMove, _obonObj);
         }
+    }
+
+    /// <summary> インサートソートを用いて配列の並び替えを行う(降順) </summary>
+    private void ArraySort()
+    {
+        for (int i = 0; i < _appearTimes.Length - 1; i++)
+        {
+            int index = i + 1;
+
+            for (int j = i; j >= 0; j--)
+            {
+                if (_appearTimes[index] >= _appearTimes[j])
+                {
+                    Swap(ref _appearTimes, index, j);
+                    Swap(ref _gimmicks, index, j);
+
+                    index--;
+                }
+                else break;
+            }
+        }
+    }
+
+    private void Swap<T>(ref T[] array, int a, int b)
+    {
+        var save = array[a];
+
+        array[a] = array[b];
+        array[b] = save;
     }
 }
