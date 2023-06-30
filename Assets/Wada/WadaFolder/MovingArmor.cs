@@ -87,7 +87,7 @@ public class MovingArmor : MonoBehaviour
                 _moveTime += Time.deltaTime;
                 this.gameObject.transform.position -= new Vector3(Time.deltaTime * _stageMove.MoveSpeed, 0);
                 random = MakeRandom();
-                this.gameObject.transform.position = Vector3.Lerp(this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y, _gimmickManager._lanes[random].position.z), (_moveTime / _moveSpeed));
+                this.gameObject.transform.position = Vector3.Lerp(this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y, _gimmickManager.Lanes[random].position.z), (_moveTime / _moveSpeed));
                 if (random == 0) { this.gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = 15; }
                 else if (random == 1) { this.gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = 8; }
                 else { this.gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = 1; }

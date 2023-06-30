@@ -25,7 +25,6 @@ public class Soundmanager : MonoBehaviour
         Enemy_Whale_Voice = 18,
         Enemy_Whale_WaterSplash = 19,
         Enemy_Whale_WaterPaddle = 20,
-
     }
 
     public enum BGM_Type
@@ -96,10 +95,8 @@ public class Soundmanager : MonoBehaviour
     /// </summary>
     public void PlayAudioClip(SE_Type audioClip)
     {
-
         _soundEffectSource.Stop();
         _soundEffectSource.PlayOneShot(GetSoundEffectList((int)audioClip));
-
     }
 
     /// <summary>
@@ -107,15 +104,12 @@ public class Soundmanager : MonoBehaviour
     /// </summary>
     public void PlayAudioClip(BGM_Type audioClip)
     {
-        //再生するサウンドがジングルでなければ
-        if (audioClip != BGM_Type.Jingle_Clear &&
-            audioClip != BGM_Type.Jingle_Faild)
-        {
-            _BGMSource.loop = true;
-        }
+        _BGMSource.Stop();
+
+        //再生するサウンドがジングルでなければループ設定
+        _BGMSource.loop = audioClip != BGM_Type.Jingle_Clear && audioClip != BGM_Type.Jingle_Faild;
         _BGMSource.clip = GetBGMList((int)audioClip);
 
-        _BGMSource.Stop();
         _BGMSource.Play();
         //_BGMSource.Play(GetBGMList((int)audioClip));
     }

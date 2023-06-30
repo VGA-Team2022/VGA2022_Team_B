@@ -100,12 +100,12 @@ public class Sweets : MonoBehaviour
             if (this.transform.position.x >= _prevObj.transform.position.x + _deadWidth / 2
                 || this.transform.position.x <= _prevObj.transform.position.x - _deadWidth / 2)
             {
-                obon._playerAnim.Abunaaaaaaai();
+                obon.PlayerAnim.Abunaaaaaaai();
             }
         }
         catch (NullReferenceException nullException)
         {
-            obon._playerAnim.Abunaaaaaaai();
+            obon.PlayerAnim.Abunaaaaaaai();
         }
     }
 

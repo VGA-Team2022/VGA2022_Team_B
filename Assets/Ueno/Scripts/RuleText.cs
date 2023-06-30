@@ -11,6 +11,7 @@ public class RuleText : MonoBehaviour
 
     [SerializeField] private Text _text;
 
+    [Multiline(5)]
     [SerializeField] private string[] _ruleText;
 
     [SerializeField]
