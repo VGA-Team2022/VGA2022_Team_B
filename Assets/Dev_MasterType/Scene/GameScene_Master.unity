@@ -941,6 +941,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _sceneGimmick.Array.data[2]._gimmickPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _sceneGimmick.Array.data[3]._gimmickPrefabs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
       propertyPath: _sceneGimmick.Array.data[0]._gimmickPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 8993290204957262246, guid: ab6d53fd26c0ece40aa6f9071f7a2203, type: 3}
@@ -949,9 +957,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 84186214253110219, guid: 6a9b0fea219a58b48b4f7165e5ad4093, type: 3}
     - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _sceneGimmick.Array.data[2]._gimmickPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 4237441714516094973, guid: 360c0277d358c0b41a7082e0a6354710, type: 3}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _sceneGimmick.Array.data[2]._gimmickPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 84186214253110219, guid: 6a9b0fea219a58b48b4f7165e5ad4093, type: 3}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
       propertyPath: _sceneGimmick.Array.data[3]._gimmickPrefabs.Array.data[1]
       value: 
       objectReference: {fileID: 7762595930043175471, guid: 8b641f60882b6fd42b1e1afdb3d5082f, type: 3}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _sceneGimmick.Array.data[3]._gimmickPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 8993290204957262246, guid: ab6d53fd26c0ece40aa6f9071f7a2203, type: 3}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _sceneGimmick.Array.data[3]._gimmickPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 84186214253110219, guid: 6a9b0fea219a58b48b4f7165e5ad4093, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
 --- !u!4 &271458497 stripped
@@ -1719,7 +1743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2770,7 +2794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
