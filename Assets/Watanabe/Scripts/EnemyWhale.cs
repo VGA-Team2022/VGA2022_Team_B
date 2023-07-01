@@ -93,7 +93,7 @@ public class EnemyWhale : GimmickBase
             var go = Instantiate(_puddlePrefab);
             if (go.TryGetComponent(out WaterPuddle puddle))
             {
-                puddle.Init(_stage == null ? 0f : _stage.MoveSpeed);
+                puddle.Init(_stage);
             }
         }
     }
