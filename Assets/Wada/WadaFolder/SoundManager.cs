@@ -68,9 +68,14 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PassBGMValue(float value)
+    public void PassBGMVolume(float value)
     {
         _BGMSource.volume = value;
+    }
+
+    public void PassSEVolume(float value)
+    {
+        _soundEffectSource.volume = value;
     }
 
     public AudioClip GetSoundEffectList(int num)
