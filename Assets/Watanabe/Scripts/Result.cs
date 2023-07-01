@@ -26,10 +26,10 @@ public class Result : MonoBehaviour
                     new Patterns(GameManager.GameStageNum, GameManager.StageLevelNum, GameManager.IsGameClear));
 
         //ResultのBGM再生
-        Soundmanager.InstanceSound.PlayAudioClip(
+        SoundManager.InstanceSound.PlayAudioClip(
             index % 2 == 0 ?
-            Soundmanager.BGM_Type.BGM_Result_GameClear :
-            Soundmanager.BGM_Type.BGM_Result_GameOver);
+            SoundManager.BGM_Type.BGM_Result_GameClear :
+            SoundManager.BGM_Type.BGM_Result_GameOver);
 
         _storyJudge = (GameResult)index;
 

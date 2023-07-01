@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == Define.SCENENAME_TITLE)
         {
-            Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.BGM_Type.BGM_Title_Home);
+            SoundManager.InstanceSound.PlayAudioClip(SoundManager.BGM_Type.BGM_Title_Home);
         }
     }
 

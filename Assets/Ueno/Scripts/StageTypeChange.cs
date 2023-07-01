@@ -25,12 +25,12 @@ public class StageTypeChange : MonoBehaviour
     public bool IsSea;
     [SerializeField] private SeaStageMoveScript _seaScript;
 
-    private Soundmanager _soundManager;
+    private SoundManager _soundManager;
 
 
     private void Start()
     {
-        _soundManager = Soundmanager.InstanceSound;
+        _soundManager = SoundManager.InstanceSound;
 
         SettingStageType();
 
@@ -70,22 +70,22 @@ public class StageTypeChange : MonoBehaviour
             case GameStageBackGroundType.yashiki_Daylight:
                 SetStageMaterial(_targetMaterials[0]);
                 SetGroundObject(0);
-                PlayBGM(Soundmanager.BGM_Type.BGM_Yshiki_DayLight);
+                PlayBGM(SoundManager.BGM_Type.BGM_Yshiki_DayLight);
                 break;
             case GameStageBackGroundType.yashik_Night:
                 SetGroundObject(0);
                 SetStageMaterial(_targetMaterials[1]);
-                PlayBGM(Soundmanager.BGM_Type.BGM_Yashiki_Night);
+                PlayBGM(SoundManager.BGM_Type.BGM_Yashiki_Night);
                 break;
             case GameStageBackGroundType.sea_Daylight:
                 SetGroundObject(1);
                 SetStageMaterial(_targetMaterials[2]);
-                PlayBGM(Soundmanager.BGM_Type.BGM_Sea_DayLight);
+                PlayBGM(SoundManager.BGM_Type.BGM_Sea_DayLight);
                 break;
             case GameStageBackGroundType.sea_Sunset:
                 SetGroundObject(1);
                 SetStageMaterial(_targetMaterials[3]);
-                PlayBGM(Soundmanager.BGM_Type.BGM_Sea_Sunset);
+                PlayBGM(SoundManager.BGM_Type.BGM_Sea_Sunset);
                 break;
         }
     }
@@ -115,7 +115,7 @@ public class StageTypeChange : MonoBehaviour
     }
 
 
-    private void PlayBGM(Soundmanager.BGM_Type bgmType)
+    private void PlayBGM(SoundManager.BGM_Type bgmType)
     {
         _soundManager.PlayAudioClip(bgmType);
     }

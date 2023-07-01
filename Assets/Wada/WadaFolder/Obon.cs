@@ -115,7 +115,7 @@ public class Obon : MonoBehaviour
                     sweets.SwayAnim();
                 }
             }
-            Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Player_Collision);
+            SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Player_Collision);
         }
     }
 
@@ -131,7 +131,7 @@ public class Obon : MonoBehaviour
                 }
             }
             _sweetsFall = true;
-            Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.CakeStandFall);
+            SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.CakeStandFall);
         }
     }
 

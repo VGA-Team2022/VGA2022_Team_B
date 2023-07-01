@@ -51,7 +51,7 @@ public class CoconutMove : GimmickBase
     }
     private void Update()
     {
-        Soundmanager.InstanceSound.PlayerMoveSE(Soundmanager.SE_Type.Enemy_Rooling);
+        SoundManager.InstanceSound.PlayerMoveSE(SoundManager.SE_Type.Enemy_Rooling);
 
         if (_isStop && _isSpawnNegativeX)
         {
@@ -106,7 +106,7 @@ public class CoconutMove : GimmickBase
     {
         if (collision.gameObject.TryGetComponent(out Obon obon))
         {
-            Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_Coconut);
+            SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_Coconut);
             _isStop = true;
             obon.Hit(transform.position.x);
         }
