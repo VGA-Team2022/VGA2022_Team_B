@@ -50,11 +50,6 @@ public class SeaStageMoveScript : MonoBehaviour
         enabled = false;
     }
 
-    private void OnValidate()
-    {
-        StageJudge();
-    }
-
     private void CacheReferences()                              
     {
         _waveScript = _wave.GetComponent<BackGroundScroll>();
@@ -68,21 +63,18 @@ public class SeaStageMoveScript : MonoBehaviour
             _waveScript = _wave.GetComponent<BackGroundScroll>();
             _waveScript.enabled = true;
 
+            _waveMeshRenderer.material = _waveMaterial[GameManager.StageLevelNum];
+            _waveScript.TargetMaterial = _waveMaterial[GameManager.StageLevelNum];
+            DisableObjects(_backGroundObject[1].ObjPrefabs);
+            BeauchColorChange(GameManager.StageLevelNum);
+
             if (GameManager.StageLevelNum == 0)
             {
-                _waveMeshRenderer.material = _waveMaterial[GameManager.StageLevelNum];
-                _waveScript.TargetMaterial = _waveMaterial[GameManager.StageLevelNum];
                 Debug.Log($"海ステージ昼");
-                DisableObjects(_backGroundObject[1].ObjPrefabs);
-                BeauchColorChange(GameManager.StageLevelNum);
             }
             else if (GameManager.StageLevelNum == 1)
             {
-                _waveMeshRenderer.material = _waveMaterial[GameManager.StageLevelNum];
-                _waveScript.TargetMaterial = _waveMaterial[GameManager.StageLevelNum];
                 Debug.Log($"海ステージ夕方");
-                DisableObjects(_backGroundObject[0].ObjPrefabs);
-                BeauchColorChange(GameManager.StageLevelNum);
             }
             else
             {
