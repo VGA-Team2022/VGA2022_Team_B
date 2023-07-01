@@ -66,11 +66,11 @@ public class EnemyDogScript : MonoBehaviour
 
         if (_dogType == DogType.Outrun)
         {
-            Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_SmallDog_Cry);
+            SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_SmallDog_Cry);
         }
         else 
         {
-            Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_BigDog_Cry);
+            SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_BigDog_Cry);
         }
 
     }
@@ -163,11 +163,11 @@ public class EnemyDogScript : MonoBehaviour
 
     private void BigDogBreathPlayAudio()
     {
-        Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_BigDog_Breath);
+        SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_BigDog_Breath);
     }
     private void SmallDogBreathPlayAudio()
     {
-        Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_SmallDog_Breath);           
+        SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_SmallDog_Breath);           
     }
 
     //‚ ‚½‚è”»’è
