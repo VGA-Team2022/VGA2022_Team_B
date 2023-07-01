@@ -24,11 +24,22 @@ public class EnemyWhale : GimmickBase
     [SerializeField] private int _puddleNum = 1;
 
     private Transform[] _waves = default;
+    private Vector3 _startPos = default;
     private StageMove _stage = default;
+    private WhaleAnimType _animType = WhaleAnimType.None;
+    private Animator _animator = default;
+
+    private bool _isMove = false;
 
     private void Start()
     {
+        _startPos = transform.position;
+        _animator = GetComponent<Animator>();
+
+        _isMove = true;
+
         Debug.Log("鯨出現");
+        _animType = WhaleAnimType.Idle;
         SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_Whale_Voice);
 
         _waves = new Transform[3];
@@ -45,11 +56,18 @@ public class EnemyWhale : GimmickBase
         _stage = FindObjectOfType<StageMove>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        //以下テスト
-        if (Input.GetKeyDown(KeyCode.Space)) Squirting();
-        if (Input.GetKeyDown(KeyCode.Tab)) SquirtingScale();
+        if (_isMove)
+        {
+            transform.position = _startPos - new Vector3(Time.deltaTime, 0f);
+
+            if (transform.position.x <= 0f)
+            {
+                ChangeAnim(WhaleAnimType.Splash);
+                _isMove = false;
+            }
+        }
     }
 
     /// <summary> 潮吹き妨害(DOMove) </summary>
@@ -81,26 +99,8 @@ public class EnemyWhale : GimmickBase
 
                          //波妨害が一通り終わったら水溜りギミック開始(違うかも)
                          AppearPuddle();
+                         _isMove = true;
                      });
-    }
-
-    /// <summary> 潮吹き妨害(DOScale) </summary>
-    public void SquirtingScale()
-    {
-        SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_Whale_WaterSplash);
-
-        var sequence = DOTween.Sequence();
-
-        sequence.Append(_waves[0].DOScale(new Vector3(1f, 3f, 1f), _sabotageTime))
-                .Join(_waves[0].DOMove(new Vector3(0f, 0f, 0f), _sabotageTime))
-                .Append(_waves[0].DOScale(new Vector3(1f, 1f, 1f), _sabotageTime))
-                .Join(_waves[0].DOMove(-_waveStartPos, _sabotageTime))
-                .AppendCallback(() =>
-                {
-                    Debug.Log("妨害終了");
-                    _waves[0].localScale = new Vector3(1f, 1f, 1f);
-                    _waves[0].position = _waveStartPos;
-                });
     }
 
     /// <summary> 水溜りを発生させる </summary>
@@ -115,4 +115,23 @@ public class EnemyWhale : GimmickBase
             }
         }
     }
+
+    private void ChangeAnim(WhaleAnimType next)
+    {
+        if (_animType == next) return;
+
+        if (next == WhaleAnimType.Splash)
+        {
+            _animator.SetBool("isIdle", false);
+            _animator.SetBool("isSplash", true);
+        }
+        _animType = next;
+    }
+}
+
+public enum WhaleAnimType
+{
+    None,
+    Idle,
+    Splash,
 }
