@@ -1,4 +1,6 @@
+using Common;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary> UVƒXƒNƒ[ƒ‹‚Å”wŒi‚ğ“®‚©‚· </summary>
 public class BackGroundScroll : MonoBehaviour
@@ -46,6 +48,11 @@ public class BackGroundScroll : MonoBehaviour
             _isSea = true;
         }
         GetComponent<MeshRenderer>().enabled = _isSea;
+
+        if (SceneManager.GetActiveScene().name == Define.SCENENAME_HOME)
+        {
+            GetComponent<MeshRenderer>().enabled = true;
+        }
 
         //if (_isSea)
         //{

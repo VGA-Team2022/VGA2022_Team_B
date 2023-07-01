@@ -607,12 +607,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 174ae05e06425c24893224ce885304e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetMaterial: {fileID: 2100000, guid: 776c330b35491b748b292bc60dbacaa7, type: 2}
+  _targetMaterial: {fileID: 2100000, guid: 776c330b35491b748b292bc60dbacaa7, type: 2}
   _scrollX: 0.1
   _scrollY: 0.1
   _moveY: 0
   _durationTime: 0.5
-  isSea: 0
+  MoveSpeed: 0
+  SpeedRatio: 5
 --- !u!23 &60324322
 MeshRenderer:
   m_ObjectHideFlags: 0
