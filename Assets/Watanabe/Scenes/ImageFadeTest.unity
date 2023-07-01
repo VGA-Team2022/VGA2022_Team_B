@@ -139,10 +139,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MovingArmor
       objectReference: {fileID: 0}
-    - target: {fileID: 505428341683561616, guid: f1511abd195a9694380616c49141c8c2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 505428341683561622, guid: f1511abd195a9694380616c49141c8c2, type: 3}
       propertyPath: m_RootOrder
       value: 4

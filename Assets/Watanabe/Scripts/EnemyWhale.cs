@@ -23,7 +23,7 @@ public class EnemyWhale : GimmickBase
     [Tooltip("発生させる水溜りの数")]
     [SerializeField] private int _puddleNum = 1;
 
-    private Transform[] _waves = default;
+    private Transform _wave = default;
     private Vector3 _startPos = default;
     private StageMove _stage = default;
     private WhaleAnimType _animType = WhaleAnimType.None;
@@ -42,16 +42,11 @@ public class EnemyWhale : GimmickBase
         _animType = WhaleAnimType.Idle;
         SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_Whale_Voice);
 
-        _waves = new Transform[3];
-        for (int i = 0; i < _waves.Length; i++)
-        {
-            var wave = Instantiate(_wavePrefab);
-            wave.transform.SetParent(transform, false);
+        var wave = Instantiate(_wavePrefab);
+        wave.transform.SetParent(transform, false);
 
-            _waves[i] = wave.GetComponent<Transform>();
-
-            _waves[i].position = _waveStartPos * (i + 1);
-        }
+        _wave = wave.GetComponent<Transform>();
+        _wave.position = _waveStartPos;
 
         _stage = FindObjectOfType<StageMove>();
     }
@@ -75,32 +70,19 @@ public class EnemyWhale : GimmickBase
     {
         SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_Whale_WaterSplash);
 
-        var sequenceOne = DOTween.Sequence();
-        var sequenceTwo = DOTween.Sequence();
-        var sequenceThree = DOTween.Sequence();
+        var sequence = DOTween.Sequence();
 
-        sequenceOne.Append(_waves[0].DOMove(-_waveStartPos, _moveWaveTime))
-                   .AppendCallback(() =>
-                   {
-                       Debug.Log("妨害終了0");
-                       _waves[0].position = _waveStartPos;
-                   });
-        sequenceTwo.Append(_waves[1].DOMove(-_waveStartPos, _moveWaveTime * 1.5f))
-                   .AppendCallback(() =>
-                   {
-                       Debug.Log("妨害終了1");
-                       _waves[1].position = _waveStartPos;
-                   });
-        sequenceThree.Append(_waves[2].DOMove(-_waveStartPos, _moveWaveTime * 2f))
-                     .AppendCallback(() =>
-                     {
-                         Debug.Log("妨害終了2");
-                         _waves[2].position = _waveStartPos;
+        sequence.Append(_wave.DOMove(-_waveStartPos, _moveWaveTime))
+                .AppendCallback(() =>
+                {
+                    Debug.Log("妨害終了");
+                    _wave.position = _waveStartPos;
 
-                         //波妨害が一通り終わったら水溜りギミック開始(違うかも)
-                         AppearPuddle();
-                         _isMove = true;
-                     });
+                    //波妨害が一通り終わったら水溜りギミック開始(違うかも)
+                    AppearPuddle();
+                    _isMove = true;
+                    gameObject.SetActive(false);
+                });
     }
 
     /// <summary> 水溜りを発生させる </summary>
