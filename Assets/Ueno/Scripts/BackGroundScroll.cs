@@ -49,23 +49,11 @@ public class BackGroundScroll : MonoBehaviour
         }
         GetComponent<MeshRenderer>().enabled = _isSea;
 
-        if (SceneManager.GetActiveScene().name == Define.SCENENAME_HOME)
+        if (SceneManager.GetActiveScene().name == Define.SCENENAME_HOME ||
+            SceneManager.GetActiveScene().name == Define.SCENENAME_TITLE)
         {
             GetComponent<MeshRenderer>().enabled = true;
         }
-
-        //if (_isSea)
-        //{
-        //    GetComponent<MeshRenderer>().enabled = false;
-        //    enabled = false;
-        //}
-    }
-
-    private void OnEnable()
-    {
-        //GetComponent<MeshRenderer>().enabled = true;
-        //_isSea = true;
-        //Debug.Log(GetComponent<MeshRenderer>().enabled);
     }
 
     private void FixedUpdate()
