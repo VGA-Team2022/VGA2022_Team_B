@@ -775,11 +775,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 3
-  _obon: {fileID: 236472777}
-  KeepSpeed: 0
   _speedRatio: 0.1
+  _obon: {fileID: 236472777}
   _gyroSpeed: 0.5
   _waveObjectScroll: {fileID: 1542472313}
+  KeepSpeed: 0
 --- !u!23 &243928490
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3493,6 +3493,10 @@ PrefabInstance:
       value: Sea
       objectReference: {fileID: 0}
     - target: {fileID: 4186627686618838517, guid: 070773f9159e9274f99b7a487604df91, type: 3}
+      propertyPath: _stageLevelType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4186627686618838517, guid: 070773f9159e9274f99b7a487604df91, type: 3}
       propertyPath: _beauchMaterial.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -3542,11 +3546,15 @@ PrefabInstance:
       objectReference: {fileID: 2006732274}
     - target: {fileID: 4186627686793993497, guid: 070773f9159e9274f99b7a487604df91, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4186627686793993502, guid: 070773f9159e9274f99b7a487604df91, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.71348715
+      objectReference: {fileID: 0}
+    - target: {fileID: 4186627687486594632, guid: 070773f9159e9274f99b7a487604df91, type: 3}
+      propertyPath: _isSea
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4186627687486594632, guid: 070773f9159e9274f99b7a487604df91, type: 3}
       propertyPath: m_Enabled
@@ -3554,6 +3562,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4186627687486594632, guid: 070773f9159e9274f99b7a487604df91, type: 3}
       propertyPath: TargetMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 0dd991996c8030a4c99ef4b357e13388, type: 2}
+    - target: {fileID: 4186627687486594632, guid: 070773f9159e9274f99b7a487604df91, type: 3}
+      propertyPath: _targetMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 0dd991996c8030a4c99ef4b357e13388, type: 2}
     - target: {fileID: 4186627687486594635, guid: 070773f9159e9274f99b7a487604df91, type: 3}
@@ -3570,7 +3582,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: f199050aed67af843a308ef7d85dd7b2, type: 3}
     - target: {fileID: 4186627687835358922, guid: 070773f9159e9274f99b7a487604df91, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4186627687835358922, guid: 070773f9159e9274f99b7a487604df91, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -3582,7 +3594,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4186627687916234954, guid: 070773f9159e9274f99b7a487604df91, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4186627687916234955, guid: 070773f9159e9274f99b7a487604df91, type: 3}
       propertyPath: m_LocalPosition.z

@@ -4,70 +4,65 @@ using UnityEngine.InputSystem;
 public class StageMove : MonoBehaviour
 {
     [Header("Pram")]
-    [Tooltip("移動速度"),SerializeField] private float _moveSpeed = 5f;
-    public float MoveSpeed  
-        { get { return _moveSpeed; } set { _moveSpeed = value; } }
-
-    [SerializeField] Obon _obon;
+    [Tooltip("移動速度")]
+    [SerializeField] private float _moveSpeed = 5f;
+    /// <summary>UVスクロール速度が速いので調整の為</summary>
+    [Tooltip("速度調整")]
+    [SerializeField] private float _speedRatio = 0.1f;
+    [SerializeField] private Obon _obon;
+    [SerializeField] float _gyroSpeed = 1.2f;
+    [SerializeField] private BackGroundScroll _waveObjectScroll;
 
     /// <summary>停止する時にSpeedの値を取っておく</summary>
     [HideInInspector] public float KeepSpeed;
 
     private Material _targetMaterial;
-
     private StageTypeChange _stageTypeChange;
 
-    /// <summary>UVスクロール速度が速いので調整の為</summary>
-    [Tooltip("速度調整"), SerializeField] private float _speedRatio = 0.1f;
+    private Vector2 _offset;
 
+    private bool _isSetMaterial = false;
+
+    public float MoveSpeed => _moveSpeed;
     public float SpeedRatio => _speedRatio;
 
-    private Vector2 offset;
-
-    private bool isSetMaterial;
-
-    [SerializeField] float _gyroSpeed = 1.2f;
-
-    [SerializeField] private BackGroundScroll _waveObjectScroll;
-    void Start()
+    private void Start()
     {
-        _stageTypeChange = this.gameObject.GetComponent<StageTypeChange>();
+        _stageTypeChange = GetComponent<StageTypeChange>();
         _waveObjectScroll = _waveObjectScroll.gameObject.GetComponent<BackGroundScroll>();
         
-        KeepSpeed = MoveSpeed;
-        MoveSpeed = 0;
+        KeepSpeed = _moveSpeed;
+        _moveSpeed = 0;
         
         _obon = _obon.gameObject.GetComponent<Obon>();
-        isSetMaterial = false;
+        _isSetMaterial = false;
     }
 
-    void Update()
+    private void Update()
     {
-        if (!isSetMaterial)
+        if (!_isSetMaterial)
         {
             _targetMaterial = _stageTypeChange.CurrentMaterial;
-            offset = _targetMaterial.mainTextureOffset;
-            isSetMaterial = true;
+            _offset = _targetMaterial.mainTextureOffset;
+            _isSetMaterial = true;
         }
-
 
         if (!GameManager.IsAppearClearObj)
         {
             StickMove();
 
-            offset.x +=(GameManager.GameStageNum != 1)? MoveSpeed * SpeedRatio * Time.deltaTime : 0;
+            _offset.x +=(GameManager.GameStageNum != 1)? _moveSpeed * SpeedRatio * Time.deltaTime : 0;
             _waveObjectScroll.SpeedRatio = SpeedRatio;
-            _waveObjectScroll.MoveSpeed = MoveSpeed;
+            _waveObjectScroll.MoveSpeed = _moveSpeed;
            
-            _targetMaterial.mainTextureOffset = offset;
+            _targetMaterial.mainTextureOffset = _offset;
         }
-
         else
         {
-            MoveSpeed = 0;
+            _moveSpeed = 0;
         }
-
     }
+
     private void StickMove()
     {
         // 現在のゲームパッド情報
@@ -89,14 +84,14 @@ public class StageMove : MonoBehaviour
         {
             GameManager.IsStop = false;
             //transform.Translate(-(leftStickValue.x * MoveSpeed * Time.deltaTime), 0, 0);
-            MoveSpeed = KeepSpeed;
+            _moveSpeed = KeepSpeed;
 
         }
         else if (leftStickValue.x == 0)
         {
             GameManager.IsStop = true;
             //AudioManager.Instance.CriAtomPlay(CueSheet.SE, "SE_player_footsteps1");
-            MoveSpeed = 0;
+            _moveSpeed = 0;
         }
 
         //歩いたら傾いてる方に傾くようにした
@@ -112,11 +107,10 @@ public class StageMove : MonoBehaviour
 
     public void OnTapAdvance()
     {
-        MoveSpeed = KeepSpeed;
+        _moveSpeed = KeepSpeed;
     }
     public void ExitTapAdvance()
     {
-        MoveSpeed = 0;
+        _moveSpeed = 0;
     }
-
 }
