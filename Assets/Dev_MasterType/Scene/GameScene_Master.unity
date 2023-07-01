@@ -757,11 +757,9 @@ MonoBehaviour:
   - {fileID: 2100000, guid: a6db8621f8a568843a1ae1c37891b973, type: 2}
   - {fileID: 2100000, guid: 80bf52fc6f63f1b44961ac6348a8aa67, type: 2}
   _groundsObjs:
-<<<<<<< Updated upstream
+
   - {fileID: 1636328328}
-=======
-  - {fileID: 1646424627}
->>>>>>> Stashed changes
+
   - {fileID: 2006732279}
   CurrentMaterial: {fileID: 2100000, guid: b19462f9caf310e42844c7694af0a54d, type: 2}
   IsSea: 0
@@ -3573,15 +3571,11 @@ PrefabInstance:
     - target: {fileID: 4186627687486594632, guid: 070773f9159e9274f99b7a487604df91, type: 3}
       propertyPath: TargetMaterial
       value: 
-<<<<<<< Updated upstream
       objectReference: {fileID: 2100000, guid: 0dd991996c8030a4c99ef4b357e13388, type: 2}
     - target: {fileID: 4186627687486594632, guid: 070773f9159e9274f99b7a487604df91, type: 3}
       propertyPath: _targetMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 0dd991996c8030a4c99ef4b357e13388, type: 2}
-=======
-      objectReference: {fileID: 2100000, guid: 08bff81f8d2242c4ba4ba6c943b86494, type: 2}
->>>>>>> Stashed changes
     - target: {fileID: 4186627687486594635, guid: 070773f9159e9274f99b7a487604df91, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3937,11 +3931,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1651960162}
-<<<<<<< Updated upstream
   - {fileID: 1636328327}
-=======
-  - {fileID: 1646424626}
->>>>>>> Stashed changes
   m_Father: {fileID: 1055251473}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
