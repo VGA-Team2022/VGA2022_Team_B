@@ -79,6 +79,11 @@ public class GameManager : MonoBehaviour
         IsFindScenemng = false;
 
         CurrentTime = GameTimeClearLength;
+
+        if (SceneManager.GetActiveScene().name == Define.SCENENAME_TITLE)
+        {
+            Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.BGM_Type.BGM_Title_Home);
+        }
     }
 
     private void FindSceneManager()
@@ -101,7 +106,6 @@ public class GameManager : MonoBehaviour
                 IsFindScenemng = true;
 
             }
-
             else if (SceneManager.GetActiveScene().name != Define.SCENENAME_RESULT &&
                      SceneManager.GetActiveScene().name != Define.SCENENAME_MASTERGAME)
             {
@@ -113,7 +117,6 @@ public class GameManager : MonoBehaviour
                 IsFindScenemng = true;
                 IsStop = false;
                 CurrentTime = GameTimeClearLength;
-                Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.BGM_Type.BGM_Title_Home);
             }
         }
 
