@@ -11,6 +11,7 @@ public class Result : MonoBehaviour
     private void Awake()
     {
         //挑戦結果の該当し得るパターンを列挙（ゲーム一周目のみ初期化を行う）
+        //※リザルトに入る度にインスタンスがつくられるのを防ぐため
         _resultPatterns ??= new Patterns[]
             { new Patterns(0, 0, true), new Patterns(0, 0, false),
               new Patterns(0, 1, true), new Patterns(0, 1, false),
@@ -28,14 +29,14 @@ public class Result : MonoBehaviour
         //ResultのBGM再生
         SoundManager.InstanceSound.PlayAudioClip(
             index % 2 == 0 ?
-            SoundManager.BGM_Type.BGM_Result_GameClear :
-            SoundManager.BGM_Type.BGM_Result_GameOver);
+            SoundManager.BGM_Type.BGM_Result_GameClear : SoundManager.BGM_Type.BGM_Result_GameOver);
 
         _storyJudge = (GameResult)index;
 
         _sequencer.SetDialogue(_storyJudge);
     }
 
+    /// <summary> ステージ種、ステージレベル、プレイ結果　を管理する構造体 </summary>
     public struct Patterns
     {
         public int Stage;
@@ -51,6 +52,7 @@ public class Result : MonoBehaviour
     }
 }
 
+/// <summary> プレイ結果 </summary>
 public enum GameResult
 {
     YashikiStage_Daytime_Clear,

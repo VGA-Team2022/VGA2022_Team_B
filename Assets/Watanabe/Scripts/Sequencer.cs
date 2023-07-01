@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary> リザルトでの入力、Printerの初期設定を行うクラス </summary>
 public class Sequencer : MonoBehaviour
 {
+    [Tooltip("セリフのデータ")]
     [SerializeField] private TextAsset _textData = default;
+    [Tooltip("リザルトの出力関連")]
     [SerializeField] private Printer _printer = new();
 
     private List<string[]> _resultTexts = new();
@@ -32,9 +35,9 @@ public class Sequencer : MonoBehaviour
         }
     }
 
+    /// <summary> ResultSceneに表示するTextを設定する処理 </summary>
     public void SetDialogue(GameResult result)
     {
-        //以下ResultSceneに表示するTextを設定する処理
         string[] dialogue = default;
         Stage stage = Stage.Yashiki;
 
