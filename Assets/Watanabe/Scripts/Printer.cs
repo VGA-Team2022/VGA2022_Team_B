@@ -151,20 +151,22 @@ public class Printer
                 () =>
                 {
                     _titleButton.SetActive(true);
-                    if (GameManager.IsGameClear)
-                    {
-                        _nextStageButton.SetActive(true);
-                    }
-                    else
-                    {
-                        _retryButton.SetActive(true);
-                    }
+                    _nextStageButton.SetActive(true);
+
                     GameManager.IsGameClear = false;
                 } : 
                 () =>
                 {
+                    if (GameManager.GameStageNum == 1 && GameManager.StageLevelNum == 1)
+                    {
+                        _titleButton.SetActive(true);
+                        _retryButton.SetActive(true);
+                    }
+                    else
+                    {
+                        SceneChangeScript.NoFadeLoadScene(Define.Scenes[SceneNames.TITLE_SCENE]);
+                    }
                     GameManager.IsGameClear = false;
-                    SceneChangeScript.NoFadeLoadScene(Define.Scenes[SceneNames.TITLE_SCENE]);
                 };
             FadeScript.StartFadeOut(() => onCompleteFadeOut());
         }

@@ -32,9 +32,8 @@ public class SceneChangeScript
     /// <return> 挑戦するステージがあればtrue, なければfalse </return>
     public static bool StageUp()
     {
-        if (!GameManager.IsGameClear) return true;
+        if (!GameManager.IsGameClear) return false;
 
-        //ここカクニンする
         //屋敷ステージ
         if (GameManager.GameStageNum == 0)
         {
