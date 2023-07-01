@@ -35,6 +35,7 @@ public class KlalenScript : GimmickBase
         if (this.transform.position.x <= 0 && !_isActionDone)
         {
             _anim.SetTrigger(_actionAnimName);
+            SoundManager.InstanceSound.PlayerMoveSE(SoundManager.SE_Type.Enemy_ArtPaint_Milk);
             _isActionDone = true;
         }
     }

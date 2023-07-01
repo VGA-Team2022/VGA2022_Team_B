@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public static int StageLevelNum = 0;
 
     /// <summary>ƒQ[ƒ€ƒNƒŠƒA‚Ü‚Å‚ÌŠÔ</summary>
-    public static float GameTimeClearLength = 10;
+    public static float GameTimeClearLength = 25;
 
     /// <summary>Œ»İ‚ÌŠÔ</summary>
     public static float CurrentTime;
