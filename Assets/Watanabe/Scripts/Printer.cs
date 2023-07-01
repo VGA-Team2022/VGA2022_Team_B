@@ -151,22 +151,21 @@ public class Printer
                 = SceneChangeScript.StageUp() ?
                 () =>
                 {
-                    _titleButton.SetActive(true);
-                    _nextStageButton.SetActive(true);
-
+                    if (GameManager.GameStageNum == 0 && GameManager.StageLevelNum == 0)
+                    {
+                        SceneChangeScript.NoFadeLoadScene(Define.Scenes[SceneNames.TITLE_SCENE]);
+                    }
+                    else
+                    {
+                        _titleButton.SetActive(true);
+                        _nextStageButton.SetActive(true);
+                    }
                     GameManager.IsGameClear = false;
                 } : 
                 () =>
                 {
-                    if (GameManager.GameStageNum == 1 && GameManager.StageLevelNum == 1)
-                    {
-                        _titleButton.SetActive(true);
-                        _retryButton.SetActive(true);
-                    }
-                    else
-                    {
-                        SceneChangeScript.NoFadeLoadScene(Define.Scenes[SceneNames.TITLE_SCENE]);
-                    }
+                    _titleButton.SetActive(true);
+                    _retryButton.SetActive(true);
                     GameManager.IsGameClear = false;
                 };
             FadeScript.StartFadeOut(() => onCompleteFadeOut());
