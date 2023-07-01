@@ -8,28 +8,38 @@ enum Movement
     No
 }
 
+public enum AnimType
+{
+    None,
+    Idle,
+    SideMove,
+    FrontMove,
+}
+
 public class MovingArmor : GimmickBase
 {
     [Tooltip("“®‚­‚Ì‚É‚©‚©‚éŽžŠÔ")]
     [SerializeField]
-    float _moveSpeed;
+    private float _moveSpeed;
 
-    int _random = 0;
+    private int _random = 0;
 
     private float _moveTime = 0;//“®‚¢‚Ä‚éŽžŠÔ
-
     private bool _isMove = false;
 
-    private StageMove _stageMove;
-
-    private Gimmickmanager _gimmickManager;
-
-    private Movement _movement = Movement.FirstMove;
-
     private Vector3 _pos = default;
+    private Animator _animator = default;
+
+    private StageMove _stageMove;
+    private Gimmickmanager _gimmickManager;
+    private Movement _movement = Movement.FirstMove;
+    private AnimType _animType = AnimType.None;
 
     private void Start()
     {
+        _animator = GetComponentInChildren<Animator>();
+        _animType = AnimType.SideMove;
+
         _stageMove = GameObject.Find("StageManager").GetComponent<StageMove>();
         _gimmickManager = GameObject.Find("GimmickManager").GetComponent<Gimmickmanager>();
 
@@ -47,6 +57,7 @@ public class MovingArmor : GimmickBase
                 if (transform.position.x >= 20)
                 {
                     _movement = Movement.SecondMove;
+                    ChangeAnim(AnimType.FrontMove);
                 }
                 break;
 
@@ -72,6 +83,7 @@ public class MovingArmor : GimmickBase
                 if (_moveTime >= _moveSpeed)
                 {
                     _movement = Movement.ThirdMove;
+                    ChangeAnim(AnimType.Idle);
                 }
                 break;
 
@@ -90,6 +102,30 @@ public class MovingArmor : GimmickBase
                 }
                 break;
         }
+    }
+
+    private void ChangeAnim(AnimType next)
+    {
+        if (_animType == next) return;
+
+        switch (next)
+        {
+            case AnimType.Idle:
+                _animator.SetBool("isSideMove", false);
+                _animator.SetBool("isFrontMove", false);
+                break;
+
+            case AnimType.SideMove:
+                _animator.SetBool("isSideMove", true);
+                _animator.SetBool("isFrontMove", false);
+                break;
+
+            case AnimType.FrontMove:
+                _animator.SetBool("isSideMove", false);
+                _animator.SetBool("isFrontMove", true);
+                break;
+        }
+        _animType = next;
     }
 
     private int MakeRandom()
