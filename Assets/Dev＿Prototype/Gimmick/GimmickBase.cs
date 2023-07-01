@@ -4,7 +4,7 @@ using UnityEngine;
 public class GimmickBase : MonoBehaviour
 {
     [Tooltip("‘S‘ÌŽžŠÔ‚É‘Î‚·‚éoŒ»ŽžŠÔ(“)")]
-    [Range(0, 80)]
+    [Range(5, 80)]
     [SerializeField] private int _timeToAppear = 10;
 
     public int TimeToAppear => _timeToAppear;

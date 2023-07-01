@@ -33,7 +33,6 @@ public class Gimmickmanager : MonoBehaviour
     private float[] _appearTimes;
     private GameObject[] _gimmicks = default;
     private int _appearGimmickNum = 0;
-    private bool _isAppearGimmick = false;
 
     public Transform[] Lanes => _lanes;
 
@@ -47,26 +46,21 @@ public class Gimmickmanager : MonoBehaviour
         for (int i = 0; i < _appearTimes.Length; i++)
         {
             _appearTimes[i] =
-                GameManager.GameTimeClearLength * (_gimmicks[i].GetComponent<GimmickBase>().TimeToAppear / 100);
+                GameManager.GameTimeClearLength * _gimmicks[i].GetComponent<GimmickBase>().TimeToAppear * 0.01f;
         }
         ArraySort();
     }
 
     private void Update()
     {
-        _isAppearGimmick = false;
-
         if (_appearGimmickNum == _appearTimes.Length) return;
 
-        if (GameManager.CurrentTime <= _appearTimes[_appearGimmickNum] && !_isAppearGimmick)
+        if (GameManager.CurrentTime <= _appearTimes[_appearGimmickNum])
         {
             var index = 1;
 
-            //if (index == _gimmicks.Length - 1) return;
-
             GenerateGimmick(index);
             _appearGimmickNum++;
-            _isAppearGimmick = true;
         }
     }
 
