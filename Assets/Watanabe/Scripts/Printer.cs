@@ -4,7 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary> UIデータの出力を行うクラス </summary>
+/// <summary> リザルトの出力関連全般を管理するクラス </summary>
 [Serializable]
 public class Printer
 {
@@ -49,7 +49,7 @@ public class Printer
     private const string _princess = "お嬢様";
     private const string _maid = "メイド";
 
-    /// <summary> 表示するセリフの取得 </summary>
+    /// <summary> データの初期化（表示するセリフの取得） </summary>
     public void Init(string[] dialogue, Stage stage)
     {
         _dialogue = dialogue;
@@ -116,6 +116,7 @@ public class Printer
         }
     }
 
+    /// <summary> セリフ表示 </summary>
     public void ShowText()
     {
         if (_isShowText || _isFinishShowTexts) return;
