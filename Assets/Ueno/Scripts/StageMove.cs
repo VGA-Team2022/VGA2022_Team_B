@@ -90,7 +90,6 @@ public class StageMove : MonoBehaviour
         else if (leftStickValue.x == 0)
         {
             GameManager.IsStop = true;
-            //AudioManager.Instance.CriAtomPlay(CueSheet.SE, "SE_player_footsteps1");
             _moveSpeed = 0;
         }
 
