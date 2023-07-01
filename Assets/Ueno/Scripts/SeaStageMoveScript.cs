@@ -2,32 +2,32 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-
-/// <summary>
-/// ステージ切替
-/// </summary>
+/// <summary> ステージ切替 </summary>
 public enum SeaType
 { 
     Daylight,
     Sunset,
 }
-/// <summary>
-/// 背景objectPrefabの型
-/// </summary>
+
+/// <summary> 背景objectPrefabの型 </summary>
 [Serializable]
 class BackGroundObject
 {
-    [Tooltip("海の背景Prefab"), SerializeField] public SpriteRenderer[] _objPrefabs;
+    [Tooltip("海の背景Prefab")]
+    [SerializeField] private SpriteRenderer[] _objPrefabs;
+
+    public SpriteRenderer[] ObjPrefabs => _objPrefabs;
 }
 
-/// <summary>
-/// 海ステージの背景を変化させるクラス
-/// </summary>
+/// <summary> 海ステージの背景を変化させるクラス </summary>
 public class SeaStageMoveScript : MonoBehaviour
 {
 
-    [Tooltip("ステージタイプ"), SerializeField] private SeaType _stageLevelType;
-    [Tooltip("波obj"), SerializeField] private GameObject _wave; 
+    [Tooltip("ステージタイプ")]
+    [SerializeField] private SeaType _stageLevelType;
+    [Tooltip("波obj")]
+    [SerializeField] private GameObject _wave;
+
     //波の制御用script
     private BackGroundScroll _waveScript;
     private MeshRenderer _waveMeshRenderer;
@@ -36,8 +36,9 @@ public class SeaStageMoveScript : MonoBehaviour
     [SerializeField] private BackGroundObject[] _backGroundObject;
 
 
-    [Header("material")]
-    [Tooltip("上からDayLight→Sunset"),SerializeField] private Material[] _waveMaterial;
+    [Header("各Material")]
+    [Tooltip("上からDayLight→Sunset")]
+    [SerializeField] private Material[] _waveMaterial;
     [SerializeField] private Material[] _beauchMaterial;
 
     [Header("BeauchObj")]
@@ -46,7 +47,7 @@ public class SeaStageMoveScript : MonoBehaviour
     private void Awake()
     {
         StageJudge();
-        this.enabled = false;
+        enabled = false;
     }
 
     private void OnValidate()
@@ -63,15 +64,16 @@ public class SeaStageMoveScript : MonoBehaviour
     {
         if (GameManager.GameStageNum == 1)
         {
-            _waveMeshRenderer = _wave.gameObject.GetComponent<MeshRenderer>();
-            _waveScript = _wave.gameObject.GetComponent<BackGroundScroll>();
+            _waveMeshRenderer = _wave.GetComponent<MeshRenderer>();
+            _waveScript = _wave.GetComponent<BackGroundScroll>();
             _waveScript.enabled = true;
+
             if (GameManager.StageLevelNum == 0)
             {
                 _waveMeshRenderer.material = _waveMaterial[GameManager.StageLevelNum];
                 _waveScript.TargetMaterial = _waveMaterial[GameManager.StageLevelNum];
                 Debug.Log($"海ステージ昼");
-                DisableObjects(_backGroundObject[1]._objPrefabs);
+                DisableObjects(_backGroundObject[1].ObjPrefabs);
                 BeauchColorChange(GameManager.StageLevelNum);
             }
             else if (GameManager.StageLevelNum == 1)
@@ -79,7 +81,7 @@ public class SeaStageMoveScript : MonoBehaviour
                 _waveMeshRenderer.material = _waveMaterial[GameManager.StageLevelNum];
                 _waveScript.TargetMaterial = _waveMaterial[GameManager.StageLevelNum];
                 Debug.Log($"海ステージ夕方");
-                DisableObjects(_backGroundObject[0]._objPrefabs);
+                DisableObjects(_backGroundObject[0].ObjPrefabs);
                 BeauchColorChange(GameManager.StageLevelNum);
             }
             else
@@ -91,8 +93,8 @@ public class SeaStageMoveScript : MonoBehaviour
         {
             foreach (var backGround in _backGroundObject)
             {
-                DisableObjects(backGround._objPrefabs);
-                Debug.Log($"海ステージではないので{backGround._objPrefabs}を非表示にした");
+                DisableObjects(backGround.ObjPrefabs);
+                Debug.Log($"海ステージではないので {backGround.ObjPrefabs} を非表示にした");
             }
         }
     }
@@ -104,6 +106,7 @@ public class SeaStageMoveScript : MonoBehaviour
             obj.enabled = false;
         }
     }
+
     private void BeauchColorChange(int stageType)
     {
         if (stageType == 0)
@@ -132,5 +135,4 @@ public class SeaStageMoveScript : MonoBehaviour
                 .ForEach(meshRenderer => meshRenderer.gameObject.GetComponent<MeshRenderer>().material = _beauchMaterial[3]);
         }
     }
-
 }
