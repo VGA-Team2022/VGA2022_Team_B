@@ -31,6 +31,37 @@ Transform:
   m_Father: {fileID: 7584279534371463273}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1626909075542376716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4486015572168750894}
+  m_Layer: 0
+  m_Name: Sea_Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4486015572168750894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626909075542376716}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.72, y: 8.02, z: -0.43}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7584279534371463273}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1694380717105467276
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,11 +122,6 @@ MonoBehaviour:
     - {fileID: 7550710172475099114, guid: 8b641f60882b6fd42b1e1afdb3d5082f, type: 3}
     - {fileID: 84186214253110219, guid: 6a9b0fea219a58b48b4f7165e5ad4093, type: 3}
   _appearLane: {fileID: 421818439038519347}
-  _appearTime:
-  - 50
-  - 40
-  - 30
-  - 15
   _stageMove: {fileID: 0}
   _obonObj: {fileID: 0}
   _lanes:
@@ -165,6 +191,7 @@ Transform:
   - {fileID: 6713780263941611653}
   - {fileID: 2203912612226536711}
   - {fileID: 421818439038519347}
+  - {fileID: 4486015572168750894}
   m_Father: {fileID: 1853860668490168926}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
