@@ -59,7 +59,6 @@ public class SceneChangeScript
                 //最後までいったらリセット
                 GameManager.GameStageNum = 0;
                 GameManager.StageLevelNum = 0;
-                return false;
             }
         }
         return true;
