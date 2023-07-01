@@ -17,8 +17,8 @@ public class PlatformManager : MonoBehaviour
         Debug.Log("Unity_Editor");
 
 #elif UNITY_ANDROID
-        _LButton.SetActive(true);
-        _RButton.SetActive(true);
+        _LButton.SetActive(false);
+        _RButton.SetActive(false);
         _Gyro.SetActive(true);
         Debug.Log("Unity_Android");
 
