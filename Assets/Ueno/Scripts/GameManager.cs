@@ -10,11 +10,6 @@ public class GameManager : MonoBehaviour
     /// <summary>ステージレベルの値</summary>
     public static int StageLevelNum = 0;
 
-    /// <summary>BGMのボリューム</summary>
-    public static float GameBGMVolume = 50;
-    /// <summary>SEのボリューム</summary>
-    public static float GameSEVolume = 50;
-
     /// <summary>ゲームクリアまでの時間</summary>
     public static float GameTimeClearLength = 10;
 
@@ -38,15 +33,15 @@ public class GameManager : MonoBehaviour
     public static bool IsStop = false;
 
     /// <summary>Clear判定用のドアを出現させる判定</summary>
-    private static bool isAppearDoorObj = false;
+    private static bool _isAppearDoorObj = false;
 
     /// <summary>SceneManager格納用変数</summary>
     private AttachedSceneController _scenemng = default;
 
     /// <summary>クリア判定後に出現するobjectフラグ</summary>
-    public static bool IsAppearClearObj { get => isAppearDoorObj; set => isAppearDoorObj = value; }
+    public static bool IsAppearClearObj => _isAppearDoorObj;
 
-    void Awake()
+    private void Awake()
     {
         DontDestroyOnLoad(this);
     }
@@ -104,7 +99,6 @@ public class GameManager : MonoBehaviour
                 _isGameStart = false;
                 IsGameStaged = false;
                 IsFindScenemng = true;
-
             }
             else if (SceneManager.GetActiveScene().name != Define.SCENENAME_RESULT &&
                      SceneManager.GetActiveScene().name != Define.SCENENAME_MASTERGAME)
@@ -131,7 +125,7 @@ public class GameManager : MonoBehaviour
                 IsGameOver = false;
                 IsGameClear = false;
                 IsStop = false;
-                IsAppearClearObj = false;
+                _isAppearDoorObj = false;
                 CurrentTime = GameTimeClearLength;
             }
             GemeClearjudge();
@@ -180,7 +174,7 @@ public class GameManager : MonoBehaviour
 
             if (CurrentTime <= 0 && !IsGameOver)
             {
-                IsAppearClearObj = true;
+                _isAppearDoorObj = true;
             }
         }
     }
