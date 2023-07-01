@@ -18,8 +18,10 @@ public class Gimmickmanager : MonoBehaviour
     [Header("ケーキを追加する使用人は常に一番下に入れる")]
     [Tooltip("Scecn番号と同じElement番号にSceneに合ったPrefabを入れる")]
     [SerializeField] private GimmickPrefabs[] _sceneGimmick;
-    [Tooltip("出現するレーン")]
-    [SerializeField] private Transform _appearLane;
+    [Tooltip("4レーン目")]
+    [SerializeField] private Transform _appearLane4;
+    [Tooltip("海レーン")]
+    [SerializeField] private Transform _seaLane;
     [Tooltip("StageMove")]
     [SerializeField] private StageMove _stageMove;
     [Tooltip("おぼんObj")]
@@ -58,7 +60,7 @@ public class Gimmickmanager : MonoBehaviour
 
         if (GameManager.CurrentTime <= _appearTimes[_appearGimmickNum] && !_isAppearGimmick)
         {
-            var index = UnityEngine.Random.Range(0, _gimmicks.Length -1);
+            var index = 1;
 
             //if (index == _gimmicks.Length - 1) return;
 
@@ -70,7 +72,7 @@ public class Gimmickmanager : MonoBehaviour
 
     private void GenerateGimmick(int gimmickPrefabNum)
     {
-        var obj = Instantiate(_gimmicks[gimmickPrefabNum], _appearLane);
+        var obj = Instantiate(_gimmicks[gimmickPrefabNum], _appearLane4);
         obj.transform.parent = null;
 
         if (obj.TryGetComponent(out ArtPainting art))
@@ -80,6 +82,11 @@ public class Gimmickmanager : MonoBehaviour
         else if (gimmickPrefabNum == _gimmicks.Length - 1)
         {
             obj.GetComponent<Employee>().Init(_stageMove, _obonObj);
+        }
+        else if (obj.TryGetComponent(out KlalenScript klaken))
+        {
+            klaken.StageMove = _stageMove;
+            klaken.AppeairPos = _seaLane.position;
         }
     }
 
