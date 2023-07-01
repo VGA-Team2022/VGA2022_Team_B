@@ -29,7 +29,7 @@ public class EnemyWhale : GimmickBase
     private void Start()
     {
         Debug.Log("鯨出現");
-        Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_Whale_Voice);
+        SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_Whale_Voice);
 
         _waves = new Transform[3];
         for (int i = 0; i < _waves.Length; i++)
@@ -55,7 +55,7 @@ public class EnemyWhale : GimmickBase
     /// <summary> 潮吹き妨害(DOMove) </summary>
     public void Squirting()
     {
-        Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_Whale_WaterSplash);
+        SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_Whale_WaterSplash);
 
         var sequenceOne = DOTween.Sequence();
         var sequenceTwo = DOTween.Sequence();
@@ -87,7 +87,7 @@ public class EnemyWhale : GimmickBase
     /// <summary> 潮吹き妨害(DOScale) </summary>
     public void SquirtingScale()
     {
-        Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_Whale_WaterSplash);
+        SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_Whale_WaterSplash);
 
         var sequence = DOTween.Sequence();
 

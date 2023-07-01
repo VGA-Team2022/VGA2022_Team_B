@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
-public class Soundmanager : MonoBehaviour
+public class SoundManager : MonoBehaviour
 {
     public enum SE_Type
     {
@@ -43,15 +44,15 @@ public class Soundmanager : MonoBehaviour
     private static AudioSource _soundEffectSource;
     private static AudioSource _BGMSource;
 
-    private static Soundmanager instanceSound;
-    public static Soundmanager InstanceSound
+    private static SoundManager instanceSound;
+    public static SoundManager InstanceSound
     {
         get
         {
             if (instanceSound == null)
             {
                 var soundObj = new GameObject("SoundManagerObj");
-                instanceSound = soundObj.AddComponent<Soundmanager>();
+                instanceSound = soundObj.AddComponent<SoundManager>();
                 _soundEffectSource = soundObj.AddComponent<AudioSource>();
 
                 var bgmObj = new GameObject("BGMObj");
@@ -65,6 +66,11 @@ public class Soundmanager : MonoBehaviour
             }
             return instanceSound;
         }
+    }
+
+    public void PassBGMValue(float value)
+    {
+        _BGMSource.volume = value;
     }
 
     public AudioClip GetSoundEffectList(int num)
@@ -111,7 +117,6 @@ public class Soundmanager : MonoBehaviour
         _BGMSource.clip = GetBGMList((int)audioClip);
 
         _BGMSource.Play();
-        //_BGMSource.Play(GetBGMList((int)audioClip));
     }
 
     /// <summary>

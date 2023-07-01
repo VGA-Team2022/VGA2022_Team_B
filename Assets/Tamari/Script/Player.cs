@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 	bool _up;
 	bool _down;
 
-	private Soundmanager.SE_Type _moveSE = Soundmanager.SE_Type.FootStep_Yashiki;
+	private SoundManager.SE_Type _moveSE = SoundManager.SE_Type.FootStep_Yashiki;
 
 	//プレイヤーの現在地をプロパティ化
 	public int NowPos => _nowPos;
@@ -25,8 +25,8 @@ public class Player : MonoBehaviour
 
 		_moveSE = GameManager.GameStageNum switch
 		{
-			0 => Soundmanager.SE_Type.FootStep_Yashiki,
-			1 => Soundmanager.SE_Type.FootStep_Sea
+			0 => SoundManager.SE_Type.FootStep_Yashiki,
+			1 => SoundManager.SE_Type.FootStep_Sea
         };
 	}
 
@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
 	/// </summary>
 	private void StickMove()
     {
-		Soundmanager.InstanceSound.PlayerMoveSE(_moveSE);
+		SoundManager.InstanceSound.PlayerMoveSE(_moveSE);
 
 		var current = Gamepad.current;
 
@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
 
 			gameObject.transform.position
 				= new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _raneNum[_nowPos].position.z);
-			Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Player_LaneMove);
+			SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Player_LaneMove);
 			Debug.Log("上に移動");
 		}
     }
@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
 			_nowPos--;
 			gameObject.transform.position
 				= new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _raneNum[_nowPos].position.z);
-            Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Player_LaneMove);
+            SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Player_LaneMove);
             Debug.Log("下に移動");
 		}
     }

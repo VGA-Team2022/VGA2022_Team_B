@@ -71,7 +71,7 @@ public class StagingJudgeScript : MonoBehaviour
             .AppendCallback(() =>
             {
                 _clearImage.enabled = true;
-                Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.BGM_Type.Jingle_Clear);
+                SoundManager.InstanceSound.PlayAudioClip(SoundManager.BGM_Type.Jingle_Clear);
             })
             .AppendInterval(2f)
             .AppendCallback(() =>
@@ -95,7 +95,7 @@ public class StagingJudgeScript : MonoBehaviour
             .AppendCallback(() =>
             {
                 _gameOverImage.sprite = _letterOpenImage;
-                Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.BGM_Type.Jingle_Faild);
+                SoundManager.InstanceSound.PlayAudioClip(SoundManager.BGM_Type.Jingle_Faild);
             })
             .AppendInterval(3f)
             .AppendCallback(() =>

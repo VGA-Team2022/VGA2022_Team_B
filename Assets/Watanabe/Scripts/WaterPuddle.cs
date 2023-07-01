@@ -71,7 +71,7 @@ public class WaterPuddle : MonoBehaviour
             //自分（水溜り）が存在するレーンとPlayerがいるレーンが一致したら
             if (player.NowPos == _myRane)
             {
-                Soundmanager.InstanceSound.PlayAudioClip(Soundmanager.SE_Type.Enemy_Whale_WaterPaddle);
+                SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_Whale_WaterPaddle);
                 //揺らす処理を呼び出す→自身を消す
                 obon.Hit(transform.position.x);
                 Debug.Log("滑った");
