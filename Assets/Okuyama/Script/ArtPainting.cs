@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+
 /// <summary>
 /// 絵画系
 /// </summary>
@@ -14,7 +15,6 @@ public class ArtPainting : GimmickBase
     [SerializeField, Tooltip("アニメーション")]
     private Animator _artAnim = default;
 
-    private StageMove _stageMove;
     private int _artIndex = 0;
     private float _ratio = 0;
     private bool isGimmickAction = false;
@@ -22,12 +22,10 @@ public class ArtPainting : GimmickBase
     private const float STAGEMOVE_ADJUSTMENT_EIGHT = 8.0f;
     private const int SETACTIV_FALSE = 47, MILK_AMIN_START = 12, MILK_INDEX_ZERO = 0;
 
-    public StageMove StageMove { get => _stageMove; set => _stageMove = value; }
-
     void Start()
     {
-        _ratio = StageMove.SpeedRatio * STAGEMOVE_ADJUSTMENT_EIGHT;
-        _artIndex = Random.RandomRange(0, _art.Length);
+        _ratio = StageMovement.SpeedRatio * STAGEMOVE_ADJUSTMENT_EIGHT;
+        _artIndex = Random.Range(0, _art.Length);
         GetComponent<SpriteRenderer>().sprite = _art[_artIndex];
     }
 
@@ -44,12 +42,12 @@ public class ArtPainting : GimmickBase
             //サウンド
             isGimmickAction = true;
         }
-        gameObject.transform.position -= new Vector3(Time.deltaTime * StageMove.MoveSpeed * _ratio, 0);
+        gameObject.transform.position -= new Vector3(Time.deltaTime * StageMovement.MoveSpeed * _ratio, 0);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy")&& _artIndex == 1)
+        if (other.gameObject.CompareTag("Enemy") && _artIndex == 1)
         {
             StartCoroutine(TarbanStart());
             //サウンド
@@ -58,7 +56,7 @@ public class ArtPainting : GimmickBase
         {
             if (other.gameObject.TryGetComponent(out Obon obon))
             {
-                obon.Hit(this.transform.position.x);
+                obon.Hit(transform.position.x);
             }
         }
     }

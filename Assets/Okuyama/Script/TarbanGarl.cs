@@ -1,23 +1,18 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TarbanGarl : MonoBehaviour
+public class TarbanGarl : GimmickBase
 {
     [SerializeField] GameObject _tarban;
     [SerializeField] float _tarbanOff = 3;
-    Gimmickmanager _gimmickmanager;
-    StageMove _stageMove;
-    float _ratio;
-    const float STAGEMOVE_ADJUSTMENT_EIGHT = 8.0f;
 
-    public Gimmickmanager Gimmickmanager { get => _gimmickmanager; set => _gimmickmanager = value; }
-    public StageMove StageMove { get => _stageMove; set => _stageMove = value; }
+    private float _ratio;
+    private const float STAGEMOVE_ADJUSTMENT_EIGHT = 8.0f;
 
     private void Start()
     {
         //_stageMove = _gimmickmanager.StageMove;
-        _ratio = _stageMove.SpeedRatio * STAGEMOVE_ADJUSTMENT_EIGHT;
+        _ratio = StageMovement.SpeedRatio * STAGEMOVE_ADJUSTMENT_EIGHT;
     }
 
     private void FixedUpdate()
@@ -27,7 +22,7 @@ public class TarbanGarl : MonoBehaviour
             gameObject.SetActive(false);
             return; 
         }
-        gameObject.transform.position -= new Vector3(Time.deltaTime * _stageMove.MoveSpeed * _ratio, 0);
+        gameObject.transform.position -= new Vector3(Time.deltaTime * StageMovement.MoveSpeed * _ratio, 0);
     }
 
     private void OnTriggerEnter(Collider other)

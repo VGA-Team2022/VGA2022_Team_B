@@ -21,7 +21,6 @@ public class EnemyDogScript : MonoBehaviour
 
     private StageMove _stageMove;
 
-
     /// <summary>エネミーの軸移動方向</summary>
     private float _startPosX = 0;
 

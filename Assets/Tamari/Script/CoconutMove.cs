@@ -16,7 +16,6 @@ public class CoconutMove : GimmickBase
     [SerializeField]
     private float _destroyRange = 30;
 
-    private StageMove _stageMove = default;
     /// <summary>生成位置のx軸が負の値かの判定</summary>
     private bool _isSpawnNegativeX = false;
     /// <summary>止まる犬の座る判定</summary>
@@ -26,8 +25,7 @@ public class CoconutMove : GimmickBase
     {
         Rotate();
 
-        _stageMove = GameObject.Find("StageManager").GetComponent<StageMove>();
-        _speed = _stageMove.KeepSpeed;
+        _speed = StageMovement.KeepSpeed;
         _isStop = false;
 
         if (gameObject.transform.position.x <= 0)//生成位置が0より小さいのでTrue
@@ -55,11 +53,11 @@ public class CoconutMove : GimmickBase
 
         if (_isStop && _isSpawnNegativeX)
         {
-            _speed = -_stageMove.MoveSpeed; //ステージと同じスピードにする
+            _speed = -StageMovement.MoveSpeed; //ステージと同じスピードにする
         }
         else if (_isStop && !_isSpawnNegativeX)
         {
-            _speed = _stageMove.MoveSpeed; //マイナスをかけステージと同じ方向とスピードにする
+            _speed = StageMovement.MoveSpeed; //マイナスをかけステージと同じ方向とスピードにする
         }
     }
 

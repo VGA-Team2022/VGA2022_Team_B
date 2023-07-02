@@ -925,64 +925,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 236472774}
     - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
-      propertyPath: _seaLane
-      value: 
-      objectReference: {fileID: 271458497}
-    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
       propertyPath: _stageMove
       value: 
       objectReference: {fileID: 243928489}
-    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
-      propertyPath: _appearLane4
-      value: 
-      objectReference: {fileID: 946888267}
-    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
-      propertyPath: _sceneGimmick.Array.data[0]._gimmickPrefabs.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
-      propertyPath: _sceneGimmick.Array.data[2]._gimmickPrefabs.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
-      propertyPath: _sceneGimmick.Array.data[3]._gimmickPrefabs.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
-      propertyPath: _sceneGimmick.Array.data[0]._gimmickPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 8993290204957262246, guid: ab6d53fd26c0ece40aa6f9071f7a2203, type: 3}
-    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
-      propertyPath: _sceneGimmick.Array.data[0]._gimmickPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 84186214253110219, guid: 6a9b0fea219a58b48b4f7165e5ad4093, type: 3}
-    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
-      propertyPath: _sceneGimmick.Array.data[2]._gimmickPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 4237441714516094973, guid: 360c0277d358c0b41a7082e0a6354710, type: 3}
-    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
-      propertyPath: _sceneGimmick.Array.data[2]._gimmickPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 84186214253110219, guid: 6a9b0fea219a58b48b4f7165e5ad4093, type: 3}
-    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
-      propertyPath: _sceneGimmick.Array.data[3]._gimmickPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 7762595930043175471, guid: 8b641f60882b6fd42b1e1afdb3d5082f, type: 3}
-    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
-      propertyPath: _sceneGimmick.Array.data[3]._gimmickPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 8993290204957262246, guid: ab6d53fd26c0ece40aa6f9071f7a2203, type: 3}
-    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
-      propertyPath: _sceneGimmick.Array.data[3]._gimmickPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 84186214253110219, guid: 6a9b0fea219a58b48b4f7165e5ad4093, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
---- !u!4 &271458497 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4486015572168750894, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
-  m_PrefabInstance: {fileID: 271458496}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &275722513
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,11 +1536,6 @@ Transform:
   m_Father: {fileID: 1598712638}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &946888267 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 421818439038519347, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
-  m_PrefabInstance: {fileID: 271458496}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &947286138
 GameObject:
   m_ObjectHideFlags: 0
