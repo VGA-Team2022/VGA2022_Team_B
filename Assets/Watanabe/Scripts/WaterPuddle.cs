@@ -18,7 +18,7 @@ public class WaterPuddle : MonoBehaviour
     {
         //レーンを一定範囲内からランダムで決める
         var posX = Random.Range(_minPosX, _maxPosX);
-        var posZ = Random.Range(1, 4);
+        var posZ = Random.Range(-1, 2);
         var pos = transform.position;
 
         pos.x = posX;
