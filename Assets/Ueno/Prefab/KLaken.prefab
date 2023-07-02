@@ -296,4 +296,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad494810b1ac9e468a707d9e0758ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeToAppear: 5
+  _timeToAppear: 16

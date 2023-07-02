@@ -10,12 +10,11 @@ public class CoconutMove : GimmickBase
     [Tooltip("1周するのに何秒かかるか")]
     [SerializeField]
     private float _duration = 1f;
-    [SerializeField]
-    private float _speed = 2f;
     [Tooltip("オブジェクトが消える範囲")]
     [SerializeField]
     private float _destroyRange = 30;
 
+    private float _speed = 2f;
     /// <summary>生成位置のx軸が負の値かの判定</summary>
     private bool _isSpawnNegativeX = false;
     /// <summary>止まる犬の座る判定</summary>

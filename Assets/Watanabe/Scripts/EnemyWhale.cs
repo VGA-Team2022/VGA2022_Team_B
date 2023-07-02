@@ -23,36 +23,31 @@ public class EnemyWhale : GimmickBase
     [Tooltip("発生させる水溜りの数")]
     [SerializeField] private int _puddleNum = 1;
 
-    private Transform _wave = default;
-    private Vector3 _startPos = default;
+    [Header("Debug")]
+    [SerializeField] private bool _isMove = false;
+
     private WhaleAnimType _animType = WhaleAnimType.None;
     private Animator _animator = default;
-
-    private bool _isMove = false;
+    private GameObject _wave = default;
 
     private void Start()
     {
-        _startPos = transform.position;
         _animator = GetComponent<Animator>();
 
         _isMove = true;
 
-        Debug.Log("鯨出現");
+        Debug.Log($"鯨出現 {transform.position}");
         _animType = WhaleAnimType.Idle;
         SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_Whale_Voice);
 
-        var wave = Instantiate(_wavePrefab);
-        wave.transform.SetParent(transform, false);
-
-        _wave = wave.GetComponent<Transform>();
-        _wave.position = _waveStartPos;
+        _wave = Instantiate(_wavePrefab, _waveStartPos, Quaternion.identity);
     }
 
     private void FixedUpdate()
     {
         if (_isMove)
         {
-            transform.position = _startPos - new Vector3(Time.deltaTime, 0f);
+            transform.position -= new Vector3(Time.deltaTime * 2, 0);
 
             if (transform.position.x <= 0f)
             {
@@ -69,15 +64,14 @@ public class EnemyWhale : GimmickBase
 
         var sequence = DOTween.Sequence();
 
-        sequence.Append(_wave.DOMove(-_waveStartPos, _moveWaveTime))
+        sequence.Append(_wave.transform.DOMove(-_waveStartPos, _moveWaveTime))
                 .AppendCallback(() =>
                 {
                     Debug.Log("妨害終了");
-                    _wave.position = _waveStartPos;
+                    _wave.transform.position = _waveStartPos;
 
                     //波妨害が一通り終わったら水溜りギミック開始(違うかも)
                     AppearPuddle();
-                    _isMove = true;
                     gameObject.SetActive(false);
                 });
     }
