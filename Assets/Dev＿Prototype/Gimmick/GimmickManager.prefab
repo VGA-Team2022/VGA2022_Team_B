@@ -109,6 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGimmick:
   - _gimmickPrefabs:
+    - {fileID: 8993290204957262246, guid: ab6d53fd26c0ece40aa6f9071f7a2203, type: 3}
     - {fileID: 84186214253110219, guid: 6a9b0fea219a58b48b4f7165e5ad4093, type: 3}
   - _gimmickPrefabs:
     - {fileID: 4581314397129326892, guid: 01cb173fc29f6ff498d8fcdac9e1d834, type: 3}
@@ -116,12 +117,15 @@ MonoBehaviour:
     - {fileID: 84186214253110219, guid: 6a9b0fea219a58b48b4f7165e5ad4093, type: 3}
   - _gimmickPrefabs:
     - {fileID: 440068893640481458, guid: 5b546fe573794a24ebde258eb9b59fc5, type: 3}
+    - {fileID: 4237441714516094973, guid: 360c0277d358c0b41a7082e0a6354710, type: 3}
     - {fileID: 84186214253110219, guid: 6a9b0fea219a58b48b4f7165e5ad4093, type: 3}
   - _gimmickPrefabs:
     - {fileID: 440068893640481458, guid: 5b546fe573794a24ebde258eb9b59fc5, type: 3}
-    - {fileID: 7550710172475099114, guid: 8b641f60882b6fd42b1e1afdb3d5082f, type: 3}
+    - {fileID: 7762595930043175471, guid: 8b641f60882b6fd42b1e1afdb3d5082f, type: 3}
+    - {fileID: 8993290204957262246, guid: ab6d53fd26c0ece40aa6f9071f7a2203, type: 3}
     - {fileID: 84186214253110219, guid: 6a9b0fea219a58b48b4f7165e5ad4093, type: 3}
-  _appearLane: {fileID: 421818439038519347}
+  _appearLane4: {fileID: 421818439038519347}
+  _seaLane: {fileID: 4486015572168750894}
   _stageMove: {fileID: 0}
   _obonObj: {fileID: 0}
   _lanes:

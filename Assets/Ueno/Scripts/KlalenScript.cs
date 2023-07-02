@@ -6,9 +6,6 @@ public class KlalenScript : GimmickBase
     private GameObject _klakenCanvas;
     private Animator _anim;
 
-    public StageMove StageMove { get => _stageMove; set => _stageMove = value; }
-    private StageMove _stageMove;
-
     private string _actionAnimName = "SplashTrigger";
 
     /// <summary>アクションさせたかどうか</summary>
@@ -16,17 +13,16 @@ public class KlalenScript : GimmickBase
 
     public Vector3 AppeairPos { get => _appaeirPos; set => _appaeirPos = value; }
     private Vector3 _appaeirPos;
-    void Start()
+
+    private void Start()
     {
         transform.position = _appaeirPos;
 
-        _klakenCanvas = this.transform.GetChild(0).gameObject;
+        _klakenCanvas = transform.GetChild(0).gameObject;
         //ミスが無いように最初にfalseにしておく
         _klakenCanvas.SetActive(false);
 
         _anim = GetComponent<Animator>();
-   
-        _stageMove = GetComponent<StageMove>();
     }
 
     // Update is called once per frame
@@ -56,6 +52,6 @@ public class KlalenScript : GimmickBase
     /// <summary>移動処理</summary>
     private void FixedUpdate()
     {
-        this.gameObject.transform.position -= new Vector3(Time.deltaTime * StageMove.MoveSpeed, 0);
+        transform.position -= new Vector3(Time.deltaTime * StageMovement.MoveSpeed, 0);
     }
 }

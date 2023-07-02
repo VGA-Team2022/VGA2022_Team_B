@@ -13,7 +13,7 @@ class GimmickPrefabs
 /// <summary>
 /// ギミック生成Manager
 /// </summary>
-public class Gimmickmanager : MonoBehaviour
+public class GimmickManager : MonoBehaviour
 {
     [Header("ケーキを追加する使用人は常に一番下に入れる")]
     [Tooltip("Scecn番号と同じElement番号にSceneに合ったPrefabを入れる")]
@@ -46,7 +46,7 @@ public class Gimmickmanager : MonoBehaviour
         for (int i = 0; i < _appearTimes.Length; i++)
         {
             _appearTimes[i] =
-                GameManager.GameTimeClearLength * _gimmicks[i].GetComponent<GimmickBase>().TimeToAppear * 0.01f;
+                (float)(GameManager.GameTimeClearLength / 100) * _gimmicks[i].GetComponent<GimmickBase>().TimeToAppear;
         }
         ArraySort();
     }
@@ -55,11 +55,11 @@ public class Gimmickmanager : MonoBehaviour
     {
         if (_appearGimmickNum == _appearTimes.Length) return;
 
-        if (GameManager.CurrentTime <= _appearTimes[_appearGimmickNum])
+        if (GameManager.CurrentTime >= _appearTimes[_appearGimmickNum])
         {
-            var index = 1;
+            //var index = 1;
 
-            GenerateGimmick(index);
+            GenerateGimmick(_appearGimmickNum);
             _appearGimmickNum++;
         }
     }
@@ -69,17 +69,12 @@ public class Gimmickmanager : MonoBehaviour
         var obj = Instantiate(_gimmicks[gimmickPrefabNum], _appearLane4);
         obj.transform.parent = null;
 
-        if (obj.TryGetComponent(out ArtPainting art))
-        {
-            art.StageMove = _stageMove;
-        }
-        else if (gimmickPrefabNum == _gimmicks.Length - 1)
+        if (gimmickPrefabNum == _gimmicks.Length - 1)
         {
             obj.GetComponent<Employee>().Init(_stageMove, _obonObj);
         }
         else if (obj.TryGetComponent(out KlalenScript klaken))
         {
-            klaken.StageMove = _stageMove;
             klaken.AppeairPos = _seaLane.position;
         }
     }
@@ -93,7 +88,7 @@ public class Gimmickmanager : MonoBehaviour
 
             for (int j = i; j >= 0; j--)
             {
-                if (_appearTimes[index] >= _appearTimes[j])
+                if (_appearTimes[index] < _appearTimes[j])
                 {
                     Swap(ref _appearTimes, index, j);
                     Swap(ref _gimmicks, index, j);

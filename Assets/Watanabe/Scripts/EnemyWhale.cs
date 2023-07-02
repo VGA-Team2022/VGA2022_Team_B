@@ -25,7 +25,6 @@ public class EnemyWhale : GimmickBase
 
     private Transform _wave = default;
     private Vector3 _startPos = default;
-    private StageMove _stage = default;
     private WhaleAnimType _animType = WhaleAnimType.None;
     private Animator _animator = default;
 
@@ -47,8 +46,6 @@ public class EnemyWhale : GimmickBase
 
         _wave = wave.GetComponent<Transform>();
         _wave.position = _waveStartPos;
-
-        _stage = FindObjectOfType<StageMove>();
     }
 
     private void FixedUpdate()
@@ -93,7 +90,7 @@ public class EnemyWhale : GimmickBase
             var go = Instantiate(_puddlePrefab);
             if (go.TryGetComponent(out WaterPuddle puddle))
             {
-                puddle.Init(_stage);
+                puddle.Init(StageMovement);
             }
         }
     }

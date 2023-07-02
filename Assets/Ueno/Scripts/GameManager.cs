@@ -73,7 +73,8 @@ public class GameManager : MonoBehaviour
 
         IsFindScenemng = false;
 
-        CurrentTime = GameTimeClearLength;
+        //CurrentTime = GameTimeClearLength;
+        CurrentTime = 0f;
 
         if (SceneManager.GetActiveScene().name == Define.SCENENAME_TITLE)
         {
@@ -126,7 +127,8 @@ public class GameManager : MonoBehaviour
                 IsGameClear = false;
                 IsStop = false;
                 _isAppearDoorObj = false;
-                CurrentTime = GameTimeClearLength;
+                //CurrentTime = GameTimeClearLength;
+                CurrentTime = 0;
             }
             GemeClearjudge();
         }
@@ -168,11 +170,15 @@ public class GameManager : MonoBehaviour
         {
             if (!IsAppearClearObj)
             {
-                CurrentTime -= Time.deltaTime;
+                CurrentTime += Time.deltaTime;
             }
             /// Debug.Log(CurrentTime);
 
-            if (CurrentTime <= 0 && !IsGameOver)
+            //if (CurrentTime <= 0 && !IsGameOver)
+            //{
+            //    _isAppearDoorObj = true;
+            //}
+            if (CurrentTime >= GameTimeClearLength && !IsGameOver)
             {
                 _isAppearDoorObj = true;
             }

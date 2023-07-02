@@ -30,8 +30,7 @@ public class MovingArmor : GimmickBase
     private Vector3 _pos = default;
     private Animator _animator = default;
 
-    private StageMove _stageMove;
-    private Gimmickmanager _gimmickManager;
+    private GimmickManager _gimmickManager;
     private Movement _movement = Movement.FirstMove;
     private AnimType _animType = AnimType.None;
 
@@ -40,8 +39,7 @@ public class MovingArmor : GimmickBase
         _animator = GetComponentInChildren<Animator>();
         _animType = AnimType.SideMove;
 
-        _stageMove = GameObject.Find("StageManager").GetComponent<StageMove>();
-        _gimmickManager = GameObject.Find("GimmickManager").GetComponent<Gimmickmanager>();
+        _gimmickManager = GameObject.Find("GimmickManager").GetComponent<GimmickManager>();
 
         //this.transform.position = new Vector3(-24, this.transform.position.y, this.transform.position.z);
 
@@ -53,7 +51,7 @@ public class MovingArmor : GimmickBase
         switch (_movement)
         {
             case Movement.FirstMove:
-                transform.position += new Vector3(Time.deltaTime * 2 * _stageMove.MoveSpeed, 0);
+                transform.position += new Vector3(Time.deltaTime * 2 * StageMovement.MoveSpeed, 0);
                 if (transform.position.x >= 20)
                 {
                     _movement = Movement.SecondMove;
@@ -63,7 +61,7 @@ public class MovingArmor : GimmickBase
 
             case Movement.SecondMove:
                 _moveTime += Time.deltaTime;
-                transform.position -= new Vector3(Time.deltaTime * _stageMove.MoveSpeed, 0);
+                transform.position -= new Vector3(Time.deltaTime * StageMovement.MoveSpeed, 0);
                 _random = MakeRandom();
 
                 transform.position =
@@ -88,7 +86,7 @@ public class MovingArmor : GimmickBase
                 break;
 
             case Movement.ThirdMove:
-                gameObject.transform.position -= new Vector3(Time.deltaTime * _stageMove.MoveSpeed, 0);
+                gameObject.transform.position -= new Vector3(Time.deltaTime * StageMovement.MoveSpeed, 0);
                 if (transform.position.x <= _pos.x)
                 {
                     Destroy(gameObject);

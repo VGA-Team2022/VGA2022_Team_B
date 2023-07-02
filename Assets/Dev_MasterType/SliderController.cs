@@ -1,22 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SliderController : MonoBehaviour
 {
     private Slider _slider;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         _slider = GetComponent<Slider>();
-        _slider.maxValue = GameManager.GameTimeClearLength;
+        //_slider.maxValue = GameManager.GameTimeClearLength;
+        _slider.maxValue = 100;
         _slider.value = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        _slider.value =  GameManager.GameTimeClearLength - GameManager.CurrentTime;
+        _slider.value = GameManager.CurrentTime / GameManager.GameTimeClearLength * 100;
     }
 }
