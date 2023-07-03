@@ -11,12 +11,12 @@ public class KlalenScript : GimmickBase
     /// <summary>アクションさせたかどうか</summary>
     private bool _isActionDone = false;
 
-    public Vector3 AppeairPos { get => _appaeirPos; set => _appaeirPos = value; }
-    private Vector3 _appaeirPos;
+    private Vector3 _appearPos;
+    public Vector3 AppearPos { get => _appearPos; set => _appearPos = value; }
 
     private void Start()
     {
-        transform.position = _appaeirPos;
+        transform.position = _appearPos;
 
         _klakenCanvas = transform.GetChild(0).gameObject;
         //ミスが無いように最初にfalseにしておく

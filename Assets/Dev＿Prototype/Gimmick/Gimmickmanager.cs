@@ -75,7 +75,7 @@ public class GimmickManager : MonoBehaviour
         }
         else if (obj.TryGetComponent(out KlalenScript klaken))
         {
-            klaken.AppeairPos = _seaLane.position;
+            klaken.AppearPos = _seaLane.position;
         }
     }
 
