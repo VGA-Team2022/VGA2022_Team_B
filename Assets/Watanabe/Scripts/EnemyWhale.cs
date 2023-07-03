@@ -26,7 +26,7 @@ public class EnemyWhale : GimmickBase
     [Header("Debug")]
     [SerializeField] private bool _isMove = false;
 
-    private WhaleAnimType _animType = WhaleAnimType.None;
+    private WhaleAnimType _currentAnimType = WhaleAnimType.None;
     private Animator _animator = default;
     private GameObject _wave = default;
 
@@ -37,7 +37,7 @@ public class EnemyWhale : GimmickBase
         _isMove = true;
 
         Debug.Log($"鯨出現 {transform.position}");
-        _animType = WhaleAnimType.Idle;
+        _currentAnimType = WhaleAnimType.Idle;
         SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_Whale_Voice);
 
         _wave = Instantiate(_wavePrefab, _waveStartPos, Quaternion.identity);
@@ -91,14 +91,14 @@ public class EnemyWhale : GimmickBase
 
     private void ChangeAnim(WhaleAnimType next)
     {
-        if (_animType == next) return;
+        if (_currentAnimType == next) return;
 
         if (next == WhaleAnimType.Splash)
         {
             _animator.SetBool("isIdle", false);
             _animator.SetBool("isSplash", true);
         }
-        _animType = next;
+        _currentAnimType = next;
     }
 }
 

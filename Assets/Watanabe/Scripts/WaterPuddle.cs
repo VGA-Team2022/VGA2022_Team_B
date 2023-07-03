@@ -22,6 +22,7 @@ public class WaterPuddle : MonoBehaviour
         var pos = transform.position;
 
         pos.x = posX;
+        pos.y = 3f;
         pos.z = posZ;
         transform.position = pos;
 
@@ -71,7 +72,7 @@ public class WaterPuddle : MonoBehaviour
                 SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_Whale_WaterPaddle);
                 //揺らす処理を呼び出す→自身を消す
                 obon.Hit(transform.position.x);
-                Debug.Log("滑った");
+                Debug.Log("衝突");
                 gameObject.SetActive(false);
             }
         }

@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eb30a4f48f1a0e41ae71cf6354f0328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeToAppear: 50
+  _timeToAppear: 5
   _wavePrefab: {fileID: 148089756523485260, guid: a4e1d69c77f5aa34381afea8fdde6179, type: 3}
   _puddlePrefab: {fileID: 5307662357114766814, guid: ee929f8327abaa6499fb61a17ea23b3a, type: 3}
   _waveStartPos: {x: 0, y: 40, z: -10}
