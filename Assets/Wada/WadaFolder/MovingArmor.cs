@@ -28,16 +28,19 @@ public class MovingArmor : GimmickBase
     private bool _isMove = false;
 
     private Vector3 _pos = default;
+    private SpriteRenderer _spriteRenderer = default;
     private Animator _animator = default;
 
     private GimmickManager _gimmickManager;
     private Movement _movement = Movement.FirstMove;
-    private AnimType _animType = AnimType.None;
+    private AnimType _currentAnimType = AnimType.None;
 
     private void Start()
     {
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
         _animator = GetComponentInChildren<Animator>();
-        _animType = AnimType.SideMove;
+        _currentAnimType = AnimType.SideMove;
 
         _gimmickManager = GameObject.Find("GimmickManager").GetComponent<GimmickManager>();
 
@@ -50,6 +53,7 @@ public class MovingArmor : GimmickBase
     {
         switch (_movement)
         {
+            //â°Ç©ÇÁèoÇƒÇ≠ÇÈ
             case Movement.FirstMove:
                 transform.position += new Vector3(Time.deltaTime * 2 * StageMovement.MoveSpeed, 0);
                 if (transform.position.x >= 20)
@@ -59,6 +63,7 @@ public class MovingArmor : GimmickBase
                 }
                 break;
 
+            //ÉåÅ[ÉìÇ…à⁄ìÆÇ∑ÇÈ
             case Movement.SecondMove:
                 _moveTime += Time.deltaTime;
                 transform.position -= new Vector3(Time.deltaTime * StageMovement.MoveSpeed, 0);
@@ -69,14 +74,12 @@ public class MovingArmor : GimmickBase
                                  new Vector3(transform.position.x, transform.position.y, _gimmickManager.Lanes[_random].position.z),
                                  _moveTime / _moveSpeed);
 
-                gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder
-                    = _random switch
+                _spriteRenderer.sortingOrder = _random switch
                     {
                         0 => 15,
                         1 => 8,
                         _ => 1,
                     };
-
 
                 if (_moveTime >= _moveSpeed)
                 {
@@ -104,7 +107,7 @@ public class MovingArmor : GimmickBase
 
     private void ChangeAnim(AnimType next)
     {
-        if (_animType == next) return;
+        if (_currentAnimType == next) return;
 
         switch (next)
         {
@@ -123,7 +126,7 @@ public class MovingArmor : GimmickBase
                 _animator.SetBool("isFrontMove", true);
                 break;
         }
-        _animType = next;
+        _currentAnimType = next;
     }
 
     private int MakeRandom()
