@@ -24,7 +24,7 @@ public class CoconutMove : GimmickBase
         _speed = StageMovement.KeepSpeed;
         var sprite = transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>();
 
-        if (gameObject.transform.position.x <= 0)//生成位置が0より小さいのでTrue
+        if (transform.position.x <= 0)//生成位置が0より小さいのでTrue
         {
             _isSpawnNegativeX = true;
         }
@@ -34,19 +34,19 @@ public class CoconutMove : GimmickBase
             sprite.flipX = true;
         }
 
-        if (gameObject.transform.position.z <= -4 && gameObject.transform.position.z >= -7)
+        if (transform.position.z <= -4 && transform.position.z >= -7)
         {
             sprite.sortingOrder = 8;
         }
-        else if (gameObject.transform.position.z <= -6)
+        else if (transform.position.z <= -6)
         {
             sprite.sortingOrder = 15;
         }
+        SoundManager.InstanceSound.PlayerMoveSE(SoundManager.SE_Type.Enemy_Rooling);
     }
+
     private void Update()
     {
-        SoundManager.InstanceSound.PlayerMoveSE(SoundManager.SE_Type.Enemy_Rooling);
-
         if (_isStop && _isSpawnNegativeX)
         {
             _speed = -StageMovement.MoveSpeed; //ステージと同じスピードにする
@@ -62,7 +62,7 @@ public class CoconutMove : GimmickBase
         //スタート位置によって進行方向とSpriteの向きを変える
         if (!_isSpawnNegativeX) //Playerの進行方向(画面右端から左端に向けて)からくる挙動
         {
-            gameObject.transform.position -= new Vector3(Time.deltaTime * _speed, 0);
+            transform.position -= new Vector3(Time.deltaTime * _speed, 0);
 
             // Playerの周辺で止まる
             if (transform.position.x >= -_stopRange && transform.position.x <= _stopRange)
@@ -73,7 +73,7 @@ public class CoconutMove : GimmickBase
         }
         else//Playerの後ろ方向からくる挙動
         {
-            gameObject.transform.position += new Vector3(Time.deltaTime * _speed, 0);
+            transform.position += new Vector3(Time.deltaTime * _speed, 0);
 
             //Playerの周辺で止まる
             if (transform.position.x >= -_stopRange && transform.position.x <= _stopRange)
