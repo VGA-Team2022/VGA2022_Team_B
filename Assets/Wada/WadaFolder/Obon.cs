@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class Obon : MonoBehaviour
 {
+    [Header("デバッグ：trueにするとケーキが揺れなくなる")]
+    [SerializeField]
+    private bool _isDebugZure;
+
     [Tooltip("プレイヤーがゲーム開始時に持っているお菓子の配列")]
     [SerializeField]
     private GameObject[] _startOkasis;
@@ -60,6 +64,15 @@ public class Obon : MonoBehaviour
     private void FixedUpdate()
     {
         var hol = Input.GetAxisRaw("Horizontal");
+
+        if (_isDebugZure)
+        {
+            _zureSpeed = 0;
+        }
+        else 
+        {
+            _zureSpeed = 0.005f;
+        }
 
         //Zure += ((n += h * 0.00001f) * 100f);
 
