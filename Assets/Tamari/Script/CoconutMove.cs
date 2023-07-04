@@ -98,6 +98,8 @@ public class CoconutMove : GimmickBase
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.gameObject.name);
+
         if (collision.gameObject.TryGetComponent(out Obon obon))
         {
             SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_Coconut);

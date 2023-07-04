@@ -3,7 +3,7 @@
 public class WaterMelon : GimmickBase
 {
     [Range(0f, 10f)]
-    [Tooltip("スイカが止まる場所")]
+    [Tooltip("スイカが止まる範囲")]
     [SerializeField]
     private float _stopRange = 1;
     [SerializeField] private Sprite _suikaImage = null;
@@ -16,18 +16,14 @@ public class WaterMelon : GimmickBase
     private void Start()
     {
         _animator = GetComponentInChildren<Animator>();
-        _moveSpeed = StageMovement.KeepSpeed;
         SoundManager.InstanceSound.PlayerMoveSE(SoundManager.SE_Type.Enemy_Rooling);
 
         _isSpawnNegativeX = transform.position.x <= 0;
         //移動方向の初期設定
-        if (_isStop && _isSpawnNegativeX)
+        if (_isStop)
         {
-            _moveSpeed = -StageMovement.MoveSpeed;
-        }
-        else if (_isStop && !_isSpawnNegativeX)
-        {
-            _moveSpeed = StageMovement.MoveSpeed;
+            _moveSpeed = _isSpawnNegativeX ?
+                -StageMovement.MoveSpeed : StageMovement.MoveSpeed;
         }
     }
 
@@ -66,11 +62,20 @@ public class WaterMelon : GimmickBase
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.gameObject.name);
+
         if (collision.gameObject.TryGetComponent(out Obon obon))
         {
+            //Animation再生を停止
             _animator.enabled = false;
             transform.GetChild(0).rotation = Quaternion.Euler(0f, 0f, 0f);
+
+            //当たった際の演出を実行し、おぼんを揺らす
             transform.GetChild(0).GetComponentInChildren<SpriteRenderer>().sprite = _suikaImage;
+            SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_Coconut);
+            _isStop = true;
+            obon.Hit(transform.position.x);
+
         }
     }
 }
