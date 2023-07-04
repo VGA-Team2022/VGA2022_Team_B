@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public static bool IsGameOver = false;
 
     /// <summary>リザルト演出の終了判定</summary>
-    public static bool IsGameStaged = false;
+    public static bool IsFinishedEffect = false;
 
     /// <summary>一回だけSceneManagerを探す為の判定</summary>
     public static bool IsFindScenemng = false;
@@ -47,16 +47,19 @@ public class GameManager : MonoBehaviour
     }
 
     #region ステージとレベルの選択操作で使うメソッド
+    /// <summary> ステージ選択 </summary>
     public void PrefarenceStage(int i)
     {
         GameStageNum = i;
     }
 
+    /// <summary> レベル選択 </summary>
     public void PrefarenceLevel(int i)
     {
         StageLevelNum = i;
     }
 
+    /// <summary> 時間設定(?) </summary>
     public void PrefarenceTime(float i)
     {
         GameTimeClearLength = i;
@@ -68,12 +71,11 @@ public class GameManager : MonoBehaviour
         _isGameStart = false;
         IsGameOver = false;
         IsGameClear = false;
-        IsGameStaged = false;
+        IsFinishedEffect = false;
         FindSceneManager();
 
         IsFindScenemng = false;
 
-        //CurrentTime = GameTimeClearLength;
         CurrentTime = 0f;
 
         if (SceneManager.GetActiveScene().name == Define.SCENENAME_TITLE)
@@ -90,7 +92,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-
         if (!_scenemng && !IsFindScenemng)
         {
             FindSceneManager();
@@ -98,17 +99,16 @@ public class GameManager : MonoBehaviour
             if (SceneManager.GetActiveScene().name == Define.SCENENAME_RESULT)
             {
                 _isGameStart = false;
-                IsGameStaged = false;
+                IsFinishedEffect = false;
                 IsFindScenemng = true;
             }
             else if (SceneManager.GetActiveScene().name != Define.SCENENAME_RESULT &&
                      SceneManager.GetActiveScene().name != Define.SCENENAME_MASTERGAME)
             {
-                Debug.Log(_scenemng);
                 _isGameStart = false;
                 IsGameOver = false;
                 IsGameClear = false;
-                IsGameStaged = false;
+                IsFinishedEffect = false;
                 IsFindScenemng = true;
                 IsStop = false;
                 CurrentTime = GameTimeClearLength;
@@ -122,43 +122,33 @@ public class GameManager : MonoBehaviour
                 Debug.Log(_scenemng.gameObject.scene.name);
                 _isGameStart = true;
                 IsFindScenemng = true;
-                IsGameStaged = false;
+                IsFinishedEffect = false;
                 IsGameOver = false;
                 IsGameClear = false;
                 IsStop = false;
                 _isAppearDoorObj = false;
-                //CurrentTime = GameTimeClearLength;
                 CurrentTime = 0;
             }
             GemeClearjudge();
         }
     }
 
-    #region クリア判定
     private void GemeClearjudge()
     {
         if (_scenemng)
         {
-            if (Obon._staticSweetsFall == true)
+            if (Obon.IsSweetsFall == true)
             {
                 StartCoroutine(GameOver());
             }
 
             if (IsGameOver && !IsGameClear) //GameOver
             {
-                if (IsGameStaged)//演出が終わったか
-                {
-                    _scenemng.ChangeResultScene();
-                    //isFindScenemng = false;
-                }
+                if (IsFinishedEffect) _scenemng.ChangeResultScene();
             }
             else if (!IsGameOver && IsGameClear)//GameClear
             {
-                if (IsGameStaged)
-                {
-                    _scenemng.ChangeResultScene();
-                    //isFindScenemng = false;
-                }
+                if (IsFinishedEffect) _scenemng.ChangeResultScene();
             }
             else if (IsGameOver && IsGameClear)//もし両方クリア判定になったら
             {
@@ -172,24 +162,18 @@ public class GameManager : MonoBehaviour
             {
                 CurrentTime += Time.deltaTime;
             }
-            /// Debug.Log(CurrentTime);
 
-            //if (CurrentTime <= 0 && !IsGameOver)
-            //{
-            //    _isAppearDoorObj = true;
-            //}
             if (CurrentTime >= GameTimeClearLength && !IsGameOver)
             {
                 _isAppearDoorObj = true;
             }
         }
     }
-    #endregion
 
     /// <summary> 落下モーションを見る為 </summary>
     private IEnumerator GameOver()
     {
         yield return new WaitForSeconds(1f);
-        IsGameOver = Obon._staticSweetsFall;
+        IsGameOver = Obon.IsSweetsFall;
     }
 }
