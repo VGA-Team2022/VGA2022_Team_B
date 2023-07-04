@@ -1,9 +1,6 @@
 using Common;
 using UnityEngine;
 
-/// <summary>
-///ƒV[ƒ“‘JˆÚ 
-/// </summary>
 public class AttachedSceneController : MonoBehaviour
 {
     private void Start()
@@ -47,5 +44,4 @@ public class AttachedSceneController : MonoBehaviour
     {
         Application.Quit();
     }
-
 }

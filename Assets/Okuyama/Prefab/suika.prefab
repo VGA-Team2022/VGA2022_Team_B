@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 477240342198900095}
   - component: {fileID: 2457327575957722620}
-  - component: {fileID: 3299307227281205118}
   - component: {fileID: 7656886032244668880}
   - component: {fileID: 91142358476927651}
   m_Layer: 0
@@ -49,20 +48,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5, y: 5, z: 1.8}
   m_Center: {x: -0.03198135, y: 2.0600734, z: 0.6}
---- !u!114 &3299307227281205118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 440068893640481458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6eac6fc9b26399438a606fb0b19f1bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dogType: 0
-  _stopRange: 4.72
 --- !u!54 &7656886032244668880
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -93,7 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeToAppear: 50
   _suikaImage: {fileID: 21300000, guid: cf8855749f2ca7e499ba8007eed5f7ad, type: 3}
-  _animator: {fileID: 3311921985977369758}
+  _stopRange: 4.71
 --- !u!1 &860676200383077633
 GameObject:
   m_ObjectHideFlags: 0

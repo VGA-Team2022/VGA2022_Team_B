@@ -145,16 +145,12 @@ public class EnemyDogScript : MonoBehaviour
         SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_SmallDog_Breath);
     }
 
-    //あたり判定
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Obon")
+        if (collision.gameObject.TryGetComponent(out Obon obon))
         {
             _isStop = true;
-            if (collision.gameObject.TryGetComponent(out Obon obon))
-            {
-                obon.Hit(transform.position.x);
-            }
+            obon.Hit(transform.position.x);
         }
     }
 }
