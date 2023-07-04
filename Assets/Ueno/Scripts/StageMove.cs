@@ -32,7 +32,7 @@ public class StageMove : MonoBehaviour
         _waveObjectScroll = _waveObjectScroll.gameObject.GetComponent<BackGroundScroll>();
         
         KeepSpeed = _moveSpeed;
-        _moveSpeed = 0;
+        _moveSpeed = 0f;
         
         _obon = _obon.gameObject.GetComponent<Obon>();
         _isSetMaterial = false;

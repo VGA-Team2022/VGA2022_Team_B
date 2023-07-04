@@ -67,9 +67,9 @@ public class GimmickManager : MonoBehaviour
         var obj = Instantiate(_gimmicks[gimmickPrefabNum], _appearLane4);
         obj.transform.parent = null;
 
-        if (gimmickPrefabNum == _gimmicks.Length - 1)
+        if (obj.TryGetComponent(out Employee employee))
         {
-            obj.GetComponent<Employee>().Init(_stageMove, _obonObj);
+            employee.Init(_obonObj);
         }
         else if (obj.TryGetComponent(out KlalenScript klaken))
         {
