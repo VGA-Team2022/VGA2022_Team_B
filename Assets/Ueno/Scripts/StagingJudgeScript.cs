@@ -49,13 +49,13 @@ public class StagingJudgeScript : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.IsGameClear && !GameManager.IsGameStaged && !_isMigrateToResult)
+        if (GameManager.IsGameClear && !GameManager.IsFinishedEffect && !_isMigrateToResult)
         {
             Debug.Log("CLEAR");
             _isMigrateToResult = true;
             GameClearEffect();
         }
-        else if (GameManager.IsGameOver && !GameManager.IsGameStaged && !_isMigrateToResult)
+        else if (GameManager.IsGameOver && !GameManager.IsFinishedEffect && !_isMigrateToResult)
         {
             _isMigrateToResult = true;
             GameOverEffect();
@@ -77,7 +77,7 @@ public class StagingJudgeScript : MonoBehaviour
             .AppendCallback(() =>
             {
                 _clearImage.enabled = false;
-                GameManager.IsGameStaged = true;
+                GameManager.IsFinishedEffect = true;
             });
     }
 
@@ -102,7 +102,7 @@ public class StagingJudgeScript : MonoBehaviour
             {
                 gameOverTextImage.enabled = true;
                 gameOverTextImage.sprite = _crackGameOver;
-                GameManager.IsGameStaged = true;
+                GameManager.IsFinishedEffect = true;
             });
     }
 }

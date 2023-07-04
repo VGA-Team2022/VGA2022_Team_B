@@ -25,21 +25,21 @@ public class EnemyInstanceManager : MonoBehaviour
     private void Start()
     {
         _isCreate = true;
+        StartCoroutine(Create());
     }
 
     private void Update()
     {
-        while (_isCreate)
-        {
-            StartCoroutine(Create());
-        }
         if (GameManager.IsAppearClearObj) _isCreate = false;
     }
 
     private IEnumerator Create()
     {
-        CreateInstance();
-        yield return new WaitForSeconds(_interval);
+        while (_isCreate)
+        {
+            CreateInstance();
+            yield return new WaitForSecondsRealtime(_interval);
+        }
     }
 
     private void CreateInstance()
