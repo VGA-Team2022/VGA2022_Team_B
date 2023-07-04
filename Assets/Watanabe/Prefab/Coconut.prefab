@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4237441713619779426}
   - component: {fileID: 4237441713619779425}
-  - component: {fileID: 4237441713619779424}
   m_Layer: 0
   m_Name: Coconut
   m_TagString: Untagged
@@ -85,23 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4237441713619779424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4237441713619779427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cec387ce8da933544b097adcbcd5aade, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timeToAppear: 30
-  _stopRange: 1
-  _duration: 1
-  _speed: 2
-  _destroyRange: 30
 --- !u!1 &4237441714373937294
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,6 +261,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4237441714516094972}
+  - component: {fileID: 3532719520880314699}
   m_Layer: 0
   m_Name: Coconut
   m_TagString: Untagged
@@ -304,3 +287,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3532719520880314699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4237441714516094973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cec387ce8da933544b097adcbcd5aade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeToAppear: 5
+  _stopRange: 1
+  _duration: 1

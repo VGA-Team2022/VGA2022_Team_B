@@ -10,9 +10,6 @@ public class CoconutMove : GimmickBase
     [Tooltip("1周するのに何秒かかるか")]
     [SerializeField]
     private float _duration = 1f;
-    [Tooltip("オブジェクトが消える範囲")]
-    [SerializeField]
-    private float _destroyRange = 30;
 
     private float _speed = 2f;
     /// <summary>生成位置のx軸が負の値かの判定</summary>
@@ -25,7 +22,7 @@ public class CoconutMove : GimmickBase
         Rotate();
 
         _speed = StageMovement.KeepSpeed;
-        _isStop = false;
+        var sprite = transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>();
 
         if (gameObject.transform.position.x <= 0)//生成位置が0より小さいのでTrue
         {
@@ -34,16 +31,16 @@ public class CoconutMove : GimmickBase
         else
         {
             _isSpawnNegativeX = false;
-            gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().flipX = true;
+            sprite.flipX = true;
         }
 
         if (gameObject.transform.position.z <= -4 && gameObject.transform.position.z >= -7)
         {
-            gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = 8;
+            sprite.sortingOrder = 8;
         }
         else if (gameObject.transform.position.z <= -6)
         {
-            gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = 15;
+            sprite.sortingOrder = 15;
         }
     }
     private void Update()
@@ -85,7 +82,7 @@ public class CoconutMove : GimmickBase
             }
         }
         //画面外に行ったら消える
-        if (transform.position.x <= _destroyRange || transform.position.x >= _destroyRange)
+        if (transform.position.x <= -30f || transform.position.x >= 30f)
         {
             Destroy(gameObject);
         }

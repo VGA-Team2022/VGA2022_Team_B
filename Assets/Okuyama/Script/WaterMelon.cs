@@ -1,7 +1,7 @@
 using UnityEngine;
 
 //ÉXÉCÉJ
-public class Siika : GimmickBase
+public class WaterMelon : GimmickBase
 {
     [SerializeField] Sprite _suikaImage = null;
     [SerializeField] Animator _animator= null;

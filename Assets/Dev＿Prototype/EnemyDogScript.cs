@@ -1,162 +1,137 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public enum DogType
 {
-    Outrun,//‘–‚è”²‚¯‚é
-    Stop//“Ë‘R~‚Ü‚é
+    [Tooltip("èµ°ã‚ŠæŠœã‘ã‚‹")]
+    Outrun,
+    [Tooltip("çªç„¶æ­¢ã¾ã‚‹")]
+    Stop
 }
 
 public class EnemyDogScript : MonoBehaviour
 {
-    [Tooltip("Œ¢‚Ìí—Ş"), SerializeField] private DogType _dogType = DogType.Outrun;
+    [Tooltip("çŠ¬ã®ç¨®é¡")]
+    [SerializeField] private DogType _dogType = DogType.Outrun;
+    [Range(0f, 10f)]
+    [Tooltip("æ­¢ã¾ã‚‹çŠ¬ãŒã©ã“ã§æ­¢ã¾ã‚‹ã‹ã®å€¤èª¿æ•´")]
+    [SerializeField] private float _stopRange = 1;
 
-    [Tooltip("~‚Ü‚éŒ¢‚ª‚Ç‚±‚Å~‚Ü‚é‚©‚Ì’l’²®"), SerializeField, Range(0f, 10f)] private float _stopRange = 1;
-
-    /// <summary>ƒGƒlƒ~[‚ÌƒXƒs[ƒh</summary>
+    /// <summary>ã‚¨ãƒãƒŸãƒ¼ã®ã‚¹ãƒ”ãƒ¼ãƒ‰</summary>
     private float _speed = 2.0f;
-    public float Speed
-        { get { return _speed; } set { _speed = value; } }
 
-    public EnemyInstansManager EnemyInstansManager { get => _enemyInstansManager; set => _enemyInstansManager = value; }
+    /// <summary>çŠ¬ç”ŸæˆManager/// </summary>
+    private EnemyInstanceManager _enemyInstanceManager;
+    public EnemyInstanceManager EnemyInstanceManager { get => _enemyInstanceManager; set => _enemyInstanceManager = value; }
 
     private StageMove _stageMove;
-
-    /// <summary>ƒGƒlƒ~[‚Ì²ˆÚ“®•ûŒü</summary>
-    private float _startPosX = 0;
 
     /// <summary>Animation</summary>
     private Animator _anim = default;
 
-    /// <summary>¶¬ˆÊ’u‚Ìx²‚ª•‰‚Ì’l‚©‚Ì”»’è</summary>
-    private bool isSpawnNegativeX = false;
-    /// <summary>~‚Ü‚éŒ¢‚ÌÀ‚é”»’è</summary>
+    /// <summary>ç”Ÿæˆä½ç½®ã®xè»¸ãŒè² ã®å€¤ã‹ã®åˆ¤å®š</summary>
+    private bool _isSpawnNegativeX = false;
+    /// <summary>æ­¢ã¾ã‚‹çŠ¬ã®åº§ã‚‹åˆ¤å®š</summary>
     private bool _isStop = false;
-    /// <summary>Œ¢¶¬Manager/// </summary>
-    private EnemyInstansManager _enemyInstansManager;
-    private bool _forwardFast = false;
+    private bool _isForwardFast = false;
 
     private void Start()
     {
         _stageMove = GameObject.Find("StageManager").GetComponent<StageMove>();
-        _anim= this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<Animator>();
-        Speed = _stageMove.KeepSpeed;
-        _startPosX = transform.position.x;
+        _anim = transform.GetChild(0).gameObject.GetComponentInChildren<Animator>();
+        _speed = _stageMove.KeepSpeed;
         _isStop = false;
 
-        if (this.gameObject.transform.position.x <= 0)//¶¬ˆÊ’u‚ª‚O‚æ‚è¬‚³‚¢‚Ì‚ÅTrue
+        if (transform.position.x <= 0)//ç”Ÿæˆä½ç½®ãŒï¼ã‚ˆã‚Šå°ã•ã„ã®ã§True
         {
-            isSpawnNegativeX = true;
+            _isSpawnNegativeX = true;
 
         }
-        else 
+        else
         {
-            isSpawnNegativeX = false;
-            this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().flipX = true;
+            _isSpawnNegativeX = false;
+            transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().flipX = true;
         }
 
-        if (this.gameObject.transform.position.z <= -4 && this.gameObject.transform.position.z >= -7)
+        if (transform.position.z <= -4 && transform.position.z >= -7)
         {
-            this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder= 8;
+            transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = 8;
         }
-        else if (this.gameObject.transform.position.z <= -6)
+        else if (transform.position.z <= -6)
         {
-            this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = 15;
-        }
-
-        if (_dogType == DogType.Outrun)
-        {
-            SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_SmallDog_Cry);
-        }
-        else 
-        {
-            SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_BigDog_Cry);
+            transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = 15;
         }
 
+        SoundManager.InstanceSound.PlayAudioClip(
+            _dogType == DogType.Outrun ?
+            SoundManager.SE_Type.Enemy_SmallDog_Cry : SoundManager.SE_Type.Enemy_BigDog_Cry);
     }
 
     private void Update()
     {
-        if (_isStop && isSpawnNegativeX)//À‚é”»’è‚ª³‚É‚È‚Á‚½‚çŠ‚Âis•ûŒü‚ª‰E(³•ûŒü)‚ÌŒ¢‚Ìê‡
+        if (_isStop)
         {
-            Speed = -_stageMove.MoveSpeed;//ƒXƒe[ƒW‚Æ“¯‚¶ƒXƒs[ƒh‚É‚·‚é
+            _speed = _isSpawnNegativeX ? -_stageMove.MoveSpeed : _stageMove.MoveSpeed;
         }
-        else if (_isStop && !isSpawnNegativeX)//À‚é”»’è‚ª³‚É‚È‚Á‚½‚çŠ‚Âis•ûŒü‚ª¶(•‰•ûŒü)‚ÌŒ¢‚Ìê‡
-        {
-            Speed = _stageMove.MoveSpeed;//ƒ}ƒCƒiƒX‚ğ‚©‚¯ƒXƒe[ƒW‚Æ“¯‚¶•ûŒü‚ÆƒXƒs[ƒh‚É‚·‚é
-        }
-
     }
 
-
-    /// <summary>
-    /// ƒGƒlƒ~[‚ÌˆÚ“®
-    /// </summary>
+    /// <summary> ã‚¨ãƒãƒŸãƒ¼ã®ç§»å‹• </summary>
     void FixedUpdate()
     {
-
         switch (_dogType)
         {
             case DogType.Outrun:
                 InvokeRepeating("SmallDogBreathPlayAudio", 0, 2f);
-                //ƒXƒ^[ƒgˆÊ’u‚É‚æ‚Á‚Äis•ûŒü‚ÆSprite‚ÌŒü‚«‚ğ•Ï‚¦‚é
-                if (!isSpawnNegativeX)//Player‚Ìis•ûŒü(‰æ–Ê‰E’[‚©‚ç¶’[‚ÉŒü‚¯‚Ä)‚©‚ç‚­‚é‹““®
+                //ã‚¹ã‚¿ãƒ¼ãƒˆä½ç½®ã«ã‚ˆã£ã¦é€²è¡Œæ–¹å‘ã¨Spriteã®å‘ãã‚’å¤‰ãˆã‚‹
+                if (!_isSpawnNegativeX)//Playerã®é€²è¡Œæ–¹å‘(ç”»é¢å³ç«¯ã‹ã‚‰å·¦ç«¯ã«å‘ã‘ã¦)ã‹ã‚‰ãã‚‹æŒ™å‹•
                 {
-                        //this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().flipX = true;
-                        this.gameObject.transform.position -= new Vector3(Time.deltaTime * Speed, 0);
+                    transform.position -= new Vector3(Time.deltaTime * _speed, 0);
                 }
                 else
                 {
-                  this.gameObject.transform.position += new Vector3(Time.deltaTime * Speed, 0);
-                    if (!_forwardFast && this.gameObject.transform.position.x >= 25)
+                    transform.position += new Vector3(Time.deltaTime * _speed, 0);
+                    if (!_isForwardFast && transform.position.x >= 25)
                     {
-                        EnemyInstansManager.Dog(gameObject);
-                        _forwardFast = true;
+                        _enemyInstanceManager.Dog(gameObject);
+                        _isForwardFast = true;
                     }
-                    
                 }
-
                 break;
 
             case DogType.Stop:
                 InvokeRepeating("BigDogBreathPlayAudio", 0, 2f);
-                //ƒXƒ^[ƒgˆÊ’u‚É‚æ‚Á‚Äis•ûŒü‚ÆSprite‚ÌŒü‚«‚ğ•Ï‚¦‚é
-                if (!isSpawnNegativeX)//Player‚Ìis•ûŒü(‰æ–Ê‰E’[‚©‚ç¶’[‚ÉŒü‚¯‚Ä)‚©‚ç‚­‚é‹““®
+                //ã‚¹ã‚¿ãƒ¼ãƒˆä½ç½®ã«ã‚ˆã£ã¦é€²è¡Œæ–¹å‘ã¨Spriteã®å‘ãã‚’å¤‰ãˆã‚‹
+                if (!_isSpawnNegativeX)//Playerã®é€²è¡Œæ–¹å‘(ç”»é¢å³ç«¯ã‹ã‚‰å·¦ç«¯ã«å‘ã‘ã¦)ã‹ã‚‰ãã‚‹æŒ™å‹•
                 {
-                    //this.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<SpriteRenderer>().flipX = true;
-                    this.gameObject.transform.position -= new Vector3(Time.deltaTime * Speed, 0);
+                    transform.position -= new Vector3(Time.deltaTime * _speed, 0);
 
-                    //‚˜²‚Ì_stopRnge‚l’n“_‚É“ü‚Á‚½‚ç~‚Ü‚é(Player‚ÌêŠ)
+                    //ï½˜è»¸ã®_stopRangeåœ°ç‚¹ã«å…¥ã£ãŸã‚‰æ­¢ã¾ã‚‹(Playerã®å ´æ‰€)
                     if (transform.position.x >= -_stopRange && transform.position.x <= _stopRange)
                     {
-                        _isStop = true;//ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÀ‚é”»’è‚ğ³‚É‚·‚é
+                        _isStop = true;//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®åº§ã‚‹åˆ¤å®šã‚’æ­£ã«ã™ã‚‹
                     }
-                    
                 }
-                else//Player‚ÌŒã‚ë•ûŒü‚©‚ç‚­‚é‹““®
+                else//Playerã®å¾Œã‚æ–¹å‘ã‹ã‚‰ãã‚‹æŒ™å‹•
                 {
-                    this.gameObject.transform.position += new Vector3(Time.deltaTime * Speed, 0);
+                    transform.position += new Vector3(Time.deltaTime * _speed, 0);
 
-                    //‚˜²‚Ì_stopRange’n“_‚É“ü‚Á‚½‚ç~‚Ü‚é(Player‚ÌêŠ)
+                    //ï½˜è»¸ã®_stopRangeåœ°ç‚¹ã«å…¥ã£ãŸã‚‰æ­¢ã¾ã‚‹(Playerã®å ´æ‰€)
                     if (transform.position.x >= -_stopRange && transform.position.x <= _stopRange)
                     {
-                        _isStop = true;//ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÀ‚é”»’è‚ğ³‚É‚·‚é
+                        _isStop = true;//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®åº§ã‚‹åˆ¤å®šã‚’æ­£ã«ã™ã‚‹
                     }
                 }
-
-
                 break;
         }
 
-
-        //‰æ–ÊŠO‚És‚Á‚½‚çÁ‚¦‚é
+        //ç”»é¢å¤–ã«è¡Œã£ãŸã‚‰æ¶ˆãˆã‚‹
         if (transform.position.x <= -30 || transform.position.x >= 30)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
         if (_anim)
         {
-            _anim.SetBool("isStop",_isStop);
+            _anim.SetBool("isStop", _isStop);
         }
     }
 
@@ -164,22 +139,22 @@ public class EnemyDogScript : MonoBehaviour
     {
         SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_BigDog_Breath);
     }
+
     private void SmallDogBreathPlayAudio()
     {
-        SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_SmallDog_Breath);           
+        SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_SmallDog_Breath);
     }
 
-    //‚ ‚½‚è”»’è
+    //ã‚ãŸã‚Šåˆ¤å®š
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Obon")
         {
             _isStop = true;
-            if(collision.gameObject.TryGetComponent(out Obon obon))
+            if (collision.gameObject.TryGetComponent(out Obon obon))
             {
-                obon.Hit(this.transform.position.x);
+                obon.Hit(transform.position.x);
             }
-
         }
     }
 }
