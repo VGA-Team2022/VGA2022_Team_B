@@ -26,7 +26,7 @@ public class GimmickManager : MonoBehaviour
     [SerializeField] private StageMove _stageMove;
     [Tooltip("おぼんObj")]
     [SerializeField] private GameObject _obonObj;
-    [Tooltip("第一第二第三レーン")]
+    [Tooltip("移動する各レーン")]
     [SerializeField] private Transform[] _lanes;
 
     /// <summary> 出現する時間 </summary>
@@ -42,7 +42,7 @@ public class GimmickManager : MonoBehaviour
         Debug.Log($"StageNum : {nowStage}");
 
         _gimmicks = _sceneGimmick[nowStage].Gimmicks;
-        _appearTimes = new float[_gimmicks.Length - 1];
+        _appearTimes = new float[_gimmicks.Length];
         for (int i = 0; i < _appearTimes.Length; i++)
         {
             _appearTimes[i] =
@@ -57,8 +57,6 @@ public class GimmickManager : MonoBehaviour
 
         if (GameManager.CurrentTime >= _appearTimes[_appearGimmickNum])
         {
-            //var index = 1;
-
             GenerateGimmick(_appearGimmickNum);
             _appearGimmickNum++;
         }
@@ -69,9 +67,9 @@ public class GimmickManager : MonoBehaviour
         var obj = Instantiate(_gimmicks[gimmickPrefabNum], _appearLane4);
         obj.transform.parent = null;
 
-        if (gimmickPrefabNum == _gimmicks.Length - 1)
+        if (obj.TryGetComponent(out Employee employee))
         {
-            obj.GetComponent<Employee>().Init(_stageMove, _obonObj);
+            employee.Init(_obonObj);
         }
         else if (obj.TryGetComponent(out KlalenScript klaken))
         {
@@ -79,7 +77,7 @@ public class GimmickManager : MonoBehaviour
         }
     }
 
-    /// <summary> インサートソートを用いて配列の並び替えを行う(降順) </summary>
+    /// <summary> インサートソートを用いて配列の並び替えを行う </summary>
     private void ArraySort()
     {
         for (int i = 0; i < _appearTimes.Length - 1; i++)
@@ -100,11 +98,8 @@ public class GimmickManager : MonoBehaviour
         }
     }
 
-    private void Swap<T>(ref T[] array, int a, int b)
+    private void Swap<T>(ref T[] array, int i, int j)
     {
-        var save = array[a];
-
-        array[a] = array[b];
-        array[b] = save;
+        (array[i], array[j]) = (array[j], array[i]);
     }
 }

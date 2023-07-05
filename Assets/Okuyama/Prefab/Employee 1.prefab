@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14e45aff8b63a4143ad5a39958a8e211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timeToAppear: 40
   _cake: {fileID: 6365076445813442923, guid: be273d0414f478c40a4994e044c4df4a, type: 3}
 --- !u!1 &1169060613903673332
 GameObject:

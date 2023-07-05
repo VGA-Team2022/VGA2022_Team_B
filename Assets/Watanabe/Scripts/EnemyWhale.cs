@@ -14,9 +14,6 @@ public class EnemyWhale : GimmickBase
     [Min(1f)]
     [Tooltip("何秒かけて波が降りきるか")]
     [SerializeField] private float _moveWaveTime = 1f;
-    [Min(1f)]
-    [Tooltip("何秒妨害するか")]
-    [SerializeField] private float _sabotageTime = 1f;
 
     [Header("水溜りギミックの調整値")]
     [Min(1)]

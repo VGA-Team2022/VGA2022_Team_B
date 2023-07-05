@@ -28,7 +28,7 @@ public class BackGroundScroll : MonoBehaviour
 
     private Vector2 _offset;
 
-    private float time;
+    private float _time;
     private bool _isFlipSeaAnim = false;
 
     [HideInInspector] public float MoveSpeed = 0;
@@ -60,13 +60,13 @@ public class BackGroundScroll : MonoBehaviour
     {
         if (_isSea)
         {
-            time += Time.deltaTime;
+            _time += Time.deltaTime;
             _offset.x +=  MoveSpeed * SpeedRatio * Time.deltaTime;
 
-            if (_durationTime <= time)
+            if (_durationTime <= _time)
             {
-                time = 0f;
-                _offset.y = (_isFlipSeaAnim) ? _offset.y += _moveY : _offset.y -= _moveY;
+                _time = 0f;
+                _offset.y = _isFlipSeaAnim ? _offset.y += _moveY : _offset.y -= _moveY;
             }
             _targetMaterial.mainTextureOffset = _offset;
         }

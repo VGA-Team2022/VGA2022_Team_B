@@ -1,44 +1,47 @@
-using Common;
+ï»¿using Common;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    /// <summary>ƒXƒe[ƒW‚Ì’l</summary>
+    public static Common.StageType StageType = Common.StageType.NONE;
+    public static Common.GameResult GameResult = Common.GameResult.NONE;
+
+    /// <summary>ã‚¹ãƒ†ãƒ¼ã‚¸ã®å€¤</summary>
     public static int GameStageNum = 0;
-    /// <summary>ƒXƒe[ƒWƒŒƒxƒ‹‚Ì’l</summary>
+    /// <summary>ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ¬ãƒ™ãƒ«ã®å€¤</summary>
     public static int StageLevelNum = 0;
 
-    /// <summary>ƒQ[ƒ€ƒNƒŠƒA‚Ü‚Å‚ÌŠÔ</summary>
+    /// <summary>ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ã¾ã§ã®æ™‚é–“</summary>
     public static float GameTimeClearLength = 25;
 
-    /// <summary>Œ»İ‚ÌŠÔ</summary>
+    /// <summary>ç¾åœ¨ã®æ™‚é–“</summary>
     public static float CurrentTime;
 
-    /// <summary>ƒQ[ƒ€‚ªŠJn‚³‚ê‚½‚©‚Ì”»’è</summary>
+    /// <summary>ã‚²ãƒ¼ãƒ ãŒé–‹å§‹ã•ã‚ŒãŸã‹ã®åˆ¤å®š</summary>
     private bool _isGameStart = false;
 
-    /// <summary>ƒQ[ƒ€ƒNƒŠƒA‚Ì”»’è</summary>
+    /// <summary>ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ã®åˆ¤å®š</summary>
     public static bool IsGameClear = false;
-    /// <summary>ƒQ[ƒ€ƒI[ƒo[‚Ì”»’è</summary>
+    /// <summary>ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ã®åˆ¤å®š</summary>
     public static bool IsGameOver = false;
 
-    /// <summary>ƒŠƒUƒ‹ƒg‰‰o‚ÌI—¹”»’è</summary>
-    public static bool IsGameStaged = false;
+    /// <summary>ãƒªã‚¶ãƒ«ãƒˆæ¼”å‡ºã®çµ‚äº†åˆ¤å®š</summary>
+    public static bool IsFinishedEffect = false;
 
-    /// <summary>ˆê‰ñ‚¾‚¯SceneManager‚ğ’T‚·ˆ×‚Ì”»’è</summary>
+    /// <summary>ä¸€å›ã ã‘SceneManagerã‚’æ¢ã™ç‚ºã®åˆ¤å®š</summary>
     public static bool IsFindScenemng = false;
-    /// <summary>Player‚Ìis‚ğƒXƒgƒbƒv‚·‚éˆ×‚Ì”»’è</summary>
+    /// <summary>Playerã®é€²è¡Œã‚’ã‚¹ãƒˆãƒƒãƒ—ã™ã‚‹ç‚ºã®åˆ¤å®š</summary>
     public static bool IsStop = false;
 
-    /// <summary>Clear”»’è—p‚ÌƒhƒA‚ğoŒ»‚³‚¹‚é”»’è</summary>
+    /// <summary>Clearåˆ¤å®šç”¨ã®ãƒ‰ã‚¢ã‚’å‡ºç¾ã•ã›ã‚‹åˆ¤å®š</summary>
     private static bool _isAppearDoorObj = false;
 
-    /// <summary>SceneManagerŠi”[—p•Ï”</summary>
+    /// <summary>SceneManageræ ¼ç´ç”¨å¤‰æ•°</summary>
     private AttachedSceneController _scenemng = default;
 
-    /// <summary>ƒNƒŠƒA”»’èŒã‚ÉoŒ»‚·‚éobjectƒtƒ‰ƒO</summary>
+    /// <summary>ã‚¯ãƒªã‚¢åˆ¤å®šå¾Œã«å‡ºç¾ã™ã‚‹objectãƒ•ãƒ©ã‚°</summary>
     public static bool IsAppearClearObj => _isAppearDoorObj;
 
     private void Awake()
@@ -46,17 +49,20 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    #region ƒXƒe[ƒW‚ÆƒŒƒxƒ‹‚Ì‘I‘ğ‘€ì‚Åg‚¤ƒƒ\ƒbƒh
+    #region ã‚¹ãƒ†ãƒ¼ã‚¸ã¨ãƒ¬ãƒ™ãƒ«ã®é¸æŠæ“ä½œã§ä½¿ã†ãƒ¡ã‚½ãƒƒãƒ‰
+    /// <summary> ã‚¹ãƒ†ãƒ¼ã‚¸é¸æŠ </summary>
     public void PrefarenceStage(int i)
     {
         GameStageNum = i;
     }
 
+    /// <summary> ãƒ¬ãƒ™ãƒ«é¸æŠ </summary>
     public void PrefarenceLevel(int i)
     {
         StageLevelNum = i;
     }
 
+    /// <summary> æ™‚é–“è¨­å®š(?) </summary>
     public void PrefarenceTime(float i)
     {
         GameTimeClearLength = i;
@@ -68,12 +74,11 @@ public class GameManager : MonoBehaviour
         _isGameStart = false;
         IsGameOver = false;
         IsGameClear = false;
-        IsGameStaged = false;
+        IsFinishedEffect = false;
         FindSceneManager();
 
         IsFindScenemng = false;
 
-        //CurrentTime = GameTimeClearLength;
         CurrentTime = 0f;
 
         if (SceneManager.GetActiveScene().name == Define.SCENENAME_TITLE)
@@ -90,7 +95,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-
         if (!_scenemng && !IsFindScenemng)
         {
             FindSceneManager();
@@ -98,17 +102,16 @@ public class GameManager : MonoBehaviour
             if (SceneManager.GetActiveScene().name == Define.SCENENAME_RESULT)
             {
                 _isGameStart = false;
-                IsGameStaged = false;
+                IsFinishedEffect = false;
                 IsFindScenemng = true;
             }
             else if (SceneManager.GetActiveScene().name != Define.SCENENAME_RESULT &&
                      SceneManager.GetActiveScene().name != Define.SCENENAME_MASTERGAME)
             {
-                Debug.Log(_scenemng);
                 _isGameStart = false;
                 IsGameOver = false;
                 IsGameClear = false;
-                IsGameStaged = false;
+                IsFinishedEffect = false;
                 IsFindScenemng = true;
                 IsStop = false;
                 CurrentTime = GameTimeClearLength;
@@ -122,74 +125,58 @@ public class GameManager : MonoBehaviour
                 Debug.Log(_scenemng.gameObject.scene.name);
                 _isGameStart = true;
                 IsFindScenemng = true;
-                IsGameStaged = false;
+                IsFinishedEffect = false;
                 IsGameOver = false;
                 IsGameClear = false;
                 IsStop = false;
                 _isAppearDoorObj = false;
-                //CurrentTime = GameTimeClearLength;
                 CurrentTime = 0;
             }
             GemeClearjudge();
         }
     }
 
-    #region ƒNƒŠƒA”»’è
     private void GemeClearjudge()
     {
         if (_scenemng)
         {
-            if (Obon._staticSweetsFall == true)
+            if (Obon.IsSweetsFall == true)
             {
                 StartCoroutine(GameOver());
             }
 
             if (IsGameOver && !IsGameClear) //GameOver
             {
-                if (IsGameStaged)//‰‰o‚ªI‚í‚Á‚½‚©
-                {
-                    _scenemng.ChangeResultScene();
-                    //isFindScenemng = false;
-                }
+                if (IsFinishedEffect) _scenemng.ChangeResultScene();
             }
             else if (!IsGameOver && IsGameClear)//GameClear
             {
-                if (IsGameStaged)
-                {
-                    _scenemng.ChangeResultScene();
-                    //isFindScenemng = false;
-                }
+                if (IsFinishedEffect) _scenemng.ChangeResultScene();
             }
-            else if (IsGameOver && IsGameClear)//‚à‚µ—¼•ûƒNƒŠƒA”»’è‚É‚È‚Á‚½‚ç
+            else if (IsGameOver && IsGameClear)//ã‚‚ã—ä¸¡æ–¹ã‚¯ãƒªã‚¢åˆ¤å®šã«ãªã£ãŸã‚‰
             {
                 _scenemng.ChangeResultScene();
             }
         }
-        //GameClear‚É‚È‚Á‚½‚ç”à‚ğŒÄ‚Ño‚·
+        //GameClearã«ãªã£ãŸã‚‰æ‰‰ã‚’å‘¼ã³å‡ºã™
         if (_isGameStart && !IsStop)
         {
             if (!IsAppearClearObj)
             {
                 CurrentTime += Time.deltaTime;
             }
-            /// Debug.Log(CurrentTime);
 
-            //if (CurrentTime <= 0 && !IsGameOver)
-            //{
-            //    _isAppearDoorObj = true;
-            //}
             if (CurrentTime >= GameTimeClearLength && !IsGameOver)
             {
                 _isAppearDoorObj = true;
             }
         }
     }
-    #endregion
 
-    /// <summary> —‰ºƒ‚[ƒVƒ‡ƒ“‚ğŒ©‚éˆ× </summary>
+    /// <summary> è½ä¸‹ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¦‹ã‚‹ç‚º </summary>
     private IEnumerator GameOver()
     {
         yield return new WaitForSeconds(1f);
-        IsGameOver = Obon._staticSweetsFall;
+        IsGameOver = Obon.IsSweetsFall;
     }
 }

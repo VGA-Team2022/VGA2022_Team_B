@@ -1,116 +1,69 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+ï»¿using System;
 using UnityEngine;
 
 public class Sweets : MonoBehaviour
 {
     [SerializeField]
-    Transform _nextPos;
+    private Transform _nextPos;
 
-    
-
-    [Tooltip("‚±‚êˆÈã‰¡‚É‚Í‚İo‚µ‚½‚ç—‚¿‚é"), SerializeField]
-    float _deadWidth;
+    [Tooltip("ã“ã‚Œä»¥ä¸Šæ¨ªã«ã¯ã¿å‡ºã—ãŸã‚‰è½ã¡ã‚‹")]
+    [SerializeField]
+    private float _deadWidth;
 
     public GameObject _prevObj;
 
-    private bool _tanma = true;
+    private float _misalignmentDifference;//ãšã‚Œã®å·®ä¸Šã«è¡Œã‘ã°è¡Œãã»ã©å¤§ããå‹•ãã‚„ã¤ã®å¤‰æ•°
 
-    private float _misalignmentDifference;//‚¸‚ê‚Ì·ã‚És‚¯‚Îs‚­‚Ù‚Ç‘å‚«‚­“®‚­‚â‚Â‚Ì•Ï”
+    private Obon _obon;
+    private Rigidbody _rb;
+    private Animator _anim;
 
-    Obon obon;
+    public Transform NextPos => _nextPos;
 
-    Rigidbody _rb;
-
-    Animator _anim;
-
-    public Transform NextPos
-    {
-        get
-        {
-            return _nextPos;
-        }
-        set
-        {
-
-        }
-    }
-
-    public float MisalignmentDifference
-    {
-        get
-        {
-            return _misalignmentDifference;
-        }
-        set
-        {
-            _misalignmentDifference = value;
-        }
-    }
-
-    public bool Tanma
-    {
-        get
-        {
-            return _tanma;
-        }
-        set
-        {
-            _tanma = value;
-        }
-    }
+    public float MisalignmentDifference { get => _misalignmentDifference; set => _misalignmentDifference = value; }
 
     private void Start()
     {
-        obon = GameObject.FindGameObjectWithTag("Obon").GetComponent<Obon>();
+        _obon = GameObject.FindGameObjectWithTag("Obon").GetComponent<Obon>();
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
     }
 
-
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        if(!obon._sweetsFall && _tanma)
+        if(!_obon._sweetsFall)
         {
-            if (this.transform.position.x >= _prevObj.transform.position.x + _deadWidth || this.transform.position.x <= _prevObj.transform.position.x - _deadWidth)
+            if (transform.position.x >= _prevObj.transform.position.x + _deadWidth ||
+                transform.position.x <= _prevObj.transform.position.x - _deadWidth)
             {
-                //_rb.AddForce(Vector2.up * 10);//AddForce‚¹‚ñ‚Æ•ö‚ê‚È‚¢‚©‚çAddForceB‰‰o‚É‚àg‚¦ƒ\‚¤;
-                obon.GameOver();//ObonƒNƒ‰ƒX‚ÌƒQ[ƒ€ƒI[ƒo[ŠÖ”‚ÌŒÄ‚Ño‚µ
-                obon._sweetsFall = true;
-                Obon._staticSweetsFall = true;
+                //_rb.AddForce(Vector2.up * 10);//AddForceã›ã‚“ã¨å´©ã‚Œãªã„ã‹ã‚‰AddForceã€‚æ¼”å‡ºã«ã‚‚ä½¿ãˆã‚½ã†;
+                _obon.GameOver();//Obonã‚¯ãƒ©ã‚¹ã®ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼é–¢æ•°ã®å‘¼ã³å‡ºã—
+                _obon._sweetsFall = true;
+                Obon.IsSweetsFall = true;
             }
             else
             {
-                this.transform.position = new Vector3(_prevObj.transform.position.x + (obon.Zure * _misalignmentDifference) - obon.Movement, this.transform.position.y, this.transform.position.z);
+                transform.position
+                    = new Vector3(_prevObj.transform.position.x + (_obon.Zure * _misalignmentDifference) - _obon.Movement,
+                                  transform.position.y,
+                                  transform.position.z);
             }
         }
 
-
-        //Debug.Log(_prevObj.transform.position.x - _deadWidth);
-
-        //if (this.transform.position.x >= _prevObj.transform.position.x + _deadWidth / 2 
-        //    || this.transform.position.x <= _prevObj.transform.position.x - _deadWidth / 2)
-        //{
-        //    obon._playerAnim.Abunaaaaaaai();
-        //}
-
         try
         {
-            if (this.transform.position.x >= _prevObj.transform.position.x + _deadWidth / 2
-                || this.transform.position.x <= _prevObj.transform.position.x - _deadWidth / 2)
+            if (transform.position.x >= _prevObj.transform.position.x + _deadWidth / 2
+                || transform.position.x <= _prevObj.transform.position.x - _deadWidth / 2)
             {
-                obon.PlayerAnim.Abunaaaaaaai();
+                _obon.PlayerAnim.Abunaaaaaaai();
             }
         }
         catch (NullReferenceException nullException)
         {
-            obon.PlayerAnim.Abunaaaaaaai();
+            Debug.LogWarning(nullException);
+            _obon.PlayerAnim.Abunaaaaaaai();
         }
     }
-
-
-
 
     public void PutOnSweets(GameObject gameObj)
     {
@@ -120,12 +73,11 @@ public class Sweets : MonoBehaviour
     public void Boom(int power)
     {
         _prevObj = null;
-        this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;//Rigidbody‚ÌƒƒbƒN‚ğ‰ğœ
+        _rb.constraints = RigidbodyConstraints.None; //Rigidbodyã®ãƒ­ãƒƒã‚¯ã‚’è§£é™¤
         _anim.enabled = false;
-        this.transform.eulerAngles = new Vector3(0, 0,UnityEngine.Random.Range(-30,30));//‚¨‰Ùq‚ÌŒü‚«‚ğƒ‰ƒ“ƒ_ƒ€‚É•Ï‚¦‚é
-        //transform.rotation = Quaternion.Euler(0, 0, 90);
-        //this.transform.eulerAngles = new Vector3(90, 90, 90);//‚¨‰Ùq‚ÌŒü‚«‚ğƒ‰ƒ“ƒ_ƒ€‚É•Ï‚¦‚é
-        _rb.AddForce(new Vector3(UnityEngine.Random.Range(-1, 1), 1,0) * power);//AddForce‚¹‚ñ‚Æ•ö‚ê‚È‚¢‚©‚çAddForceB‰‰o‚É‚àg‚¦ƒ\‚¤;
+        transform.eulerAngles = new Vector3(0, 0,UnityEngine.Random.Range(-30,30));//ãŠè“å­ã®å‘ãã‚’ãƒ©ãƒ³ãƒ€ãƒ ã«å¤‰ãˆã‚‹
+
+        _rb.AddForce(new Vector3(UnityEngine.Random.Range(-1, 1), 1,0) * power);//AddForceã›ã‚“ã¨å´©ã‚Œãªã„ã‹ã‚‰AddForceã€‚æ¼”å‡ºã«ã‚‚ä½¿ãˆã‚½ã†;
     }
 
     public void SwayAnim()

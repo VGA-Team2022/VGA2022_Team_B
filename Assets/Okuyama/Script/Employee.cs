@@ -1,24 +1,22 @@
 using UnityEngine;
 
 /// <summary> ケーキを積む使用人 </summary>
-public class Employee : MonoBehaviour
+public class Employee : GimmickBase
 {
     [SerializeField] 
     private GameObject _cake = null;
 
-    private StageMove _stageMove;
     private GameObject _obonObj;
     private bool _cakeInstance = false;
 
-    public void Init(StageMove stageMove, GameObject obon)
+    public void Init(GameObject obon)
     {
-        _stageMove = stageMove;
         _obonObj = obon;
     }
 
     private void FixedUpdate()
     {
-        transform.position -= new Vector3(Time.deltaTime * _stageMove.MoveSpeed, 0);
+        transform.position -= new Vector3(Time.deltaTime * StageMovement.MoveSpeed, 0);
 
         if (transform.position.x <= 0 && !_cakeInstance)
         {
@@ -26,6 +24,7 @@ public class Employee : MonoBehaviour
             cake.transform.parent = _obonObj.transform;
             _cakeInstance = true;
         }
+
         if (transform.position.x <= -47)
         {
             gameObject.SetActive(false);

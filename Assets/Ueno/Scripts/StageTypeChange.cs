@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 
 public enum GameStageBackGroundType
@@ -8,20 +8,19 @@ public enum GameStageBackGroundType
     sea_Daylight,
     sea_Sunset,
 }
-/// <summary>
-/// ƒXƒe[ƒWØ‘Ö‚ÌƒNƒ‰ƒX
-/// </summary>
+
+/// <summary> ã‚¹ãƒ†ãƒ¼ã‚¸åˆ‡æ›¿ã®ã‚¯ãƒ©ã‚¹ </summary>
 public class StageTypeChange : MonoBehaviour
 {
     [SerializeField] private GameStageBackGroundType _stageType = GameStageBackGroundType.yashiki_Daylight;
 
-    [Header("ƒAƒ^ƒbƒ`‚·‚é‚à‚Ì")]
+    [Header("ã‚¢ã‚¿ãƒƒãƒã™ã‚‹ã‚‚ã®")]
     [SerializeField] private Material[] _targetMaterials;
     [SerializeField] private GameObject[] _groundsObjs;
 
     [HideInInspector] public Material CurrentMaterial;
 
-    [Header("ŠCƒXƒe[ƒW—p‚Ìİ’è")]
+    [Header("æµ·ã‚¹ãƒ†ãƒ¼ã‚¸ç”¨ã®è¨­å®š")]
     public bool IsSea;
     [SerializeField] private SeaStageMoveScript _seaScript;
 
@@ -37,9 +36,7 @@ public class StageTypeChange : MonoBehaviour
         StageChange();
     }
 
-    /// <summary>
-    /// enum‚ğ•ÏX‚·‚éˆ×‚Ìƒƒ\ƒbƒh
-    /// </summary>
+    /// <summary> enumã‚’å¤‰æ›´ã™ã‚‹ç‚ºã®ãƒ¡ã‚½ãƒƒãƒ‰ </summary>
     private void SettingStageType()
     {
         if (GameManager.GameStageNum == 0)
@@ -58,9 +55,7 @@ public class StageTypeChange : MonoBehaviour
         }
     }
 
-    /// <summary>
-    ///w’è‚³‚ê‚Ä‚¢‚éenum‚É‰ˆ‚Á‚ÄƒXƒe[ƒWã‚ÌØ‘Ö‚ğs‚¤
-    /// </summary>
+    /// <summary> æŒ‡å®šã•ã‚Œã¦ã„ã‚‹enumã«æ²¿ã£ã¦ã‚¹ãƒ†ãƒ¼ã‚¸ä¸Šã®åˆ‡æ›¿ã‚’è¡Œã† </summary>
     private void StageChange()
     {
 
@@ -90,10 +85,7 @@ public class StageTypeChange : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// ”wŒi‚Ìƒ}ƒeƒŠƒAƒ‹İ’è
-    /// </summary>
-    /// <param name="material"></param>
+    /// <summary> èƒŒæ™¯ã®ãƒãƒ†ãƒªã‚¢ãƒ«è¨­å®š </summary>
     private void SetStageMaterial(Material material)
     {
         var meshRenderer = GetComponent<MeshRenderer>();
@@ -101,9 +93,7 @@ public class StageTypeChange : MonoBehaviour
         CurrentMaterial = material;
     }
 
-    /// <summary>
-    ///’n–Ê‚Ìİ’è 
-    /// </summary>
+    /// <summary> åœ°é¢ã®è¨­å®š </summary>
     private void SetGroundObject(int num)
     {
         Array.ForEach(_groundsObjs, obj => obj.SetActive(false));
@@ -113,7 +103,6 @@ public class StageTypeChange : MonoBehaviour
             _groundsObjs[num].SetActive(true);
         }
     }
-
 
     private void PlayBGM(SoundManager.BGM_Type bgmType)
     {
