@@ -18,7 +18,7 @@ namespace Common
         public const string SCENENAME_RESULT = "ResultScene";
     }
 
-    /// <summary> 挑戦するステージ、結果を保存する </summary>
+    /// <summary> 挑戦するステージ、結果を保存する（リザルトで定義するだけでいいかも） </summary>
     public struct GameState
     {
         public StageType Stage;
@@ -55,7 +55,7 @@ namespace Common
     public enum GameResult
     {
         NONE,
-        GAME_CLEAR,
-        GAMME_OVER,
+        CLEAR,
+        FAILED,
     }
 }
