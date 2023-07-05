@@ -24,6 +24,8 @@ public class WaterMelon : GimmickBase
         {
             _moveSpeed = _isSpawnNegativeX ?
                 -StageMovement.MoveSpeed : StageMovement.MoveSpeed;
+
+            _moveSpeed *= 2f;
         }
     }
 
