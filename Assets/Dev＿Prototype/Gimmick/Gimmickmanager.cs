@@ -42,7 +42,7 @@ public class GimmickManager : MonoBehaviour
         Debug.Log($"StageNum : {nowStage}");
 
         _gimmicks = _sceneGimmick[nowStage].Gimmicks;
-        _appearTimes = new float[_gimmicks.Length - 1];
+        _appearTimes = new float[_gimmicks.Length];
         for (int i = 0; i < _appearTimes.Length; i++)
         {
             _appearTimes[i] =
