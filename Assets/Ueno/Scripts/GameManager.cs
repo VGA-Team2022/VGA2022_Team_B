@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameState GameState = new(Common.StageType.NONE, Common.GameResult.NONE);
+
     /// <summary>ステージの値</summary>
     public static int GameStageNum = 0;
     /// <summary>ステージレベルの値</summary>

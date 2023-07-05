@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Common
 {
@@ -18,11 +18,44 @@ namespace Common
         public const string SCENENAME_RESULT = "ResultScene";
     }
 
+    /// <summary> 挑戦するステージ、結果を保存する </summary>
+    public struct GameState
+    {
+        public StageType Stage;
+        public GameResult Result;
+
+        public GameState(StageType stage, GameResult result)
+        {
+            Stage = stage;
+            Result = result;
+        }
+    }
+
     public enum SceneNames
     {
         TITLE_SCENE,
         HOME_SCENE,
         GAME_SCENE,
         RESULT_SCENE,
+    }
+
+    /// <summary> ステージの種類 </summary>
+    public enum StageType
+    {
+        NONE,
+        YASHIKI_DAYTIME,
+        YASHIKI_NIGHT,
+        SEA_DAYTIME,
+        SEA_NIGHT,
+        GARDEN_DAYTIME,
+        GARDEN_NIGHT,
+    }
+
+    /// <summary> ゲームの結果 </summary>
+    public enum GameResult
+    {
+        NONE,
+        GAME_CLEAR,
+        GAMME_OVER,
     }
 }
