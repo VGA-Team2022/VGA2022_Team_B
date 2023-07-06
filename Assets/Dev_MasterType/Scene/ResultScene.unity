@@ -7149,31 +7149,31 @@ PrefabInstance:
     - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
       propertyPath: _printer._characters._princessSea.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 4efe55376edf64049ab52ae598f836de, type: 3}
+      objectReference: {fileID: 21300000, guid: f21bd33b6ec146e47833565c0388dca4, type: 3}
     - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
       propertyPath: _printer._characters._princessSea.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: a8400529701306a40b916e2d160dbca8, type: 3}
+      objectReference: {fileID: 21300000, guid: cc25a8539b028da4cb99c80f1b55038d, type: 3}
     - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
       propertyPath: _printer._characters._princessSea.Array.data[2]
       value: 
-      objectReference: {fileID: 21300000, guid: 337d5f3c3e708dd48882d6d49e45c121, type: 3}
+      objectReference: {fileID: 21300000, guid: db4a7b060460b224a99ccf09eb855718, type: 3}
     - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
       propertyPath: _printer._characters._princessSea.Array.data[3]
       value: 
-      objectReference: {fileID: 21300000, guid: c238de345b6df9241b3c7d06a0b9bad3, type: 3}
+      objectReference: {fileID: 21300000, guid: e5e1e702fa9e130438a7661ba59cb6aa, type: 3}
     - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
       propertyPath: _printer._characters._princessSea.Array.data[4]
       value: 
-      objectReference: {fileID: 21300000, guid: eab01696f73270f43b4c9939a590a63d, type: 3}
+      objectReference: {fileID: 21300000, guid: 13d34d805e88c024daa41768a6270c6f, type: 3}
     - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
       propertyPath: _printer._characters._princessSea.Array.data[5]
       value: 
-      objectReference: {fileID: 21300000, guid: f89481204565e4c449d00f7c855633b1, type: 3}
+      objectReference: {fileID: 21300000, guid: a370ec2cbc62cca4bb0d50cd3f218b36, type: 3}
     - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
       propertyPath: _printer._characters._princessSea.Array.data[6]
       value: 
-      objectReference: {fileID: 21300000, guid: 404ce893e82770043abbc953847015c1, type: 3}
+      objectReference: {fileID: 21300000, guid: d5b1766f29177004182540cdd3a16ef4, type: 3}
     - target: {fileID: 110029950107716649, guid: 5e05534d54f714440bc2aad4c6146512, type: 3}
       propertyPath: _printer._characters._princessYashiki.Array.size
       value: 7
