@@ -1,24 +1,25 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-	[SerializeField, Tooltip("ã‰ºˆÚ“®‚ÌY•ûŒü‚Ì’l")] float _stickYNum;
+	[SerializeField, Tooltip("ä¸Šä¸‹ç§»å‹•ã®Yæ–¹å‘ã®å€¤")] float _stickYNum;
 
 	[Space(10)]
 
-	[SerializeField, Tooltip("ƒŒ[ƒ“‚ÌˆÊ’u")] Transform[] _raneNum;
-	[Tooltip("ƒvƒŒƒCƒ„[‚ÌŒ»İ’n")] private int _nowPos;
+	[SerializeField, Tooltip("ãƒ¬ãƒ¼ãƒ³ã®ä½ç½®")] Transform[] _raneNum;
+    /// <summary> ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç¾åœ¨åœ° </summary>
+    private int _nowPos;
 
-	bool _up;
-	bool _down;
+	private bool _up;
+	private bool _down;
 
 	private SoundManager.SE_Type _moveSE = SoundManager.SE_Type.FootStep_Yashiki;
 
-	//ƒvƒŒƒCƒ„[‚ÌŒ»İ’n‚ğƒvƒƒpƒeƒB‰»
-	public int NowPos => _nowPos;
+    /// <summary> ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç¾åœ¨åœ° </summary>
+    public int NowPos => _nowPos;
 
-    void Start()
+    private void Start()
 	{
 		_nowPos = 1;
 		gameObject.transform.position = _raneNum[_nowPos].position;
@@ -26,36 +27,34 @@ public class Player : MonoBehaviour
 		_moveSE = GameManager.GameStageNum switch
 		{
 			0 => SoundManager.SE_Type.FootStep_Yashiki,
-			1 => SoundManager.SE_Type.FootStep_Sea
+			1 => SoundManager.SE_Type.FootStep_Sea,
         };
 	}
 
-	void Update()
+	private void Update()
 	{
 		StickMove();
 	}
 
-	/// <summary>
-	/// ƒXƒeƒBƒbƒN‚É‚æ‚éƒvƒŒƒCƒ„[‚ÌˆÚ“®
-	/// </summary>
-	private void StickMove()
+    /// <summary> ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã«ã‚ˆã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç§»å‹• </summary>
+    private void StickMove()
     {
 		SoundManager.InstanceSound.PlayerMoveSE(_moveSE);
 
 		var current = Gamepad.current;
 
-		// ƒQ[ƒ€ƒpƒbƒh‚ÌÚ‘±Šm”F
+		// ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰ã®æ¥ç¶šç¢ºèª
 		if (current == null)
 			return;
 
-		// ¶ƒXƒeƒBƒbƒN“ü—Í‚ğæ“¾
+		// å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯å…¥åŠ›ã‚’å–å¾—
 		var leftStickValue = current.leftStick.ReadValue();
 
 		if (leftStickValue.x < 0)
 		{
 			return;
 		}
-		//¶‚É‚Í“®‚©‚È‚¢
+		//å·¦ã«ã¯å‹•ã‹ãªã„
 		if (GameManager.IsAppearClearObj)
 		{
 			if (leftStickValue.x > 0f)
@@ -80,12 +79,13 @@ public class Player : MonoBehaviour
 			_down = false;
         }
     }
-    /// <summary> ã‚ÌƒŒ[ƒ“‚ÉˆÚ“® </summary>
+
+    /// <summary> ä¸Šã®ãƒ¬ãƒ¼ãƒ³ã«ç§»å‹• </summary>
     private void Up()
     {
         if (_nowPos >= _raneNum.Length - 1)
         {
-			Debug.Log("‚±‚êˆÈã‰º‚É‚¢‚¯‚Ü‚¹‚ñ");
+			Debug.Log("ã“ã‚Œä»¥ä¸Šä¸‹ã«ã„ã‘ã¾ã›ã‚“");
 			return;
         }
         else if (_nowPos < _raneNum.Length)
@@ -95,15 +95,16 @@ public class Player : MonoBehaviour
 			gameObject.transform.position
 				= new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _raneNum[_nowPos].position.z);
 			SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Player_LaneMove);
-			Debug.Log("ã‚ÉˆÚ“®");
+			Debug.Log("ä¸Šã«ç§»å‹•");
 		}
     }
-    /// <summary> ‰º‚ÌƒŒ[ƒ“‚ÉˆÚ“® </summary>
+
+    /// <summary> ä¸‹ã®ãƒ¬ãƒ¼ãƒ³ã«ç§»å‹• </summary>
     private void Down()
     {
 		if (_nowPos == 0)
 		{
-			Debug.Log("‚±‚êˆÈã‰º‚É‚¢‚¯‚Ü‚¹‚ñ");
+			Debug.Log("ã“ã‚Œä»¥ä¸Šä¸‹ã«ã„ã‘ã¾ã›ã‚“");
 			return;
 		}
 		else if (_nowPos > 0)
@@ -112,7 +113,7 @@ public class Player : MonoBehaviour
 			gameObject.transform.position
 				= new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, _raneNum[_nowPos].position.z);
             SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Player_LaneMove);
-            Debug.Log("‰º‚ÉˆÚ“®");
+            Debug.Log("ä¸‹ã«ç§»å‹•");
 		}
     }
 
@@ -127,7 +128,7 @@ public class Player : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("U“®‚É‘Î‰‚µ‚Ä‚È‚¢‚æ‚¨‚¨‚¨‚¨");
+			Debug.Log("æŒ¯å‹•ã«å¯¾å¿œã—ã¦ãªã„ã‚ˆãŠãŠãŠãŠ");
 		}
 	}
 }

@@ -1,21 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimControl : MonoBehaviour
 {
-    Animator _animator;
+    private Animator _animator;
+    private bool _coroutine;
 
-    bool _coroutine;
-    void Start()
+    private void Start()
     {
-        _animator = this.gameObject.GetComponent<Animator>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _animator = GetComponent<Animator>();
     }
 
     public void Abunaaaaaaai()
@@ -26,7 +19,7 @@ public class PlayerAnimControl : MonoBehaviour
         }
     }
 
-    IEnumerator FaceReturn()
+    private IEnumerator FaceReturn()
     {
         _coroutine = true;
         _animator.SetBool("Face", true);
