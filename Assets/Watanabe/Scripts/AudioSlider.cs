@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class AudioSlider : MonoBehaviour
@@ -12,7 +12,7 @@ public class AudioSlider : MonoBehaviour
         _audioSlider = GetComponent<Slider>();
     }
 
-    /// <summary> Slider.OnValueChanged�ŌĂяo�� </summary>
+    /// <summary> Slider.OnValueChangedで呼び出す </summary>
     public void SetBgmVolume()
     {
         if (_sliderType == SliderType.BGM)
