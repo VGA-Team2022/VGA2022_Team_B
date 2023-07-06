@@ -21,7 +21,7 @@ public class BackGroundScroll : MonoBehaviour
     private float _moveY = 0;
 
     [Tooltip("anim間隔"), SerializeField]
-    private float _durationTime = 0.5f;
+    private float _animDuration = 0.5f;
 
     /// <summary> 海ステージかどうかのフラグ </summary>
     private bool _isSea = false;
@@ -63,7 +63,7 @@ public class BackGroundScroll : MonoBehaviour
             _time += Time.deltaTime;
             _offset.x +=  MoveSpeed * SpeedRatio * Time.deltaTime;
 
-            if (_durationTime <= _time)
+            if (_animDuration <= _time)
             {
                 _time = 0f;
                 _offset.y = _isFlipSeaAnim ? _offset.y += _moveY : _offset.y -= _moveY;
