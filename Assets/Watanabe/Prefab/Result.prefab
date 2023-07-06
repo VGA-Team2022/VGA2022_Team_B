@@ -65,7 +65,7 @@ MonoBehaviour:
     _nextStageButton: {fileID: 0}
     _retryButton: {fileID: 0}
     _unSpeak: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
-    _indicateTime: 2
+    _indicateTime: 1.5
     _speakerText: {fileID: 0}
     _dialogueText: {fileID: 0}
     _princessImage: {fileID: 0}
