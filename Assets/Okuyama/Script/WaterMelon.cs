@@ -20,7 +20,7 @@ public class WaterMelon : GimmickBase
         SoundManager.InstanceSound.PlayerMoveSE(SoundManager.SE_Type.Enemy_Rooling);
 
         _isSpawnNegativeX = transform.position.x <= 0;
-        //移動方向の初期設定
+        //移動方向、速度の初期設定
         //if (_isStop)
         //{
         //    _moveSpeed = _isSpawnNegativeX ?
