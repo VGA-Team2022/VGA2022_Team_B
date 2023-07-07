@@ -1,29 +1,29 @@
-using Common;
+ï»¿using Common;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/// <summary> UVƒXƒNƒ[ƒ‹‚Å”wŒi‚ğ“®‚©‚· </summary>
+/// <summary> UVã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã§èƒŒæ™¯ã‚’å‹•ã‹ã™ </summary>
 public class BackGroundScroll : MonoBehaviour
 {
-    [Tooltip("UVƒXƒNƒ[ƒ‹‘ÎÛ‚Ìmaterial")]
+    [Tooltip("UVã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å¯¾è±¡ã®material")]
     [SerializeField]
     private Material _targetMaterial = default;
 
     public Material TargetMaterial { get => _targetMaterial; set => _targetMaterial = value; }
 
-    [Tooltip("x²•ûŒü‚É“®‚­‘¬‚³"),SerializeField]
+    [Tooltip("xè»¸æ–¹å‘ã«å‹•ãé€Ÿã•"), SerializeField]
     private float _scrollX = 1;
 
-    [Tooltip("y²•ûŒü‚É“®‚­‘¬‚³"), SerializeField]
+    [Tooltip("yè»¸æ–¹å‘ã«å‹•ãé€Ÿã•"), SerializeField]
     private float _scrollY = 0;
 
-    [Tooltip("y²•ûŒü‚É“®‚©‚·’l"), SerializeField]
+    [Tooltip("yè»¸æ–¹å‘ã«å‹•ã‹ã™å€¤"), SerializeField]
     private float _moveY = 0;
 
-    [Tooltip("animŠÔŠu"), SerializeField]
-    private float _durationTime = 0.5f;
+    [Tooltip("animé–“éš”"), SerializeField]
+    private float _animDuration = 0.5f;
 
-    /// <summary> ŠCƒXƒe[ƒW‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO </summary>
+    /// <summary> æµ·ã‚¹ãƒ†ãƒ¼ã‚¸ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚° </summary>
     private bool _isSea = false;
 
     private Vector2 _offset;
@@ -61,9 +61,9 @@ public class BackGroundScroll : MonoBehaviour
         if (_isSea)
         {
             _time += Time.deltaTime;
-            _offset.x +=  MoveSpeed * SpeedRatio * Time.deltaTime;
+            _offset.x += MoveSpeed * SpeedRatio * Time.deltaTime;
 
-            if (_durationTime <= _time)
+            if (_animDuration <= _time)
             {
                 _time = 0f;
                 _offset.y = _isFlipSeaAnim ? _offset.y += _moveY : _offset.y -= _moveY;

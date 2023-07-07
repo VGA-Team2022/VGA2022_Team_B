@@ -39,7 +39,7 @@ namespace Common
         RESULT_SCENE,
     }
 
-    /// <summary> ステージの種類 </summary>
+    /// <summary> 各ステージの種類 </summary>
     public enum StageType
     {
         NONE,

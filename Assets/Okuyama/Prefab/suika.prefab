@@ -77,8 +77,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToAppear: 50
-  _suikaImage: {fileID: 21300000, guid: cf8855749f2ca7e499ba8007eed5f7ad, type: 3}
   _stopRange: 4.71
+  _suikaImage: {fileID: 21300000, guid: cf8855749f2ca7e499ba8007eed5f7ad, type: 3}
+  _multiplyValue: 1.5
 --- !u!1 &860676200383077633
 GameObject:
   m_ObjectHideFlags: 0
