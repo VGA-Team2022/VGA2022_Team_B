@@ -10,7 +10,8 @@ public class Sweets : MonoBehaviour
     [SerializeField]
     private float _deadWidth;
 
-    public GameObject _prevObj;
+    [SerializeField]
+    private GameObject _prevObj;
 
     private float _misalignmentDifference;//ずれの差上に行けば行くほど大きく動くやつの変数
 
@@ -19,7 +20,7 @@ public class Sweets : MonoBehaviour
     private Animator _anim;
 
     public Transform NextPos => _nextPos;
-
+    public GameObject PrevObj { get => _prevObj; set => _prevObj = value; }
     public float MisalignmentDifference { get => _misalignmentDifference; set => _misalignmentDifference = value; }
 
     private void Start()

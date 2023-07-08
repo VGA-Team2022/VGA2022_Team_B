@@ -90,7 +90,7 @@ public class Obon : MonoBehaviour
         _okasis.Add(gameObjects);
         var secondSweet = _okasis[_okasis.Count - 2].GetComponent<Sweets>();
         _okasis[_okasis.Count - 1].transform.position = secondSweet.NextPos.position;
-        gameObjects.GetComponent<Sweets>()._prevObj = _okasis[_okasis.Count - 2];
+        gameObjects.GetComponent<Sweets>().PrevObj = _okasis[_okasis.Count - 2];
     }
 
     public GameObject SweetsAdd(GameObject gameObjects, bool boolean)
@@ -98,7 +98,7 @@ public class Obon : MonoBehaviour
         var obj = Instantiate(gameObjects);
         var secondSweet = _okasis[_okasis.Count - 1].GetComponent<Sweets>();
         obj.transform.position = secondSweet.NextPos.position;
-        obj.GetComponent<Sweets>()._prevObj = secondSweet.gameObject;
+        obj.GetComponent<Sweets>().PrevObj = secondSweet.gameObject;
         _okasis.Add(obj);
         return obj;
     }
