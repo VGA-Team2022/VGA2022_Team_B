@@ -1,15 +1,19 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
-/// <summary> ƒMƒ~ƒbƒN‚ÌŠî’êscript </summary>
+/// <summary> ã‚®ãƒŸãƒƒã‚¯ã®åŸºåº•script </summary>
 public class GimmickBase : MonoBehaviour
 {
-    [Tooltip("‘S‘ÌŠÔ‚É‘Î‚·‚éoŒ»ŠÔ(“)")]
+    [Tooltip("å…¨ä½“æ™‚é–“ã«å¯¾ã™ã‚‹å‡ºç¾æ™‚é–“(ï¼…)")]
     [Range(5, 80)]
     [SerializeField] private int _timeToAppear = 10;
+    [Range(0, 6)]
+    [Tooltip("ã‚®ãƒŸãƒƒã‚¯ãŒå‡ºç¾ã™ã‚‹ãƒ¬ãƒ¼ãƒ³")]
+    [SerializeField] private int _spawnLane = 1;
 
     private StageMove _stageMovement = default;
 
     public int TimeToAppear => _timeToAppear;
+    public int SpawnLane => _spawnLane;
     public StageMove StageMovement => _stageMovement;
 
     private void Awake()

@@ -63,18 +63,13 @@ public class WaterPuddle : MonoBehaviour
     {
         var hit = other.gameObject;
 
-        if (hit.TryGetComponent(out Obon obon) &&
-            hit.transform.parent.gameObject.TryGetComponent(out Player player))
+        if (hit.TryGetComponent(out Obon obon))
         {
-            //自分（水溜り）が存在するレーンとPlayerがいるレーンが一致したら
-            if (player.NowPos == _myRane)
-            {
-                SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_Whale_WaterPaddle);
-                //揺らす処理を呼び出す→自身を消す
-                obon.Hit(transform.position.x);
-                Debug.Log("衝突");
-                gameObject.SetActive(false);
-            }
+            SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_Whale_WaterPaddle);
+            //揺らす処理を呼び出す→自身を消す
+            obon.Hit(transform.position.x);
+            Debug.Log("衝突");
+            gameObject.SetActive(false);
         }
     }
 }
