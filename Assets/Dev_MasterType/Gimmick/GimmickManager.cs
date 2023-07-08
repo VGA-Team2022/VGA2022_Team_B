@@ -34,8 +34,6 @@ public class GimmickManager : MonoBehaviour
     private GameObject[] _gimmicks = default;
     private int _appearGimmickNum = 0;
 
-    public Transform[] Lanes => _lanes;
-
     private void Start()
     {
         int nowStage = (GameManager.GameStageNum * 2) + GameManager.StageLevelNum;
@@ -74,10 +72,6 @@ public class GimmickManager : MonoBehaviour
         else if (obj.TryGetComponent(out KlalenScript klaken))
         {
             klaken.AppearPos = _seaLane.position;
-        }
-        else if (obj.TryGetComponent(out MovingArmor movingarmor))
-        {
-            movingarmor.Lanes = Lanes;
         }
     }
 

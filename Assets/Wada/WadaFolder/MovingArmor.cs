@@ -27,12 +27,8 @@ public class MovingArmor : GimmickBase
     private float _moveTime = 0;//“®‚¢‚Ä‚éŽžŠÔ
     private bool _isMove = false;
 
-    private Transform[] _lanes;
-    public Transform[] Lanes
-    {
-        get  => _lanes; set => _lanes = value;
-    }
-    
+    //ŠZ‚ªŽ~‚Ü‚éˆÊ’u
+   private float[] _stopPos = new float[] { -5f, -3f, -1f};
 
     private Vector3 _pos = default;
     private SpriteRenderer _spriteRenderer = default;
@@ -47,8 +43,6 @@ public class MovingArmor : GimmickBase
 
         _animator = GetComponentInChildren<Animator>();
         _currentAnimType = AnimType.SideMove;
-
-        //this.transform.position = new Vector3(-24, this.transform.position.y, this.transform.position.z);
 
         _pos = transform.position;
     }
@@ -75,7 +69,7 @@ public class MovingArmor : GimmickBase
 
                 transform.position =
                     Vector3.Lerp(transform.position,
-                                 new Vector3(transform.position.x, transform.position.y, _lanes[_random].position.z),
+                                 new Vector3(transform.position.x, transform.position.y, _stopPos[_random]),
                                  _moveTime / _moveSpeed);
 
                 _spriteRenderer.sortingOrder = _random switch
