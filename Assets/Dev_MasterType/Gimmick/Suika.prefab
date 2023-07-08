@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7656886032244668880}
   - component: {fileID: 91142358476927651}
   m_Layer: 0
-  m_Name: suika
+  m_Name: Suika
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToAppear: 50
+  _spawnLane: 6
   _stopRange: 4.71
   _suikaImage: {fileID: 21300000, guid: cf8855749f2ca7e499ba8007eed5f7ad, type: 3}
   _multiplyValue: 1.5
