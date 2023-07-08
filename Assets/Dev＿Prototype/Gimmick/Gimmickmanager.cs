@@ -13,7 +13,7 @@ class GimmickPrefabs
 /// <summary>
 /// ギミック生成Manager
 /// </summary>
-public class GimmickManager : MonoBehaviour
+public class Gimmickmanager : MonoBehaviour
 {
     [Header("ケーキを追加する使用人は常に一番下に入れる")]
     [Tooltip("Scecn番号と同じElement番号にSceneに合ったPrefabを入れる")]

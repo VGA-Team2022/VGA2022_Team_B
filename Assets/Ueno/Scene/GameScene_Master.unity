@@ -929,6 +929,14 @@ PrefabInstance:
       propertyPath: _stageMove
       value: 
       objectReference: {fileID: 243928489}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _sceneGimmick.Array.data[0]._gimmickPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204105843118405780, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
+      propertyPath: _sceneGimmick.Array.data[0]._gimmickPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 84186214253110219, guid: 6a9b0fea219a58b48b4f7165e5ad4093, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a403610eb233cf49817e8e97cbe30f3, type: 3}
 --- !u!1 &275722513
@@ -4396,7 +4404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a846b6e392c854b9bd2d5e8558c354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameStageType: 1
+  _gameStageType: 3
 --- !u!4 &1793701087
 Transform:
   m_ObjectHideFlags: 0
