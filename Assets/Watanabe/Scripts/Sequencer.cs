@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Common;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary> リザルトでの入力、Printerの初期設定を行うクラス </summary>
@@ -36,49 +37,74 @@ public class Sequencer : MonoBehaviour
     }
 
     /// <summary> ResultSceneに表示するTextを設定する処理 </summary>
-    public void SetDialogue(GameResult result)
+    public void SetDialogue()
     {
-        string[] dialogue = default;
-        Stage stage = Stage.Yashiki;
+        string[] dialogue = _resultTexts[Result()];
+        Stage stage = ChallengedStage();
 
-        switch (result)
-        {
-            //屋敷ステージ
-            case GameResult.YashikiStage_Daytime_Clear:
-                dialogue = _resultTexts[0];
-                stage = Stage.Yashiki;
-                break;
-            case GameResult.YashikiStage_Night_Clear:
-                dialogue = _resultTexts[1];
-                stage = Stage.Yashiki;
-                break;
-            case GameResult.YashikiStage_Daytime_Failed:
-            case GameResult.YashikiStage_Night_Failed:
-                dialogue = _resultTexts[2];
-                stage = Stage.Yashiki;
-                break;
-            //海ステージ
-            case GameResult.SeaStage_Daytime_Clear:
-                dialogue = _resultTexts[3];
-                stage = Stage.Sea;
-                break;
-            case GameResult.SeaStage_Night_Clear:
-                dialogue = _resultTexts[4];
-                stage = Stage.Sea;
-                break;
-            case GameResult.SeaStage_Daytime_Failed:
-            case GameResult.SeaStage_Night_Failed:
-                dialogue = _resultTexts[5];
-                stage = Stage.Sea;
-                break;
-        }
         _printer.Init(dialogue, stage);
-        _printer.SetBackGround(result);
+        _printer.SetBackGround();
+    }
+
+    private Stage ChallengedStage()
+    {
+        return GameManager.StageType switch
+        {
+            StageType.YASHIKI_DAYTIME => Stage.Yashiki,
+            StageType.YASHIKI_NIGHT => Stage.Yashiki,
+            StageType.SEA_DAYTIME => Stage.Sea,
+            StageType.SEA_NIGHT => Stage.Sea,
+            StageType.GARDEN_DAYTIME => Stage.Garden,
+            StageType.GARDEN_NIGHT => Stage.Garden,
+            _ => Stage.None,
+        };
+    }
+
+    private int Result()
+    {
+        if (GameManager.GameResult == GameResult.CLEAR)
+        {
+            switch (GameManager.StageType)
+            {
+                case StageType.YASHIKI_DAYTIME:
+                    return 0;
+                case StageType.YASHIKI_NIGHT:
+                    return 1;
+                case StageType.SEA_DAYTIME:
+                    return 3;
+                case StageType.SEA_NIGHT:
+                    return 4;
+                //ここは分からない
+                case StageType.GARDEN_DAYTIME:
+                    return 6;
+                case StageType.GARDEN_NIGHT:
+                    return 7;
+            }
+        }
+        else if (GameManager.GameResult == GameResult.FAILED)
+        {
+            switch (GameManager.StageType)
+            {
+                case StageType.YASHIKI_DAYTIME:
+                case StageType.YASHIKI_NIGHT:
+                    return 2;
+                case StageType.SEA_DAYTIME:
+                case StageType.SEA_NIGHT:
+                    return 5;
+                //ここは分からない
+                case StageType.GARDEN_DAYTIME:
+                case StageType.GARDEN_NIGHT:
+                    return 8;
+            }
+        }
+        return -1;
     }
 }
 
 public enum Stage
 {
+    None,
     Yashiki,
     Sea,
+    Garden,
 }
