@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class Obon : MonoBehaviour
 {
+    [Header("デバッグ：trueにするとケーキが揺れなくなる")]
+    [SerializeField]
+    private bool _isDebugZure;
+
     [Tooltip("プレイヤーがゲーム開始時に持っているお菓子の配列")]
     [SerializeField]
     private GameObject[] _startOkasis;
@@ -30,7 +34,7 @@ public class Obon : MonoBehaviour
 
     //////////////仮置き/////////////////
     private static List<GameObject> _staticOkasis;
-    public static bool _staticSweetsFall;
+    public static bool IsSweetsFall;
 
     public float Zure => _zure;
     public float Movement => _movement;
@@ -54,12 +58,21 @@ public class Obon : MonoBehaviour
         }
 
         _staticOkasis = _okasis;
-        _staticSweetsFall = _sweetsFall;
+        IsSweetsFall = _sweetsFall;
     }
 
     private void FixedUpdate()
     {
         var hol = Input.GetAxisRaw("Horizontal");
+
+        if (_isDebugZure)
+        {
+            _zureSpeed = 0;
+        }
+        else 
+        {
+            _zureSpeed = 0.005f;
+        }
 
         //Zure += ((n += h * 0.00001f) * 100f);
 
@@ -106,7 +119,7 @@ public class Obon : MonoBehaviour
             _zure -= 0.1f;
         }
 
-        if (!_sweetsFall && !_staticSweetsFall)//まだゲームオーバーしてないとき
+        if (!_sweetsFall && !IsSweetsFall)//まだゲームオーバーしてないとき
         {
             foreach (GameObject okasis in _okasis)//揺らす
             {
@@ -121,7 +134,7 @@ public class Obon : MonoBehaviour
 
     public void GameOver()
     {
-        if (!_sweetsFall && !_staticSweetsFall)
+        if (!_sweetsFall && !IsSweetsFall)
         {
             foreach (GameObject okasis in _okasis)
             {
@@ -137,7 +150,7 @@ public class Obon : MonoBehaviour
 
     public static void OutSideGameOver()
     {
-        if (!_staticSweetsFall)
+        if (!IsSweetsFall)
         {
             foreach (GameObject okasis in _staticOkasis)
             {
@@ -146,7 +159,7 @@ public class Obon : MonoBehaviour
                     sweets.Boom(50);
                 }
             }
-            _staticSweetsFall = true;
+            IsSweetsFall = true;
         }
     }
 }
