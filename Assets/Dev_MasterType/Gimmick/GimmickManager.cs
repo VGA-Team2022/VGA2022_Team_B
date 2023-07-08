@@ -73,6 +73,7 @@ public class GimmickManager : MonoBehaviour
         {
             klaken.AppearPos = _seaLane.position;
         }
+        obj.GetComponent<GimmickBase>().LaneSelect(_lanes);
     }
 
     /// <summary> インサートソートを用いて配列の並び替えを行う </summary>

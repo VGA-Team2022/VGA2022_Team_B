@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static Common.StageType StageType = Common.StageType.NONE;
-    public static Common.GameResult GameResult = Common.GameResult.NONE;
+    public static StageType StageType = StageType.NONE;
+    public static GameResult GameResult = GameResult.NONE;
 
     /// <summary>ステージの値</summary>
     public static int GameStageNum = 0;

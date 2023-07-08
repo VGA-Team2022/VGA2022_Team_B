@@ -71,28 +71,32 @@ public class Printer
     }
 
     /// <summary> 背景設定 </summary>
-    public void SetBackGround(GameResult result)
+    public void SetBackGround()
     {
-        switch (result)
+        switch (GameManager.StageType)
         {
-            case GameResult.YashikiStage_Daytime_Clear:
-            case GameResult.YashikiStage_Daytime_Failed:
+            case StageType.YASHIKI_DAYTIME:
                 _resultBackGround.sprite = _backGrounds.YashikiDaytime;
                 break;
 
-            case GameResult.YashikiStage_Night_Clear:
-            case GameResult.YashikiStage_Night_Failed:
+            case StageType.YASHIKI_NIGHT:
                 _resultBackGround.sprite = _backGrounds.YashikiNight;
                 break;
 
-            case GameResult.SeaStage_Daytime_Clear:
-            case GameResult.SeaStage_Daytime_Failed:
+            case StageType.SEA_DAYTIME:
                 _resultBackGround.sprite= _backGrounds.SeaStageDaytime;
                 break;
 
-            case GameResult.SeaStage_Night_Clear:
-            case GameResult.SeaStage_Night_Failed:
+            case StageType.SEA_NIGHT:
                 _resultBackGround.sprite = _backGrounds.SeaStageNight;
+                break;
+
+            case StageType.GARDEN_DAYTIME:
+                _resultBackGround.sprite = _backGrounds.GardenDaytime;
+                break;
+
+            case StageType.GARDEN_NIGHT:
+                _resultBackGround.sprite = _backGrounds.GardenNight;
                 break;
         }
     }
@@ -180,11 +184,15 @@ public class Printer
         [SerializeField] private Sprite _yashikiNight = default;
         [SerializeField] private Sprite _seaStageDaytime = default;
         [SerializeField] private Sprite _seaStageNight = default;
+        [SerializeField] private Sprite _gardenDaytime = default;
+        [SerializeField] private Sprite _gardenNight = default;
 
         public Sprite YashikiDaytime => _yashikiDaytime;
         public Sprite YashikiNight => _yashikiNight;
         public Sprite SeaStageDaytime => _seaStageDaytime;
         public Sprite SeaStageNight => _seaStageNight;
+        public Sprite GardenDaytime => _gardenDaytime;
+        public Sprite GardenNight => _gardenNight;
     }
 
     /// <summary> 各キャラクターのステージ毎のSpriteをまとめるクラス </summary>
