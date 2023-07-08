@@ -75,6 +75,10 @@ public class GimmickManager : MonoBehaviour
         {
             klaken.AppearPos = _seaLane.position;
         }
+        else if (obj.TryGetComponent(out MovingArmor movingarmor))
+        {
+            movingarmor.Lanes = Lanes;
+        }
     }
 
     /// <summary> インサートソートを用いて配列の並び替えを行う </summary>
