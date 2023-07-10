@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToAppear: 5
-  _spawnLane: 6
+  _spawnLane: 2
   _stopRange: 1
   _duration: 1
 --- !u!54 &4237441713864407933

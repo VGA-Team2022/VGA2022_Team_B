@@ -27,7 +27,7 @@ public class GimmickManager : MonoBehaviour
     [Tooltip("おぼんObj")]
     [SerializeField] private GameObject _obonObj;
     [Tooltip("移動する各レーン")]
-    [SerializeField] private Transform[] _lanes;
+    [SerializeField] private Transform[] _lanes = new Transform[5];
 
     /// <summary> 出現する時間 </summary>
     private float[] _appearTimes;
@@ -68,12 +68,14 @@ public class GimmickManager : MonoBehaviour
         if (obj.TryGetComponent(out Employee employee))
         {
             employee.Init(_obonObj);
+
         }
         else if (obj.TryGetComponent(out KlalenScript klaken))
         {
             klaken.AppearPos = _seaLane.position;
         }
-        obj.GetComponent<GimmickBase>().LaneSelect(_lanes);
+
+        //obj.GetComponent<GimmickBase>().LaneSelect(_lanes);
     }
 
     /// <summary> インサートソートを用いて配列の並び替えを行う </summary>

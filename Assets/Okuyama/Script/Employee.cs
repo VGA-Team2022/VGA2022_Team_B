@@ -5,6 +5,8 @@ public class Employee : GimmickBase
 {
     [SerializeField] 
     private GameObject _cake = null;
+    [SerializeField]
+    private float _moveSpeed = 5;
 
     private GameObject _obonObj;
     private bool _isCakeInstance = false;
@@ -15,15 +17,13 @@ public class Employee : GimmickBase
     {
         _obonObj = obon;
 
-        var child = transform.GetChild(0).gameObject;
-        var grandchild = child.transform.GetChild(0).gameObject;
+        _handingCake = _cake.transform.GetChild(0).GetComponentInChildren<SpriteRenderer>();
 
-        _handingCake = grandchild.GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
     {
-        transform.position -= new Vector3(Time.deltaTime * StageMovement.MoveSpeed, 0);
+        transform.position -= new Vector3(Time.deltaTime * _moveSpeed, 0);
 
         if (transform.position.x <= 0 && !_isCakeInstance)
         {
@@ -32,10 +32,13 @@ public class Employee : GimmickBase
             _handingCake.enabled = false;
             _isCakeInstance = true;
         }
+    }
 
-        if (transform.position.x <= -47)
-        {
-            gameObject.SetActive(false);
-        }
+    /// <summary>
+    /// カメラ外に出たら描画終了
+    /// </summary>
+    private void OnBecameInvisible()
+    {
+        gameObject.SetActive(false);
     }
 }
