@@ -1,35 +1,35 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 
 [Serializable]
 class GimmickPrefabs
 {
-    [Tooltip("ƒMƒ~ƒbƒNPrefab")]
+    [Tooltip("ã‚®ãƒŸãƒƒã‚¯Prefab")]
     [SerializeField] private GameObject[] _gimmickPrefabs;
 
     public GameObject[] Gimmicks => _gimmickPrefabs;
 }
 
 /// <summary>
-/// ƒMƒ~ƒbƒN¶¬Manager
+/// ã‚®ãƒŸãƒƒã‚¯ç”ŸæˆManager
 /// </summary>
 public class GimmickManager : MonoBehaviour
 {
-    [Header("ƒP[ƒL‚ğ’Ç‰Á‚·‚ég—pl‚Íí‚Éˆê”Ô‰º‚É“ü‚ê‚é")]
-    [Tooltip("Scecn”Ô†‚Æ“¯‚¶Element”Ô†‚ÉScene‚É‡‚Á‚½Prefab‚ğ“ü‚ê‚é")]
+    [Header("ã‚±ãƒ¼ã‚­ã‚’è¿½åŠ ã™ã‚‹ä½¿ç”¨äººã¯å¸¸ã«ä¸€ç•ªä¸‹ã«å…¥ã‚Œã‚‹")]
+    [Tooltip("Scecnç•ªå·ã¨åŒã˜Elementç•ªå·ã«Sceneã«åˆã£ãŸPrefabã‚’å…¥ã‚Œã‚‹")]
     [SerializeField] private GimmickPrefabs[] _sceneGimmick;
-    [Tooltip("4ƒŒ[ƒ“–Ú")]
+    [Tooltip("4ãƒ¬ãƒ¼ãƒ³ç›®")]
     [SerializeField] private Transform _appearLane4;
-    [Tooltip("ŠCƒŒ[ƒ“")]
+    [Tooltip("æµ·ãƒ¬ãƒ¼ãƒ³")]
     [SerializeField] private Transform _seaLane;
     [Tooltip("StageMove")]
     [SerializeField] private StageMove _stageMove;
-    [Tooltip("‚¨‚Ú‚ñObj")]
+    [Tooltip("ãŠã¼ã‚“Obj")]
     [SerializeField] private GameObject _obonObj;
-    [Tooltip("ˆÚ“®‚·‚éŠeƒŒ[ƒ“")]
+    [Tooltip("ç§»å‹•ã™ã‚‹å„ãƒ¬ãƒ¼ãƒ³")]
     [SerializeField] private Transform[] _lanes = new Transform[5];
 
-    /// <summary> oŒ»‚·‚éŠÔ </summary>
+    /// <summary> å‡ºç¾ã™ã‚‹æ™‚é–“ </summary>
     private float[] _appearTimes;
     private GameObject[] _gimmicks = default;
     private int _appearGimmickNum = 0;
@@ -62,7 +62,7 @@ public class GimmickManager : MonoBehaviour
 
     private void GenerateGimmick(int gimmickPrefabNum)
     {
-        var obj = Instantiate(_gimmicks[gimmickPrefabNum], _appearLane4);
+        var obj = Instantiate(_gimmicks[gimmickPrefabNum]);
         obj.transform.parent = null;
 
         if (obj.TryGetComponent(out Employee employee))
@@ -72,13 +72,13 @@ public class GimmickManager : MonoBehaviour
         }
         else if (obj.TryGetComponent(out KlalenScript klaken))
         {
-            klaken.AppearPos = _seaLane.position;
+            //klaken.AppearPos = _seaLane.position;
+            klaken.AppearPos = _lanes[4].position;
         }
-
-        //obj.GetComponent<GimmickBase>().LaneSelect(_lanes);
+        obj.GetComponent<GimmickBase>().LaneSelect(_lanes);
     }
 
-    /// <summary> ƒCƒ“ƒT[ƒgƒ\[ƒg‚ğ—p‚¢‚Ä”z—ñ‚Ì•À‚Ñ‘Ö‚¦‚ğs‚¤ </summary>
+    /// <summary> ã‚¤ãƒ³ã‚µãƒ¼ãƒˆã‚½ãƒ¼ãƒˆã‚’ç”¨ã„ã¦é…åˆ—ã®ä¸¦ã³æ›¿ãˆã‚’è¡Œã† </summary>
     private void ArraySort()
     {
         for (int i = 0; i < _appearTimes.Length - 1; i++)
