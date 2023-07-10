@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToAppear: 50
-  _spawnLane: 6
+  _spawnLane: 2
   _stopRange: 4.71
   _suikaImage: {fileID: 21300000, guid: cf8855749f2ca7e499ba8007eed5f7ad, type: 3}
   _multiplyValue: 1.5

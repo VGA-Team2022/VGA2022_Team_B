@@ -6,7 +6,7 @@ public class GimmickBase : MonoBehaviour
     [Tooltip("全体時間に対する出現時間(％)")]
     [Range(5, 80)]
     [SerializeField] private int _timeToAppear = 10;
-    [Range(0, 5)]
+    [Range(0, 6)]
     [Tooltip("ギミックが出現するレーン")]
     [SerializeField] private int _spawnLane = 1;
 
@@ -23,8 +23,16 @@ public class GimmickBase : MonoBehaviour
 
     public void LaneSelect(Transform[] lanes)
     {
-        int index = LansSetting(_spawnLane == 5 ? Random.Range(1, 3) : _spawnLane);
-        transform.position = lanes[index].position;
+        //int index = LansSetting(_spawnLane == 6 ? Random.Range(1, 3) : _spawnLane);
+        int index = _spawnLane == 6 ? Random.Range(1, 3) : _spawnLane;
+
+        Debug.Log(index);
+
+        if (index >= 0)
+        {
+            transform.position = lanes[index].position;
+        }
+    
     }
 
     private int LansSetting(int num)
