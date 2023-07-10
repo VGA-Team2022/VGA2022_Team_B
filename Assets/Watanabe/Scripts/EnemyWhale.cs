@@ -36,6 +36,10 @@ public class EnemyWhale : GimmickBase
         SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_Whale_Voice);
 
         _wave = Instantiate(_wavePrefab, _waveStartPos, Quaternion.identity);
+
+        var pos = transform.position;
+        pos.y -= 3f;
+        transform.position = pos;
     }
 
     private void FixedUpdate()
@@ -59,7 +63,7 @@ public class EnemyWhale : GimmickBase
 
         var sequence = DOTween.Sequence();
 
-        sequence.Append(_wave.transform.DOMove(-_waveStartPos, _moveWaveTime))
+        sequence.Append(_wave.transform.DOMove(new Vector3(_waveStartPos.x, -_waveStartPos.y, _waveStartPos.z), _moveWaveTime))
                 .AppendCallback(() =>
                 {
                     Debug.Log("妨害終了");

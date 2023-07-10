@@ -17,8 +17,7 @@ public class Employee : GimmickBase
     {
         _obonObj = obon;
 
-        _handingCake = _cake.transform.GetChild(0).GetComponentInChildren<SpriteRenderer>();
-
+        _handingCake = _cake.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
