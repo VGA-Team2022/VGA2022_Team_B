@@ -10,6 +10,10 @@ public class Sequencer : MonoBehaviour
     [Tooltip("リザルトの出力関連")]
     [SerializeField] private Printer _printer = new();
 
+    [Header("Debug")]
+    [SerializeField] private StageType _stage = StageType.NONE;
+    [SerializeField] private GameResult _result = GameResult.NONE;
+
     private List<string[]> _resultTexts = new();
 
     private void OnEnable()
@@ -62,6 +66,45 @@ public class Sequencer : MonoBehaviour
 
     private int Result()
     {
+        //以下Debug
+#if UNITY_EDITOR
+        if (_result == GameResult.CLEAR)
+        {
+            switch (_stage)
+            {
+                case StageType.YASHIKI_DAYTIME:
+                    return 0;
+                case StageType.YASHIKI_NIGHT:
+                    return 1;
+                case StageType.SEA_DAYTIME:
+                    return 3;
+                case StageType.SEA_NIGHT:
+                    return 4;
+                //ここは分からない
+                case StageType.GARDEN_DAYTIME:
+                    return 6;
+                case StageType.GARDEN_NIGHT:
+                    return 7;
+            }
+        }
+        else if (_result == GameResult.FAILED)
+        {
+            switch (_stage)
+            {
+                case StageType.YASHIKI_DAYTIME:
+                case StageType.YASHIKI_NIGHT:
+                    return 2;
+                case StageType.SEA_DAYTIME:
+                case StageType.SEA_NIGHT:
+                    return 5;
+                //ここは分からない
+                case StageType.GARDEN_DAYTIME:
+                case StageType.GARDEN_NIGHT:
+                    return 8;
+            }
+        }
+#endif
+
         if (GameManager.GameResult == GameResult.CLEAR)
         {
             switch (GameManager.StageType)
