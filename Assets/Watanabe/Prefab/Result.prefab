@@ -99,3 +99,5 @@ MonoBehaviour:
       _seaStageNight: {fileID: 21300000, guid: d747f838dc1cbf94bbbb53d0a15c964a, type: 3}
       _gardenDaytime: {fileID: 0}
       _gardenNight: {fileID: 0}
+  _stage: 1
+  _result: 1
