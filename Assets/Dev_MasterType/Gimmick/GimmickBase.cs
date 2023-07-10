@@ -13,7 +13,6 @@ public class GimmickBase : MonoBehaviour
     private StageMove _stageMovement = default;
 
     public int TimeToAppear => _timeToAppear;
-    public int SpawnLane => _spawnLane;
     public StageMove StageMovement => _stageMovement;
 
     private void Awake()
@@ -23,20 +22,7 @@ public class GimmickBase : MonoBehaviour
 
     public void LaneSelect(Transform[] lanes)
     {
-        int index = LansSetting(_spawnLane == 5 ? Random.Range(1, 3) : _spawnLane);
+        int index = _spawnLane == 5 ? Random.Range(1, 3) : _spawnLane;
         transform.position = lanes[index].position;
-    }
-
-    private int LansSetting(int num)
-    {
-        return num switch
-        {
-            0 => 0,
-            1 => 1,
-            2 => 2,
-            3 => 3,
-            4 => 4,
-            _ => -1,
-        };
     }
 }
