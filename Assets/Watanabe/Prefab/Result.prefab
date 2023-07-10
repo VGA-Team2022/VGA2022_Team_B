@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7698f4d17e7bb464e9e5563b6991de69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _storyJudge: 0
   _sequencer: {fileID: 110029950107716649}
 --- !u!114 &110029950107716649
 MonoBehaviour:
@@ -59,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53955449f97799f489d7c87f3d86572b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textData: {fileID: 4900000, guid: 3dc1f75bbc35fbb4099eb5a9439dc4ce, type: 3}
+  _textData: {fileID: 4900000, guid: c07fd6760722a8d45a4c4f711f0743ee, type: 3}
   _printer:
     _titleButton: {fileID: 0}
     _nextStageButton: {fileID: 0}
@@ -98,3 +97,5 @@ MonoBehaviour:
       _yashikiNight: {fileID: 21300000, guid: a502f4826c1c85340abd6ba61bacf172, type: 3}
       _seaStageDaytime: {fileID: 21300000, guid: 82736016960239f4192aed19c790c051, type: 3}
       _seaStageNight: {fileID: 21300000, guid: d747f838dc1cbf94bbbb53d0a15c964a, type: 3}
+      _gardenDaytime: {fileID: 0}
+      _gardenNight: {fileID: 0}
