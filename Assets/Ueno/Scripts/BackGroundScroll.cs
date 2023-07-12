@@ -43,7 +43,8 @@ public class BackGroundScroll : MonoBehaviour
             _targetMaterial.mainTextureOffset = _offset;
         }
 
-        if (GameManager.GameStageNum == 1)
+        if (GameManager.StageType == StageType.SEA_DAYTIME ||
+            GameManager.StageType == StageType.SEA_NIGHT)
         {
             _isSea = true;
         }

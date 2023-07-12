@@ -10,18 +10,11 @@ class GimmickPrefabs
     public GameObject[] Gimmicks => _gimmickPrefabs;
 }
 
-/// <summary>
-/// ギミック生成Manager
-/// </summary>
 public class GimmickManager : MonoBehaviour
 {
     [Header("ケーキを追加する使用人は常に一番下に入れる")]
     [Tooltip("Scecn番号と同じElement番号にSceneに合ったPrefabを入れる")]
     [SerializeField] private GimmickPrefabs[] _sceneGimmick;
-    [Tooltip("4レーン目")]
-    [SerializeField] private Transform _appearLane4;
-    [Tooltip("海レーン")]
-    [SerializeField] private Transform _seaLane;
     [Tooltip("StageMove")]
     [SerializeField] private StageMove _stageMove;
     [Tooltip("おぼんObj")]
@@ -36,7 +29,7 @@ public class GimmickManager : MonoBehaviour
 
     private void Start()
     {
-        int nowStage = (GameManager.GameStageNum * 2) + GameManager.StageLevelNum;
+        int nowStage = (int)GameManager.StageType;
         Debug.Log($"StageNum : {nowStage}");
 
         _gimmicks = _sceneGimmick[nowStage].Gimmicks;
@@ -72,7 +65,6 @@ public class GimmickManager : MonoBehaviour
         }
         else if (obj.TryGetComponent(out KlalenScript klaken))
         {
-            //klaken.AppearPos = _seaLane.position;
             klaken.AppearPos = _lanes[4].position;
         }
         obj.GetComponent<GimmickBase>().LaneSelect(_lanes);

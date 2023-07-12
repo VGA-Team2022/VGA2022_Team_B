@@ -1,3 +1,4 @@
+using Common;
 using UnityEngine;
 
 public class DebugController : MonoBehaviour
@@ -15,25 +16,22 @@ public class DebugController : MonoBehaviour
     
     private void OnValidate()
     {
+#if UNITY_EDITOR
         switch (_gameStageType)
         {
             case GameStageType.Yashiki_DayLight:
-                GameManager.GameStageNum = 0;
-                GameManager.StageLevelNum = 0;
+                GameManager.StageType = StageType.YASHIKI_DAYTIME;
                 break;
             case GameStageType.Yashiki_Night:
-                GameManager.GameStageNum = 0;
-                GameManager.StageLevelNum = 1;
+                GameManager.StageType = StageType.YASHIKI_NIGHT;
                 break;
             case GameStageType.Sea_DayLight:
-                GameManager.GameStageNum = 1;
-                GameManager.StageLevelNum = 0;
+                GameManager.StageType = StageType.SEA_DAYTIME;
                 break;
             case GameStageType.Sea_Night:
-                GameManager.GameStageNum = 1;
-                GameManager.StageLevelNum = 1;
+                GameManager.StageType = StageType.SEA_NIGHT;
                 break;
         }
-        
+#endif
     }
 }

@@ -8,11 +8,6 @@ public class GameManager : MonoBehaviour
     public static StageType StageType = StageType.NONE;
     public static GameResult GameResult = GameResult.NONE;
 
-    /// <summary>ステージの値</summary>
-    public static int GameStageNum = 0;
-    /// <summary>ステージレベルの値</summary>
-    public static int StageLevelNum = 0;
-
     /// <summary>ゲームクリアまでの時間</summary>
     public static float GameTimeClearLength = 25;
 
@@ -49,25 +44,29 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    #region ステージとレベルの選択操作で使うメソッド
-    /// <summary> ステージ選択 </summary>
-    public void PrefarenceStage(int i)
+    private int _stageNum = 0;
+
+    /// <summary> ステージ、レベルの設定を分けたくないためまとめる </summary>
+    public void PreferenceStage(int num)
     {
-        GameStageNum = i;
+        _stageNum += num;
+
+        StageType = _stageNum switch
+        {
+            2 => StageType.YASHIKI_DAYTIME,
+            3 => StageType.YASHIKI_NIGHT,
+            4 => StageType.SEA_DAYTIME,
+            5 => StageType.SEA_NIGHT,
+            6 => StageType.GARDEN_DAYTIME,
+            7 => StageType.GARDEN_NIGHT,
+            _ => StageType.NONE,
+        };
     }
 
-    /// <summary> レベル選択 </summary>
-    public void PrefarenceLevel(int i)
-    {
-        StageLevelNum = i;
-    }
-
-    /// <summary> 時間設定(?) </summary>
     public void PrefarenceTime(float i)
     {
         GameTimeClearLength = i;
     }
-    #endregion
 
     private void Start()
     {

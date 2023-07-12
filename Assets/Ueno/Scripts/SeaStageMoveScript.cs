@@ -1,43 +1,43 @@
+ï»¿using Common;
 using System;
 using System.Linq;
 using UnityEngine;
 
-/// <summary> ƒXƒe[ƒWØ‘Ö </summary>
+/// <summary> ã‚¹ãƒ†ãƒ¼ã‚¸åˆ‡æ›¿ </summary>
 public enum SeaType
 { 
     Daylight,
     Sunset,
 }
 
-/// <summary> ”wŒiobjectPrefab‚ÌŒ^ </summary>
+/// <summary> èƒŒæ™¯objectPrefabã®å‹ </summary>
 [Serializable]
 class BackGroundObject
 {
-    [Tooltip("ŠC‚Ì”wŒiPrefab")]
+    [Tooltip("æµ·ã®èƒŒæ™¯Prefab")]
     [SerializeField] private SpriteRenderer[] _objPrefabs;
 
     public SpriteRenderer[] ObjPrefabs => _objPrefabs;
 }
 
-/// <summary> ŠCƒXƒe[ƒW‚Ì”wŒi‚ğ•Ï‰»‚³‚¹‚éƒNƒ‰ƒX </summary>
+/// <summary> æµ·ã‚¹ãƒ†ãƒ¼ã‚¸ã®èƒŒæ™¯ã‚’å¤‰åŒ–ã•ã›ã‚‹ã‚¯ãƒ©ã‚¹ </summary>
 public class SeaStageMoveScript : MonoBehaviour
 {
-
-    [Tooltip("ƒXƒe[ƒWƒ^ƒCƒv")]
+    [Tooltip("ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—")]
     [SerializeField] private SeaType _stageLevelType;
-    [Tooltip("”gobj")]
+    [Tooltip("æ³¢obj")]
     [SerializeField] private GameObject _wave;
 
-    //”g‚Ì§Œä—pscript
+    //æ³¢ã®åˆ¶å¾¡ç”¨script
     private BackGroundScroll _waveScript;
     private MeshRenderer _waveMeshRenderer;
     
-    [Header("ŠC‚Ì”wŒiƒIƒuƒWƒFƒNƒgPrefab")]
+    [Header("æµ·ã®èƒŒæ™¯ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆPrefab")]
     [SerializeField] private BackGroundObject[] _backGroundObject;
 
 
-    [Header("ŠeMaterial")]
-    [Tooltip("ã‚©‚çDayLight¨Sunset")]
+    [Header("å„Material")]
+    [Tooltip("ä¸Šã‹ã‚‰DayLightâ†’Sunset")]
     [SerializeField] private Material[] _waveMaterial;
     [SerializeField] private Material[] _beauchMaterial;
 
@@ -57,28 +57,28 @@ public class SeaStageMoveScript : MonoBehaviour
 
     private void StageJudge()
     {
-        if (GameManager.GameStageNum == 1)
+        if (GameManager.StageType == StageType.SEA_DAYTIME || GameManager.StageType == StageType.SEA_NIGHT)
         {
             _waveMeshRenderer = _wave.GetComponent<MeshRenderer>();
             _waveScript = _wave.GetComponent<BackGroundScroll>();
             _waveScript.enabled = true;
 
-            _waveMeshRenderer.material = _waveMaterial[GameManager.StageLevelNum];
-            _waveScript.TargetMaterial = _waveMaterial[GameManager.StageLevelNum];
+            _waveMeshRenderer.material = _waveMaterial[(int)GameManager.StageType % 2];
+            _waveScript.TargetMaterial = _waveMaterial[(int)GameManager.StageType % 2];
             DisableObjects(_backGroundObject[1].ObjPrefabs);
-            BeauchColorChange(GameManager.StageLevelNum);
+            BeauchColorChange((int)GameManager.StageType % 2);
 
-            if (GameManager.StageLevelNum == 0)
+            if (GameManager.StageType == StageType.SEA_DAYTIME)
             {
-                Debug.Log($"ŠCƒXƒe[ƒW’‹");
+                Debug.Log("æµ·ã‚¹ãƒ†ãƒ¼ã‚¸æ˜¼");
             }
-            else if (GameManager.StageLevelNum == 1)
+            else if (GameManager.StageType == StageType.SEA_NIGHT)
             {
-                Debug.Log($"ŠCƒXƒe[ƒW—[•û");
+                Debug.Log("æµ·ã‚¹ãƒ†ãƒ¼ã‚¸å¤•æ–¹");
             }
             else
             {
-                Debug.LogError("”ÍˆÍŠO‚Ì’l‚ª“ü—Í‚³‚ê‚Ü‚µ‚½");
+                Debug.LogError("ç¯„å›²å¤–ã®å€¤ãŒå…¥åŠ›ã•ã‚Œã¾ã—ãŸ");
             }
         }
         else
@@ -86,7 +86,7 @@ public class SeaStageMoveScript : MonoBehaviour
             foreach (var backGround in _backGroundObject)
             {
                 DisableObjects(backGround.ObjPrefabs);
-                Debug.Log($"ŠCƒXƒe[ƒW‚Å‚Í‚È‚¢‚Ì‚Å {backGround.ObjPrefabs} ‚ğ”ñ•\¦‚É‚µ‚½");
+                Debug.Log($"æµ·ã‚¹ãƒ†ãƒ¼ã‚¸ã§ã¯ãªã„ã®ã§ {backGround.ObjPrefabs} ã‚’éè¡¨ç¤ºã«ã—ãŸ");
             }
         }
     }
@@ -101,9 +101,9 @@ public class SeaStageMoveScript : MonoBehaviour
 
     private void BeauchColorChange(int stageType)
     {
-        if (stageType == 0)
+        if (stageType == 1)
         {
-            Debug.Log("ƒXƒe[ƒW‚Í’‹");
+            Debug.Log("ã‚¹ãƒ†ãƒ¼ã‚¸ã¯æ˜¼");
             _beauchMeshRenderer
                 .Where((_, index) => index % 2 == 0)
                 .ToList()
@@ -114,7 +114,7 @@ public class SeaStageMoveScript : MonoBehaviour
                 .ToList()
                 .ForEach(meshRenderer => meshRenderer.gameObject.GetComponent<MeshRenderer>().material = _beauchMaterial[1]);
         }
-        else if (stageType == 1)
+        else if (stageType == 0)
         {
             _beauchMeshRenderer
                 .Where((_, index) => index % 2 == 0)
