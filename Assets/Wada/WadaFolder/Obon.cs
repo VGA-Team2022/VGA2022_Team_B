@@ -1,3 +1,4 @@
+using Common;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -145,6 +146,7 @@ public class Obon : MonoBehaviour
             }
             _sweetsFall = true;
             SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.CakeStandFall);
+            GameManager.GameResult = GameResult.FAILED;
         }
     }
 

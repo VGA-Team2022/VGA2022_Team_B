@@ -20,16 +20,20 @@ public class DebugController : MonoBehaviour
         switch (_gameStageType)
         {
             case GameStageType.Yashiki_DayLight:
-                GameManager.StageType = StageType.YASHIKI_DAYTIME;
+                GameManager.GameState.Stage = StageType.YASHIKI;
+                GameManager.GameState.Time = StageTime.DAYTIME;
                 break;
             case GameStageType.Yashiki_Night:
-                GameManager.StageType = StageType.YASHIKI_NIGHT;
+                GameManager.GameState.Stage = StageType.YASHIKI;
+                GameManager.GameState.Time = StageTime.NIGHT;
                 break;
             case GameStageType.Sea_DayLight:
-                GameManager.StageType = StageType.SEA_DAYTIME;
+                GameManager.GameState.Stage = StageType.SEA;
+                GameManager.GameState.Time = StageTime.DAYTIME;
                 break;
             case GameStageType.Sea_Night:
-                GameManager.StageType = StageType.SEA_NIGHT;
+                GameManager.GameState.Stage = StageType.SEA;
+                GameManager.GameState.Time = StageTime.NIGHT;
                 break;
         }
 #endif

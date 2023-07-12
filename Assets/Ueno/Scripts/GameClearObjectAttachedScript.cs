@@ -1,30 +1,29 @@
+ï»¿using Common;
 using UnityEngine;
 
-/// <summary> ƒNƒŠƒA”»’è </summary>
+/// <summary> ã‚¯ãƒªã‚¢åˆ¤å®š </summary>
 public class GameClearObjectAttachedScript : MonoBehaviour
 {
-    [Tooltip("ÚG‚µ‚½‚çƒNƒŠƒA”»’è‚É‚·‚éobjects"),SerializeField] private Animator[] _objectPrefabsAnim;
+    [Tooltip("æ¥è§¦ã—ãŸã‚‰ã‚¯ãƒªã‚¢åˆ¤å®šã«ã™ã‚‹objects")]
+    [SerializeField] private Animator[] _objectPrefabsAnim;
 
     private int _gameStageNum;
-    //Animator‚ÌClearƒAƒjƒ[ƒVƒ‡ƒ“‚É‘JˆÚ‚·‚é‚½‚ß‚ÌParam‚Ì–¼‘O
+    //Animatorã®Clearã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã«é·ç§»ã™ã‚‹ãŸã‚ã®Paramã®åå‰
     private string _animClearPram = "isClear";
     private bool _isClear;
 
 
     private void Start()
     {
-        switch (GameManager.StageType)
+        switch (GameManager.GameState.Stage)
         {
-            case Common.StageType.YASHIKI_DAYTIME:
-            case Common.StageType.YASHIKI_NIGHT:
+            case StageType.YASHIKI:
                 _gameStageNum = 0;
                 break;
-            case Common.StageType.SEA_DAYTIME:
-            case Common.StageType.SEA_NIGHT:
+            case StageType.SEA:
                 _gameStageNum = 1;
                 break;
-            case Common.StageType.GARDEN_DAYTIME:
-            case Common.StageType.GARDEN_NIGHT:
+            case StageType.GARDEN:
                 _gameStageNum = 2;
                 break;
         }
@@ -44,6 +43,7 @@ public class GameClearObjectAttachedScript : MonoBehaviour
         if (other.gameObject.TryGetComponent(out Obon obon))
         {
             GameManager.IsGameClear = true;
+            GameManager.GameResult = Common.GameResult.CLEAR;
             _isClear = true;
             Debug.Log("GameClear");
         }

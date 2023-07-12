@@ -30,40 +30,42 @@ public class StageTypeChange : MonoBehaviour
     /// <summary> enumを変更する為のメソッド </summary>
     private void SettingStageType()
     {
-        if (GameManager.StageType == StageType.YASHIKI_DAYTIME || GameManager.StageType == StageType.YASHIKI_NIGHT ||
-            GameManager.StageType == StageType.GARDEN_DAYTIME || GameManager.StageType == StageType.GARDEN_NIGHT)
-        {
-            IsSea = false;
-        }
-        else if (GameManager.StageType == StageType.SEA_DAYTIME || GameManager.StageType == StageType.SEA_NIGHT)
+        if (GameManager.GameState.Stage == StageType.SEA)
         {
             _seaScript = _seaScript.gameObject.GetComponent<SeaStageMoveScript>();
             _seaScript.enabled = true;
             IsSea = true;
+        }
+        else
+        {
+            IsSea = false;
         }
     }
 
     /// <summary> 指定されているenumに沿ってステージ上の切替を行う </summary>
     private void StageChange()
     {
-        switch (GameManager.StageType)
+        switch (GameManager.GameState)
         {
-            case StageType.YASHIKI_DAYTIME:
-                SetStageMaterial(_targetMaterials[0]);
+            case GameState { Stage: StageType.YASHIKI, Time: StageTime.DAYTIME }:
                 SetGroundObject(0);
+                SetStageMaterial(_targetMaterials[0]);
                 PlayBGM(SoundManager.BGM_Type.BGM_Yshiki_DayLight);
                 break;
-            case StageType.YASHIKI_NIGHT:
+
+            case GameState { Stage: StageType.YASHIKI, Time: StageTime.NIGHT }:
                 SetGroundObject(0);
                 SetStageMaterial(_targetMaterials[1]);
                 PlayBGM(SoundManager.BGM_Type.BGM_Yashiki_Night);
                 break;
-            case StageType.SEA_DAYTIME:
+
+            case GameState { Stage: StageType.SEA, Time: StageTime.DAYTIME }:
                 SetGroundObject(1);
                 SetStageMaterial(_targetMaterials[2]);
                 PlayBGM(SoundManager.BGM_Type.BGM_Sea_DayLight);
                 break;
-            case StageType.SEA_NIGHT:
+
+            case GameState { Stage: StageType.SEA, Time: StageTime.NIGHT }:
                 SetGroundObject(1);
                 SetStageMaterial(_targetMaterials[3]);
                 PlayBGM(SoundManager.BGM_Type.BGM_Sea_Sunset);

@@ -10,10 +10,6 @@ public class Sequencer : MonoBehaviour
     [Tooltip("リザルトの出力関連")]
     [SerializeField] private Printer _printer = new();
 
-    [Header("Debug")]
-    [SerializeField] private StageType _stage = StageType.NONE;
-    [SerializeField] private GameResult _result = GameResult.NONE;
-
     private List<string[]> _resultTexts = new();
 
     private void OnEnable()
@@ -52,91 +48,46 @@ public class Sequencer : MonoBehaviour
 
     private Stage ChallengedStage()
     {
-        return GameManager.StageType switch
+        return GameManager.GameState.Stage switch
         {
-            StageType.YASHIKI_DAYTIME => Stage.Yashiki,
-            StageType.YASHIKI_NIGHT => Stage.Yashiki,
-            StageType.SEA_DAYTIME => Stage.Sea,
-            StageType.SEA_NIGHT => Stage.Sea,
-            StageType.GARDEN_DAYTIME => Stage.Garden,
-            StageType.GARDEN_NIGHT => Stage.Garden,
+            StageType.YASHIKI => Stage.Yashiki,
+            StageType.SEA => Stage.Sea,
+            StageType.GARDEN => Stage.Garden,
             _ => Stage.None,
         };
     }
 
     private int Result()
     {
-        //以下Debug
-#if UNITY_EDITOR
-        if (_result == GameResult.CLEAR)
-        {
-            switch (_stage)
-            {
-                case StageType.YASHIKI_DAYTIME:
-                    return 0;
-                case StageType.YASHIKI_NIGHT:
-                    return 1;
-                case StageType.SEA_DAYTIME:
-                    return 3;
-                case StageType.SEA_NIGHT:
-                    return 4;
-                //ここは分からない
-                case StageType.GARDEN_DAYTIME:
-                    return 6;
-                case StageType.GARDEN_NIGHT:
-                    return 7;
-            }
-        }
-        else if (_result == GameResult.FAILED)
-        {
-            switch (_stage)
-            {
-                case StageType.YASHIKI_DAYTIME:
-                case StageType.YASHIKI_NIGHT:
-                    return 2;
-                case StageType.SEA_DAYTIME:
-                case StageType.SEA_NIGHT:
-                    return 5;
-                //ここは分からない
-                case StageType.GARDEN_DAYTIME:
-                case StageType.GARDEN_NIGHT:
-                    return 8;
-            }
-        }
-#endif
-
         if (GameManager.GameResult == GameResult.CLEAR)
         {
-            switch (GameManager.StageType)
+            switch (GameManager.GameState)
             {
-                case StageType.YASHIKI_DAYTIME:
+                case GameState { Stage: StageType.YASHIKI, Time: StageTime.DAYTIME }:
                     return 0;
-                case StageType.YASHIKI_NIGHT:
+                case GameState { Stage: StageType.YASHIKI, Time: StageTime.NIGHT }:
                     return 1;
-                case StageType.SEA_DAYTIME:
+                case GameState { Stage: StageType.SEA, Time: StageTime.DAYTIME }:
                     return 3;
-                case StageType.SEA_NIGHT:
+                case GameState { Stage: StageType.SEA, Time: StageTime.NIGHT }:
                     return 4;
                 //ここは分からない
-                case StageType.GARDEN_DAYTIME:
+                case GameState { Stage: StageType.GARDEN, Time: StageTime.DAYTIME }:
                     return 6;
-                case StageType.GARDEN_NIGHT:
+                case GameState { Stage: StageType.GARDEN, Time: StageTime.NIGHT }:
                     return 7;
             }
         }
         else if (GameManager.GameResult == GameResult.FAILED)
         {
-            switch (GameManager.StageType)
+            switch (GameManager.GameState.Stage)
             {
-                case StageType.YASHIKI_DAYTIME:
-                case StageType.YASHIKI_NIGHT:
+                case StageType.YASHIKI:
                     return 2;
-                case StageType.SEA_DAYTIME:
-                case StageType.SEA_NIGHT:
+                case StageType.SEA:
                     return 5;
                 //ここは分からない
-                case StageType.GARDEN_DAYTIME:
-                case StageType.GARDEN_NIGHT:
+                case StageType.GARDEN:
                     return 8;
             }
         }

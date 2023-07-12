@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Common;
+using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [Serializable]
 class GimmickPrefabs
@@ -29,10 +31,7 @@ public class GimmickManager : MonoBehaviour
 
     private void Start()
     {
-        int nowStage = (int)GameManager.StageType;
-        Debug.Log($"StageNum : {nowStage}");
-
-        _gimmicks = _sceneGimmick[nowStage].Gimmicks;
+        _gimmicks = _sceneGimmick[GetGimmickIndex()].Gimmicks;
         _appearTimes = new float[_gimmicks.Length];
         for (int i = 0; i < _appearTimes.Length; i++)
         {
@@ -51,6 +50,31 @@ public class GimmickManager : MonoBehaviour
             GenerateGimmick(_appearGimmickNum);
             _appearGimmickNum++;
         }
+    }
+
+    private int GetGimmickIndex()
+    {
+        switch (GameManager.GameState)
+        {
+            case GameState { Stage: StageType.YASHIKI, Time: StageTime.DAYTIME }:
+                return 0;
+
+            case GameState { Stage: StageType.YASHIKI, Time: StageTime.NIGHT }:
+                return 1;
+
+            case GameState { Stage: StageType.SEA, Time: StageTime.DAYTIME }:
+                return 2;
+
+            case GameState { Stage: StageType.SEA, Time: StageTime.NIGHT }:
+                return 3;
+
+            case GameState { Stage: StageType.GARDEN, Time: StageTime.DAYTIME }:
+                return 4;
+
+            case GameState { Stage: StageType.GARDEN, Time: StageTime.NIGHT }:
+                return 5;
+        }
+        return 0;
     }
 
     private void GenerateGimmick(int gimmickPrefabNum)

@@ -18,16 +18,16 @@ namespace Common
         public const string SCENENAME_RESULT = "ResultScene";
     }
 
-    /// <summary> 挑戦するステージ、結果を保存する（リザルトで定義するだけでいいかも） </summary>
+    /// <summary> 挑戦するステージを保存する </summary>
     public struct GameState
     {
         public StageType Stage;
-        public GameResult Result;
+        public StageTime Time;
 
-        public GameState(StageType stage, GameResult result)
+        public GameState(StageType stage, StageTime time)
         {
             Stage = stage;
-            Result = result;
+            Time = time;
         }
     }
 
@@ -43,12 +43,16 @@ namespace Common
     public enum StageType
     {
         NONE,
-        YASHIKI_DAYTIME,
-        YASHIKI_NIGHT,
-        SEA_DAYTIME,
-        SEA_NIGHT,
-        GARDEN_DAYTIME,
-        GARDEN_NIGHT,
+        YASHIKI,
+        SEA,
+        GARDEN,
+    }
+
+    public enum StageTime
+    {
+        NONE,
+        DAYTIME,
+        NIGHT,
     }
 
     /// <summary> ゲームの結果 </summary>

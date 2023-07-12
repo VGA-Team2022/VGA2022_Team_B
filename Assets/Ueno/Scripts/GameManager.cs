@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static StageType StageType = StageType.NONE;
+    /// <summary> 挑戦するステージの情報 </summary>
+    public static GameState GameState = new(StageType.NONE, StageTime.NONE);
     public static GameResult GameResult = GameResult.NONE;
 
     /// <summary>ゲームクリアまでの時間</summary>
@@ -44,26 +45,28 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    private int _stageNum = 0;
-
-    /// <summary> ステージ、レベルの設定を分けたくないためまとめる </summary>
     public void PreferenceStage(int num)
     {
-        _stageNum += num;
-
-        StageType = _stageNum switch
+        GameState.Stage = num switch
         {
-            2 => StageType.YASHIKI_DAYTIME,
-            3 => StageType.YASHIKI_NIGHT,
-            4 => StageType.SEA_DAYTIME,
-            5 => StageType.SEA_NIGHT,
-            6 => StageType.GARDEN_DAYTIME,
-            7 => StageType.GARDEN_NIGHT,
+            0 => StageType.YASHIKI,
+            1 => StageType.SEA,
+            2 => StageType.GARDEN,
             _ => StageType.NONE,
         };
     }
 
-    public void PrefarenceTime(float i)
+    public void PreferenceTime(int num)
+    {
+        GameState.Time = num switch
+        {
+            0 => StageTime.DAYTIME,
+            1 => StageTime.NIGHT,
+            _ => StageTime.NONE,
+        };
+    }
+
+    public void PreferenceGameTime(float i)
     {
         GameTimeClearLength = i;
     }

@@ -25,12 +25,10 @@ public class Player : MonoBehaviour
 		_nowPos = 1;
 		gameObject.transform.position = _raneNum[_nowPos].position;
 
-		_moveSE = GameManager.StageType switch
+		_moveSE = GameManager.GameState.Stage switch
 		{
-			StageType.YASHIKI_DAYTIME => SoundManager.SE_Type.FootStep_Yashiki,
-            StageType.YASHIKI_NIGHT => SoundManager.SE_Type.FootStep_Yashiki,
-            StageType.SEA_DAYTIME => SoundManager.SE_Type.FootStep_Sea,
-            StageType.SEA_NIGHT => SoundManager.SE_Type.FootStep_Sea,
+			StageType.YASHIKI => SoundManager.SE_Type.FootStep_Yashiki,
+            StageType.SEA => SoundManager.SE_Type.FootStep_Sea,
         };
 	}
 
