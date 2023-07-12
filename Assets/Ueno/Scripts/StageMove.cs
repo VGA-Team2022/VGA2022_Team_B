@@ -6,8 +6,7 @@ public class StageMove : MonoBehaviour
     [Header("Pram")]
     [Tooltip("移動速度")]
     [SerializeField] private float _moveSpeed = 5f;
-    /// <summary>UVスクロール速度が速いので調整の為</summary>
-    [Tooltip("速度調整")]
+    [Tooltip("UVスクロール速度調整")]
     [SerializeField] private float _speedRatio = 0.1f;
     [SerializeField] private Obon _obon;
     [SerializeField] float _gyroSpeed = 1.2f;
@@ -51,7 +50,13 @@ public class StageMove : MonoBehaviour
         {
             StickMove();
 
-            _offset.x +=(GameManager.GameStageNum != 1)? _moveSpeed * SpeedRatio * Time.deltaTime : 0;
+            if (GameManager.StageType == Common.StageType.YASHIKI_DAYTIME ||
+                GameManager.StageType == Common.StageType.YASHIKI_NIGHT)
+            {
+                _offset.x += _moveSpeed * SpeedRatio * Time.deltaTime;
+            }
+
+            //_offset.x += (GameManager.GameStageNum != 1) ? _moveSpeed * SpeedRatio * Time.deltaTime : 0;
             _waveObjectScroll.SpeedRatio = SpeedRatio;
             _waveObjectScroll.MoveSpeed = _moveSpeed;
            

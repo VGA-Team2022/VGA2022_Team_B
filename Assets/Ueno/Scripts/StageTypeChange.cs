@@ -1,19 +1,10 @@
-﻿using System;
+﻿using Common;
+using System;
 using UnityEngine;
-
-public enum GameStageBackGroundType
-{
-    yashiki_Daylight,
-    yashik_Night,
-    sea_Daylight,
-    sea_Sunset,
-}
 
 /// <summary> ステージ切替のクラス </summary>
 public class StageTypeChange : MonoBehaviour
 {
-    [SerializeField] private GameStageBackGroundType _stageType = GameStageBackGroundType.yashiki_Daylight;
-
     [Header("アタッチするもの")]
     [SerializeField] private Material[] _targetMaterials;
     [SerializeField] private GameObject[] _groundsObjs;
@@ -39,16 +30,13 @@ public class StageTypeChange : MonoBehaviour
     /// <summary> enumを変更する為のメソッド </summary>
     private void SettingStageType()
     {
-        if (GameManager.GameStageNum == 0)
+        if (GameManager.StageType == StageType.YASHIKI_DAYTIME || GameManager.StageType == StageType.YASHIKI_NIGHT ||
+            GameManager.StageType == StageType.GARDEN_DAYTIME || GameManager.StageType == StageType.GARDEN_NIGHT)
         {
-            _stageType = (GameManager.StageLevelNum == 0) ? GameStageBackGroundType.yashiki_Daylight
-                                                                                             : GameStageBackGroundType.yashik_Night;
             IsSea = false;
         }
-        else if (GameManager.GameStageNum == 1)
+        else if (GameManager.StageType == StageType.SEA_DAYTIME || GameManager.StageType == StageType.SEA_NIGHT)
         {
-            _stageType = (GameManager.StageLevelNum == 0) ? GameStageBackGroundType.sea_Daylight 
-                                                                                            : GameStageBackGroundType.sea_Sunset;
             _seaScript = _seaScript.gameObject.GetComponent<SeaStageMoveScript>();
             _seaScript.enabled = true;
             IsSea = true;
@@ -58,26 +46,24 @@ public class StageTypeChange : MonoBehaviour
     /// <summary> 指定されているenumに沿ってステージ上の切替を行う </summary>
     private void StageChange()
     {
-
-        Debug.Log(_stageType);
-        switch (_stageType)
+        switch (GameManager.StageType)
         {
-            case GameStageBackGroundType.yashiki_Daylight:
+            case StageType.YASHIKI_DAYTIME:
                 SetStageMaterial(_targetMaterials[0]);
                 SetGroundObject(0);
                 PlayBGM(SoundManager.BGM_Type.BGM_Yshiki_DayLight);
                 break;
-            case GameStageBackGroundType.yashik_Night:
+            case StageType.YASHIKI_NIGHT:
                 SetGroundObject(0);
                 SetStageMaterial(_targetMaterials[1]);
                 PlayBGM(SoundManager.BGM_Type.BGM_Yashiki_Night);
                 break;
-            case GameStageBackGroundType.sea_Daylight:
+            case StageType.SEA_DAYTIME:
                 SetGroundObject(1);
                 SetStageMaterial(_targetMaterials[2]);
                 PlayBGM(SoundManager.BGM_Type.BGM_Sea_DayLight);
                 break;
-            case GameStageBackGroundType.sea_Sunset:
+            case StageType.SEA_NIGHT:
                 SetGroundObject(1);
                 SetStageMaterial(_targetMaterials[3]);
                 PlayBGM(SoundManager.BGM_Type.BGM_Sea_Sunset);

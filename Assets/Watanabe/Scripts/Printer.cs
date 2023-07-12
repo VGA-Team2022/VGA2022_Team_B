@@ -155,7 +155,7 @@ public class Printer
                 = SceneChangeScript.StageUp() ?
                 () =>
                 {
-                    if (GameManager.GameStageNum == 0 && GameManager.StageLevelNum == 0)
+                    if (GameManager.StageType == StageType.YASHIKI_DAYTIME)
                     {
                         SceneChangeScript.NoFadeLoadScene(Define.Scenes[SceneNames.TITLE_SCENE]);
                     }

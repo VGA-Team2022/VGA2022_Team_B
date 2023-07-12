@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Common;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
@@ -24,10 +25,12 @@ public class Player : MonoBehaviour
 		_nowPos = 1;
 		gameObject.transform.position = _raneNum[_nowPos].position;
 
-		_moveSE = GameManager.GameStageNum switch
+		_moveSE = GameManager.StageType switch
 		{
-			0 => SoundManager.SE_Type.FootStep_Yashiki,
-			1 => SoundManager.SE_Type.FootStep_Sea,
+			StageType.YASHIKI_DAYTIME => SoundManager.SE_Type.FootStep_Yashiki,
+            StageType.YASHIKI_NIGHT => SoundManager.SE_Type.FootStep_Yashiki,
+            StageType.SEA_DAYTIME => SoundManager.SE_Type.FootStep_Sea,
+            StageType.SEA_NIGHT => SoundManager.SE_Type.FootStep_Sea,
         };
 	}
 
