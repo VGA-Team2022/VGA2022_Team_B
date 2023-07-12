@@ -123,7 +123,11 @@ public class Printer
     /// <summary> セリフ表示 </summary>
     public void ShowText()
     {
-        if (_isShowText || _isFinishShowTexts) return;
+        if (_isShowText || _isFinishShowTexts)
+        {
+            Skip();
+            return;
+        }
 
         if (_dialogueIndex < _dialogue.Length - 1)
         {
@@ -136,16 +140,12 @@ public class Printer
 
             SwitchSprite(show[0], int.Parse(show[2]));
 
-            //DOTween.Sequence() ... 複数のDOTweenの処理を1つにまとめることができる
-            var sequence = DOTween.Sequence();
-            //Text.DOText ... 指定した文字列を指定した時間で1文字ずつ表示する
-            sequence.Append(_dialogueText.DOText(show[1], _indicateTime))
-                    .SetEase(Ease.Linear)
-                    .OnComplete(() =>
-                    {
-                        _isShowText = false;
-                        _dialogueIndex++;
-                    });
+            _dialogueText.DOText(show[1], _indicateTime).SetEase(Ease.Linear)
+                         .OnComplete(() =>
+                         {
+                             _isShowText = false;
+                             _dialogueIndex++;
+                         });
         }
         else
         {
@@ -174,6 +174,11 @@ public class Printer
                 };
             FadeScript.StartFadeOut(() => onCompleteFadeOut());
         }
+    }
+
+    private void Skip()
+    {
+        _dialogueText.DOComplete();
     }
 
     /// <summary> 背景のSpriteをまとめるクラス </summary>
