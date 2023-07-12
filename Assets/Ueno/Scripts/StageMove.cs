@@ -1,3 +1,4 @@
+using Common;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -50,8 +51,7 @@ public class StageMove : MonoBehaviour
         {
             StickMove();
 
-            if (GameManager.StageType == Common.StageType.YASHIKI_DAYTIME ||
-                GameManager.StageType == Common.StageType.YASHIKI_NIGHT)
+            if (GameManager.GameState.Stage == StageType.YASHIKI)
             {
                 _offset.x += _moveSpeed * SpeedRatio * Time.deltaTime;
             }

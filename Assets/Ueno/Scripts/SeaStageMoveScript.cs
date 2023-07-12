@@ -3,13 +3,6 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-/// <summary> ステージ切替 </summary>
-public enum SeaType
-{ 
-    Daylight,
-    Sunset,
-}
-
 /// <summary> 背景objectPrefabの型 </summary>
 [Serializable]
 class BackGroundObject
@@ -23,8 +16,6 @@ class BackGroundObject
 /// <summary> 海ステージの背景を変化させるクラス </summary>
 public class SeaStageMoveScript : MonoBehaviour
 {
-    [Tooltip("ステージタイプ")]
-    [SerializeField] private SeaType _stageLevelType;
     [Tooltip("波obj")]
     [SerializeField] private GameObject _wave;
 
@@ -50,29 +41,24 @@ public class SeaStageMoveScript : MonoBehaviour
         enabled = false;
     }
 
-    private void CacheReferences()                              
-    {
-        _waveScript = _wave.GetComponent<BackGroundScroll>();
-    }
-
     private void StageJudge()
     {
-        if (GameManager.StageType == StageType.SEA_DAYTIME || GameManager.StageType == StageType.SEA_NIGHT)
+        if (GameManager.GameState.Stage == StageType.SEA)
         {
             _waveMeshRenderer = _wave.GetComponent<MeshRenderer>();
             _waveScript = _wave.GetComponent<BackGroundScroll>();
             _waveScript.enabled = true;
 
-            _waveMeshRenderer.material = _waveMaterial[(int)GameManager.StageType % 2];
-            _waveScript.TargetMaterial = _waveMaterial[(int)GameManager.StageType % 2];
+            _waveMeshRenderer.material = _waveMaterial[(int)GameManager.GameState.Stage % 2];
+            _waveScript.TargetMaterial = _waveMaterial[(int)GameManager.GameState.Stage % 2];
             DisableObjects(_backGroundObject[1].ObjPrefabs);
-            BeauchColorChange((int)GameManager.StageType % 2);
+            BeauchColorChange((int)GameManager.GameState.Stage % 2);
 
-            if (GameManager.StageType == StageType.SEA_DAYTIME)
+            if (GameManager.GameState.Time == StageTime.DAYTIME)
             {
                 Debug.Log("海ステージ昼");
             }
-            else if (GameManager.StageType == StageType.SEA_NIGHT)
+            else if (GameManager.GameState.Time == StageTime.NIGHT)
             {
                 Debug.Log("海ステージ夕方");
             }

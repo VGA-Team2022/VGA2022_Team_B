@@ -73,29 +73,29 @@ public class Printer
     /// <summary> 背景設定 </summary>
     public void SetBackGround()
     {
-        switch (GameManager.StageType)
+        switch (GameManager.GameState)
         {
-            case StageType.YASHIKI_DAYTIME:
+            case GameState { Stage: StageType.YASHIKI, Time: StageTime.DAYTIME }:
                 _resultBackGround.sprite = _backGrounds.YashikiDaytime;
                 break;
 
-            case StageType.YASHIKI_NIGHT:
+            case GameState { Stage: StageType.YASHIKI, Time: StageTime.NIGHT }:
                 _resultBackGround.sprite = _backGrounds.YashikiNight;
                 break;
 
-            case StageType.SEA_DAYTIME:
+            case GameState { Stage: StageType.SEA, Time: StageTime.DAYTIME }:
                 _resultBackGround.sprite= _backGrounds.SeaStageDaytime;
                 break;
 
-            case StageType.SEA_NIGHT:
+            case GameState { Stage: StageType.SEA, Time: StageTime.NIGHT }:
                 _resultBackGround.sprite = _backGrounds.SeaStageNight;
                 break;
 
-            case StageType.GARDEN_DAYTIME:
+            case GameState { Stage: StageType.GARDEN, Time: StageTime.DAYTIME }:
                 _resultBackGround.sprite = _backGrounds.GardenDaytime;
                 break;
 
-            case StageType.GARDEN_NIGHT:
+            case GameState { Stage: StageType.GARDEN, Time: StageTime.NIGHT }:
                 _resultBackGround.sprite = _backGrounds.GardenNight;
                 break;
         }
@@ -155,7 +155,8 @@ public class Printer
                 = SceneChangeScript.StageUp() ?
                 () =>
                 {
-                    if (GameManager.StageType == StageType.YASHIKI_DAYTIME)
+                    if (GameManager.GameState.Stage == StageType.YASHIKI &&
+                        GameManager.GameState.Time == StageTime.DAYTIME)
                     {
                         SceneChangeScript.NoFadeLoadScene(Define.Scenes[SceneNames.TITLE_SCENE]);
                     }
