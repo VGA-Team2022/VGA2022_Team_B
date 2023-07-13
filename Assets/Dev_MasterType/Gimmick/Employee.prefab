@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeToAppear: 40
   _spawnLane: 3
-  _cake: {fileID: 4355124191807554293}
+  _cake: {fileID: 6365076445813442923, guid: be273d0414f478c40a4994e044c4df4a, type: 3}
   _moveSpeed: 5
 --- !u!1001 &5049416295647399460
 PrefabInstance:
@@ -179,22 +179,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6377574597726155107, guid: be273d0414f478c40a4994e044c4df4a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8662226630866506634, guid: be273d0414f478c40a4994e044c4df4a, type: 3}
       propertyPath: _prevObj
       value: 
-      objectReference: {fileID: 4355124191461625697}
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662226630866506634, guid: be273d0414f478c40a4994e044c4df4a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be273d0414f478c40a4994e044c4df4a, type: 3}
---- !u!1 &4355124191461625697 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6365076445618439423, guid: be273d0414f478c40a4994e044c4df4a, type: 3}
-  m_PrefabInstance: {fileID: 7216395173269130142}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4355124191807554293 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6365076445813442923, guid: be273d0414f478c40a4994e044c4df4a, type: 3}
-  m_PrefabInstance: {fileID: 7216395173269130142}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4355124191807554294 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6365076445813442920, guid: be273d0414f478c40a4994e044c4df4a, type: 3}

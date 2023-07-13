@@ -14,9 +14,9 @@ public class Obon : MonoBehaviour
 
     [Tooltip("プレイヤーのアニメーション管理クラス")]
     [SerializeField]
-    private PlayerAnimControl _playerAnim;
+    private PlayerAnimController _playerAnim;
 
-    public PlayerAnimControl PlayerAnim => _playerAnim;
+    public PlayerAnimController PlayerAnim => _playerAnim;
 
     [SerializeField]
     private float _zureSpeed;
@@ -84,6 +84,12 @@ public class Obon : MonoBehaviour
         {
             n = 1;
         }
+
+        if (GameManager.IsGameClear)
+        {
+            _playerAnim.GameClearPlayerAnimationChange();
+        }
+
     }
 
     public void SweetsAdd(GameObject gameObjects)
@@ -124,7 +130,7 @@ public class Obon : MonoBehaviour
         {
             foreach (GameObject okasis in _okasis)//揺らす
             {
-                if (okasis.TryGetComponent(out Sweets sweets))/////////////毎回ゲットコンポーネントするのだるいから最初からSweets型のListにする
+                if (okasis.TryGetComponent(out Sweets sweets))
                 {
                     sweets.SwayAnim();
                 }
