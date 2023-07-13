@@ -165,13 +165,13 @@ public class Printer
                         _titleButton.SetActive(true);
                         _nextStageButton.SetActive(true);
                     }
-                    GameManager.IsGameClear = false;
+                    GameManager.GameResult = GameResult.NONE;
                 } : 
                 () =>
                 {
                     _titleButton.SetActive(true);
                     _retryButton.SetActive(true);
-                    GameManager.IsGameClear = false;
+                    GameManager.GameResult = GameResult.NONE;
                 };
             FadeScript.StartFadeOut(() => onCompleteFadeOut());
         }
