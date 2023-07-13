@@ -18,6 +18,7 @@ public class Sweets : MonoBehaviour
     private Obon _obon;
     private Rigidbody _rb;
     private Animator _anim;
+    private string _sweetsSwayAnimTrigger = "triggerSway";
 
     public Transform NextPos => _nextPos;
     public GameObject PrevObj { get => _prevObj; set => _prevObj = value; }
@@ -37,7 +38,6 @@ public class Sweets : MonoBehaviour
             if (transform.position.x >= _prevObj.transform.position.x + _deadWidth ||
                 transform.position.x <= _prevObj.transform.position.x - _deadWidth)
             {
-                //_rb.AddForce(Vector2.up * 10);//AddForceせんと崩れないからAddForce。演出にも使えソう;
                 _obon.GameOver();//Obonクラスのゲームオーバー関数の呼び出し
                 _obon._sweetsFall = true;
                 Obon.IsSweetsFall = true;
@@ -56,13 +56,13 @@ public class Sweets : MonoBehaviour
             if (transform.position.x >= _prevObj.transform.position.x + _deadWidth / 2
                 || transform.position.x <= _prevObj.transform.position.x - _deadWidth / 2)
             {
-                _obon.PlayerAnim.Abunaaaaaaai();
+                _obon.PlayerAnim.SweetsFallPlayerAnimationChange();
             }
         }
         catch (NullReferenceException nullException)
         {
-            Debug.LogWarning(nullException);
-            _obon.PlayerAnim.Abunaaaaaaai();
+
+            _obon.PlayerAnim.SweetsFallPlayerAnimationChange();
         }
     }
 
@@ -83,6 +83,6 @@ public class Sweets : MonoBehaviour
 
     public void SwayAnim()
     {
-        _anim.Play("GuraGura");
+        _anim.SetTrigger(_sweetsSwayAnimTrigger);
     }
 }

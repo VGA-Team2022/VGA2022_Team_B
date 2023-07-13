@@ -63,15 +63,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.5
         value: {x: -90, y: 50, z: 153.83}
-        inSlope: {x: 0, y: 66.666664, z: 0}
-        outSlope: {x: 0, y: 66.666664, z: 0}
+        inSlope: {x: 0, y: 97.98, z: 0}
+        outSlope: {x: 0, y: 97.98, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 1.5
-        value: {x: -90, y: 100, z: 153.83}
+        value: {x: -90, y: 146.97, z: 153.83}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -397,15 +397,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.5
         value: 50
-        inSlope: 66.666664
-        outSlope: 66.666664
+        inSlope: 97.98
+        outSlope: 97.98
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1.5
-        value: 100
+        value: 146.97
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -743,7 +743,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: leftDoor
+    path: rightDoor
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -753,17 +753,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: leftDoor
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: leftDoor
+    path: rightDoor
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -782,8 +772,18 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: leftDoor
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: rightDoor
+    path: leftDoor
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -793,7 +793,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: rightDoor
+    path: leftDoor
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 1

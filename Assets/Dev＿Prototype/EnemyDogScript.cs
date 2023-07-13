@@ -129,10 +129,10 @@ public class EnemyDogScript : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (_anim)
-        {
-            _anim.SetBool("isStop", _isStop);
-        }
+        //if (_anim)
+        //{
+        //    _anim.SetBool("isStop", _isStop);
+        //}
     }
 
     private void BigDogBreathPlayAudio()
