@@ -42,8 +42,7 @@ public class GameClearObjectAttachedScript : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out Obon obon))
         {
-            GameManager.IsGameClear = true;
-            GameManager.GameResult = Common.GameResult.CLEAR;
+            GameManager.GameResult = GameResult.CLEAR;
             _isClear = true;
             Debug.Log("GameClear");
         }

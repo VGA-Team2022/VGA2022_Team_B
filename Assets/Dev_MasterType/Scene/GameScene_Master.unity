@@ -589,7 +589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10036aa8bb9ad5442a89cdcc068b5352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isDebugZure: 1
+  _isDebugZure: 0
   _startOkasis:
   - {fileID: 1143642945}
   - {fileID: 1653620927}

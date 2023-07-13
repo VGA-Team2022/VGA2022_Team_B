@@ -15,14 +15,6 @@ public class GameManager : MonoBehaviour
     /// <summary>現在の時間</summary>
     public static float CurrentTime;
 
-    /// <summary>ゲームが開始されたかの判定</summary>
-    private bool _isGameStart = false;
-
-    /// <summary>ゲームクリアの判定</summary>
-    public static bool IsGameClear = false;
-    /// <summary>ゲームオーバーの判定</summary>
-    public static bool IsGameOver = false;
-
     /// <summary>リザルト演出の終了判定</summary>
     public static bool IsFinishedEffect = false;
 
@@ -31,11 +23,14 @@ public class GameManager : MonoBehaviour
     /// <summary>Playerの進行をストップする為の判定</summary>
     public static bool IsStop = false;
 
-    /// <summary>Clear判定用のドアを出現させる判定</summary>
-    private static bool _isAppearDoorObj = false;
-
     /// <summary>SceneManager格納用変数</summary>
     private AttachedSceneController _scenemng = default;
+
+    /// <summary>ゲームが開始されたかの判定</summary>
+    private bool _isGameStart = false;
+
+    /// <summary>Clear判定用のドアを出現させる判定</summary>
+    private static bool _isAppearDoorObj = false;
 
     /// <summary>クリア判定後に出現するobjectフラグ</summary>
     public static bool IsAppearClearObj => _isAppearDoorObj;
@@ -74,8 +69,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _isGameStart = false;
-        IsGameOver = false;
-        IsGameClear = false;
         IsFinishedEffect = false;
         FindSceneManager();
 
@@ -92,7 +85,6 @@ public class GameManager : MonoBehaviour
     private void FindSceneManager()
     {
         _scenemng = GameObject.Find("SceneManager").GetComponent<AttachedSceneController>();
-        Debug.Log(_scenemng);
     }
 
     private void Update()
@@ -111,8 +103,6 @@ public class GameManager : MonoBehaviour
                      SceneManager.GetActiveScene().name != Define.SCENENAME_MASTERGAME)
             {
                 _isGameStart = false;
-                IsGameOver = false;
-                IsGameClear = false;
                 IsFinishedEffect = false;
                 IsFindScenemng = true;
                 IsStop = false;
@@ -128,8 +118,6 @@ public class GameManager : MonoBehaviour
                 _isGameStart = true;
                 IsFindScenemng = true;
                 IsFinishedEffect = false;
-                IsGameOver = false;
-                IsGameClear = false;
                 IsStop = false;
                 _isAppearDoorObj = false;
                 CurrentTime = 0;
@@ -147,17 +135,9 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(GameOver());
             }
 
-            if (IsGameOver && !IsGameClear) //GameOver
+            if (GameResult != GameResult.NONE)
             {
                 if (IsFinishedEffect) _scenemng.ChangeResultScene();
-            }
-            else if (!IsGameOver && IsGameClear)//GameClear
-            {
-                if (IsFinishedEffect) _scenemng.ChangeResultScene();
-            }
-            else if (IsGameOver && IsGameClear)//もし両方クリア判定になったら
-            {
-                _scenemng.ChangeResultScene();
             }
         }
         //GameClearになったら扉を呼び出す
@@ -168,7 +148,7 @@ public class GameManager : MonoBehaviour
                 CurrentTime += Time.deltaTime;
             }
 
-            if (CurrentTime >= GameTimeClearLength && !IsGameOver)
+            if (CurrentTime >= GameTimeClearLength && GameResult != GameResult.FAILED)
             {
                 _isAppearDoorObj = true;
             }
@@ -179,6 +159,6 @@ public class GameManager : MonoBehaviour
     private IEnumerator GameOver()
     {
         yield return new WaitForSeconds(1f);
-        IsGameOver = Obon.IsSweetsFall;
+        GameResult = GameResult.FAILED;
     }
 }

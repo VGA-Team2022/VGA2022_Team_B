@@ -30,7 +30,7 @@ public class SceneChangeScript
 
     public static bool StageUp()
     {
-        if (!GameManager.IsGameClear) return false;
+        if (GameManager.GameResult == GameResult.FAILED) return false;
 
         if (GameManager.GameState.Time == StageTime.DAYTIME)
         {
@@ -41,7 +41,6 @@ public class SceneChangeScript
             GameManager.GameState.Time = StageTime.DAYTIME;
             GameManager.GameState.Stage++;
         }
-
         return true;
     }
 }

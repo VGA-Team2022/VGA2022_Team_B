@@ -85,7 +85,7 @@ public class Obon : MonoBehaviour
             n = 1;
         }
 
-        if (GameManager.IsGameClear)
+        if (GameManager.GameResult == GameResult.CLEAR)
         {
             _playerAnim.GameClearPlayerAnimationChange();
         }

@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Common;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,13 +50,13 @@ public class StagingJudgeScript : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.IsGameClear && !GameManager.IsFinishedEffect && !_isMigrateToResult)
+        if (GameManager.GameResult == GameResult.CLEAR && !GameManager.IsFinishedEffect && !_isMigrateToResult)
         {
             Debug.Log("CLEAR");
             _isMigrateToResult = true;
             GameClearEffect();
         }
-        else if (GameManager.IsGameOver && !GameManager.IsFinishedEffect && !_isMigrateToResult)
+        else if (GameManager.GameResult == GameResult.FAILED && !GameManager.IsFinishedEffect && !_isMigrateToResult)
         {
             _isMigrateToResult = true;
             GameOverEffect();
