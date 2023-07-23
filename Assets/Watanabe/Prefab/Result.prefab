@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53955449f97799f489d7c87f3d86572b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textData: {fileID: 4900000, guid: c07fd6760722a8d45a4c4f711f0743ee, type: 3}
+  _textData: {fileID: 4900000, guid: 3dc1f75bbc35fbb4099eb5a9439dc4ce, type: 3}
   _printer:
     _titleButton: {fileID: 0}
     _nextStageButton: {fileID: 0}
@@ -87,6 +87,7 @@ MonoBehaviour:
       - {fileID: 21300000, guid: 13d34d805e88c024daa41768a6270c6f, type: 3}
       - {fileID: 21300000, guid: a370ec2cbc62cca4bb0d50cd3f218b36, type: 3}
       - {fileID: 21300000, guid: d5b1766f29177004182540cdd3a16ef4, type: 3}
+      _princessGarden: []
       _maid:
       - {fileID: 21300000, guid: 3280f62453fb41e44b48204ca5a8e4ad, type: 3}
       - {fileID: 21300000, guid: 53a06dbbf36175341b8cde33510389d5, type: 3}
@@ -99,5 +100,3 @@ MonoBehaviour:
       _seaStageNight: {fileID: 21300000, guid: d747f838dc1cbf94bbbb53d0a15c964a, type: 3}
       _gardenDaytime: {fileID: 0}
       _gardenNight: {fileID: 0}
-  _stage: 1
-  _result: 1
