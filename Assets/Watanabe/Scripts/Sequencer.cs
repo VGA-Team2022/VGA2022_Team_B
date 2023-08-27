@@ -63,32 +63,23 @@ public class Sequencer : MonoBehaviour
         {
             switch (GameManager.GameState)
             {
-                case GameState { Stage: StageType.YASHIKI, Time: StageTime.DAYTIME }:
-                    return 0;
-                case GameState { Stage: StageType.YASHIKI, Time: StageTime.NIGHT }:
-                    return 1;
-                case GameState { Stage: StageType.SEA, Time: StageTime.DAYTIME }:
-                    return 3;
-                case GameState { Stage: StageType.SEA, Time: StageTime.NIGHT }:
-                    return 4;
+                case GameState { Stage: StageType.YASHIKI, Time: StageTime.DAYTIME }: { return 0; }
+                case GameState { Stage: StageType.YASHIKI, Time: StageTime.NIGHT }:   { return 1; }
+                case GameState { Stage: StageType.SEA, Time: StageTime.DAYTIME }:     { return 3; }
+                case GameState { Stage: StageType.SEA, Time: StageTime.NIGHT }:       { return 4; }
                 //ここは分からない
-                case GameState { Stage: StageType.GARDEN, Time: StageTime.DAYTIME }:
-                    return 6;
-                case GameState { Stage: StageType.GARDEN, Time: StageTime.NIGHT }:
-                    return 7;
+                case GameState { Stage: StageType.GARDEN, Time: StageTime.DAYTIME }:  { return 6; }
+                case GameState { Stage: StageType.GARDEN, Time: StageTime.NIGHT }:    { return 7; }
             }
         }
         else if (GameManager.GameResult == GameResult.FAILED)
         {
             switch (GameManager.GameState.Stage)
             {
-                case StageType.YASHIKI:
-                    return 2;
-                case StageType.SEA:
-                    return 5;
+                case StageType.YASHIKI: { return 2; }
+                case StageType.SEA:     { return 5; }
                 //ここは分からない
-                case StageType.GARDEN:
-                    return 8;
+                case StageType.GARDEN:  { return 8; }
             }
         }
         return -1;
