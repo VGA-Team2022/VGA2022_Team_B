@@ -2,5 +2,8 @@
 
 public class TutorialStage : MonoBehaviour
 {
+    private void Start()
+    {
 
+    }
 }
