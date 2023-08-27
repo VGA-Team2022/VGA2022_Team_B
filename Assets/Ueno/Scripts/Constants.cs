@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Common
 {
@@ -16,6 +18,40 @@ namespace Common
         public const string SCENENAME_HOME = "HomeScene";
         public const string SCENENAME_MASTERGAME = "GameScene_Master";
         public const string SCENENAME_RESULT = "ResultScene";
+    }
+
+    /// <summary> 各キャラクターのステージ毎のSpriteをまとめるクラス </summary>
+    [Serializable]
+    public class CharacterSprites
+    {
+        [SerializeField] private Sprite[] _princessYashiki = default;
+        [SerializeField] private Sprite[] _princessSea = default;
+        [SerializeField] private Sprite[] _princessGarden = default;
+        [SerializeField] private Sprite[] _maid = default;
+
+        public Sprite[] PrincessYashiki => _princessYashiki;
+        public Sprite[] PrincessSea => _princessSea;
+        public Sprite[] PrincessGarden => _princessGarden;
+        public Sprite[] Maid => _maid;
+    }
+
+    /// <summary> 背景のSpriteをまとめるクラス </summary>
+    [Serializable]
+    public class BackGrounds
+    {
+        [SerializeField] private Sprite _yashikiDaytime = default;
+        [SerializeField] private Sprite _yashikiNight = default;
+        [SerializeField] private Sprite _seaStageDaytime = default;
+        [SerializeField] private Sprite _seaStageNight = default;
+        [SerializeField] private Sprite _gardenDaytime = default;
+        [SerializeField] private Sprite _gardenNight = default;
+
+        public Sprite YashikiDaytime => _yashikiDaytime;
+        public Sprite YashikiNight => _yashikiNight;
+        public Sprite SeaStageDaytime => _seaStageDaytime;
+        public Sprite SeaStageNight => _seaStageNight;
+        public Sprite GardenDaytime => _gardenDaytime;
+        public Sprite GardenNight => _gardenNight;
     }
 
     /// <summary> 挑戦するステージを保存する </summary>

@@ -177,42 +177,5 @@ public class Printer
         }
     }
 
-    private void Skip()
-    {
-        _dialogueText.DOComplete();
-    }
-
-    /// <summary> 各キャラクターのステージ毎のSpriteをまとめるクラス </summary>
-    [Serializable]
-    private class CharacterSprites
-    {
-        [SerializeField] private Sprite[] _princessYashiki = default;
-        [SerializeField] private Sprite[] _princessSea = default;
-        [SerializeField] private Sprite[] _princessGarden = default;
-        [SerializeField] private Sprite[] _maid = default;
-
-        public Sprite[] PrincessYashiki => _princessYashiki;
-        public Sprite[] PrincessSea => _princessSea;
-        public Sprite[] PrincessGarden => _princessGarden;
-        public Sprite[] Maid => _maid;
-    }
-
-    /// <summary> 背景のSpriteをまとめるクラス </summary>
-    [Serializable]
-    private class BackGrounds
-    {
-        [SerializeField] private Sprite _yashikiDaytime = default;
-        [SerializeField] private Sprite _yashikiNight = default;
-        [SerializeField] private Sprite _seaStageDaytime = default;
-        [SerializeField] private Sprite _seaStageNight = default;
-        [SerializeField] private Sprite _gardenDaytime = default;
-        [SerializeField] private Sprite _gardenNight = default;
-
-        public Sprite YashikiDaytime => _yashikiDaytime;
-        public Sprite YashikiNight => _yashikiNight;
-        public Sprite SeaStageDaytime => _seaStageDaytime;
-        public Sprite SeaStageNight => _seaStageNight;
-        public Sprite GardenDaytime => _gardenDaytime;
-        public Sprite GardenNight => _gardenNight;
-    }
+    private void Skip() { _dialogueText.DOComplete(); }
 }
