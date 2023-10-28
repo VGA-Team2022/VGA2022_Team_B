@@ -26,8 +26,7 @@ public class Employee : GimmickBase
 
         if (transform.position.x <= 0 && !_isCakeInstance)
         {
-            var cake = _obonObj.GetComponent<Obon>().SweetsAdd(_cake, true);
-            cake.transform.parent = _obonObj.transform;
+            _obonObj.GetComponent<Obon>().SweetsAdd(_cake, true);
             _handingCake.enabled = false;
             _isCakeInstance = true;
         }
