@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// ŠCƒXƒe[ƒW‹ŠE–WŠQƒMƒ~ƒbƒN
+/// </summary>
 public class KlalenScript : GimmickBase
 {
     /// <summary>‹ŠE–WŠQ—pUI‚ÌCanvasAGameObject</summary>
@@ -28,7 +31,8 @@ public class KlalenScript : GimmickBase
     // Update is called once per frame
     void Update()
     { 
-        if (this.transform.position.x <= 0 && !_isActionDone)
+        /*Todo:‚Æ‚è‚ª[‚â‚ß‚é
+ */       if (this.transform.position.x <= 0 && !_isActionDone)
         {
             _anim.SetTrigger(_actionAnimName);
             SoundManager.InstanceSound.PlayerMoveSE(SoundManager.SE_Type.Enemy_ArtPaint_Milk);
