@@ -6,6 +6,8 @@ public class WaterMelon : GimmickBase
     [Tooltip("スイカが止まる範囲")]
     [SerializeField] private float _stopRange = 1;
     [SerializeField] private Sprite _suikaImage = null;
+    [Tooltip("スイカが止まった際に非表示にするオブジェクト")]
+    [SerializeField] private SpriteRenderer _suikaHighLightImage;
     [Tooltip("移動速度の調整値")]
     [SerializeField] private float _multiplyValue = 2f;
 
@@ -17,6 +19,7 @@ public class WaterMelon : GimmickBase
     private void Start()
     {
         _animator = GetComponentInChildren<Animator>();
+        _suikaHighLightImage = _suikaHighLightImage.GetComponent<SpriteRenderer>();
         SoundManager.InstanceSound.PlayerMoveSE(SoundManager.SE_Type.Enemy_Rooling);
 
         _isSpawnNegativeX = transform.position.x <= 0;
@@ -83,6 +86,7 @@ public class WaterMelon : GimmickBase
 
             //当たった際の演出を実行し、おぼんを揺らす
             transform.GetChild(0).GetComponentInChildren<SpriteRenderer>().sprite = _suikaImage;
+            _suikaHighLightImage.enabled = false;
             SoundManager.InstanceSound.PlayAudioClip(SoundManager.SE_Type.Enemy_Coconut);
             //_isStop = true;
             obon.Hit(transform.position.x);
